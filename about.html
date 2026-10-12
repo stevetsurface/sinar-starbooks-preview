@@ -98,7 +98,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             <span style="height: 64px; display: flex; align-items: center">
               <img src="{{p.logo}}" alt="{{p.name}}" style="max-width: 100%; max-height: {{p.h}}; object-fit: contain">
             </span>
-            <span style="font-size: 14px; color: #5B2A86; font-weight: 600">{{t.partnerSince}} {{p.since}}</span>
           </div>
         </sc-for>
       </div>
@@ -154,8 +153,7 @@ class Component extends DCLogic {
       heroSub: L('[Dua atau tiga kalimat tentang Sinar Starbooks saat ini — misalnya apa yang Anda impor, siapa yang Anda layani, dan di mana Anda berlokasi.]', '[Two or three sentences on who Sinar Starbooks is today — e.g. what you import, who you serve, where you are based.]'),
       journeyTitle: L('Perjalanan kami', 'Our journey'),
       pubTitle: L('Kerja sama langsung dengan penerbit', 'Direct publisher relationships'),
-      pubSub: L('Tahun dimulainya setiap kemitraan', 'Year each partnership began'),
-      partnerSince: L('Mitra sejak', 'Partner since'),
+      pubSub: L('Langsung dari penerbit terkemuka AS dan Inggris', 'Direct from leading US and UK publishers'),
       missionLabel: L('MISI KAMI', 'OUR MISSION'),
       missionBody: L('[Pernyataan misi — satu atau dua kalimat dari tim Sinar Star.]', '[Mission statement — one or two sentences from the Sinar Star team.]'),
       faqTitle: L('FAQ perusahaan', 'Company FAQs'),
@@ -192,7 +190,7 @@ class Component extends DCLogic {
         { name: 'Macmillan', logo: 'assets/logos/macmillan.jpg', h: '64px' },
         { name: 'Bloomsbury', logo: 'assets/logos/bloomsbury.svg', h: '20px' },
         { name: 'Scholastic', logo: 'assets/logos/scholastic.svg', h: '30px' }
-      ].map((p) => Object.assign({ since: yr }, p))
+      ]
     };
   }
 }
