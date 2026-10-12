@@ -259,6 +259,38 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     <span style="font-size: 13px; color: #6E6478">{{t.igNote}}</span>
   </section>
 
+  <!-- Newsletter -->
+  <section id="newsletter" style="max-width: 1240px; margin: 0 auto; padding: 0 24px 72px">
+    <div style="background: #F1EBF6; border-radius: 28px; padding: 40px; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; justify-content: space-between">
+      <div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #5B2A86">NEWSLETTER</span>
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.1; color: #2A1640">{{t.nlTitle}}</h2>
+        <span style="font-size: 16px; line-height: 1.55; color: #4A4252">{{t.nlBody}}</span>
+      </div>
+      <sc-if value="{{nlNotDone}}" hint-placeholder-val="{{true}}">
+        <form style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+            <label for="nl-email" style="position: absolute; left: -9999px">Email</label>
+            <input id="nl-email" name="nl-email" type="email" placeholder="{{t.nlPh}}" style="flex: 1 1 220px; height: 52px; border-radius: 14px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 16px; font: inherit; font-size: 15px">
+            <button type="button" onClick="{{nlSubmit}}" style="height: 52px; padding: 0 24px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer">{{t.nlCta}}</button>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; color: #4A4252">
+            <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.nlNew}}</label>
+            <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.nlPromo}}</label>
+            <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.nlReseller}}</label>
+          </div>
+          <span style="font-size: 12px; color: #6E6478">{{t.nlNote}}</span>
+        </form>
+      </sc-if>
+      <sc-if value="{{nlDone}}" hint-placeholder-val="{{false}}">
+        <div role="status" style="flex: 1 1 420px; display: flex; gap: 12px; align-items: center; padding: 20px; border-radius: 16px; background: #FFFFFF; color: #24523A; font-weight: 700; font-size: 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+          <span>{{t.nlThanks}}</span>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer style="background: #F4F0F8">
     <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; font-size: 14px">
@@ -272,7 +304,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px">
         <span style="font-weight: 700">{{t.fAccount}}</span>
-        <a href="account.html">{{t.fAccount}}</a><a href="orders.html">{{t.fOrders}}</a><a href="catalog.html">{{t.fWish}}</a><a href="#">{{t.fNewsletter}}</a>
+        <a href="account.html">{{t.fAccount}}</a><a href="orders.html">{{t.fOrders}}</a><a href="catalog.html">{{t.fWish}}</a><a href="#newsletter">{{t.fNewsletter}}</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; color: #4A4252">
         <span style="font-weight: 700; color: #1E1A24">{{t.fContact}}</span>
@@ -365,6 +397,15 @@ class Component extends DCLogic {
       fOrders: L('Riwayat Pesanan', 'Order History'),
       fWish: L('Wishlist', 'Wish List'),
       fNewsletter: L('Newsletter', 'Newsletter'),
+      nlTitle: L('Kabar buku baru, langsung ke inbox Anda', 'New books, straight to your inbox'),
+      nlBody: L('Rilis baru, pre-order, judul terlaris, dan promo khusus. Satu email setiap minggu.', 'New releases, pre-orders, best sellers and special offers. One email a week.'),
+      nlPh: L('Alamat email Anda', 'Your email address'),
+      nlCta: L('Daftar', 'Sign up'),
+      nlNew: L('Rilis baru & pre-order', 'New releases & pre-orders'),
+      nlPromo: L('Promo & event', 'Offers & events'),
+      nlReseller: L('Info untuk reseller', 'Reseller updates'),
+      nlNote: L('Bisa berhenti berlangganan kapan saja.', 'Unsubscribe any time.'),
+      nlThanks: L('Terima kasih! Cek email Anda untuk konfirmasi.', 'Thank you! Check your email to confirm.'),
       fContact: L('Kontak', 'Contact'),
       ariaWa: L('Chat lewat WhatsApp', 'Chat on WhatsApp')
     };
@@ -449,7 +490,8 @@ class Component extends DCLogic {
       { url: 'https://www.instagram.com/sinarstarbooks/reel/DeFNXJBv0M9/', reel: true, bg: '#B07A12', date: L('4 Okt 2026', 'Oct 4, 2026'), caption: 'That’s a wrap! IIBF 2026' },
       { url: 'https://www.instagram.com/sinarstarbooks/p/DeDrc7wg5OE/', reel: false, bg: '#1F3B73', date: L('3 Okt 2026', 'Oct 3, 2026'), caption: 'Pokémon grand prize alert!' }
     ];
-    return { t, tabs, books: lists[this.state.tab], langs, pubLogos, giftLogos, retailLogos, events, igPosts };
+    const nlDone = !!(this.state && this.state.nlDone);
+    return { t, tabs, books: lists[this.state.tab], langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
   }
 }
 </script>

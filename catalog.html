@@ -50,7 +50,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       </a>
       <a href="checkout.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
-        {{t.cart}}
+        {{cartBtn}}
       </a>
     </div>
     <nav aria-label="{{t.mainNavAria}}" style="max-width: 1320px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
@@ -171,6 +171,40 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </sc-if>
         </div>
 
+        <!-- Trending with other resellers -->
+        <sc-if value="{{showTrending}}" hint-placeholder-val="{{true}}">
+          <section aria-label="{{t.trendTitle}}" style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+              <span style="display: flex; align-items: center; gap: 8px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 20px; color: #2A1640">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B0476A" stroke-width="2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"></path></svg>
+                {{t.trendTitle}}
+              </span>
+              <span style="font-size: 13px; color: #6E6478">{{t.trendSub}}</span>
+            </div>
+            <div style="display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 4px">
+              <sc-for list="{{trending}}" as="r" hint-placeholder-count="6">
+                <div style="display: flex; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; background: #FBF8FD">
+                  <div style="width: 40px; height: 56px; border-radius: 2px 5px 5px 2px; background: {{r.cover}}; flex: none"></div>
+                  <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1">
+                    <span style="font-weight: 700; font-size: 13px; line-height: 1.25; color: #1E1A24; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.title}}</span>
+                    <span style="font-size: 11px; font-weight: 700; color: #B0476A">{{r.boughtLabel}}</span>
+                    <span style="font-size: 12px; font-weight: 800; color: #2A1640">{{r.reseller}}</span>
+                  </div>
+                  <button type="button" aria-label="{{t.addToCart}}" onClick="{{r.add}}" style="width: 36px; height: 36px; border-radius: 9px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer; flex: none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 12px; color: #4A4252; border-top: 1px solid #F3EFF6; padding-top: 12px">
+              <span style="display: flex; align-items: center; gap: 6px; font-weight: 800; color: #3E7A5A"><span style="width: 8px; height: 8px; border-radius: 50%; background: #3E7A5A"></span>{{t.recentTitle}}</span>
+              <sc-for list="{{recentOrders}}" as="o" hint-placeholder-count="3">
+                <span>{{o.text}} <span style="color: #6E6478">· {{o.ago}}</span></span>
+              </sc-for>
+            </div>
+          </section>
+        </sc-if>
+
         <!-- LIST VIEW -->
         <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
           <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
@@ -190,13 +224,19 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                     </span>
                     <span style="font-size: 13px; color: #6E6478">{{r.author}} · {{r.publisher}} · {{r.catLabel}}</span>
                     <span style="font-size: 12px; color: #6E6478">{{r.isbnLabel}}{{r.stock}} · {{t.minShort}} {{r.moq}}</span>
+                    <sc-if value="{{r.hot}}" hint-placeholder-val="{{false}}">
+                      <span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px">
+                        <span style="font-size: 12px; font-weight: 700; color: #B0476A">{{r.boughtLabel}}</span>
+                        <span style="font-size: 12px; font-weight: 600; color: #5B2A86">· {{r.cartsLabel}}</span>
+                      </span>
+                    </sc-if>
                   </div>
                   <span style="font-size: 14px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
                   <span style="font-size: 16px; font-weight: 800; color: #2A1640">{{r.reseller}}</span>
                   <div style="display: flex; gap: 8px; align-items: center">
                     <label style="position: absolute; left: -9999px" for="ql-{{r.key}}">{{t.qtyFor}} {{r.title}}</label>
                     <input id="ql-{{r.key}}" type="number" value="{{r.moq}}" min="0" style="width: 60px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 15px">
-                    <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                    <button type="button" aria-label="{{t.addToCart}}" onClick="{{r.add}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
                     </button>
                   </div>
@@ -222,10 +262,13 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                 <div style="padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1">
                   <a href="product.html" style="font-weight: 700; font-size: 14px; line-height: 1.3; color: #1E1A24">{{r.title}}</a>
                   <span style="font-size: 12px; color: #6E6478">{{r.author}}</span>
+                  <sc-if value="{{r.hot}}" hint-placeholder-val="{{false}}">
+                    <span style="font-size: 11px; font-weight: 700; color: #B0476A">{{r.boughtLabel}}</span>
+                  </sc-if>
                   <span style="margin-top: auto; padding-top: 6px; font-size: 12px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
                   <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
                     <span style="font-size: 15px; font-weight: 800; color: #2A1640">{{r.reseller}}</span>
-                    <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                    <button type="button" aria-label="{{t.addToCart}}" onClick="{{r.add}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
                     </button>
                   </div>
@@ -253,7 +296,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                   <span style="display: flex; gap: 6px; align-items: center">
                     <label style="position: absolute; left: -9999px" for="qc-{{r.key}}">{{t.qtyFor}} {{r.title}}</label>
                     <input id="qc-{{r.key}}" type="number" value="{{r.moq}}" min="0" style="width: 52px; height: 32px; border-radius: 8px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 13px">
-                    <button type="button" aria-label="{{t.addToCart}}" style="width: 32px; height: 32px; border-radius: 8px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                    <button type="button" aria-label="{{t.addToCart}}" onClick="{{r.add}}" style="width: 32px; height: 32px; border-radius: 8px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
                     </button>
                   </span>
@@ -295,16 +338,84 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       </div>
     </div>
   </div>
+
+  <!-- Toast -->
+  <sc-if value="{{hasFlash}}" hint-placeholder-val="{{false}}">
+    <div role="status" style="position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 60; display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 14px; background: #2A1640; color: #FFFFFF; font-size: 14px; font-weight: 600; box-shadow: 0 14px 30px rgba(42,22,64,0.3)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2B33D" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+      <span>{{flash}}</span>
+    </div>
+  </sc-if>
+
+  <!-- Floating mini-cart -->
+  <div onMouseEnter="{{openCart}}" onMouseLeave="{{closeCart}}" style="position: fixed; right: 24px; bottom: 24px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
+    <sc-if value="{{cartOpen}}" hint-placeholder-val="{{false}}">
+      <div role="dialog" aria-label="{{t.miniTitle}}" style="width: 360px; max-width: calc(100vw - 48px); background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; box-shadow: 0 24px 60px rgba(42,22,64,0.22); padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 20px; color: #2A1640">{{t.miniTitle}}</span>
+          <span style="font-size: 13px; color: #6E6478">{{cartCountLabel}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto">
+          <sc-for list="{{cartLines}}" as="c" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; align-items: center; font-size: 13px">
+              <div style="width: 30px; height: 42px; border-radius: 2px 4px 4px 2px; background: {{c.cover}}; flex: none"></div>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+                <span style="font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{c.title}}</span>
+                <span style="color: #6E6478">{{c.qty}} × {{c.unit}}</span>
+              </span>
+              <span style="font-weight: 800">{{c.sub}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <!-- Discount trigger -->
+        <div style="background: #F7F2FB; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+            <span style="font-size: 13px; font-weight: 700; color: #2A1640">{{tierNow}}</span>
+            <span style="font-size: 22px; font-weight: 800; color: #5B2A86">{{discLabel}}</span>
+          </div>
+          <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{tierPct}}" aria-label="{{tierNext}}" style="height: 10px; border-radius: 999px; background: #E2D7EC; overflow: hidden">
+            <div style="height: 100%; width: {{tierWidth}}; border-radius: 999px; background: #F2B33D"></div>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #6B4A00">{{tierNext}}</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap">
+            <sc-for list="{{ladder}}" as="lv" hint-placeholder-count="4">
+              <sc-if value="{{lv.on}}" hint-placeholder-val="{{false}}">
+                <span style="font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 999px; background: #5B2A86; color: #FFFFFF">{{lv.label}}</span>
+              </sc-if>
+              <sc-if value="{{lv.off}}" hint-placeholder-val="{{true}}">
+                <span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 999px; background: #FFFFFF; color: #6E6478; border: 1px solid #E2D7EC">{{lv.label}}</span>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 14px">
+          <div style="display: flex; justify-content: space-between"><span style="color: #6E6478">{{t.retailValue}}</span><span style="text-decoration: line-through; color: #6E6478">{{cartRetail}}</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #6E6478">{{t.youSave}}</span><span style="font-weight: 700; color: #3E7A5A">− {{cartSave}}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: #2A1640; padding-top: 4px"><span>Total</span><span>{{cartTotal}}</span></div>
+        </div>
+        <a href="checkout.html" style="display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 12px; background: #5B2A86; color: #FFFFFF; font-weight: 800; font-size: 15px">{{t.viewCart}}</a>
+      </div>
+    </sc-if>
+    <button type="button" onClick="{{toggleCart}}" aria-expanded="{{cartOpenAttr}}" style="display: flex; align-items: center; gap: 12px; height: 60px; padding: 0 22px 0 18px; border-radius: 999px; border: 0; background: #2A1640; color: #FFFFFF; font: inherit; cursor: pointer; box-shadow: 0 14px 30px rgba(42,22,64,0.3)">
+      <span style="position: relative; display: grid; place-items: center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+        <span style="position: absolute; top: -8px; right: -10px; min-width: 20px; height: 20px; padding: 0 5px; box-sizing: border-box; border-radius: 999px; background: #F2B33D; color: #2A1640; font-size: 11px; font-weight: 800; display: grid; place-items: center">{{cartCount}}</span>
+      </span>
+      <span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15">
+        <span style="font-size: 16px; font-weight: 800">{{cartTotal}}</span>
+        <span style="font-size: 11px; font-weight: 700; color: #F2B33D">{{pillHint}}</span>
+      </span>
+    </button>
+  </div>
 </div>
 </template>
 <div id="dc-root"></div>
-<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":30,"section":"Pricing"},"$preview":{"width":1440,"height":2600}}'>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2600}}'>
 class Component extends DCLogic {
   renderVals() {
     const st = this.state || {};
     const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
-    const d = this.props.resellerDiscount ?? 30;
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'id' ? '.' : ',');
     const t = {
       homeAria: L('Beranda reseller', 'Reseller home'),
@@ -326,7 +437,13 @@ class Component extends DCLogic {
       prev: L('Halaman sebelumnya', 'Previous page'), next: L('Halaman berikutnya', 'Next page'),
       reqTitle: L('Tidak menemukan judul yang dicari?', 'Can’t find the title you need?'),
       reqBody: L('Minta ke kami, dan kami carikan langsung dari penerbit.', 'Request it and we’ll source it directly from the publisher.'),
-      reqCta: L('Minta buku', 'Request a book')
+      reqCta: L('Minta buku', 'Request a book'),
+      trendTitle: L('Sedang ramai di reseller lain', 'Trending with other resellers'),
+      trendSub: L('Paling banyak dipesan reseller minggu ini', 'Most ordered by resellers this week'),
+      recentTitle: L('Baru saja dipesan', 'Just ordered'),
+      miniTitle: L('Keranjang Anda', 'Your cart'),
+      retailValue: L('Harga eceran', 'Retail value'), youSave: L('Anda hemat', 'You save'),
+      viewCart: L('Lihat keranjang & checkout', 'View cart & checkout')
     };
     // Sinar Star departments, grouped
     const GROUPS = [
@@ -344,6 +461,40 @@ class Component extends DCLogic {
     const books = DATA.map((b, i) => ({ key: i, title: b[0], author: b[1], publisher: b[2], price: b[3], cat: b[4], sold: b[5], inStock: !!b[6], isbn: b[7] }));
     const bestRank = {};
     books.slice().sort((a, b) => b.sold - a.sold).slice(0, 10).forEach((b, i) => { bestRank[b.key] = i + 1; });
+
+    // Reseller discount triggers (S&K Reseller 2026), on the order's retail value
+    const TIERS = [{ min: 1000000, d: 20 }, { min: 10000000, d: 30 }, { min: 25000000, d: 35 }, { min: 50000000, d: 37 }];
+    const tierFor = (v) => TIERS.filter((x) => v >= x.min).pop() || null;
+    const byKey = {}; books.forEach((b) => { byKey[b.key] = b; });
+    const seedCart = {};
+    books.slice().sort((a, b) => b.sold - a.sold).slice(0, 3).forEach((b) => { seedCart[b.key] = 6; });
+    const cart = st.cart || seedCart;
+    const cartKeys = Object.keys(cart).filter((k) => cart[k] > 0);
+    const cartRetailN = cartKeys.reduce((s, k) => s + byKey[k].price * cart[k], 0);
+    const cartQty = cartKeys.reduce((s, k) => s + cart[k], 0);
+    const tierNowObj = tierFor(cartRetailN);
+    const d = tierNowObj ? tierNowObj.d : 20;
+    const nextTier = TIERS.find((x) => cartRetailN < x.min);
+    const addToCart = (key, qty) => {
+      const c = Object.assign({}, cart); c[key] = (c[key] || 0) + qty;
+      const newRetail = Object.keys(c).reduce((s, k) => s + byKey[k].price * c[k], 0);
+      const before = tierFor(cartRetailN), after = tierFor(newRetail);
+      let msg = L('Ditambahkan: ' + qty + ' × ' + byKey[key].title, 'Added: ' + qty + ' × ' + byKey[key].title);
+      if (after && (!before || after.d > before.d)) msg = L('Diskon naik ke ' + after.d + '% untuk pesanan ini!', 'Your order discount just went up to ' + after.d + '%!');
+      this.setState({ cart: c, flash: msg, flashId: (st.flashId || 0) + 1 });
+      const id = (st.flashId || 0) + 1;
+      setTimeout(() => { if ((this.state || {}).flashId === id) this.setState({ flash: null }); }, 2600);
+    };
+    const qtyFrom = (e, fallback) => {
+      const host = e && e.currentTarget && e.currentTarget.parentNode;
+      const inp = host && host.querySelector && host.querySelector('input[type=number]');
+      const n = inp ? parseInt(inp.value, 10) : NaN;
+      return n > 0 ? n : fallback;
+    };
+    const proof = (b) => {
+      const bought = Math.max(2, Math.round(b.sold / 3));
+      return { hot: b.sold >= 15, boughtLabel: L('Dibeli ' + bought + ' reseller minggu ini', 'Bought by ' + bought + ' resellers this week'), cartsLabel: L('ada di ' + ((b.key * 7) % 9 + 2) + ' keranjang', 'in ' + ((b.key * 7) % 9 + 2) + ' carts right now') };
+    };
 
     let initCat = null;
     if (st.cat === undefined && typeof location !== 'undefined') {
@@ -383,8 +534,30 @@ class Component extends DCLogic {
       isbnLabel: b.isbn ? 'ISBN ' + b.isbn + ' · ' : '',
       stock: b.inStock ? L('Stok tersedia', 'In stock') : L('Bisa dipesan', 'On request'),
       isBest: !!bestRank[b.key], badge: L('TERLARIS #', 'BEST SELLER #') + bestRank[b.key],
-      retail: fmt(b.price), reseller: fmt(b.price * (1 - d / 100))
+      retail: fmt(b.price), reseller: fmt(b.price * (1 - d / 100)),
+      add: (e) => addToCart(b.key, qtyFrom(e, 3)),
+      ...proof(b)
     }));
+    const trending = books.slice().sort((a, b) => b.sold - a.sold).slice(0, 8).map((b) => Object.assign({
+      title: b.title, cover: PALETTE[b.key % PALETTE.length], reseller: fmt(b.price * (1 - d / 100)),
+      add: () => addToCart(b.key, 3)
+    }, proof(b)));
+    const cities = ['Surabaya', 'Bandung', 'Medan', 'Tangerang', 'Denpasar', 'Malang'];
+    const recentOrders = trending.slice(0, 3).map((b, i) => ({
+      text: L('Toko di ' + cities[i] + ' memesan ' + (6 * (i + 1)) + ' × ' + b.title, 'A shop in ' + cities[i] + ' ordered ' + (6 * (i + 1)) + ' × ' + b.title),
+      ago: L((i * 7 + 3) + ' menit lalu', (i * 7 + 3) + ' min ago')
+    }));
+    const cartLines = cartKeys.map((k) => {
+      const b = byKey[k];
+      return { title: b.title, qty: cart[k], cover: PALETTE[b.key % PALETTE.length], unit: fmt(b.price * (1 - d / 100)), sub: fmt(b.price * (1 - d / 100) * cart[k]) };
+    });
+    const cartTotalN = cartRetailN * (1 - d / 100);
+    const prevMin = tierNowObj ? tierNowObj.min : 0;
+    const tierPct = nextTier ? Math.max(4, Math.round((cartRetailN - prevMin) / (nextTier.min - prevMin) * 100)) : 100;
+    const tierNext = nextTier
+      ? L('Tambah ' + fmt(nextTier.min - cartRetailN) + ' lagi untuk diskon ' + nextTier.d + '%', 'Add ' + fmt(nextTier.min - cartRetailN) + ' more to unlock ' + nextTier.d + '% off')
+      : L('Anda mendapat diskon tertinggi (37%)', 'You have the top discount (37%)');
+    const ladder = TIERS.map((x) => ({ label: x.d + '% · ' + (x.min >= 1e6 ? (x.min / 1e6) + ' jt' : x.min), on: tierNowObj && tierNowObj.d === x.d, off: !(tierNowObj && tierNowObj.d === x.d) }));
 
     const countIn = (pred) => books.filter(pred).length;
     const groups = GROUPS.map((g) => ({
@@ -429,9 +602,21 @@ class Component extends DCLogic {
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
     return {
+      cartBtn: L('Keranjang · ', 'Cart · ') + fmt(cartTotalN),
+      cartOpen: !!st.cartOpen, cartOpenAttr: st.cartOpen ? 'true' : 'false',
+      openCart: () => { if (!(this.state || {}).cartOpen) this.setState({ cartOpen: true }); },
+      closeCart: () => { if ((this.state || {}).cartOpen) this.setState({ cartOpen: false }); },
+      toggleCart: () => this.setState({ cartOpen: !(this.state || {}).cartOpen }),
+      cartCount: cartQty, cartCountLabel: L(cartQty + ' buku', cartQty + ' books'),
+      cartLines, cartRetail: fmt(cartRetailN), cartSave: fmt(cartRetailN - cartTotalN), cartTotal: fmt(cartTotalN),
+      tierNow: tierNowObj ? L('Diskon pesanan ini', 'This order’s discount') : L('Minimal Rp 1.000.000 untuk diskon 20%', 'Rp 1,000,000 minimum for 20% off'),
+      discLabel: tierNowObj ? tierNowObj.d + '%' : '—', tierPct, tierWidth: tierPct + '%', tierNext, ladder,
+      pillHint: nextTier ? L('+' + fmt(nextTier.min - cartRetailN) + ' → ' + nextTier.d + '%', '+' + fmt(nextTier.min - cartRetailN) + ' → ' + nextTier.d + '%') : L('Diskon 37%', '37% off'),
+      hasFlash: !!st.flash, flash: st.flash || '',
+      trending, recentOrders, showTrending: !cat && !pub && tab === 'all' && cur === 1,
       t, langs, groups, pubs, avails, tabs, chips, sortOpts, perOpts, viewOpts, pages, page,
       heading, showingText, crumbSep: cat ? '/' : '', crumbCat: cat ? catName[cat] : '',
-      countLabel: L(total + ' judul · harga reseller (diskon ' + d + '%) ditampilkan', total + ' titles · reseller prices (' + d + '% off) shown'),
+      countLabel: L(total + ' judul · harga reseller untuk pesanan ini (diskon ' + d + '%)', total + ' titles · reseller prices for this order (' + d + '% off)'),
       totalCount: books.length, allCatOn: !cat, allCatOff: !!cat, pickAllCat: () => set({ cat: null }),
       hasChips: chips.length > 0, clearAll: () => set({ cat: null, pub: null, avail: 'all', tab: 'all' }),
       isList: view === 'list' && total > 0, isGrid: view === 'grid' && total > 0, isCompact: view === 'compact' && total > 0, isEmpty: total === 0,
