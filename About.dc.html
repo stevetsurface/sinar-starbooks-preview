@@ -94,8 +94,10 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
         <sc-for list="{{publishers}}" as="p" hint-placeholder-count="6">
-          <div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
-            <span style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; color: #2A1640">{{p.name}}</span>
+          <div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+            <span style="height: 64px; display: flex; align-items: center">
+              <img src="{{p.logo}}" alt="{{p.name}}" style="max-width: 100%; max-height: {{p.h}}; object-fit: contain">
+            </span>
             <span style="font-size: 14px; color: #5B2A86; font-weight: 600">{{t.partnerSince}} {{p.since}}</span>
           </div>
         </sc-for>
@@ -183,7 +185,15 @@ class Component extends DCLogic {
       t,
       langs,
       milestones: ms.map((m, i) => ({ ...m, dot: i === last ? '#F2B33D' : '#5B2A86', yearColor: i === last ? '#B07A12' : '#5B2A86' })),
-      publishers: ['Penguin Random House', 'Simon & Schuster', 'Hachette Book Group', 'HarperCollins', 'Scholastic', 'Macmillan'].map((n) => ({ name: n, since: yr }))
+      publishers: [
+        { name: 'Penguin Random House', logo: 'assets/logos/penguin-random-house.svg', h: '56px' },
+        { name: 'HarperCollins', logo: 'assets/logos/harpercollins.png', h: '30px' },
+        { name: 'Hachette Book Group', logo: 'assets/logos/hachette.svg', h: '42px' },
+        { name: 'Simon & Schuster', logo: 'assets/logos/simon-schuster.svg', h: '24px' },
+        { name: 'Macmillan', logo: 'assets/logos/macmillan.jpg', h: '64px' },
+        { name: 'Bloomsbury', logo: 'assets/logos/bloomsbury.svg', h: '20px' },
+        { name: 'Scholastic', logo: 'assets/logos/scholastic.svg', h: '30px' }
+      ].map((p) => Object.assign({ since: yr }, p))
     };
   }
 }
