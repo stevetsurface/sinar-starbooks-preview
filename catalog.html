@@ -184,7 +184,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             <div style="display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 4px">
               <sc-for list="{{trending}}" as="r" hint-placeholder-count="6">
                 <div style="display: flex; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; background: #FBF8FD">
-                  <div style="width: 40px; height: 56px; border-radius: 2px 5px 5px 2px; background: {{r.cover}}; flex: none"></div>
+                  <div style="width: 40px; height: 56px; border-radius: 2px 5px 5px 2px; background: {{r.cover}}; flex: none; position: relative; overflow: hidden"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
                   <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1">
                     <span style="font-weight: 700; font-size: 13px; line-height: 1.25; color: #1E1A24; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.title}}</span>
                     <span style="font-size: 11px; font-weight: 700; color: #B0476A">{{r.boughtLabel}}</span>
@@ -214,7 +214,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               </div>
               <sc-for list="{{page}}" as="r" hint-placeholder-count="6">
                 <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
-                  <div style="width: 52px; height: 72px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14)"></div>
+                  <div style="width: 52px; height: 72px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14); position: relative; overflow: hidden"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
                   <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
                     <span style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
                       <a href="product.html" style="font-weight: 700; font-size: 15px; color: #1E1A24">{{r.title}}</a>
@@ -255,7 +255,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                   <sc-if value="{{r.isBest}}" hint-placeholder-val="{{false}}">
                     <span style="position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; padding: 4px 7px; border-radius: 999px; background: #FDE9C4; color: #6B4A00">{{r.badge}}</span>
                   </sc-if>
-                  <div style="width: 100px; height: 140px; margin: 8px auto 0; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; box-shadow: 0 10px 18px rgba(42,22,64,0.18); padding: 10px; box-sizing: border-box; display: flex; align-items: flex-end">
+                  <div style="width: 100px; height: 140px; margin: 8px auto 0; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; box-shadow: 0 10px 18px rgba(42,22,64,0.18); padding: 10px; box-sizing: border-box; display: flex; align-items: flex-end; position: relative; overflow: hidden"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
                     <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 12px; line-height: 1.15; color: #FFFFFF">{{r.title}}</span>
                   </div>
                 </a>
@@ -358,7 +358,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <div style="display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto">
           <sc-for list="{{cartLines}}" as="c" hint-placeholder-count="3">
             <div style="display: flex; gap: 10px; align-items: center; font-size: 13px">
-              <div style="width: 30px; height: 42px; border-radius: 2px 4px 4px 2px; background: {{c.cover}}; flex: none"></div>
+              <div style="width: 30px; height: 42px; border-radius: 2px 4px 4px 2px; background: {{c.cover}}; flex: none; position: relative; overflow: hidden"><sc-if value="{{c.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{c.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
               <span style="flex: 1; min-width: 0; display: flex; flex-direction: column">
                 <span style="font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{c.title}}</span>
                 <span style="color: #6E6478">{{c.qty}} × {{c.unit}}</span>
@@ -413,6 +413,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 <script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2600}}'>
 class Component extends DCLogic {
   renderVals() {
+    const COVERS = {"1984": "assets/covers/1984.jpg", "alittlelife": "assets/covers/a-little-life.jpg", "americanbornchinese": "assets/covers/american-born-chinese.jpg", "aslongasthelemontreesgrow": "assets/covers/as-long-as-the-lemon-trees-grow.jpg", "atomichabits": "assets/covers/atomic-habits.jpg", "babel": "assets/covers/babel.jpg", "beachread": "assets/covers/beach-read.jpg", "beforethecoffeegetscold": "assets/covers/before-the-coffee-gets-cold.jpg", "blueyilovemyfamily": "assets/covers/bluey-i-love-my-family.jpg", "blueythecreek": "assets/covers/bluey-the-creek.jpg", "circe": "assets/covers/circe.jpg", "collinsinternationalprimarysciencebook3": "assets/covers/collins-international-primary-science-book-3.jpg", "conversationsonlove": "assets/covers/conversations-on-love.jpg", "crimeandpunishment": "assets/covers/crime-and-punishment.jpg", "dailystoic": "assets/covers/daily-stoic.jpg", "daysatthemorisakibookshop": "assets/covers/days-at-the-morisaki-bookshop.jpg", "diaryofawimpykid1": "assets/covers/diary-of-a-wimpy-kid-1.jpg", "diaryofawimpykid12thegetaway": "assets/covers/diary-of-a-wimpy-kid-12-the-getaway.jpg", "dogman1": "assets/covers/dog-man-1.jpg", "dogman10motheringheights": "assets/covers/dog-man-10-mothering-heights.jpg", "dogman11twentythousandfleas": "assets/covers/dog-man-11-twenty-thousand-fleas.jpg", "dogman12thescarletshedder": "assets/covers/dog-man-12-the-scarlet-shedder.jpg", "dogman13bigjimbegins": "assets/covers/dog-man-13-big-jim-begins.jpg", "dogman14bigjimbelieves": "assets/covers/dog-man-14-big-jim-believes.jpg", "dogman3taleoftwokitties": "assets/covers/dog-man-3-tale-of-two-kitties.jpg", "dogman5lordofthefleas": "assets/covers/dog-man-5-lord-of-the-fleas.jpg", "dogman6brawlofthewild": "assets/covers/dog-man-6-brawl-of-the-wild.jpg", "dogman7forwhomtheballrolls": "assets/covers/dog-man-7-for-whom-the-ball-rolls.jpg", "dogman9grimeandpunishment": "assets/covers/dog-man-9-grime-and-punishment.jpg", "dune": "assets/covers/dune.jpg", "enlightenmentnow": "assets/covers/enlightenment-now.jpg", "factfulness": "assets/covers/factfulness.jpg", "fahrenheit451": "assets/covers/fahrenheit-451.jpg", "fivenightsatfreddys1intothepit": "assets/covers/five-nights-at-freddy-s-1-into-the-pit.jpg", "fivepeopleyoumeetinheaven": "assets/covers/five-people-you-meet-in-heaven.jpg", "foronemoreday": "assets/covers/for-one-more-day.jpg", "fourthousandweeks": "assets/covers/four-thousand-weeks.jpg", "freakonomics": "assets/covers/freakonomics.jpg", "goodmaterial": "assets/covers/good-material.jpg", "howdemocraciesdie": "assets/covers/how-democracies-die.jpg", "howtowinfriendsandinfluencepeople": "assets/covers/how-to-win-friends-and-influence-people.jpg", "indonesiaetc": "assets/covers/indonesia-etc.jpg", "itstartswithus": "assets/covers/it-starts-with-us.jpg", "kafkaontheshore": "assets/covers/kafka-on-the-shore.jpg", "katabasis": "assets/covers/katabasis.jpg", "loveforimperfectthings": "assets/covers/love-for-imperfect-things.jpg", "moredaysatthemorisakibookshop": "assets/covers/more-days-at-the-morisaki-bookshop.jpg", "nineteeneightyfour": "assets/covers/nineteen-eighty-four.jpg", "noise": "assets/covers/noise.jpg", "normalpeople": "assets/covers/normal-people.jpg", "norwegianwood": "assets/covers/norwegian-wood.jpg", "originals": "assets/covers/originals.jpg", "oxfordlearnerspocketdictionary": "assets/covers/oxford-learner-s-pocket-dictionary.jpg", "sapiens": "assets/covers/sapiens.jpg", "surroundedbyidiots": "assets/covers/surrounded-by-idiots.jpg", "the7habitsofhighlyeffectivepeople": "assets/covers/the-7-habits-of-highly-effective-people.jpg", "thealchemist": "assets/covers/the-alchemist.jpg", "theanxiousgeneration": "assets/covers/the-anxious-generation.jpg", "theartofspendingmoney": "assets/covers/the-art-of-spending-money.jpg", "theartofthinkingclearly": "assets/covers/the-art-of-thinking-clearly.jpg", "theartofwarblackcover": "assets/covers/the-art-of-war-black-cover.jpg", "thebodykeepsthescore": "assets/covers/the-body-keeps-the-score.jpg", "thebookyouwishyourparentshadread": "assets/covers/the-book-you-wish-your-parents-had-read.jpg", "theconveniencestorebythesea": "assets/covers/the-convenience-store-by-the-sea.jpg", "thegirlwhowastaken": "assets/covers/the-girl-who-was-taken.jpg", "thegoldfinch": "assets/covers/the-goldfinch.jpg", "theintelligentinvestor": "assets/covers/the-intelligent-investor.jpg", "theletthemtheory": "assets/covers/the-let-them-theory.jpg", "themythofsisyphus": "assets/covers/the-myth-of-sisyphus.jpg", "thepoppywar": "assets/covers/the-poppy-war.jpg", "thepoppywar1": "assets/covers/the-poppy-war-1.jpg", "thepsychologyofmoney": "assets/covers/the-psychology-of-money.jpg", "thesecretofsecrets": "assets/covers/the-secret-of-secrets.jpg", "thesilentpatient": "assets/covers/the-silent-patient.jpg", "thesongofachilles": "assets/covers/the-song-of-achilles.jpg", "thesubtleartofnotgivingafck": "assets/covers/the-subtle-art-of-not-giving-a-f-ck.jpg", "thingsyoucanseewhenyouslowdown": "assets/covers/things-you-can-see-when-you-slow-down.jpg", "tuesdayswithmorrie": "assets/covers/tuesdays-with-morrie.jpg", "whenbreathbecomesair": "assets/covers/when-breath-becomes-air.jpg", "whenthingsdontgoyourway": "assets/covers/when-things-don-t-go-your-way.jpg", "whyhasnobodytoldmethisbefore": "assets/covers/why-has-nobody-told-me-this-before.jpg", "whynationsfail": "assets/covers/why-nations-fail.jpg", "wordsworthannakarenina": "assets/covers/wordsworth-anna-karenina.jpg", "wordsworthemma": "assets/covers/wordsworth-emma.jpg", "wordsworthessentialkafka": "assets/covers/wordsworth-essential-kafka.jpg", "wordsworthgreatgatsby": "assets/covers/wordsworth-great-gatsby.jpg", "wordsworthjaneeyre": "assets/covers/wordsworth-jane-eyre.jpg", "wordsworthprideandprejudice": "assets/covers/wordsworth-pride-and-prejudice.jpg", "wordsworthwarandpeace": "assets/covers/wordsworth-war-and-peace.jpg"};
+    const coverOf = (title) => { const u = COVERS[String(title).toLowerCase().replace(/[^a-z0-9]/g, '')]; return { img: u || '', hasImg: !!u }; };
     const st = this.state || {};
     const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
@@ -529,7 +531,7 @@ class Component extends DCLogic {
     const cur = Math.min(pageNo, pagesCount);
     const from = (cur - 1) * per;
     const page = list.slice(from, from + per).map((b) => ({
-      key: b.key, title: b.title, author: b.author, publisher: b.publisher, moq: 3,
+      key: b.key, title: b.title, author: b.author, publisher: b.publisher, moq: 3, ...coverOf(b.title),
       cover: PALETTE[b.key % PALETTE.length], catLabel: catName[b.cat] || '',
       isbnLabel: b.isbn ? 'ISBN ' + b.isbn + ' · ' : '',
       stock: b.inStock ? L('Stok tersedia', 'In stock') : L('Bisa dipesan', 'On request'),
@@ -539,7 +541,7 @@ class Component extends DCLogic {
       ...proof(b)
     }));
     const trending = books.slice().sort((a, b) => b.sold - a.sold).slice(0, 8).map((b) => Object.assign({
-      title: b.title, cover: PALETTE[b.key % PALETTE.length], reseller: fmt(b.price * (1 - d / 100)),
+      title: b.title, cover: PALETTE[b.key % PALETTE.length], ...coverOf(b.title), reseller: fmt(b.price * (1 - d / 100)),
       add: () => addToCart(b.key, 3)
     }, proof(b)));
     const cities = ['Surabaya', 'Bandung', 'Medan', 'Tangerang', 'Denpasar', 'Malang'];
@@ -549,7 +551,7 @@ class Component extends DCLogic {
     }));
     const cartLines = cartKeys.map((k) => {
       const b = byKey[k];
-      return { title: b.title, qty: cart[k], cover: PALETTE[b.key % PALETTE.length], unit: fmt(b.price * (1 - d / 100)), sub: fmt(b.price * (1 - d / 100) * cart[k]) };
+      return { title: b.title, qty: cart[k], cover: PALETTE[b.key % PALETTE.length], ...coverOf(b.title), unit: fmt(b.price * (1 - d / 100)), sub: fmt(b.price * (1 - d / 100) * cart[k]) };
     });
     const cartTotalN = cartRetailN * (1 - d / 100);
     const prevMin = tierNowObj ? tierNowObj.min : 0;

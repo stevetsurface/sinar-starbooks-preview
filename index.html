@@ -99,7 +99,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           {{t.bannerCta}}
         </a>
       </div>
-      <div style="flex: 0 0 200px; height: 290px; border-radius: 4px 12px 12px 4px; background: #E9EEF2; box-shadow: 0 30px 60px rgba(0,0,0,0.3); padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(4deg)">
+      <div style="flex: 0 0 200px; height: 290px; border-radius: 4px 12px 12px 4px; background: #E9EEF2; box-shadow: 0 30px 60px rgba(0,0,0,0.3); padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(4deg); position: relative; overflow: hidden">
+        <sc-if value="{{heroCover.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{heroCover.img}}" alt="The Girl Who Was Taken" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
         <span style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #2E5F8A">CHARLIE DONLEA</span>
         <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1; color: #2E5F8A">The Girl Who Was Taken</span>
       </div>
@@ -125,7 +126,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <sc-for list="{{books}}" as="b" hint-placeholder-count="5">
         <article style="display: flex; flex-direction: column; gap: 12px">
           <a href="product.html" style="display: block; background: #F4F0F8; border-radius: 18px; padding: 24px 0">
-            <div style="width: 130px; height: 190px; margin: 0 auto; border-radius: 3px 8px 8px 3px; background: {{b.cover}}; box-shadow: 0 14px 24px rgba(42,22,64,0.18); padding: 14px; box-sizing: border-box; display: flex; align-items: flex-end">
+            <div style="width: 130px; height: 190px; margin: 0 auto; border-radius: 3px 8px 8px 3px; background: {{b.cover}}; box-shadow: 0 14px 24px rgba(42,22,64,0.18); padding: 14px; box-sizing: border-box; display: flex; align-items: flex-end; position: relative; overflow: hidden"><sc-if value="{{b.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{b.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
               <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 16px; line-height: 1.1; color: {{b.ink}}">{{b.title}}</span>
             </div>
           </a>
@@ -178,15 +179,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </sc-for>
       </div>
     </div>
-    <!-- Own retail -->
-    <a href="#" style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; background: #1E1A24; border-radius: 28px; padding: 28px 40px; color: #FFFFFF">
-      <img src="assets/logos/wonder-bookstore-white.png" alt="Wonder Bookstore" style="width: 120px; height: 120px; object-fit: contain">
-      <span style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 8px">
-        <span style="font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px">{{t.wonderTitle}}</span>
-        <span style="font-size: 15px; line-height: 1.5; color: #D4C6E2">{{t.wonderBody}}</span>
-      </span>
-      <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid #4A3463; font-weight: 700; font-size: 15px">{{t.wonderCta}}</span>
-    </a>
   </section>
 
   <!-- Daftar Reseller -->
@@ -325,6 +317,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { tab: 'new' }; }
   renderVals() {
+    const COVERS = {"1984": "assets/covers/1984.jpg", "alittlelife": "assets/covers/a-little-life.jpg", "americanbornchinese": "assets/covers/american-born-chinese.jpg", "aslongasthelemontreesgrow": "assets/covers/as-long-as-the-lemon-trees-grow.jpg", "atomichabits": "assets/covers/atomic-habits.jpg", "babel": "assets/covers/babel.jpg", "beachread": "assets/covers/beach-read.jpg", "beforethecoffeegetscold": "assets/covers/before-the-coffee-gets-cold.jpg", "blueyilovemyfamily": "assets/covers/bluey-i-love-my-family.jpg", "blueythecreek": "assets/covers/bluey-the-creek.jpg", "circe": "assets/covers/circe.jpg", "collinsinternationalprimarysciencebook3": "assets/covers/collins-international-primary-science-book-3.jpg", "conversationsonlove": "assets/covers/conversations-on-love.jpg", "crimeandpunishment": "assets/covers/crime-and-punishment.jpg", "dailystoic": "assets/covers/daily-stoic.jpg", "daysatthemorisakibookshop": "assets/covers/days-at-the-morisaki-bookshop.jpg", "diaryofawimpykid1": "assets/covers/diary-of-a-wimpy-kid-1.jpg", "diaryofawimpykid12thegetaway": "assets/covers/diary-of-a-wimpy-kid-12-the-getaway.jpg", "dogman1": "assets/covers/dog-man-1.jpg", "dogman10motheringheights": "assets/covers/dog-man-10-mothering-heights.jpg", "dogman11twentythousandfleas": "assets/covers/dog-man-11-twenty-thousand-fleas.jpg", "dogman12thescarletshedder": "assets/covers/dog-man-12-the-scarlet-shedder.jpg", "dogman13bigjimbegins": "assets/covers/dog-man-13-big-jim-begins.jpg", "dogman14bigjimbelieves": "assets/covers/dog-man-14-big-jim-believes.jpg", "dogman3taleoftwokitties": "assets/covers/dog-man-3-tale-of-two-kitties.jpg", "dogman5lordofthefleas": "assets/covers/dog-man-5-lord-of-the-fleas.jpg", "dogman6brawlofthewild": "assets/covers/dog-man-6-brawl-of-the-wild.jpg", "dogman7forwhomtheballrolls": "assets/covers/dog-man-7-for-whom-the-ball-rolls.jpg", "dogman9grimeandpunishment": "assets/covers/dog-man-9-grime-and-punishment.jpg", "dune": "assets/covers/dune.jpg", "enlightenmentnow": "assets/covers/enlightenment-now.jpg", "factfulness": "assets/covers/factfulness.jpg", "fahrenheit451": "assets/covers/fahrenheit-451.jpg", "fivenightsatfreddys1intothepit": "assets/covers/five-nights-at-freddy-s-1-into-the-pit.jpg", "fivepeopleyoumeetinheaven": "assets/covers/five-people-you-meet-in-heaven.jpg", "foronemoreday": "assets/covers/for-one-more-day.jpg", "fourthousandweeks": "assets/covers/four-thousand-weeks.jpg", "freakonomics": "assets/covers/freakonomics.jpg", "goodmaterial": "assets/covers/good-material.jpg", "howdemocraciesdie": "assets/covers/how-democracies-die.jpg", "howtowinfriendsandinfluencepeople": "assets/covers/how-to-win-friends-and-influence-people.jpg", "indonesiaetc": "assets/covers/indonesia-etc.jpg", "itstartswithus": "assets/covers/it-starts-with-us.jpg", "kafkaontheshore": "assets/covers/kafka-on-the-shore.jpg", "katabasis": "assets/covers/katabasis.jpg", "loveforimperfectthings": "assets/covers/love-for-imperfect-things.jpg", "moredaysatthemorisakibookshop": "assets/covers/more-days-at-the-morisaki-bookshop.jpg", "nineteeneightyfour": "assets/covers/nineteen-eighty-four.jpg", "noise": "assets/covers/noise.jpg", "normalpeople": "assets/covers/normal-people.jpg", "norwegianwood": "assets/covers/norwegian-wood.jpg", "originals": "assets/covers/originals.jpg", "oxfordlearnerspocketdictionary": "assets/covers/oxford-learner-s-pocket-dictionary.jpg", "sapiens": "assets/covers/sapiens.jpg", "surroundedbyidiots": "assets/covers/surrounded-by-idiots.jpg", "the7habitsofhighlyeffectivepeople": "assets/covers/the-7-habits-of-highly-effective-people.jpg", "thealchemist": "assets/covers/the-alchemist.jpg", "theanxiousgeneration": "assets/covers/the-anxious-generation.jpg", "theartofspendingmoney": "assets/covers/the-art-of-spending-money.jpg", "theartofthinkingclearly": "assets/covers/the-art-of-thinking-clearly.jpg", "theartofwarblackcover": "assets/covers/the-art-of-war-black-cover.jpg", "thebodykeepsthescore": "assets/covers/the-body-keeps-the-score.jpg", "thebookyouwishyourparentshadread": "assets/covers/the-book-you-wish-your-parents-had-read.jpg", "theconveniencestorebythesea": "assets/covers/the-convenience-store-by-the-sea.jpg", "thegirlwhowastaken": "assets/covers/the-girl-who-was-taken.jpg", "thegoldfinch": "assets/covers/the-goldfinch.jpg", "theintelligentinvestor": "assets/covers/the-intelligent-investor.jpg", "theletthemtheory": "assets/covers/the-let-them-theory.jpg", "themythofsisyphus": "assets/covers/the-myth-of-sisyphus.jpg", "thepoppywar": "assets/covers/the-poppy-war.jpg", "thepoppywar1": "assets/covers/the-poppy-war-1.jpg", "thepsychologyofmoney": "assets/covers/the-psychology-of-money.jpg", "thesecretofsecrets": "assets/covers/the-secret-of-secrets.jpg", "thesilentpatient": "assets/covers/the-silent-patient.jpg", "thesongofachilles": "assets/covers/the-song-of-achilles.jpg", "thesubtleartofnotgivingafck": "assets/covers/the-subtle-art-of-not-giving-a-f-ck.jpg", "thingsyoucanseewhenyouslowdown": "assets/covers/things-you-can-see-when-you-slow-down.jpg", "tuesdayswithmorrie": "assets/covers/tuesdays-with-morrie.jpg", "whenbreathbecomesair": "assets/covers/when-breath-becomes-air.jpg", "whenthingsdontgoyourway": "assets/covers/when-things-don-t-go-your-way.jpg", "whyhasnobodytoldmethisbefore": "assets/covers/why-has-nobody-told-me-this-before.jpg", "whynationsfail": "assets/covers/why-nations-fail.jpg", "wordsworthannakarenina": "assets/covers/wordsworth-anna-karenina.jpg", "wordsworthemma": "assets/covers/wordsworth-emma.jpg", "wordsworthessentialkafka": "assets/covers/wordsworth-essential-kafka.jpg", "wordsworthgreatgatsby": "assets/covers/wordsworth-great-gatsby.jpg", "wordsworthjaneeyre": "assets/covers/wordsworth-jane-eyre.jpg", "wordsworthprideandprejudice": "assets/covers/wordsworth-pride-and-prejudice.jpg", "wordsworthwarandpeace": "assets/covers/wordsworth-war-and-peace.jpg"};
+    const coverOf = (title) => { const u = COVERS[String(title).toLowerCase().replace(/[^a-z0-9]/g, '')]; return { img: u || '', hasImg: !!u }; };
     const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
     const t = {
@@ -361,9 +355,6 @@ class Component extends DCLogic {
       allPublishers: L('Semua penerbit →', 'All publishers →'),
       logoNote: L('Ganti setiap nama dengan file logo penerbit.', "Swap each name for the publisher's logo file."),
       giftBrands: L('BRAND HADIAH', 'GIFT BRANDS'),
-      wonderTitle: L('Temukan kami di Wonder Bookstore', 'Find us at Wonder Bookstore'),
-      wonderBody: L('Toko buku gaya hidup milik kami: buku, alat tulis, hadiah, dan kopi. 6 toko di Jakarta & Bali.', 'Our own lifestyle bookstore: books, stationery, gifts and coffee. 6 stores across Jakarta & Bali.'),
-      wonderCta: L('Lihat lokasi', 'See locations'),
       eventsTitle: L('Acara & sekolah', 'Events & schools'),
       eventsSub: L('Pameran buku, acara komunitas, dan kunjungan sekolah yang kami ikuti.', 'Book fairs, community events and school visits we take part in.'),
       igFollowers: L('6.402 pengikut', '6,402 followers'),
@@ -491,7 +482,7 @@ class Component extends DCLogic {
       { url: 'https://www.instagram.com/sinarstarbooks/p/DeDrc7wg5OE/', reel: false, bg: '#1F3B73', date: L('3 Okt 2026', 'Oct 3, 2026'), caption: 'Pokémon grand prize alert!' }
     ];
     const nlDone = !!(this.state && this.state.nlDone);
-    return { t, tabs, books: lists[this.state.tab], langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
+    return { t, tabs, books: lists[this.state.tab].map((b) => Object.assign({}, b, coverOf(b.title))), heroCover: coverOf('The Girl Who Was Taken'), langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
   }
 }
 </script>
