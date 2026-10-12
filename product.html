@@ -103,15 +103,47 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </div>
 
           <div style="display: flex; flex-direction: column; gap: 8px">
-            <span style="font-size: 14px; font-weight: 700">{{t.volumePricing}}</span>
-            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
-              <sc-for list="{{tiers}}" as="tier" hint-placeholder-count="3">
-                <div style="border-radius: 14px; padding: 14px; border: {{tier.border}}; background: {{tier.bg}}; display: flex; flex-direction: column; gap: 4px">
-                  <span style="font-size: 12px; color: #6E6478; font-weight: 600">{{tier.range}}</span>
-                  <span style="font-size: 17px; font-weight: 700; color: #2A1640">{{tier.price}}</span>
-                  <span style="font-size: 12px; color: #5B2A86; font-weight: 600">{{tier.save}}</span>
-                </div>
-              </sc-for>
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px">
+              <span style="font-size: 14px; font-weight: 700">{{t.volumePricing}}</span>
+              <span style="font-size: 12px; color: #6E6478; font-style: italic">{{t.exampleNote}}</span>
+            </div>
+            <div style="overflow-x: auto; border: 1px solid #ECE6F1; border-radius: 14px">
+              <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 380px">
+                <caption style="caption-side: bottom; text-align: left; padding: 10px 14px; font-size: 12px; color: #6E6478; border-top: 1px solid #ECE6F1">{{t.matrixCaption}}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style="text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 600; color: #6E6478; border-bottom: 1px solid #ECE6F1">{{t.qtyCol}}</th>
+                    <sc-for list="{{tierCols}}" as="c" hint-placeholder-count="3">
+                      <sc-if value="{{c.mine}}" hint-placeholder-val="{{false}}">
+                        <th scope="col" style="text-align: right; padding: 10px 14px; font-size: 13px; font-weight: 700; color: #2A1640; background: #F7F2FB; border-bottom: 1px solid #ECE6F1; border-left: 2px solid #5B2A86; border-right: 2px solid #5B2A86; border-top: 2px solid #5B2A86">
+                          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+                            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: #FFFFFF; background: #5B2A86; padding: 2px 8px; border-radius: 999px">{{t.yourLevel}}</span>
+                            <span>{{c.name}}</span>
+                          </span>
+                        </th>
+                      </sc-if>
+                      <sc-if value="{{c.other}}" hint-placeholder-val="{{true}}">
+                        <th scope="col" style="text-align: right; vertical-align: bottom; padding: 10px 14px; font-size: 13px; font-weight: 600; color: #4A4252; border-bottom: 1px solid #ECE6F1">{{c.name}}</th>
+                      </sc-if>
+                    </sc-for>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{matrix}}" as="row" hint-placeholder-count="3">
+                    <tr>
+                      <th scope="row" style="text-align: left; padding: 10px 14px; font-weight: 600; color: #4A4252; border-bottom: 1px solid #F3EFF6; white-space: nowrap">{{row.qty}}</th>
+                      <sc-for list="{{row.cells}}" as="cell" hint-placeholder-count="3">
+                        <td style="text-align: right; padding: 10px 14px; border-bottom: 1px solid #F3EFF6; background: {{cell.bg}}; color: {{cell.color}}; font-weight: {{cell.weight}}; border-left: {{cell.edge}}; border-right: {{cell.edge}}; white-space: nowrap">
+                          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+                            <span>{{cell.price}}</span>
+                            <span style="font-size: 11px; font-weight: 500; color: #6E6478">{{cell.off}}</span>
+                          </span>
+                        </td>
+                      </sc-for>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -152,7 +184,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <div style="background: #F1EBF6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.5; color: #4A4252">
           <span><strong style="color: #2A1640">{{t.shelfPrice}}</strong> {{retail}}</span>
           <span><strong style="color: #2A1640">{{t.marginLabel}}</strong> {{margin}} {{t.perCopy}}</span>
-          <span><strong style="color: #2A1640">{{t.returnsLabel}}</strong> {{t.returnsPolicy}}</span>
+          <span><strong style="color: #2A1640">{{t.returnsLabel}}</strong> {{t.noReturns}}</span>
           <a href="#" style="font-weight: 600">{{t.downloadSheet}}</a>
         </div>
       </div>
@@ -191,13 +223,17 @@ class Component extends DCLogic {
       byline: L('oleh Isabel Otter · ilustrasi oleh Lynn Giunta', 'by Isabel Otter · illustrated by Lynn Giunta'),
       inStock: L('Stok tersedia · [qty] eksemplar', 'In stock · [qty] available'),
       ages: L('Usia 0–2 tahun', 'Ages 0–2'),
-      volumePricing: L('Harga grosir', 'Volume pricing'),
+      volumePricing: L('Harga reseller per level', 'Reseller price by level'),
+      exampleNote: L('Contoh harga — harga final mengikuti S&K reseller', 'Example prices — final prices follow the reseller T&Cs'),
+      matrixCaption: L('Harga per eksemplar, belum termasuk ongkir. Buku bebas PPN.', 'Price per copy, excluding shipping. Books are PPN-exempt.'),
+      qtyCol: L('Jumlah', 'Quantity'),
+      yourLevel: L('Level Anda', 'Your level'),
       decQty: L('Kurangi jumlah', 'Decrease quantity'),
       qtyLabel: L('Jumlah', 'Quantity'),
       incQty: L('Tambah jumlah', 'Increase quantity'),
       addToCart: L('Tambah 12 ke keranjang', 'Add 12 to cart'),
       wishlist: L('Tambah ke wishlist', 'Add to wish list'),
-      orderNote: L('Min. pembelian 3 · Kelipatan 1 · Dikirim dari Jakarta dalam [X] hari kerja', 'Minimum order 3 · Sold in multiples of 1 · Ships from Jakarta in [X] working days'),
+      orderNote: L('Min. pembelian 3 · Kelipatan 1', 'Minimum order 3 · Sold in multiples of 1'),
       description: L('Rayakan sosok ayah dan segala cara luar biasa mereka memberi inspirasi dan dukungan lewat buku yang menyentuh hati ini. [Deskripsi lengkap dari penerbit]', 'Celebrate fathers and all the wonderful ways they inspire and provide support with this heartfelt book. [Full publisher description]'),
       bookDetails: L('Detail buku', 'Book details'),
       dtAuthor: L('Penulis', 'Author'),
@@ -210,24 +246,36 @@ class Component extends DCLogic {
       pages: L('[Jumlah halaman]', '[Pages]'),
       forResellers: L('Untuk reseller', 'For resellers'),
       shelfPrice: L('Harga jual yang disarankan:', 'Suggested shelf price:'),
-      marginLabel: L('Margin Anda untuk 1–9 eksemplar:', 'Your margin at 1–9 copies:'),
+      marginLabel: L('Margin Anda untuk 3–9 eksemplar (Bright Star):', 'Your margin at 3–9 copies (Bright Star):'),
       perCopy: L('per eksemplar', 'per copy'),
       returnsLabel: L('Retur:', 'Returns:'),
-      returnsPolicy: L('[Kebijakan retur reseller]', '[Return policy for resellers]'),
+      noReturns: L('Barang tidak dapat diretur.', 'Items cannot be returned.'),
       downloadSheet: L('Unduh lembar produk (PDF)', 'Download product sheet (PDF)')
     };
-    const tiers = [
-      { range: L('1–9 eksemplar', '1–9 copies'), off: d, active: false },
-      { range: L('10–49 eksemplar', '10–49 copies'), off: d + 5, active: true },
-      { range: L('50+ eksemplar', '50+ copies'), off: d + 10, active: false }
-    ].map((x) => ({
-      range: x.range,
-      price: fmt(price * (1 - x.off / 100)),
-      save: L('Hemat ' + x.off + '% dari harga retail', x.off + '% off retail'),
-      border: x.active ? '2px solid #5B2A86' : '1px solid #ECE6F1',
-      bg: x.active ? '#F7F2FB' : '#FFFFFF'
+    // OC customer groups Tier 1/2/3 shown as Star / Bright Star / Super Star.
+    // Example % off retail per quantity break (oc_product_discount); default d = 20 gives
+    // Star 20/22/25, Bright Star 25/27/30, Super Star 35/35/35.
+    const myTier = 1; // reseller's own group: Bright Star
+    const groups = [
+      { name: 'Star', offs: [d, d + 2, d + 5] },
+      { name: 'Bright Star', offs: [d + 5, d + 7, d + 10] },
+      { name: 'Super Star', offs: [d + 15, d + 15, d + 15] }
+    ];
+    const breaks = [L('3+ (MOQ)', '3+ (MOQ)'), '10+', '50+'];
+    const tierCols = groups.map((g, gi) => ({ name: g.name, mine: gi === myTier, other: gi !== myTier }));
+    const matrix = breaks.map((q, ri) => ({
+      qty: q,
+      cells: groups.map((g, gi) => ({
+        price: fmt(price * (1 - g.offs[ri] / 100)),
+        off: L('hemat ' + g.offs[ri] + '%', g.offs[ri] + '% off'),
+        bg: gi === myTier ? '#F7F2FB' : '#FFFFFF',
+        color: gi === myTier ? '#2A1640' : '#4A4252',
+        weight: gi === myTier ? '700' : '500',
+        edge: gi === myTier ? '2px solid #5B2A86' : '0'
+      }))
     }));
-    const discount = (d + 5) + '%';
+    const myOff = groups[myTier].offs[0];
+    const discount = myOff + '%';
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
@@ -235,11 +283,12 @@ class Component extends DCLogic {
       t,
       langs,
       retail: fmt(price),
-      yourPrice: fmt(price * (1 - (d + 5) / 100)),
+      yourPrice: fmt(price * (1 - myOff / 100)),
       discount,
       discountLabel: L('Diskon reseller ' + discount, 'Reseller ' + discount + ' off'),
-      margin: fmt(price * d / 100),
-      tiers
+      margin: fmt(price * myOff / 100),
+      tierCols,
+      matrix
     };
   }
 }

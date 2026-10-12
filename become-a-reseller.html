@@ -67,51 +67,213 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </ul>
       </div>
 
-      <form style="flex: 1 1 440px; background: #FFFFFF; border-radius: 28px; padding: 36px; box-shadow: 0 24px 60px rgba(42,22,64,0.10); display: flex; flex-direction: column; gap: 18px; box-sizing: border-box">
-        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.formTitle}}</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="bn" style="font-size: 14px; font-weight: 600">{{t.fBusinessName}}</label>
-            <input id="bn" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+      <form aria-labelledby="rp-title" style="background: #FFFFFF; border-radius: 28px; padding: 36px; box-shadow: 0 24px 60px rgba(42,22,64,0.10); display: flex; flex-direction: column; gap: 20px; box-sizing: border-box">
+        <h2 id="rp-title" style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.formTitle}}</h2>
+
+        <sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+          <div role="status" style="display: flex; flex-direction: column; gap: 14px; background: #EEF6EE; border: 1px solid #CFE3CF; border-radius: 20px; padding: 28px">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2E7D4F" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m7 12 3.5 3.5L17 9"></path></svg>
+            <strong style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #1F4D33">{{t.sentTitle}}</strong>
+            <span style="font-size: 15px; line-height: 1.6; color: #2F4A3A">{{t.sentBody}}</span>
+            <a href="catalog.html" style="align-self: flex-start; display: flex; align-items: center; height: 48px; padding: 0 22px; border-radius: 14px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 15px">{{t.sentCta}}</a>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="bt" style="font-size: 14px; font-weight: 600">{{t.fBusinessType}}</label>
-            <select id="bt" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF">
-              <option>{{t.optBookshop}}</option><option>{{t.optSchool}}</option><option>{{t.optGift}}</option><option>{{t.optOnline}}</option><option>{{t.optOther}}</option>
-            </select>
+        </sc-if>
+
+        <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <!-- Step indicator -->
+            <ol aria-label="{{t.stepsAria}}" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px">
+              <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+                <sc-if value="{{s.cur}}" hint-placeholder-val="{{false}}">
+                  <li aria-current="step" style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #2A1640">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-size: 14px; font-weight: 800">{{s.n}}</span>{{s.label}}
+                  </li>
+                </sc-if>
+                <sc-if value="{{s.done}}" hint-placeholder-val="{{false}}">
+                  <li style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #5B2A86">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: #E6DDF0; color: #5B2A86"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>{{s.label}}
+                  </li>
+                </sc-if>
+                <sc-if value="{{s.todo}}" hint-placeholder-val="{{true}}">
+                  <li style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #6E6478">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; border: 1.5px solid #D9CCE6; color: #6E6478; font-size: 14px; font-weight: 800; box-sizing: border-box">{{s.n}}</span>{{s.label}}
+                  </li>
+                </sc-if>
+              </sc-for>
+            </ol>
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #6E6478">{{stepOf}}</span>
+
+            <!-- Step 1: account type + login data -->
+            <sc-if value="{{s1}}" hint-placeholder-val="{{true}}">
+              <div style="display: flex; flex-direction: column; gap: 18px">
+                <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                  <legend style="font-size: 14px; font-weight: 600; padding: 0; margin-bottom: 10px">{{t.typeLegend}}</legend>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px">
+                    <sc-for list="{{types}}" as="ty" hint-placeholder-count="2">
+                      <sc-if value="{{ty.on}}" hint-placeholder-val="{{false}}">
+                        <button type="button" aria-pressed="true" onClick="{{ty.pick}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; padding: 18px; border-radius: 18px; border: 2px solid #5B2A86; background: #F6F0FA; color: #1E1A24; font: inherit; cursor: pointer">
+                          <span style="display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px">
+                            <strong style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600; color: #2A1640">{{ty.title}}</strong>
+                            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#5B2A86"></circle><path d="m7 12 3.5 3.5L17 9" fill="none" stroke="#FFFFFF" stroke-width="2.4"></path></svg>
+                          </span>
+                          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{ty.desc}}</span>
+                          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.5px; color: #5B2A86; background: #FFFFFF; padding: 4px 10px; border-radius: 999px">{{ty.verify}}</span>
+                        </button>
+                      </sc-if>
+                      <sc-if value="{{ty.off}}" hint-placeholder-val="{{true}}">
+                        <button type="button" aria-pressed="false" onClick="{{ty.pick}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; padding: 18px; border-radius: 18px; border: 2px solid #ECE6F1; background: #FFFFFF; color: #1E1A24; font: inherit; cursor: pointer">
+                          <span style="display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px">
+                            <strong style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600; color: #2A1640">{{ty.title}}</strong>
+                            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#C9B6DC" stroke-width="2"></circle></svg>
+                          </span>
+                          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{ty.desc}}</span>
+                          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.5px; color: #6E6478; background: #F1EBF6; padding: 4px 10px; border-radius: 999px">{{ty.verify}}</span>
+                        </button>
+                      </sc-if>
+                    </sc-for>
+                  </div>
+                </fieldset>
+                <sc-if value="{{isBadan}}" hint-placeholder-val="{{false}}">
+                  <span style="font-size: 13px; line-height: 1.5; color: #4A4252; background: #FBF8FD; border-radius: 12px; padding: 10px 14px">{{t.picNote}}</span>
+                </sc-if>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <label for="rp-first" style="font-size: 14px; font-weight: 600">{{t.fFirst}}</label>
+                    <input id="rp-first" type="text" autocomplete="given-name" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <label for="rp-last" style="font-size: 14px; font-weight: 600">{{t.fLast}}</label>
+                    <input id="rp-last" type="text" autocomplete="family-name" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <label for="rp-email" style="font-size: 14px; font-weight: 600">{{t.fEmail}}</label>
+                    <input id="rp-email" type="email" autocomplete="email" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <label for="rp-wa" style="font-size: 14px; font-weight: 600">{{t.fWhatsapp}}</label>
+                    <input id="rp-wa" type="tel" autocomplete="tel" placeholder="+62" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-pass" style="font-size: 14px; font-weight: 600">{{t.fPassword}}</label>
+                  <input id="rp-pass" type="password" autocomplete="new-password" aria-describedby="rp-pass-hint" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                  <span id="rp-pass-hint" style="font-size: 13px; color: #6E6478">{{t.passHint}}</span>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- Step 2: business data -->
+            <sc-if value="{{s2}}" hint-placeholder-val="{{false}}">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+                <div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1">
+                  <label for="rp-store" style="font-size: 14px; font-weight: 600">{{t.fStore}}</label>
+                  <input id="rp-store" type="text" autocomplete="organization" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-cat" style="font-size: 14px; font-weight: 600">{{t.fCategory}}</label>
+                  <select id="rp-cat" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF">
+                    <option>{{t.optBookshop}}</option><option>{{t.optGift}}</option><option>{{t.optOnline}}</option><option>{{t.optSchool}}</option><option>{{t.optOther}}</option>
+                  </select>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-vol" style="font-size: 14px; font-weight: 600">{{t.fVolume}}</label>
+                  <select id="rp-vol" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF">
+                    <option>{{t.vol1}}</option><option>{{t.vol2}}</option><option>{{t.vol3}}</option><option>{{t.vol4}}</option>
+                  </select>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1">
+                  <label for="rp-addr" style="font-size: 14px; font-weight: 600">{{t.fAddress}}</label>
+                  <textarea id="rp-addr" rows="3" autocomplete="street-address" style="border-radius: 12px; border: 1px solid #D9CCE6; padding: 12px 14px; font: inherit; font-size: 15px; resize: vertical"></textarea>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-city" style="font-size: 14px; font-weight: 600">{{t.fCity}}</label>
+                  <input id="rp-city" type="text" autocomplete="address-level2" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-district" style="font-size: 14px; font-weight: 600">{{t.fDistrict}}</label>
+                  <input id="rp-district" type="text" autocomplete="address-level3" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px">
+                  <label for="rp-post" style="font-size: 14px; font-weight: 600">{{t.fPostcode}}</label>
+                  <input id="rp-post" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- Step 3: documents + submit -->
+            <sc-if value="{{s3}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-direction: column; gap: 16px">
+                <span style="align-self: flex-start; font-size: 13px; font-weight: 700; color: #5B2A86; background: #F1EBF6; padding: 6px 12px; border-radius: 999px">{{typeChip}}</span>
+                <sc-if value="{{isPerorangan}}" hint-placeholder-val="{{true}}">
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <label for="rp-nik" style="font-size: 14px; font-weight: 600">{{t.fNik}}</label>
+                    <input id="rp-nik" type="text" inputmode="numeric" maxlength="16" aria-describedby="rp-nik-note" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                    <span id="rp-nik-note" style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #6E6478"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{t.nikNote}}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{isBadan}}" hint-placeholder-val="{{false}}">
+                  <div style="display: flex; flex-direction: column; gap: 16px">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+                      <div style="display: flex; flex-direction: column; gap: 6px">
+                        <label for="rp-npwp" style="font-size: 14px; font-weight: 600">{{t.fNpwp}}</label>
+                        <input id="rp-npwp" type="text" inputmode="numeric" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 6px">
+                        <label for="rp-nib" style="font-size: 14px; font-weight: 600">{{t.fNib}}</label>
+                        <input id="rp-nib" type="text" inputmode="numeric" maxlength="13" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+                      </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+                      <div style="display: flex; flex-direction: column; gap: 6px">
+                        <span style="font-size: 14px; font-weight: 600">{{t.fNpwpFile}}</span>
+                        <label for="rp-npwp-file" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 18px; background: #FBF8FD; cursor: pointer">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+                          <strong style="font-size: 14px; color: #5B2A86">{{t.uploadNpwp}}</strong>
+                          <span style="font-size: 13px; line-height: 1.5; color: #6E6478">{{t.uploadRule}}</span>
+                        </label>
+                        <input id="rp-npwp-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" style="position: absolute; left: -9999px">
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 6px">
+                        <span style="font-size: 14px; font-weight: 600">{{t.fNibFile}}</span>
+                        <label for="rp-nib-file" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 18px; background: #FBF8FD; cursor: pointer">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+                          <strong style="font-size: 14px; color: #5B2A86">{{t.uploadNib}}</strong>
+                          <span style="font-size: 13px; line-height: 1.5; color: #6E6478">{{t.uploadRule}}</span>
+                        </label>
+                        <input id="rp-nib-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" style="position: absolute; left: -9999px">
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+                <div style="display: flex; gap: 10px; align-items: flex-start">
+                  <input id="rp-privacy" type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86; flex: none">
+                  <label for="rp-privacy" style="font-size: 14px; line-height: 1.5; color: #4A4252">{{t.agree1}} <a href="#">{{t.agreeTerms}}</a> {{t.agree2}} <a href="#">{{t.agreePrivacy}}</a>.</label>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- Navigation -->
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; border-top: 1px solid #ECE6F1; padding-top: 18px">
+              <sc-if value="{{showBack}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{back}}" style="display: flex; align-items: center; gap: 6px; height: 50px; padding: 0 20px; border-radius: 14px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>{{t.back}}</button>
+              </sc-if>
+              <sc-if value="{{noBack}}" hint-placeholder-val="{{true}}">
+                <span></span>
+              </sc-if>
+              <sc-if value="{{showNext}}" hint-placeholder-val="{{true}}">
+                <button type="button" onClick="{{next}}" style="display: flex; align-items: center; gap: 6px; height: 50px; padding: 0 24px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{t.next}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+              </sc-if>
+              <sc-if value="{{showSubmit}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{submit}}" style="height: 54px; padding: 0 28px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{{t.submit}}</button>
+              </sc-if>
+            </div>
+            <span style="font-size: 13px; line-height: 1.5; color: #6E6478">{{t.reviewNote}}</span>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="cn" style="font-size: 14px; font-weight: 600">{{t.fContactName}}</label>
-            <input id="cn" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="wa" style="font-size: 14px; font-weight: 600">{{t.fWhatsapp}}</label>
-            <input id="wa" type="tel" placeholder="+62" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="em" style="font-size: 14px; font-weight: 600">{{t.fEmail}}</label>
-            <input id="em" type="email" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="ct" style="font-size: 14px; font-weight: 600">{{t.fCity}}</label>
-            <input id="ct" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px">
-          <span style="font-size: 14px; font-weight: 600">{{t.fDocs}}</span>
-          <label for="docs" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 18px; background: #FBF8FD; cursor: pointer">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
-            <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.uploadBold}}</strong> · {{t.uploadRest}}</span>
-          </label>
-          <input id="docs" type="file" multiple style="position: absolute; left: -9999px">
-        </div>
-        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #4A4252">
-          <input type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86">
-          <span>{{t.agree1}} <a href="#">{{t.agreeTerms}}</a> {{t.agree2}} <a href="#">{{t.agreePrivacy}}</a>.</span>
-        </label>
-        <button type="submit" style="height: 54px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{{t.submit}}</button>
-        <span style="font-size: 13px; color: #6E6478">{{t.reviewNote}}</span>
+        </sc-if>
       </form>
+      <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #4A4252; padding: 0 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16v.5"></path></svg>{{t.depositNote}}</p>
+      </div>
     </div>
   </section>
 
@@ -140,7 +302,10 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
   <!-- FAQ -->
   <section id="faq" style="max-width: 1240px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-wrap: wrap; gap: 40px">
-    <h2 style="flex: 1 1 280px; margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.faqTitle}}</h2>
+    <div style="flex: 1 1 280px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.faqTitle}}</h2>
+      <a href="faq.html" style="display: flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; font-size: 15px">{{t.faqAll}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+    </div>
     <div style="flex: 2 1 520px; display: flex; flex-direction: column; gap: 12px">
       <details open style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 20px 24px">
         <summary style="font-weight: 600; font-size: 16px; cursor: pointer">{{t.q1}}</summary>
@@ -166,8 +331,12 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 <script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2200}}'>
 class Component extends DCLogic {
   renderVals() {
-    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
+    const step = st.step || 1;
+    const type = st.type || 'perorangan';
+    const sent = !!st.sent;
     const t = {
       myAccountBtn: L('Akun Saya', 'My Account'),
       homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
@@ -183,32 +352,67 @@ class Component extends DCLogic {
       b1Bold: L('Harga reseller', 'Reseller pricing'),
       b1Rest: L('untuk setiap judul, dengan harga lebih baik untuk volume lebih besar', 'on every title, with better rates at higher volumes'),
       b2Bold: L('Pesan dengan purchase order', 'Order by purchase order'),
-      b2Rest: L(', bayar sesuai invoice', ', pay on invoice'),
+      b2Rest: L(', bayar transfer setelah invoice', ', pay by bank transfer after invoice'),
       b3Bold: L('Akses lebih awal', 'Early access'),
       b3Rest: L('ke buku terbaru dan pre-order', 'to new releases and pre-orders'),
-      b4Bold: L('Gratis ongkir ke seluruh Jawa', 'Free shipping across Java'),
-      b4Rest: L('untuk pesanan di atas Rp 500.000', 'on orders over Rp 500.000'),
+      b4Bold: L('Tiga level reseller:', 'Three reseller levels:'),
+      b4Rest: L('Star, Bright Star, Super Star', 'Star, Bright Star, Super Star'),
       formTitle: L('Ajukan akun reseller', 'Apply for a reseller account'),
-      fBusinessName: L('Nama usaha', 'Business name'),
-      fBusinessType: L('Jenis usaha', 'Business type'),
-      optBookshop: L('Toko buku', 'Bookshop'),
-      optSchool: L('Sekolah / perpustakaan', 'School / library'),
-      optGift: L('Toko hadiah', 'Gift store'),
-      optOnline: L('Penjual online', 'Online seller'),
-      optOther: L('Lainnya', 'Other'),
-      fContactName: L('Nama kontak', 'Contact name'),
-      fWhatsapp: L('Nomor WhatsApp', 'WhatsApp number'),
+      stepsAria: L('Langkah pengajuan', 'Application steps'),
+      step1: L('Jenis akun', 'Account type'),
+      step2: L('Data usaha', 'Business details'),
+      step3: L('Dokumen & kirim', 'Documents & submit'),
+      typeLegend: L('Pilih jenis akun', 'Choose an account type'),
+      typePerTitle: L('Reseller Perorangan', 'Individual reseller'),
+      typePerDesc: L('Untuk penjual perorangan, termasuk penjual online dan toko rumahan.', 'For individual sellers, including online and home-based stores.'),
+      typePerVerify: L('Verifikasi: NIK', 'Verified by: NIK'),
+      typeBizTitle: L('Reseller Badan Usaha', 'Company reseller'),
+      typeBizDesc: L('Untuk toko, sekolah, perpustakaan, dan perusahaan berbadan usaha.', 'For registered stores, schools, libraries and companies.'),
+      typeBizVerify: L('Verifikasi: NPWP & NIB', 'Verified by: NPWP & NIB'),
+      picNote: L('Untuk Badan Usaha, isi nama penanggung jawab (PIC) yang bisa kami hubungi.', 'For companies, enter the name of the contact person (PIC) we can reach.'),
+      fFirst: L('Nama depan', 'First name'),
+      fLast: L('Nama belakang', 'Last name'),
       fEmail: L('Email', 'Email'),
+      fWhatsapp: L('Nomor WhatsApp', 'WhatsApp number'),
+      fPassword: L('Kata sandi', 'Password'),
+      passHint: L('Dipakai untuk masuk setelah akun disetujui.', 'Used to log in once your account is approved.'),
+      fStore: L('Nama toko / usaha', 'Store / business name'),
+      fCategory: L('Kategori usaha', 'Business category'),
+      optBookshop: L('Toko buku', 'Bookshop'),
+      optGift: L('Toko hadiah & gaya hidup', 'Gift & lifestyle store'),
+      optOnline: L('Penjual online', 'Online seller'),
+      optSchool: L('Sekolah / perpustakaan', 'School / library'),
+      optOther: L('Lainnya', 'Other'),
+      fVolume: L('Perkiraan pembelian per bulan', 'Estimated monthly purchase'),
+      vol1: L('< Rp 5 jt', '< Rp 5 million'),
+      vol2: L('Rp 5–25 jt', 'Rp 5–25 million'),
+      vol3: L('Rp 25–100 jt', 'Rp 25–100 million'),
+      vol4: L('> Rp 100 jt', '> Rp 100 million'),
+      fAddress: L('Alamat gudang / toko', 'Warehouse / store address'),
       fCity: L('Kota', 'City'),
-      fDocs: L('Dokumen usaha (NIB / NPWP)', 'Business documents (NIB / NPWP)'),
-      uploadBold: L('Unggah file', 'Upload files'),
-      uploadRest: L('PDF atau gambar, maks. [X] MB per file', 'PDF or image, max [X] MB each'),
+      fDistrict: L('Kecamatan', 'District (kecamatan)'),
+      fPostcode: L('Kode pos', 'Postcode'),
+      fNik: L('NIK (Nomor Induk Kependudukan)', 'NIK (national ID number)'),
+      nikNote: L('NIK disimpan terenkripsi', 'Your NIK is stored encrypted'),
+      fNpwp: L('NPWP', 'NPWP (tax ID)'),
+      fNib: L('NIB', 'NIB (business ID)'),
+      fNpwpFile: L('Dokumen NPWP', 'NPWP document'),
+      fNibFile: L('Dokumen NIB', 'NIB document'),
+      uploadNpwp: L('Unggah NPWP', 'Upload NPWP'),
+      uploadNib: L('Unggah NIB', 'Upload NIB'),
+      uploadRule: L('PDF, JPG, PNG atau WEBP, maks. 5 MB', 'PDF, JPG, PNG or WEBP, max. 5 MB'),
       agree1: L('Saya menyetujui', 'I agree to the'),
       agreeTerms: L('syarat reseller', 'reseller terms'),
       agree2: L('dan', 'and'),
       agreePrivacy: L('kebijakan privasi', 'privacy policy'),
+      back: L('Kembali', 'Back'),
+      next: L('Lanjut', 'Next'),
       submit: L('Kirim pengajuan', 'Submit application'),
-      reviewNote: L('Kami meninjau pengajuan dalam [X] hari kerja dan membalas melalui email dan WhatsApp.', 'We review applications within [X] working days and reply by email and WhatsApp.'),
+      reviewNote: L('Setiap pengajuan ditinjau oleh tim kami sebelum akun aktif.', 'Every application is reviewed by our team before the account is activated.'),
+      depositNote: L('Deposit awal Rp 1.000.000 (berlaku 3 bulan)', 'Initial deposit Rp 1.000.000 (valid for 3 months)'),
+      sentTitle: L('Pengajuan terkirim.', 'Application sent.'),
+      sentBody: L('Tim kami meninjau dan menghubungi Anda lewat email/WhatsApp. Setelah disetujui, akun Anda mulai di level Star.', 'Our team will review it and contact you by email/WhatsApp. Once approved, your account starts at the Star level.'),
+      sentCta: L('Lihat katalog', 'Browse the catalog'),
       whoTitle: L('Mitra kami', 'Who we work with'),
       w1Title: L('Toko buku', 'Bookshops'),
       w1Body: L('Toko independen maupun jaringan yang menjual buku impor berbahasa Inggris.', 'Independent and chain stores stocking imported English titles.'),
@@ -219,19 +423,44 @@ class Component extends DCLogic {
       w4Title: L('Penjual online', 'Online sellers'),
       w4Body: L('Penjual di marketplace dan social commerce di seluruh Indonesia.', 'Marketplace and social-commerce sellers across Indonesia.'),
       faqTitle: L('Pertanyaan seputar reseller', 'Reseller questions'),
+      faqAll: L('Lihat semua FAQ', 'See all FAQ'),
       q1: L('Apakah ada minimum pemesanan?', 'Is there a minimum order?'),
-      a1: L('[Nilai minimum pesanan atau jumlah per judul]', '[Minimum order value or quantity per title]'),
+      a1: L('Diskon reseller berlaku mulai pembelian Rp 1.000.000.', 'Reseller discounts apply from purchases of Rp 1.000.000.'),
       q2: L('Bagaimana cara kerja diskon volume?', 'How do volume discounts work?'),
-      a2: L('[Struktur level]', '[Tier structure]'),
-      q3: L('Pilihan pembayaran apa saja yang tersedia?', 'Which payment terms are available?'),
-      a3: L('[Transfer bank / tempo pembayaran]', '[Bank transfer / net terms]'),
+      a2: L('Diskon naik sesuai nilai pembelian dan level reseller Anda (Star, Bright Star, Super Star).', 'Discounts increase with your purchase value and reseller level (Star, Bright Star, Super Star).'),
+      q3: L('Pilihan pembayaran apa saja yang tersedia?', 'Which payment options are available?'),
+      a3: L('Tunai atau transfer bank (beli putus).', 'Cash or bank transfer (outright purchase).'),
       q4: L('Apakah stok yang tidak terjual bisa diretur?', 'Can I return unsold stock?'),
-      a4: L('[Kebijakan retur]', '[Return policy]')
+      a4: L('Barang yang sudah dibeli tidak dapat diretur.', 'Purchased items cannot be returned.')
     };
+    const steps = [t.step1, t.step2, t.step3].map((label, i) => {
+      const n = i + 1;
+      return { n, label, cur: n === step, done: n < step, todo: n > step };
+    });
+    const types = [
+      { id: 'perorangan', title: t.typePerTitle, desc: t.typePerDesc, verify: t.typePerVerify },
+      { id: 'badan', title: t.typeBizTitle, desc: t.typeBizDesc, verify: t.typeBizVerify }
+    ].map((x) => ({
+      title: x.title, desc: x.desc, verify: x.verify,
+      on: type === x.id, off: type !== x.id,
+      pick: () => this.setState({ type: x.id })
+    }));
+    const next = () => this.setState({ step: Math.min(3, step + 1) });
+    const back = () => this.setState({ step: Math.max(1, step - 1) });
+    const submit = () => this.setState({ sent: true });
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, langs };
+    return {
+      t, langs, steps, types, next, back, submit,
+      stepOf: L('LANGKAH ' + step + ' DARI 3', 'STEP ' + step + ' OF 3'),
+      typeChip: type === 'badan' ? t.typeBizTitle : t.typePerTitle,
+      s1: step === 1, s2: step === 2, s3: step === 3,
+      isPerorangan: type !== 'badan', isBadan: type === 'badan',
+      showBack: step > 1, noBack: step === 1,
+      showNext: step < 3, showSubmit: step === 3,
+      sent, notSent: !sent
+    };
   }
 }
 </script>

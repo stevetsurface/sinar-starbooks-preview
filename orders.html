@@ -76,7 +76,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
       <!-- Status filters -->
       <div role="tablist" aria-label="{{t.filterLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px">
-        <sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="7">
           <sc-if value="{{f.on}}" hint-placeholder-val="{{false}}">
             <button type="button" role="tab" aria-selected="true" onClick="{{f.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{f.label}} · {{f.count}}</button>
           </sc-if>
@@ -88,12 +88,12 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
       <!-- Orders -->
       <div style="display: flex; flex-direction: column; gap: 12px">
-        <sc-for list="{{orders}}" as="o" hint-placeholder-count="4">
+        <sc-for list="{{orders}}" as="o" hint-placeholder-count="6">
           <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow: hidden">
             <button type="button" onClick="{{o.toggle}}" aria-expanded="{{o.expanded}}" style="width: 100%; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; padding: 20px 24px; border: 0; background: transparent; font: inherit; color: inherit; text-align: left; cursor: pointer">
               <span style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 3px">
                 <span style="font-weight: 800; font-size: 16px">{{o.no}}</span>
-                <span style="font-size: 13px; color: #6E6478">PO {{o.po}} · {{o.date}}</span>
+                <span style="font-size: 13px; color: #6E6478">{{t.yourRef}}: {{o.ref}} · {{o.date}}</span>
               </span>
               <span style="font-size: 14px; color: #4A4252">{{o.itemsLabel}} · {{t.disc}} {{o.discLabel}}</span>
               <span style="width: 140px; text-align: right; font-weight: 800; font-size: 16px">{{o.totalLabel}}</span>
@@ -103,6 +103,25 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
             <sc-if value="{{o.open}}" hint-placeholder-val="{{false}}">
               <div style="border-top: 1px solid #F3EFF6; padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 16px; background: #FCFBFD">
+                <sc-if value="{{o.hasTimeline}}" hint-placeholder-val="{{true}}">
+                  <ol aria-label="{{t.timeline}}" style="list-style: none; margin: 0; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px 4px; align-items: center; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 14px">
+                    <sc-for list="{{o.steps}}" as="sp" hint-placeholder-count="6">
+                      <li aria-current="{{sp.aria}}" style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: {{sp.ink}}; font-weight: {{sp.weight}}">
+                        <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 999px; background: {{sp.dot}}; box-shadow: 0 0 0 3px {{sp.ring}}"></span>
+                        <span>{{sp.label}}</span>
+                        <sc-if value="{{sp.arrow}}" hint-placeholder-val="{{true}}">
+                          <span aria-hidden="true" style="color: #B8A6CC; margin: 0 6px">→</span>
+                        </sc-if>
+                      </li>
+                    </sc-for>
+                  </ol>
+                </sc-if>
+                <sc-if value="{{o.hasReason}}" hint-placeholder-val="{{false}}">
+                  <div role="note" style="display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; border-radius: 14px; background: #F8DCE3; color: #8A2443; font-size: 14px">
+                    <strong>{{o.status}}</strong>
+                    <span>{{o.reason}}</span>
+                  </div>
+                </sc-if>
                 <div style="overflow-x: auto">
                   <div style="min-width: 560px">
                     <div style="display: grid; grid-template-columns: minmax(0, 3fr) 60px 120px 130px; gap: 12px; padding: 8px 0; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
@@ -122,19 +141,25 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                   <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #4A4252">
                     <span><strong style="color: #1E1A24">{{t.payment}}:</strong> {{o.payment}}</span>
                     <span><strong style="color: #1E1A24">{{t.shipping}}:</strong> {{o.ship}}</span>
+                    <sc-if value="{{o.hasCourier}}" hint-placeholder-val="{{false}}">
+                      <span><strong style="color: #1E1A24">{{t.courier}}:</strong> {{o.courier}}</span>
+                    </sc-if>
                     <span><strong style="color: #1E1A24">{{t.poDoc}}:</strong> {{o.poFile}}</span>
                   </div>
                   <div style="min-width: 260px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
                     <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #6E6478">{{t.books}}</span><span>{{o.subLabel}}</span></div>
                     <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #6E6478">{{t.shipCost}}</span><span>{{o.shipLabel}}</span></div>
-                    <div style="display: flex; justify-content: space-between; gap: 16px; font-weight: 800; font-size: 16px; padding-top: 6px; border-top: 1px solid #ECE6F1"><span>Total</span><span>{{o.totalLabel}}</span></div>
+                    <div style="display: flex; justify-content: space-between; gap: 16px; font-weight: 800; font-size: 16px; padding-top: 6px; border-top: 1px solid #ECE6F1"><span>{{o.totalCaption}}</span><span>{{o.totalLabel}}</span></div>
                   </div>
                 </div>
+                <sc-if value="{{o.awaitTransfer}}" hint-placeholder-val="{{false}}">
+                  <div role="note" style="padding: 12px 16px; border-radius: 14px; background: #FDE9C4; color: #6B4A00; font-size: 14px; font-weight: 600">{{t.transferInfo}}</div>
+                </sc-if>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px">
-                  <sc-if value="{{o.unpaid}}" hint-placeholder-val="{{false}}">
-                    <a href="checkout.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 12px; background: #F2B33D; color: #2A1640; font-weight: 800; font-size: 14px">{{t.uploadProof}}</a>
+                  <a href="#" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.poPdf}}</a>
+                  <sc-if value="{{o.hasInvoice}}" hint-placeholder-val="{{false}}">
+                    <a href="#" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.invoice}}</a>
                   </sc-if>
-                  <a href="#" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.invoice}}</a>
                   <a href="checkout.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 12px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 14px">{{t.reorder}}</a>
                 </div>
               </div>
@@ -159,15 +184,18 @@ class Component extends DCLogic {
       catalog: L('Katalog', 'Catalog'), cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       accountNav: L('Akun', 'Account'), storeName: L('[Nama Toko Buku]', '[Bookshop name]'),
       title: L('Pesanan & PO', 'Orders & POs'),
-      sub: L('Semua pesanan Anda, nomor PO, invoice, dan status pengiriman.', 'All your orders, PO numbers, invoices and delivery status.'),
-      search: L('Cari no. pesanan, PO, atau judul', 'Search order no., PO or title'),
+      sub: L('Semua PO Anda: diajukan, diverifikasi & disetujui tim kami, lalu invoice dikirim untuk pembayaran transfer.', 'All your POs: submitted, verified & approved by our team, then an invoice is sent for bank-transfer payment.'),
+      search: L('Cari no. PO, ref. Anda, atau judul', 'Search PO no., your ref. or title'),
       filterLabel: L('Filter status', 'Status filter'),
+      yourRef: L('Ref. Anda', 'Your ref.'),
       disc: L('diskon', 'discount'),
+      timeline: L('Status PO', 'PO status'),
       colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colUnit: L('HARGA RESELLER', 'RESELLER PRICE'), colSub: 'SUBTOTAL',
       retail: L('retail', 'retail'),
-      payment: L('Pembayaran', 'Payment'), shipping: L('Pengiriman', 'Shipping'), poDoc: L('Dokumen PO', 'PO document'),
+      payment: L('Pembayaran', 'Payment'), shipping: L('Pengiriman', 'Shipping'), courier: L('Kurir', 'Courier'), poDoc: L('Dokumen PO', 'PO document'),
       books: L('Buku', 'Books'), shipCost: L('Ongkir (ditanggung pembeli)', 'Shipping (paid by buyer)'),
-      uploadProof: L('Unggah bukti transfer', 'Upload payment proof'),
+      transferInfo: L('Transfer ke rekening Sinar Starbooks sesuai invoice. Tim kami akan memproses setelah pembayaran diterima.', 'Transfer to the Sinar Starbooks account as per the invoice. Our team will process the order once payment is received.'),
+      poPdf: L('Unduh PO (PDF)', 'Download PO (PDF)'),
       invoice: L('Unduh invoice (PDF)', 'Download invoice (PDF)'),
       reorder: L('Pesan ulang', 'Reorder'),
       terms: L('Sesuai ketentuan reseller: pembayaran tunai/transfer (beli putus), barang tidak bisa diretur, ongkir ditanggung pembeli. Contoh data untuk desain.', 'Per reseller terms: cash/transfer payment, no returns, buyer pays shipping. Sample data for the design.')
@@ -185,44 +213,95 @@ class Component extends DCLogic {
       dog3: { title: 'Dog Man #3: Tale of Two Kitties', isbn: '9789811157493', price: 185000 },
       sapiens: { title: 'Sapiens', isbn: '9780099590088', price: 270000 }
     };
+    // ship: null = freight not yet confirmed by staff; pickup: true = "Ambil sendiri di gudang"
     const raw = [
-      { no: 'SSB-2026-0412', po: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), s: 'wait', disc: 30, ship: 85000, courier: L('JNE Cargo · belum dikirim', 'JNE Cargo · not shipped yet'), pay: L('Transfer bank · menunggu pembayaran', 'Bank transfer · awaiting payment'), lines: [['atomic', 6], ['psych', 6], ['dog14', 6], ['itstarts', 6]] },
-      { no: 'SSB-2026-0388', po: 'PO-TB-2026-013', date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'packed', disc: 30, ship: 60000, courier: L('JNE Cargo · sedang dikemas', 'JNE Cargo · being packed'), pay: L('Transfer bank · lunas 25 Sep 2026', 'Bank transfer · paid Sep 25, 2026'), lines: [['alchemist', 6], ['morrie', 6], ['carnegie', 6]] },
-      { no: 'SSB-2026-0351', po: 'PO-TB-2026-012', date: L('2 Sep 2026', 'Sep 2, 2026'), s: 'shipped', disc: 30, ship: 75000, courier: 'JNE Cargo · resi [nomor resi]', pay: L('Transfer bank · lunas 3 Sep 2026', 'Bank transfer · paid Sep 3, 2026'), lines: [['dog1', 10], ['dog2', 10], ['dog3', 10]] },
-      { no: 'SSB-2026-0309', po: 'PO-TB-2026-011', date: L('12 Agu 2026', 'Aug 12, 2026'), s: 'done', disc: 20, ship: 70000, courier: L('JNE Cargo · diterima 15 Agu 2026', 'JNE Cargo · delivered Aug 15, 2026'), pay: L('Transfer bank · lunas', 'Bank transfer · paid'), lines: [['alchemist', 12], ['psych', 6]] },
-      { no: 'SSB-2026-0274', po: 'PO-TB-2026-010', date: L('22 Jul 2026', 'Jul 22, 2026'), s: 'done', disc: 20, ship: 60000, courier: L('Diambil sendiri di gudang', 'Picked up at our warehouse'), pay: L('Tunai · lunas', 'Cash · paid'), lines: [['sapiens', 6], ['atomic', 6]] }
+      { no: 'PO-202610-0014', ref: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), s: 'submitted', disc: 30, pickup: false, ship: null,
+        pay: L('Transfer bank · setelah PO disetujui & invoice dikirim', 'Bank transfer · after PO approval & invoice'), lines: [['atomic', 6], ['psych', 6], ['dog14', 6], ['itstarts', 6]] },
+      { no: 'PO-202610-0009', ref: 'PO-TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), s: 'verified', disc: 30, pickup: false, ship: null,
+        pay: L('Transfer bank · setelah PO disetujui & invoice dikirim', 'Bank transfer · after PO approval & invoice'), lines: [['alchemist', 6], ['morrie', 6], ['carnegie', 6]] },
+      { no: 'PO-202610-0004', ref: 'PO-TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'approved', disc: 30, pickup: false, ship: 75000,
+        pay: L('Transfer bank · Invoice dikirim, menunggu transfer', 'Bank transfer · Invoice sent, awaiting transfer'), lines: [['dog1', 10], ['dog2', 10], ['dog3', 10]] },
+      { no: 'PO-202609-0027', ref: 'PO-TB-2026-011', date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'shipped', disc: 30, pickup: false, ship: 70000,
+        courier: L('JNE Cargo · resi [nomor resi] · dikirim 30 Sep 2026', 'JNE Cargo · waybill [waybill no.] · shipped Sep 30, 2026'),
+        pay: L('Transfer bank · lunas 26 Sep 2026', 'Bank transfer · paid Sep 26, 2026'), lines: [['alchemist', 12], ['psych', 6]] },
+      { no: 'PO-202608-0018', ref: 'PO-TB-2026-010', date: L('12 Agu 2026', 'Aug 12, 2026'), s: 'done', disc: 20, pickup: true, ship: 0,
+        pay: L('Tunai · lunas 14 Agu 2026', 'Cash · paid Aug 14, 2026'), lines: [['sapiens', 6], ['atomic', 6]] },
+      { no: 'PO-202607-0022', ref: 'PO-TB-2026-009', date: L('22 Jul 2026', 'Jul 22, 2026'), s: 'rejected', disc: 20, pickup: false, ship: null,
+        reason: L('Alasan: stok judul It Starts With Us habis di penerbit.', 'Reason: It Starts With Us is out of stock at the publisher.'),
+        pay: L('Tidak ada tagihan', 'Nothing to pay'), lines: [['itstarts', 12]] }
     ];
+    // Real oc-b2b order statuses. step = position on the timeline; group = filter bucket.
     const S = {
-      wait: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00' },
-      packed: { status: L('DIKEMAS', 'PACKING'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
-      shipped: { status: L('DIKIRIM', 'SHIPPED'), chipBg: '#E6DDF0', chipInk: '#5B2A86' },
-      done: { status: L('SELESAI', 'COMPLETED'), chipBg: '#DDEBDD', chipInk: '#24523A' }
+      submitted: { status: L('PO DIAJUKAN', 'PO SUBMITTED'), chipBg: '#ECE6F1', chipInk: '#4A4252', step: 0, group: 'submitted' },
+      verified: { status: L('PO DIVERIFIKASI', 'PO VERIFIED'), chipBg: '#DCEBF0', chipInk: '#1F4A63', step: 1, group: 'verified' },
+      approved: { status: L('PO DISETUJUI', 'PO APPROVED'), chipBg: '#FDE9C4', chipInk: '#6B4A00', step: 2, group: 'approved' },
+      processing: { status: L('DIPROSES', 'PROCESSING'), chipBg: '#E1E5F7', chipInk: '#2F3A7A', step: 3, group: 'moving' },
+      shipped: { status: L('DIKIRIM', 'SHIPPED'), chipBg: '#E6DDF0', chipInk: '#5B2A86', step: 4, group: 'moving' },
+      done: { status: L('SELESAI', 'COMPLETE'), chipBg: '#DDEBDD', chipInk: '#24523A', step: 5, group: 'done' },
+      rejected: { status: L('PO DITOLAK', 'PO REJECTED'), chipBg: '#F8DCE3', chipInk: '#8A2443', step: -1, group: 'closed' },
+      cancelled: { status: L('DIBATALKAN', 'CANCELLED'), chipBg: '#ECEAEE', chipInk: '#5A5260', step: -1, group: 'closed' }
     };
-    const openId = st.open === undefined ? 'SSB-2026-0412' : st.open;
+    const stepLabels = [L('Diajukan', 'Submitted'), L('Diverifikasi', 'Verified'), L('Disetujui', 'Approved'), L('Diproses', 'Processing'), L('Dikirim', 'Shipped'), L('Selesai', 'Complete')];
+    const openId = st.open === undefined ? 'PO-202610-0014' : st.open;
     const filter = st.filter || 'all';
     const all = raw.map((o) => {
+      const s = S[o.s];
       let sub = 0, qty = 0;
       const lines = o.lines.map(([k, q]) => {
         const b = books[k]; const unit = b.price * (1 - o.disc / 100); sub += unit * q; qty += q;
         return { title: b.title, isbn: b.isbn, retail: fmt(b.price), qty: q, unit: fmt(unit), sub: fmt(unit * q) };
       });
+      const closed = s.step < 0;
+      const shipKnown = o.ship !== null;
+      let ship, shipLabel;
+      if (o.pickup) {
+        ship = L('Ambil sendiri di gudang', 'Pick up at our warehouse');
+        shipLabel = L('Rp 0 · ambil sendiri', 'Rp 0 · pickup');
+      } else if (closed) {
+        ship = L('Ongkir: dikonfirmasi tim kami', 'Shipping: confirmed by our team');
+        shipLabel = '—';
+      } else if (!shipKnown) {
+        ship = L('Ongkir: dikonfirmasi tim kami · menunggu konfirmasi', 'Shipping: confirmed by our team · awaiting confirmation');
+        shipLabel = L('Menunggu konfirmasi', 'Awaiting confirmation');
+      } else {
+        ship = L('Ongkir: dikonfirmasi tim kami · ', 'Shipping: confirmed by our team · ') + fmt(o.ship);
+        shipLabel = fmt(o.ship);
+      }
+      const total = sub + (shipKnown ? o.ship : 0);
+      const steps = stepLabels.map((label, i) => {
+        const done = i < s.step, cur = i === s.step;
+        return {
+          label, arrow: i < stepLabels.length - 1, aria: cur ? 'step' : 'false',
+          dot: cur ? '#5B2A86' : (done ? '#A463BF' : '#FFFFFF'),
+          ring: cur ? '#E6DDF0' : (done ? '#F1EBF6' : '#D9CCE6'),
+          ink: cur ? '#2A1640' : (done ? '#4A4252' : '#9A90A4'),
+          weight: cur ? '800' : '500'
+        };
+      });
       const isOpen = openId === o.no;
-      return Object.assign({}, S[o.s], {
-        no: o.no, po: o.po, date: o.date, s: o.s, lines,
+      return Object.assign({}, s, {
+        no: o.no, ref: o.ref, date: o.date, s: o.s, lines,
         itemsLabel: qty + ' ' + L('buku', 'books'), discLabel: o.disc + '%',
-        subLabel: fmt(sub), shipLabel: fmt(o.ship), totalLabel: fmt(sub + o.ship),
-        payment: o.pay, ship: o.courier, poFile: o.po + '.pdf',
-        unpaid: o.s === 'wait', open: isOpen, expanded: isOpen ? 'true' : 'false',
+        subLabel: fmt(sub), shipLabel, totalLabel: fmt(total),
+        totalCaption: (!o.pickup && !shipKnown && !closed) ? L('Total (belum termasuk ongkir)', 'Total (excl. shipping)') : 'Total',
+        payment: o.pay, ship, courier: o.courier || '', hasCourier: !!o.courier, poFile: o.no + '.pdf',
+        steps, hasTimeline: !closed, hasReason: closed, reason: o.reason || '',
+        awaitTransfer: o.s === 'approved', hasInvoice: s.step >= 2,
+        open: isOpen, expanded: isOpen ? 'true' : 'false',
         chevron: isOpen ? 'm6 15 6-6 6 6' : 'm6 9 6 6 6-6',
         toggle: () => this.setState({ open: isOpen ? null : o.no })
       });
     });
-    const defs = [['all', L('Semua', 'All')], ['wait', L('Menunggu pembayaran', 'Awaiting payment')], ['packed', L('Dikemas', 'Packing')], ['shipped', L('Dikirim', 'Shipped')], ['done', L('Selesai', 'Completed')]];
+    const defs = [
+      ['all', L('Semua', 'All')], ['submitted', L('Diajukan', 'Submitted')], ['verified', L('Diverifikasi', 'Verified')],
+      ['approved', L('Disetujui', 'Approved')], ['moving', L('Diproses & Dikirim', 'Processing & Shipped')],
+      ['done', L('Selesai', 'Complete')], ['closed', L('Ditolak & Dibatalkan', 'Rejected & Cancelled')]
+    ];
     const filters = defs.map(([id, label]) => ({
-      label, count: id === 'all' ? all.length : all.filter((o) => o.s === id).length,
+      label, count: id === 'all' ? all.length : all.filter((o) => o.group === id).length,
       on: filter === id, off: filter !== id, pick: () => this.setState({ filter: id })
     }));
-    const orders = filter === 'all' ? all : all.filter((o) => o.s === filter);
+    const orders = filter === 'all' ? all : all.filter((o) => o.group === filter);
     const menu = [
       { label: L('Dasbor', 'Dashboard'), href: 'account.html' },
       { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html', on: true },

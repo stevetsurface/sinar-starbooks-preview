@@ -94,8 +94,11 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <span style="font-size: 14px; color: #4A4252">{{t.depositBody}}</span>
           <div style="height: 1px; background: #F3EFF6"></div>
           <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px">
-            <span style="color: #6E6478">{{t.unpaid}}</span>
-            <span style="font-weight: 700; color: #B0476A">Rp 5.326.600</span>
+            <span style="display: flex; flex-direction: column; gap: 2px">
+              <span style="color: #6E6478">{{t.unpaid}}</span>
+              <span style="font-size: 13px; color: #4A4252">{{awaiting.no}} · {{awaiting.note}}</span>
+            </span>
+            <span style="font-weight: 700; color: #B0476A">{{awaiting.total}}</span>
           </div>
           <a href="orders.html" style="align-self: flex-start; font-weight: 700; font-size: 14px">{{t.payNow}}</a>
         </section>
@@ -121,10 +124,10 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <a href="orders.html" style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; padding: 14px 0; border-top: 1px solid #F3EFF6; color: #1E1A24">
             <span style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px">
               <span style="font-weight: 700">{{o.no}}</span>
-              <span style="font-size: 13px; color: #6E6478">PO {{o.po}} · {{o.date}}</span>
+              <span style="font-size: 13px; color: #6E6478">{{t.yourRef}}: {{o.ref}} · {{o.date}}</span>
             </span>
             <span style="font-size: 14px; color: #4A4252">{{o.items}}</span>
-            <span style="width: 130px; text-align: right; font-weight: 700">{{o.total}}</span>
+            <span style="width: 180px; text-align: right; font-weight: 700">{{o.total}}</span>
             <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.5px; padding: 6px 10px; border-radius: 999px; background: {{o.chipBg}}; color: {{o.chipInk}}">{{o.status}}</span>
           </a>
         </sc-for>
@@ -163,8 +166,9 @@ class Component extends DCLogic {
       seeRewards: L('Lihat detail level →', 'See tier details →'),
       depositTitle: L('DEPOSIT', 'DEPOSIT'),
       depositBody: L('Berlaku sampai [tanggal]. Dipotong otomatis dari pesanan berikutnya.', 'Valid until [date]. Deducted automatically from your next order.'),
-      unpaid: L('Invoice belum dibayar', 'Unpaid invoices'),
-      payNow: L('Lihat & bayar →', 'View & pay →'),
+      unpaid: L('Menunggu transfer', 'Awaiting transfer'),
+      payNow: L('Lihat PO & invoice →', 'View PO & invoice →'),
+      yourRef: L('Ref. Anda', 'Your ref.'),
       recent: L('Pesanan terbaru', 'Recent orders'),
       allOrders: L('Semua pesanan →', 'All orders →'),
       qOrder: L('Pesan buku', 'Order books'),
@@ -179,16 +183,18 @@ class Component extends DCLogic {
       { label: L('Rata-rata per pesanan', 'Average order'), value: 'Rp 3.475.680' },
       { label: L('Pesanan terakhir', 'Last order'), value: L('8 Okt 2026', 'Oct 8, 2026') }
     ];
+    // Same statuses, PO numbers and totals as orders.html (oc-b2b PO flow).
     const S = {
-      wait: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00' },
-      packed: { status: L('DIKEMAS', 'PACKING'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
-      shipped: { status: L('DIKIRIM', 'SHIPPED'), chipBg: '#E6DDF0', chipInk: '#5B2A86' }
+      submitted: { status: L('PO DIAJUKAN', 'PO SUBMITTED'), chipBg: '#ECE6F1', chipInk: '#4A4252' },
+      verified: { status: L('PO DIVERIFIKASI', 'PO VERIFIED'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
+      approved: { status: L('PO DISETUJUI', 'PO APPROVED'), chipBg: '#FDE9C4', chipInk: '#6B4A00' }
     };
     const recent = [
-      { no: 'SSB-2026-0412', po: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: 'Rp 5.326.600', s: 'wait' },
-      { no: 'SSB-2026-0388', po: 'PO-TB-2026-013', date: L('24 Sep 2026', 'Sep 24, 2026'), items: L('18 buku', '18 books'), total: 'Rp 2.206.200', s: 'packed' },
-      { no: 'SSB-2026-0351', po: 'PO-TB-2026-012', date: L('2 Sep 2026', 'Sep 2, 2026'), items: L('30 buku', '30 books'), total: 'Rp 3.960.000', s: 'shipped' }
+      { no: 'PO-202610-0014', ref: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: L('Rp 5.241.600 + ongkir', 'Rp 5,241,600 + shipping'), s: 'submitted' },
+      { no: 'PO-202610-0009', ref: 'PO-TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), items: L('18 buku', '18 books'), total: L('Rp 2.146.200 + ongkir', 'Rp 2,146,200 + shipping'), s: 'verified' },
+      { no: 'PO-202610-0004', ref: 'PO-TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), items: L('30 buku', '30 books'), total: L('Rp 3.960.000', 'Rp 3,960,000'), s: 'approved' }
     ].map((o) => Object.assign({}, o, S[o.s]));
+    const awaiting = { no: 'PO-202610-0004', note: L('Invoice dikirim', 'Invoice sent'), total: L('Rp 3.960.000', 'Rp 3,960,000') };
     const menu = [
       { label: L('Dasbor', 'Dashboard'), href: 'account.html', on: true },
       { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html' },
@@ -199,7 +205,7 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, stats, recent, menu, langs, progress, progressWidth: progress + '%' };
+    return { t, stats, recent, awaiting, menu, langs, progress, progressWidth: progress + '%' };
   }
 }
 </script>

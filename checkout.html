@@ -82,27 +82,22 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <!-- PO details -->
         <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
           <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.poTitle}}</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
-            <div style="display: flex; flex-direction: column; gap: 6px">
-              <label for="po" style="font-size: 14px; font-weight: 600">{{t.poNumber}}</label>
-              <input id="po" type="text" placeholder="{{t.poPh}}" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 6px">
-              <label for="ref" style="font-size: 14px; font-weight: 600">{{t.yourRef}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
-              <input id="ref" type="text" placeholder="{{t.refPh}}" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-            </div>
-          </div>
           <div style="display: flex; flex-direction: column; gap: 6px">
-            <span style="font-size: 14px; font-weight: 600">{{t.attachPo}}</span>
-            <label for="pofile" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 20px; background: #FBF8FD; cursor: pointer">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
-              <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.chooseFile}}</strong> {{t.dragHint}}</span>
-            </label>
-            <input id="pofile" type="file" style="position: absolute; left: -9999px">
+            <label for="po" style="font-size: 14px; font-weight: 600">{{t.poNumber}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+            <input id="po" type="text" placeholder="{{t.poPh}}" style="height: 48px; max-width: 420px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            <span style="font-size: 13px; color: #6E6478">{{t.poAssigned}}</span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 6px">
             <label for="notes" style="font-size: 14px; font-weight: 600">{{t.notes}}</label>
             <textarea id="notes" rows="3" placeholder="{{t.notesPh}}" style="border-radius: 12px; border: 1px solid #D9CCE6; padding: 12px 14px; font: inherit; font-size: 15px; resize: vertical"></textarea>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 14px; font-weight: 600">{{t.attachPo}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></span>
+            <label for="pofile" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 20px; background: #FBF8FD; cursor: pointer">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+              <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.chooseFile}}</strong> {{t.dragHint}}</span>
+            </label>
+            <input id="pofile" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" style="position: absolute; left: -9999px">
           </div>
         </section>
 
@@ -117,7 +112,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             </label>
             <label style="display: flex; gap: 12px; align-items: flex-start; padding: 18px; border-radius: 14px; border: 1px solid #D9CCE6; cursor: pointer">
               <input type="radio" name="ship" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86">
-              <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{t.ownCourier}}</span><span style="font-size: 13px; color: #6E6478">{{t.ownCourierNote}}</span></span>
+              <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{t.pickup}}</span><span style="font-size: 13px; color: #6E6478">{{t.pickupNote}}</span></span>
             </label>
           </fieldset>
         </section>
@@ -129,14 +124,19 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.retailValue}}</span><span style="text-decoration: line-through">{{retailTotal}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.savings}}</span><span style="color: #F2B33D">− {{savings}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.subtotal}}</span><span>{{subtotal}}</span></div>
-        <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.shipping}}</span><span>{{t.free}}</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.shipping}}</span><span style="text-align: right">{{t.shippingTbc}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.tax}}</span><span>{{t.taxValue}}</span></div>
         <div style="height: 1px; background: #4A3463"></div>
-        <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 600">{{t.total}}</span><span style="font-size: 28px; font-weight: 700">{{subtotal}}</span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 600">{{t.total}}</span><span style="font-size: 28px; font-weight: 700">{{subtotal}}</span></div>
+          <span style="font-size: 12px; color: #B8A6CC">{{t.totalNote}}</span>
+        </div>
         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #D4C6E2">
           <span style="font-weight: 600; color: #FFFFFF">{{t.payment}}</span>
-          <label style="display: flex; gap: 10px; align-items: center"><input type="radio" name="pay" checked style="width: 18px; height: 18px; accent-color: #F2B33D"> {{t.payTransfer}}</label>
-          <label style="display: flex; gap: 10px; align-items: center"><input type="radio" name="pay" style="width: 18px; height: 18px; accent-color: #F2B33D"> {{t.payNet}}</label>
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 12px; background: #3A2354; line-height: 1.5">
+            <span style="font-weight: 600; color: #F2B33D">{{t.payOffline}}</span>
+            <span>{{t.payOfflineNote}}</span>
+          </div>
         </div>
         <a href="#" style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 14px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px; margin-top: 4px">{{t.submit}}</a>
         <span style="font-size: 12px; line-height: 1.5; color: #B8A6CC">{{t.footnote}}</span>
@@ -159,9 +159,9 @@ class Component extends DCLogic {
       myAccountBtn: L('Akun Saya', 'My Account'),
       homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
       stepsAria: L('Langkah checkout', 'Checkout steps'),
-      step1: L('Keranjang & PO', 'Cart & PO'),
-      step2: L('Tinjau', 'Review'),
-      step3: L('Konfirmasi', 'Confirmation'),
+      step1: L('Keranjang', 'Cart'),
+      step2: L('Purchase Order', 'Purchase order'),
+      step3: L('Terkirim', 'Submitted'),
       title: L('Pesanan Anda', 'Your order'),
       each: L('/ eksemplar', 'each'),
       qty: L('Jumlah', 'Qty'),
@@ -169,37 +169,37 @@ class Component extends DCLogic {
       continueShopping: L('← Lanjut belanja', '← Continue shopping'),
       uploadCsv: L('Unggah daftar pesanan (CSV)', 'Upload a CSV order list'),
       poTitle: L('Purchase order', 'Purchase order'),
-      poNumber: L('Nomor PO', 'PO number'),
-      poPh: L('mis. PO-2026-0142', 'e.g. PO-2026-0142'),
-      yourRef: L('Referensi Anda', 'Your reference'),
+      poNumber: L('Nomor PO Anda', 'Your PO number'),
+      poPh: L('Nomor PO internal toko Anda', "Your store's internal PO number"),
+      poAssigned: L('Sistem kami memberi nomor PO sendiri (PO-YYYYMM-####) setelah dikirim.', 'Our system assigns its own PO number (PO-YYYYMM-####) on submit.'),
       optional: L('(opsional)', '(optional)'),
-      refPh: L('Nama cabang atau pembeli', 'Branch or buyer name'),
-      attachPo: L('Lampirkan dokumen PO', 'Attach PO document'),
+      attachPo: L('Lampiran dokumen PO', 'PO document attachment'),
       chooseFile: L('Pilih file', 'Choose a file'),
-      dragHint: L('atau seret ke sini · PDF, JPG, atau PNG, maks. [X] MB', 'or drag it here · PDF, JPG or PNG, max [X] MB'),
+      dragHint: L('atau seret ke sini · PDF, JPG, PNG atau WEBP, maks. 5 MB', 'or drag it here · PDF, JPG, PNG or WEBP, max 5 MB'),
       notes: L('Catatan untuk tim kami', 'Notes for our team'),
       notesPh: L('Jadwal pengiriman, permintaan pengemasan…', 'Delivery window, packing requests…'),
       delivery: L('Pengiriman', 'Delivery'),
       deliveryMethod: L('Metode pengiriman', 'Delivery method'),
-      shipStore: L('Kirim ke toko saya', 'Ship to my store'),
-      savedAddress: L('[Alamat toko tersimpan]', '[Saved store address]'),
-      ownCourier: L('Kurir sendiri', 'Arrange my own courier'),
-      ownCourierNote: L('Ambil di gudang kami; tanpa biaya kirim', 'Pick up from our warehouse; no shipping charge'),
+      shipStore: L('Kirim ke alamat toko — ongkir dikonfirmasi tim kami', 'Ship to store address — shipping cost confirmed by our team'),
+      savedAddress: L('[Alamat gudang/toko tersimpan]', '[Saved warehouse/store address]'),
+      pickup: L('Ambil sendiri di gudang (Jakarta)', 'Pick up at our warehouse (Jakarta)'),
+      pickupNote: L('Tanpa biaya kirim', 'No shipping charge'),
       summaryAria: L('Ringkasan pesanan', 'Order summary'),
       summary: L('Ringkasan', 'Summary'),
       retailValue: L('Nilai harga retail', 'Retail value'),
       savings: L('Hemat sebagai reseller', 'Reseller savings'),
       subtotal: L('Subtotal (24 item)', 'Subtotal (24 items)'),
-      shipping: L('Ongkir (Jawa)', 'Shipping (Java)'),
-      free: L('Gratis', 'Free'),
+      shipping: L('Ongkir', 'Shipping'),
+      shippingTbc: L('dikonfirmasi setelah verifikasi', 'confirmed after verification'),
       tax: L('PPN', 'VAT (PPN)'),
       taxValue: L('Rp 0 · buku bebas PPN', 'Rp 0 · books are PPN-exempt'),
-      total: L('Total', 'Total'),
+      total: L('Estimasi total', 'Estimated total'),
+      totalNote: L('Belum termasuk ongkir', 'Shipping not included'),
       payment: L('Pembayaran', 'Payment'),
-      payTransfer: L('Transfer bank sesuai invoice', 'Bank transfer on invoice'),
-      payNet: L('Tempo [30] hari (akun yang disetujui)', 'Net [30] days (approved accounts)'),
-      submit: L('Kirim purchase order', 'Submit purchase order'),
-      footnote: L('Kami akan mengonfirmasi stok dan mengirim invoice proforma (PDF) ke email Anda. Pantau di Akun › Pesanan.', "We'll confirm stock and send a pro-forma invoice (PDF) to your email. Track it under Account › Orders.")
+      payOffline: L('Pembayaran offline', 'Offline payment'),
+      payOfflineNote: L('Setelah PO disetujui, kami kirim invoice; bayar dengan transfer bank.', 'Once your PO is approved, we send an invoice; pay by bank transfer.'),
+      submit: L('Kirim PO', 'Submit PO'),
+      footnote: L("Setelah dikirim, PO berstatus 'PO Diajukan'. Tim kami memverifikasi stok dan ongkir, lalu mengirim invoice. Unduh PO (PDF) di Akun › Pesanan & PO.", "Once submitted, your PO's status is 'PO Diajukan' (PO submitted). Our team verifies stock and shipping, then sends an invoice. Download the PO (PDF) under Account › Orders & POs.")
     };
     const items = [
       { title: "World's Best Dad", publisher: 'Penguin Random House', price: 183308, qty: 12, cover: '#1F3B73' },
