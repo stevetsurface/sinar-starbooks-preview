@@ -377,8 +377,20 @@ class Component extends DCLogic {
         { title: 'Enlightenment Now', author: 'Steven Pinker', price: 'Rp 442.000', cover: '#3B3B3B', ink: '#FFFFFF', note: noteNew },
         { title: 'Normal People', author: 'Sally Rooney', price: 'Rp 210.000', cover: '#4FA36B', ink: '#FFFFFF', note: noteNew }
       ],
-      best: [1, 2, 3, 4, 5].map((i) => ({ title: L('[Terlaris ', '[Best seller ') + i + ']', author: L('[Penulis]', '[Author]'), price: L('Rp [harga]', 'Rp [price]'), cover: ['#5B2A86', '#1F3B73', '#B0476A', '#3E7A5A', '#B07A12'][i - 1], ink: '#FFFFFF', note: noteBest })),
-      soon: [1, 2, 3, 4, 5].map((i) => ({ title: L('[Segera hadir ', '[Coming soon ') + i + ']', author: L('[Penulis]', '[Author]'), price: 'Pre-order', cover: ['#7FB7C9', '#E07A3F', '#6B4FA0', '#2E5F8A', '#9C4F7A'][i - 1], ink: '#FFFFFF', note: L('Tiba [tanggal]', 'Arrives [date]') }))
+      best: [
+        { title: 'The Psychology of Money', author: 'Morgan Housel', price: 'Rp 335.000', cover: '#5B2A86', ink: '#FFFFFF', note: noteBest },
+        { title: 'The Alchemist', author: 'Paulo Coelho', price: 'Rp 166.000', cover: '#1F3B73', ink: '#FFFFFF', note: noteBest },
+        { title: 'It Starts With Us', author: 'Colleen Hoover', price: 'Rp 272.000', cover: '#B0476A', ink: '#FFFFFF', note: noteBest },
+        { title: 'Tuesdays With Morrie', author: 'Mitch Albom', price: 'Rp 149.000', cover: '#3E7A5A', ink: '#FFFFFF', note: noteBest },
+        { title: 'How to Win Friends and Influence People', author: 'Dale Carnegie', price: 'Rp 196.000', cover: '#8A5A12', ink: '#FFFFFF', note: noteBest }
+      ],
+      soon: [
+        { title: 'Sapiens', author: 'Yuval Noah Harari', price: 'Rp 270.000', cover: '#2E5F8A', ink: '#FFFFFF', note: L('Pre-order', 'Pre-order') },
+        { title: 'The Anxious Generation', author: 'Jonathan Haidt', price: 'Rp 280.000', cover: '#B5502A', ink: '#FFFFFF', note: L('Pre-order', 'Pre-order') },
+        { title: 'The Convenience Store by the Sea', author: 'Sonoko Machida', price: 'Rp 214.000', cover: '#6B4FA0', ink: '#FFFFFF', note: L('Pre-order', 'Pre-order') },
+        { title: 'The Poppy War', author: 'R.F. Kuang', price: 'Rp 185.000', cover: '#7A1F1F', ink: '#FFFFFF', note: L('Pre-order', 'Pre-order') },
+        { title: 'The Book You Wish Your Parents Had Read', author: 'Philippa Perry', price: 'Rp 236.000', cover: '#9C4F7A', ink: '#FFFFFF', note: L('Pre-order', 'Pre-order') }
+      ]
     };
     const tabs = [
       { id: 'new', label: L('Rilis Baru', 'New Release') },

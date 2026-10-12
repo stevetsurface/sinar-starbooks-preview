@@ -90,17 +90,17 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px">
           <span style="font-weight: 700; font-size: 15px">{{t.fPublisher}}</span>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> Penguin Random House</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Penguin Random House</label>
           <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Simon &amp; Schuster</label>
           <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Hachette Book Group</label>
           <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> HarperCollins</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Scholastic</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> Scholastic</label>
           <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Macmillan</label>
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px">
           <span style="font-weight: 700; font-size: 15px">{{t.fAge}}</span>
           <div style="display: flex; flex-wrap: wrap; gap: 8px">
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #5B2A86; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600">{{t.ageBaby}}</button>
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageBaby}}</button>
             <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageToddler}}</button>
             <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageEarly}}</button>
             <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageMiddle}}</button>
@@ -118,8 +118,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
         <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
           <span style="font-size: 14px; color: #6E6478">{{t.activeFilters}}</span>
-          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">Penguin Random House ×</button>
-          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">{{t.ageBaby}} ×</button>
+          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">Scholastic ×</button>
           <a href="#" style="font-size: 13px; font-weight: 600; margin-left: 4px">{{t.clearAll}}</a>
         </div>
 
@@ -159,6 +158,15 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">3</a>
           </div>
         </div>
+
+        <!-- Request a book -->
+        <a href="RequestBook.dc.html" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px; border-radius: 20px; background: #F1EBF6; color: #2A1640">
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px">{{t.reqTitle}}</span>
+            <span style="font-size: 15px; color: #4A4252">{{t.reqBody}}</span>
+          </span>
+          <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 15px">{{t.reqCta}}</span>
+        </a>
       </div>
     </div>
   </div>
@@ -186,7 +194,7 @@ class Component extends DCLogic {
       breadcrumbAria: L('Breadcrumb', 'Breadcrumb'),
       crumbHome: L('Beranda', 'Home'),
       pageTitle: L('Buku', 'Books'),
-      pageSub: L('16 judul · harga reseller ditampilkan', '16 titles · reseller prices shown'),
+      pageSub: L('29 judul · harga reseller ditampilkan', '29 titles · reseller prices shown'),
       sortBy: L('Urutkan', 'Sort by'),
       sortNewest: L('Terbaru', 'Newest first'),
       sortPriceLow: L('Harga: terendah ke tertinggi', 'Price: low to high'),
@@ -218,19 +226,21 @@ class Component extends DCLogic {
       minShort: L('min.', 'min.'),
       qtyFor: L('Jumlah untuk', 'Quantity for'),
       addToCart: L('Tambah ke keranjang', 'Add to cart'),
-      showing: L('Menampilkan 1–6 dari 16', 'Showing 1–6 of 16')
+      showing: L('Menampilkan 1–6 dari 29', 'Showing 1–6 of 29'),
+      reqTitle: L('Tidak menemukan judul yang dicari?', 'Can’t find the title you need?'),
+      reqBody: L('Minta ke kami, dan kami carikan langsung dari penerbit.', 'Request it and we’ll source it directly from the publisher.'),
+      reqCta: L('Minta buku', 'Request a book')
     };
     const d = this.props.resellerDiscount ?? 20;
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const inStock = t.inStock;
-    const author = L('[Penulis]', '[Author]');
     const rows = [
-      { title: 'Twinkle, Twinkle, Little Sheepy: A Sleepy Sheepy Story', author: 'Lucy Ruth Cummins', publisher: 'Penguin Random House', isbn: '[ISBN]', price: 180000, cover: '#7FB7C9', stock: inStock, moq: 3 },
-      { title: "World's Best Dad", author: 'Lynn Giunta', publisher: 'Penguin Random House', isbn: '9798217143238', price: 183308, cover: '#1F3B73', stock: inStock, moq: 3 },
-      { title: L('[Judul board book]', '[Board book title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 145000, cover: '#F2B33D', stock: inStock, moq: 5 },
-      { title: L('[Judul buku bergambar]', '[Picture book title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 210000, cover: '#B0476A', stock: t.preOrder, moq: 5 },
-      { title: L('[Judul buku lift-the-flap]', '[Lift-the-flap title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 165000, cover: '#3E7A5A', stock: L('Stok terbatas', 'Low stock'), moq: 3 },
-      { title: L('[Judul cerita pengantar tidur]', '[Bedtime story title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 195000, cover: '#6B4FA0', stock: inStock, moq: 3 }
+      { title: 'Dog Man #1', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157479', price: 185000, cover: '#1F3B73', stock: inStock, moq: 3 },
+      { title: 'Dog Man #2: Dogman Unleashed', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157486', price: 185000, cover: '#B0476A', stock: inStock, moq: 3 },
+      { title: 'Dog Man #3: Tale of Two Kitties', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157493', price: 185000, cover: '#F2B33D', stock: inStock, moq: 3 },
+      { title: 'Dog Man #10: Mothering Heights', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789814947657', price: 185000, cover: '#3E7A5A', stock: inStock, moq: 3 },
+      { title: 'Dog Man #13: Big Jim Begins', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789813512672', price: 185000, cover: '#6B4FA0', stock: inStock, moq: 3 },
+      { title: 'Dog Man #14: Big Jim Believes', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9781546176183', price: 306000, cover: '#7FB7C9', stock: inStock, moq: 3 }
     ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })

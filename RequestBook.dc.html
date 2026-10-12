@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Request a book</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="HomeV2.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="Catalog.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.catalog}}</a>
+        <a href="Checkout.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+    <!-- Account menu -->
+    <nav aria-label="{{t.accountNav}}" style="flex: 1 1 220px; max-width: 260px; display: flex; flex-direction: column; gap: 4px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 12px; box-sizing: border-box">
+      <span style="padding: 12px 14px 8px; font-size: 13px; color: #6E6478">{{t.storeName}}</span>
+      <sc-for list="{{menu}}" as="m" hint-placeholder-count="6">
+        <sc-if value="{{m.active}}" hint-placeholder-val="{{false}}">
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: #F1EBF6; color: #5B2A86; font-weight: 700; font-size: 15px">{{m.label}}</a>
+        </sc-if>
+        <sc-if value="{{m.inactive}}" hint-placeholder-val="{{true}}">
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; color: #1E1A24; font-weight: 500; font-size: 15px">{{m.label}}</a>
+        </sc-if>
+      </sc-for>
+    </nav>
+
+    <main style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; color: #2A1640">{{t.title}}</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A4252; max-width: 640px">{{t.sub}}</p>
+      </div>
+
+      <sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+        <div role="status" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px; border-radius: 16px; background: #DDEBDD; color: #24523A; font-weight: 600; font-size: 15px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+          <span>{{t.sentMsg}}</span>
+        </div>
+      </sc-if>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+        <!-- Form -->
+        <form style="flex: 2 1 420px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.formTitle}}</h2>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="rq-title" style="font-size: 14px; font-weight: 600">{{t.fTitle}}</label>
+            <input id="rq-title" name="rq-title" type="text" placeholder="{{t.fTitlePh}}" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-author" style="font-size: 14px; font-weight: 600">{{t.fAuthor}}</label>
+              <input id="rq-author" name="rq-author" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-isbn" style="font-size: 14px; font-weight: 600">ISBN <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+              <input id="rq-isbn" name="rq-isbn" type="text" inputmode="numeric" placeholder="978…" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-pub" style="font-size: 14px; font-weight: 600">{{t.fPublisher}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+              <input id="rq-pub" name="rq-pub" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-format" style="font-size: 14px; font-weight: 600">{{t.fFormat}}</label>
+              <select id="rq-format" name="rq-format" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF">
+                <option>{{t.fmtAny}}</option><option>Paperback</option><option>Hardcover</option><option>{{t.fmtBox}}</option>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-qty" style="font-size: 14px; font-weight: 600">{{t.fQty}}</label>
+              <input id="rq-qty" name="rq-qty" type="number" min="1" value="10" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="rq-date" style="font-size: 14px; font-weight: 600">{{t.fNeeded}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+              <input id="rq-date" name="rq-date" type="date" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="rq-notes" style="font-size: 14px; font-weight: 600">{{t.fNotes}}</label>
+            <textarea id="rq-notes" name="rq-notes" rows="3" placeholder="{{t.fNotesPh}}" style="border-radius: 12px; border: 1px solid #D9CCE6; padding: 12px 14px; font: inherit; font-size: 15px; resize: vertical"></textarea>
+          </div>
+          <label for="rq-file" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 16px; background: #FBF8FD; cursor: pointer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+            <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.bulkStrong}}</strong> {{t.bulkRest}}</span>
+          </label>
+          <input id="rq-file" type="file" accept=".csv,.xlsx" style="position: absolute; left: -9999px">
+          <button type="button" onClick="{{submit}}" style="height: 54px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{{t.submit}}</button>
+        </form>
+
+        <!-- How it works -->
+        <aside style="flex: 1 1 260px; background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-sizing: border-box">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px">{{t.howTitle}}</h2>
+          <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px">
+            <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+              <li style="display: flex; gap: 14px; align-items: flex-start">
+                <span style="flex: none; width: 30px; height: 30px; border-radius: 50%; background: #F2B33D; color: #2A1640; display: grid; place-items: center; font-weight: 800; font-size: 14px">{{s.n}}</span>
+                <span style="display: flex; flex-direction: column; gap: 2px">
+                  <span style="font-weight: 700; font-size: 15px">{{s.title}}</span>
+                  <span style="font-size: 14px; line-height: 1.5; color: #D4C6E2">{{s.body}}</span>
+                </span>
+              </li>
+            </sc-for>
+          </ol>
+        </aside>
+      </div>
+
+      <!-- My requests -->
+      <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.listTitle}}</h2>
+        <div style="overflow-x: auto">
+          <div style="min-width: 680px">
+            <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) 70px 120px 170px minmax(0, 1.4fr); gap: 16px; padding: 10px 0; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
+              <span>{{t.colTitle}}</span><span>{{t.colQty}}</span><span>{{t.colDate}}</span><span>{{t.colStatus}}</span><span>{{t.colNext}}</span>
+            </div>
+            <sc-for list="{{requests}}" as="r" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) 70px 120px 170px minmax(0, 1.4fr); gap: 16px; padding: 14px 0; font-size: 15px; border-bottom: 1px solid #F3EFF6; align-items: center">
+                <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                  <span style="font-weight: 600">{{r.title}}</span>
+                  <span style="font-size: 13px; color: #6E6478">{{r.meta}}</span>
+                </span>
+                <span>{{r.qty}}</span>
+                <span style="color: #6E6478">{{r.date}}</span>
+                <span style="justify-self: start; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; padding: 6px 10px; border-radius: 999px; background: {{r.chipBg}}; color: {{r.chipInk}}">{{r.status}}</span>
+                <span style="font-size: 14px; color: #4A4252">{{r.next}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const t = {
+      catalog: L('Katalog', 'Catalog'),
+      cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      accountNav: L('Akun', 'Account'),
+      storeName: L('[Nama Toko Buku]', '[Bookshop name]'),
+      title: L('Minta buku', 'Request a book'),
+      sub: L('Tidak menemukan judul di katalog kami? Beri tahu kami buku yang Anda butuhkan, dan tim kami akan mencarikannya langsung dari penerbit.', 'Can’t find a title in our catalog? Tell us what you need and our team will source it directly from our publishers.'),
+      sentMsg: L('Permintaan terkirim. Kami akan mengabari ketersediaan dan harga dalam [X] hari kerja.', 'Request sent. We’ll confirm availability and price within [X] working days.'),
+      formTitle: L('Judul yang Anda cari', 'The title you’re looking for'),
+      fTitle: L('Judul buku', 'Book title'),
+      fTitlePh: L('mis. Tomorrow, and Tomorrow, and Tomorrow', 'e.g. Tomorrow, and Tomorrow, and Tomorrow'),
+      fAuthor: L('Penulis', 'Author'),
+      fPublisher: L('Penerbit', 'Publisher'),
+      optional: L('(opsional)', '(optional)'),
+      fFormat: L('Format', 'Format'),
+      fmtAny: L('Format apa saja', 'Any format'),
+      fmtBox: L('Box set', 'Box set'),
+      fQty: L('Jumlah', 'Quantity'),
+      fNeeded: L('Dibutuhkan sebelum', 'Needed by'),
+      fNotes: L('Catatan', 'Notes'),
+      fNotesPh: L('Edisi tertentu, untuk sekolah, dll.', 'Specific edition, for a school order, etc.'),
+      bulkStrong: L('Banyak judul?', 'Many titles?'),
+      bulkRest: L('Unggah daftar dalam CSV atau Excel (judul, ISBN, jumlah).', 'Upload a CSV or Excel list (title, ISBN, quantity).'),
+      submit: L('Kirim permintaan', 'Send request'),
+      howTitle: L('Cara kerjanya', 'How it works'),
+      listTitle: L('Permintaan saya', 'My requests'),
+      colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colDate: L('TANGGAL', 'DATE'), colStatus: L('STATUS', 'STATUS'), colNext: L('LANGKAH BERIKUTNYA', 'NEXT STEP')
+    };
+    const steps = [
+      { n: '1', title: L('Kirim permintaan', 'Send your request'), body: L('Satu judul atau daftar sekaligus.', 'One title or a whole list.') },
+      { n: '2', title: L('Kami cek ke penerbit', 'We check with publishers'), body: L('Ketersediaan dan perkiraan waktu tiba, dalam [X] hari kerja.', 'Availability and arrival time, within [X] working days.') },
+      { n: '3', title: L('Terima penawaran', 'Get a quote'), body: L('Harga reseller dan ETA lewat email & WhatsApp.', 'Reseller price and ETA by email and WhatsApp.') },
+      { n: '4', title: L('Konfirmasi', 'Confirm'), body: L('Permintaan menjadi pre-order di akun Anda.', 'Your request becomes a pre-order in your account.') }
+    ];
+    const S = {
+      received: { status: L('DITERIMA', 'RECEIVED'), chipBg: '#F4F0F8', chipInk: '#4A4252', next: L('Menunggu dicek tim kami', 'Waiting for our team to check') },
+      checking: { status: L('DICEK KE PENERBIT', 'CHECKING'), chipBg: '#DCEBF0', chipInk: '#1F4A63', next: L('Kabar dalam [X] hari kerja', 'Update within [X] working days') },
+      quoted: { status: L('PENAWARAN DIKIRIM', 'QUOTE SENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00', next: L('Konfirmasi penawaran Anda', 'Confirm your quote') },
+      ordered: { status: L('DIPESAN', 'ORDERED'), chipBg: '#E6DDF0', chipInk: '#5B2A86', next: L('Perkiraan tiba [tanggal]', 'Expected [date]') },
+      arrived: { status: L('TIBA', 'ARRIVED'), chipBg: '#DDEBDD', chipInk: '#24523A', next: L('Siap dikirim ke toko Anda', 'Ready to ship to your store') }
+    };
+    const base = [
+      { title: 'I Want to Die But I Want to Eat Tteokbokki', meta: 'Baek Sehee · Bloomsbury · 9781639732043', qty: 15, date: L('10 Okt 2026', 'Oct 10, 2026'), s: 'received' },
+      { title: 'Good Material', meta: 'Dolly Alderton · Knopf · 9780593686959', qty: 5, date: L('7 Okt 2026', 'Oct 7, 2026'), s: 'checking' },
+      { title: 'Beach Read', meta: 'Emily Henry · Berkley · 9781984806734', qty: 10, date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'quoted' },
+      { title: 'The 7 Habits of Highly Effective People', meta: 'Stephen Covey · Simon & Schuster · 9781451639612', qty: 20, date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'ordered' },
+      { title: 'The Myth of Sisyphus', meta: 'Albert Camus · Vintage · 9780679733737', qty: 8, date: L('15 Sep 2026', 'Sep 15, 2026'), s: 'arrived' }
+    ];
+    const added = (st.added || []).map((a) => ({ title: a.title, meta: a.meta, qty: a.qty, date: L('Hari ini', 'Today'), s: 'received' }));
+    const requests = added.concat(base).map((r) => Object.assign({}, r, S[r.s]));
+    const menu = [
+      { label: L('Dasbor', 'Dashboard'), href: '#' },
+      { label: L('Pesanan', 'Orders'), href: '#' },
+      { label: L('Invoice', 'Invoices'), href: '#' },
+      { label: L('Minta buku', 'Request a book'), href: 'RequestBook.dc.html', on: true },
+      { label: L('Reward Saya', 'My Rewards'), href: 'Rewards.dc.html' },
+      { label: L('Profil toko', 'Store profile'), href: '#' }
+    ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
+    const submit = (e) => {
+      const f = e && e.currentTarget && e.currentTarget.form;
+      const v = (n) => (f && f.elements[n] ? String(f.elements[n].value || '').trim() : '');
+      const title = v('rq-title') || L('[Judul baru]', '[New title]');
+      const meta = [v('rq-author'), v('rq-pub'), v('rq-isbn')].filter(Boolean).join(' · ') || '—';
+      const qty = Number(v('rq-qty')) || 1;
+      this.setState({ sent: true, added: [{ title, meta, qty }].concat((this.state && this.state.added) || []) });
+    };
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, steps, requests, menu, submit, langs, sent: !!st.sent };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

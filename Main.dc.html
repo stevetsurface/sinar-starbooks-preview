@@ -323,8 +323,8 @@ class Component extends DCLogic {
     const items = [
       { title: 'Twinkle, Twinkle, Little Sheepy', publisher: 'PENGUIN RANDOM HOUSE', price: 180000, cover: '#7FB7C9', tag: L('BARU', 'NEW'), moq: 3, stock: inStock },
       { title: "World's Best Dad", publisher: 'PENGUIN RANDOM HOUSE', price: 183308, cover: '#1F3B73', tag: L('BARU', 'NEW'), moq: 3, stock: inStock },
-      { title: L('[Judul pre-order]', '[Pre-order title]'), publisher: L('[PENERBIT]', '[PUBLISHER]'), price: 250000, cover: '#B0476A', tag: 'PRE-ORDER', moq: 5, stock: L('Dikirim [tanggal]', 'Ships [date]') },
-      { title: L('[Produk hadiah]', '[Gift item]'), publisher: 'KIKKERLAND', price: 150000, cover: '#3E7A5A', tag: L('HADIAH', 'GIFT'), moq: 6, stock: inStock }
+      { title: 'Katabasis', publisher: 'HARPERVOYAGER', price: 280000, cover: '#B0476A', tag: 'PRE-ORDER', moq: 5, stock: L('Bisa dipesan', 'On request') },
+      { title: 'Atomic Habits', publisher: 'AVERY', price: 335000, cover: '#3E7A5A', tag: L('BARU', 'NEW'), moq: 6, stock: inStock }
     ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
