@@ -22,7 +22,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
   <!-- Header -->
   <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
     <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
-      <a href="HomeV2.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
         <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
         <span style="display: flex; flex-direction: column; line-height: 1">
           <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
@@ -40,7 +40,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             </sc-if>
           </sc-for>
         </div>
-        <a href="Checkout.dc.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
+        <a href="checkout.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
       </div>
     </div>
   </header>
@@ -52,10 +52,10 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <span style="padding: 12px 14px 8px; font-size: 13px; color: #6E6478">[Toko Buku Name]</span>
       <sc-for list="{{menu}}" as="m" hint-placeholder-count="5">
         <sc-if value="{{m.active}}" hint-placeholder-val="{{false}}">
-          <a href="#" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: #F1EBF6; color: #5B2A86; font-weight: 700; font-size: 15px">{{m.label}}</a>
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: #F1EBF6; color: #5B2A86; font-weight: 700; font-size: 15px">{{m.label}}</a>
         </sc-if>
         <sc-if value="{{m.inactive}}" hint-placeholder-val="{{true}}">
-          <a href="#" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; color: #1E1A24; font-weight: 500; font-size: 15px">{{m.label}}</a>
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; color: #1E1A24; font-weight: 500; font-size: 15px">{{m.label}}</a>
         </sc-if>
       </sc-for>
     </nav>
@@ -76,7 +76,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 44px; line-height: 1">Bright Star</span>
             </span>
           </div>
-          <a href="Loyalty.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid #6B4C8A; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.seeTiers}}</a>
+          <a href="rewards-program.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid #6B4C8A; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.seeTiers}}</a>
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 15px">
@@ -140,7 +140,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 </div>
 </template>
 <div id="dc-root"></div>
-<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
 <script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"progress":{"editor":"range","min":0,"max":100,"step":1,"unit":"%","default":65},"$preview":{"width":1440,"height":1800}}'>
 class Component extends DCLogic {
   renderVals() {
@@ -161,8 +160,12 @@ class Component extends DCLogic {
       colReward: L('REWARD', 'REWARD')
     };
     const menu = [
-      L('Dasbor', 'Dashboard'), L('Pesanan', 'Orders'), L('Invoice', 'Invoices'), L('Reward Saya', 'My Rewards'), L('Profil toko', 'Store profile')
-    ].map((label, i) => ({ label, active: i === 3, inactive: i !== 3 }));
+      { label: L('Dasbor', 'Dashboard'), href: 'account.html' },
+      { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html' },
+      { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
+      { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html', on: true },
+      { label: L('Profil toko', 'Store profile'), href: 'account.html' }
+    ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
     const stats = [
       { label: L('Pembelian 12 bulan terakhir', 'Purchases, last 12 months'), value: 'Rp [—]', note: L('Dihitung dari pesanan yang sudah dibayar', 'Paid orders only') },
       { label: L('Bonus pertumbuhan kuartal ini', 'Growth bonus this quarter'), value: 'Rp [—]', note: L('+[X]% dibanding tahun lalu', '+[X]% vs last year') },

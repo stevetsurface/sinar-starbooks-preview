@@ -24,8 +24,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center">
       <span>{{t.shipping}}</span>
       <div style="display: flex; gap: 20px; flex-wrap: wrap">
-        <a href="#" style="color: #EDE4F5">{{t.help}}</a>
-        <a href="Reseller.dc.html" style="color: #F2B33D; font-weight: 600">{{t.becomeReseller}}</a>
+        <a href="become-a-reseller.html#faq" style="color: #EDE4F5">{{t.help}}</a>
+        <a href="become-a-reseller.html" style="color: #F2B33D; font-weight: 600">{{t.becomeReseller}}</a>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
   <!-- Header -->
   <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
     <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
-      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+      <a href="reseller-home.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
         <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
         <span style="display: flex; flex-direction: column; line-height: 1">
           <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
@@ -46,14 +46,14 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <input id="q" type="search" placeholder="{{t.searchPlaceholder}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
       </form>
       <div style="display: flex; gap: 8px; align-items: center">
-        <a href="#" style="display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid #ECE6F1; color: #1E1A24">
+        <a href="account.html" style="display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid #ECE6F1; color: #1E1A24">
           <span style="width: 34px; height: 34px; border-radius: 50%; background: #F1EBF6; color: #5B2A86; display: grid; place-items: center; font-weight: 700; font-size: 13px">TB</span>
           <span style="display: flex; flex-direction: column; line-height: 1.15">
             <span style="font-size: 13px; font-weight: 600">{{t.storeName}}</span>
             <span style="font-size: 11px; color: #7A3FB0; font-weight: 600">{{t.verified}}</span>
           </span>
         </a>
-        <a href="#" aria-label="{{t.wishlist}}" style="width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #1E1A24">
+        <a href="catalog.html" aria-label="{{t.wishlist}}" style="width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #1E1A24">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
         </a>
         <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
@@ -66,20 +66,20 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             </sc-if>
           </sc-for>
         </div>
-        <a href="Checkout.dc.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
+        <a href="checkout.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
           {{t.cart}}
         </a>
       </div>
     </div>
     <nav aria-label="{{t.mainNavAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
-      <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
-      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
-      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
-      <a href="Reseller.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
-      <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
-      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNews}}</a>
-      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
+      <a href="index.html#behind-the-book" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNews}}</a>
+      <a href="about.html#faq" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
     </nav>
   </header>
 
@@ -91,8 +91,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -1px; color: #2A1640">{{t.heroTitle}}</h1>
         <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #4A4252; max-width: 540px">{{t.heroSub}}</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px">
-          <a href="Catalog.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.ctaBrowse}}</a>
-          <a href="Reseller.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #2A1640; font-weight: 600; font-size: 16px; border: 1px solid #D9CCE6">{{t.ctaApply}}</a>
+          <a href="catalog.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.ctaBrowse}}</a>
+          <a href="become-a-reseller.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #2A1640; font-weight: 600; font-size: 16px; border: 1px solid #D9CCE6">{{t.ctaApply}}</a>
         </div>
       </div>
       <div style="flex: 1 1 420px; display: flex; gap: 18px; justify-content: center; align-items: flex-end">
@@ -130,26 +130,26 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
   <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 28px">
       <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.catTitle}}</h2>
-      <a href="Catalog.dc.html" style="font-weight: 600; font-size: 15px">{{t.catViewAll}}</a>
+      <a href="catalog.html" style="font-weight: 600; font-size: 15px">{{t.catViewAll}}</a>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
-      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #FDE9C4; color: #2A1640">
+      <a href="catalog.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #FDE9C4; color: #2A1640">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catKids}}</span>
         <span style="font-size: 14px; color: #4A4252">{{t.catKidsSub}}</span>
       </a>
-      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DCEBF0; color: #2A1640">
+      <a href="catalog.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DCEBF0; color: #2A1640">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catNonFiction}}</span>
         <span style="font-size: 14px; color: #4A4252">{{t.catNonFictionSub}}</span>
       </a>
-      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #E6DDF0; color: #2A1640">
+      <a href="catalog.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #E6DDF0; color: #2A1640">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catFiction}}</span>
         <span style="font-size: 14px; color: #4A4252">{{t.catFictionSub}}</span>
       </a>
-      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #F6D9D4; color: #2A1640">
+      <a href="catalog.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #F6D9D4; color: #2A1640">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catManga}}</span>
         <span style="font-size: 14px; color: #4A4252">{{t.catMangaSub}}</span>
       </a>
-      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DDEBDD; color: #2A1640">
+      <a href="catalog.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DDEBDD; color: #2A1640">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catGifts}}</span>
         <span style="font-size: 14px; color: #4A4252">{{t.catGiftsSub}}</span>
       </a>
@@ -163,12 +163,12 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.newTitle}}</h2>
         <span style="font-size: 15px; color: #6E6478">{{t.priceNoteA}} {{discountLabel}} {{t.priceNoteB}}</span>
       </div>
-      <a href="#" style="font-weight: 600; font-size: 15px">{{t.newSeeAll}}</a>
+      <a href="catalog.html" style="font-weight: 600; font-size: 15px">{{t.newSeeAll}}</a>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px">
       <sc-for list="{{products}}" as="p" hint-placeholder-count="4">
         <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
-          <a href="Product.dc.html" style="display: block; background: #F4F0F8; padding: 24px; position: relative">
+          <a href="product.html" style="display: block; background: #F4F0F8; padding: 24px; position: relative">
             <span style="position: absolute; top: 14px; left: 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; padding: 5px 10px; border-radius: 999px; background: #FFFFFF; color: #5B2A86">{{p.tag}}</span>
             <div style="height: 220px; width: 160px; margin: 16px auto 0; border-radius: 4px 10px 10px 4px; background: {{p.cover}}; box-shadow: 0 14px 24px rgba(42,22,64,0.16); padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end">
               <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.15; color: #FFFFFF">{{p.title}}</span>
@@ -176,7 +176,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </a>
           <div style="padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1">
             <span style="font-size: 12px; color: #6E6478; font-weight: 600; letter-spacing: 0.5px">{{p.publisher}}</span>
-            <a href="Product.dc.html" style="font-weight: 600; font-size: 16px; line-height: 1.3; color: #1E1A24">{{p.title}}</a>
+            <a href="product.html" style="font-weight: 600; font-size: 16px; line-height: 1.3; color: #1E1A24">{{p.title}}</a>
             <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px">
               <span style="font-size: 19px; font-weight: 700; color: #2A1640">{{p.reseller}}</span>
               <span style="font-size: 13px; color: #6E6478; text-decoration: line-through">{{p.retail}}</span>
@@ -194,7 +194,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     <div style="background: #2A1640; color: #FFFFFF; border-radius: 28px; padding: 56px 48px; display: flex; flex-direction: column; gap: 40px">
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end">
         <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 40px; max-width: 560px; line-height: 1.1">{{t.howTitle}}</h2>
-        <a href="Reseller.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px">{{t.becomeReseller}}</a>
+        <a href="become-a-reseller.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px">{{t.becomeReseller}}</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
         <div style="display: flex; flex-direction: column; gap: 12px">
@@ -226,15 +226,15 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       </div>
       <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <span style="font-weight: 700; color: #1E1A24">{{t.fInfo}}</span>
-        <a href="About.dc.html">{{t.fAbout}}</a><a href="#">{{t.fDelivery}}</a><a href="#">{{t.fPrivacy}}</a><a href="#">{{t.fTerms}}</a>
+        <a href="about.html">{{t.fAbout}}</a><a href="become-a-reseller.html#faq">{{t.fDelivery}}</a><a href="#">{{t.fPrivacy}}</a><a href="become-a-reseller.html#faq">{{t.fTerms}}</a>
       </div>
       <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <span style="font-weight: 700; color: #1E1A24">{{t.fResellers}}</span>
-        <a href="Reseller.dc.html">{{t.becomeReseller}}</a><a href="#">{{t.fOrders}}</a><a href="#">{{t.fInvoices}}</a><a href="#">{{t.fReturns}}</a>
+        <a href="become-a-reseller.html">{{t.becomeReseller}}</a><a href="orders.html">{{t.fOrders}}</a><a href="orders.html">{{t.fInvoices}}</a><a href="become-a-reseller.html#faq">{{t.fReturns}}</a>
       </div>
       <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <span style="font-weight: 700; color: #1E1A24">{{t.fFollow}}</span>
-        <a href="https://www.instagram.com/sinarstarbooks/">Instagram @sinarstarbooks</a><a href="#">{{t.fContact}}</a>
+        <a href="https://www.instagram.com/sinarstarbooks/">Instagram @sinarstarbooks</a><a href="about.html#faq">{{t.fContact}}</a>
       </div>
     </div>
     <div style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 32px; font-size: 13px; color: #6E6478; border-top: 1px solid #ECE6F1">{{t.copyright}}</div>
@@ -242,7 +242,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 </div>
 </template>
 <div id="dc-root"></div>
-<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
 <script type="text/x-dc" data-dc-script data-props='{"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":3000}}'>
 class Component extends DCLogic {
   renderVals() {

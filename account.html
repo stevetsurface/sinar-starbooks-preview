@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — My Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="reseller-home.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="catalog.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.catalog}}</a>
+        <a href="checkout.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+    <!-- Account menu -->
+    <nav aria-label="{{t.accountNav}}" style="flex: 1 1 220px; max-width: 260px; display: flex; flex-direction: column; gap: 4px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 12px; box-sizing: border-box">
+      <span style="padding: 12px 14px 8px; font-size: 13px; color: #6E6478">{{t.storeName}}</span>
+      <sc-for list="{{menu}}" as="m" hint-placeholder-count="6">
+        <sc-if value="{{m.active}}" hint-placeholder-val="{{false}}">
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; background: #F1EBF6; color: #5B2A86; font-weight: 700; font-size: 15px">{{m.label}}</a>
+        </sc-if>
+        <sc-if value="{{m.inactive}}" hint-placeholder-val="{{true}}">
+          <a href="{{m.href}}" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; color: #1E1A24; font-weight: 500; font-size: 15px">{{m.label}}</a>
+        </sc-if>
+      </sc-for>
+      <a href="index.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 12px; color: #6E6478; font-weight: 500; font-size: 15px">{{t.logout}}</a>
+    </nav>
+
+    <main style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; color: #2A1640">{{t.hello}}</h1>
+        <span style="font-size: 15px; color: #6E6478">{{t.since}}</span>
+      </div>
+
+      <!-- Tier + deposit -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+        <section style="background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #B8A6CC">{{t.yourTier}}</span>
+              <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1">Bright Star</span>
+            </div>
+            <span style="font-size: 28px; font-weight: 800; color: #F2B33D">30%</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px">{{t.toNext}}</span>
+            <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{progress}}" aria-label="{{t.toNext}}" style="height: 12px; border-radius: 999px; background: #4A3463; overflow: hidden">
+              <div style="height: 100%; width: {{progressWidth}}; border-radius: 999px; background: #F2B33D"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #B8A6CC"><span>Rp 10 jt · 30%</span><span>Rp 25 jt · 35%</span></div>
+          </div>
+          <a href="my-rewards.html" style="align-self: flex-start; color: #F2B33D; font-weight: 700; font-size: 14px">{{t.seeRewards}}</a>
+        </section>
+
+        <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #6E6478">{{t.depositTitle}}</span>
+          <span style="font-size: 30px; font-weight: 700; color: #2A1640">Rp 1.000.000</span>
+          <span style="font-size: 14px; color: #4A4252">{{t.depositBody}}</span>
+          <div style="height: 1px; background: #F3EFF6"></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px">
+            <span style="color: #6E6478">{{t.unpaid}}</span>
+            <span style="font-weight: 700; color: #B0476A">Rp 5.326.600</span>
+          </div>
+          <a href="orders.html" style="align-self: flex-start; font-weight: 700; font-size: 14px">{{t.payNow}}</a>
+        </section>
+      </div>
+
+      <!-- Stats -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+        <sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+          <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 13px; color: #6E6478">{{s.label}}</span>
+            <span style="font-size: 22px; font-weight: 700; color: #2A1640">{{s.value}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Recent orders -->
+      <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.recent}}</h2>
+          <a href="orders.html" style="font-weight: 700; font-size: 14px">{{t.allOrders}}</a>
+        </div>
+        <sc-for list="{{recent}}" as="o" hint-placeholder-count="3">
+          <a href="orders.html" style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; padding: 14px 0; border-top: 1px solid #F3EFF6; color: #1E1A24">
+            <span style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-weight: 700">{{o.no}}</span>
+              <span style="font-size: 13px; color: #6E6478">PO {{o.po}} · {{o.date}}</span>
+            </span>
+            <span style="font-size: 14px; color: #4A4252">{{o.items}}</span>
+            <span style="width: 130px; text-align: right; font-weight: 700">{{o.total}}</span>
+            <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.5px; padding: 6px 10px; border-radius: 999px; background: {{o.chipBg}}; color: {{o.chipInk}}">{{o.status}}</span>
+          </a>
+        </sc-for>
+      </section>
+
+      <!-- Quick actions -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <a href="catalog.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qOrder}}</a>
+        <a href="request-a-book.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qRequest}}</a>
+        <a href="orders.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qReorder}}</a>
+        <a href="https://wa.me/" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qWa}}</a>
+      </div>
+      <span style="font-size: 12px; color: #6E6478">{{t.dummy}}</span>
+    </main>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const progress = 49;
+    const t = {
+      catalog: L('Katalog', 'Catalog'),
+      cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      accountNav: L('Akun', 'Account'),
+      storeName: L('[Nama Toko Buku]', '[Bookshop name]'),
+      logout: L('Keluar', 'Log out'),
+      hello: L('Halo, [Nama Toko Buku]', 'Hello, [Bookshop name]'),
+      since: L('Reseller sejak [bulan tahun] · Kode reseller RS-[0000]', 'Reseller since [month year] · Reseller code RS-[0000]'),
+      yourTier: L('LEVEL ANDA · DISKON', 'YOUR TIER · DISCOUNT'),
+      toNext: L('Rp 7.621.600 lagi untuk naik ke Super Star (35%)', 'Rp 7,621,600 more to reach Super Star (35%)'),
+      seeRewards: L('Lihat detail level →', 'See tier details →'),
+      depositTitle: L('DEPOSIT', 'DEPOSIT'),
+      depositBody: L('Berlaku sampai [tanggal]. Dipotong otomatis dari pesanan berikutnya.', 'Valid until [date]. Deducted automatically from your next order.'),
+      unpaid: L('Invoice belum dibayar', 'Unpaid invoices'),
+      payNow: L('Lihat & bayar →', 'View & pay →'),
+      recent: L('Pesanan terbaru', 'Recent orders'),
+      allOrders: L('Semua pesanan →', 'All orders →'),
+      qOrder: L('Pesan buku', 'Order books'),
+      qRequest: L('Minta buku yang belum ada', 'Request a book we don’t stock'),
+      qReorder: L('Pesan ulang dari PO lama', 'Reorder from a past PO'),
+      qWa: L('Chat dengan tim kami', 'Chat with our team'),
+      dummy: L('Contoh data untuk desain.', 'Sample data for the design.')
+    };
+    const stats = [
+      { label: L('Pembelian 12 bulan', 'Purchases, 12 months'), value: 'Rp 17.378.400' },
+      { label: L('Pesanan 12 bulan', 'Orders, 12 months'), value: '5' },
+      { label: L('Rata-rata per pesanan', 'Average order'), value: 'Rp 3.475.680' },
+      { label: L('Pesanan terakhir', 'Last order'), value: L('8 Okt 2026', 'Oct 8, 2026') }
+    ];
+    const S = {
+      wait: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00' },
+      packed: { status: L('DIKEMAS', 'PACKING'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
+      shipped: { status: L('DIKIRIM', 'SHIPPED'), chipBg: '#E6DDF0', chipInk: '#5B2A86' }
+    };
+    const recent = [
+      { no: 'SSB-2026-0412', po: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: 'Rp 5.326.600', s: 'wait' },
+      { no: 'SSB-2026-0388', po: 'PO-TB-2026-013', date: L('24 Sep 2026', 'Sep 24, 2026'), items: L('18 buku', '18 books'), total: 'Rp 2.206.200', s: 'packed' },
+      { no: 'SSB-2026-0351', po: 'PO-TB-2026-012', date: L('2 Sep 2026', 'Sep 2, 2026'), items: L('30 buku', '30 books'), total: 'Rp 3.960.000', s: 'shipped' }
+    ].map((o) => Object.assign({}, o, S[o.s]));
+    const menu = [
+      { label: L('Dasbor', 'Dashboard'), href: 'account.html', on: true },
+      { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html' },
+      { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
+      { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },
+      { label: L('Profil toko', 'Store profile'), href: 'account.html' }
+    ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, stats, recent, menu, langs, progress, progressWidth: progress + '%' };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>
