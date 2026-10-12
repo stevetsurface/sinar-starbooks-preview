@@ -66,10 +66,12 @@ summary{list-style:none}summary::-webkit-details-marker{display:none}
 
   <!-- Questions -->
   <div style="max-width: 960px; margin: 0 auto; padding: 48px 24px 96px; display: flex; flex-direction: column; gap: 40px">
+    <sc-if value="{{anyPending}}" hint-placeholder-val="{{false}}">
     <div style="display: flex; gap: 10px; align-items: center; padding: 14px 18px; border-radius: 14px; background: #FDE9C4; color: #6B4A00; font-size: 14px; font-weight: 600">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
       <span>{{t.pendingNote}}</span>
     </div>
+    </sc-if>
 
     <sc-for list="{{sections}}" as="sec" hint-placeholder-count="8">
       <section id="{{sec.id}}" style="display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 24px">
@@ -113,7 +115,7 @@ class Component extends DCLogic {
       navAria: L('Menu utama', 'Main menu'),
       navBooks: L('Buku', 'Books'), navReseller: L('Untuk Reseller', 'For Reseller'), navAbout: L('Tentang Kami', 'About Us'),
       title: L('Pertanyaan yang sering diajukan', 'Frequently asked questions'),
-      sub: L('Semua tentang Sinar Starbooks, menjadi reseller, pemesanan, pembayaran, pengiriman, dan program reward.', 'Everything about Sinar Starbooks, becoming a reseller, ordering, payment, shipping and rewards.'),
+      sub: L('Semua tentang Sinar Starbooks, menjadi reseller, harga, pemesanan, pembayaran, dan pengiriman.', 'Everything about Sinar Starbooks, becoming a reseller, prices, ordering, payment and shipping.'),
       pendingNote: L('Draf: beberapa jawaban masih menunggu konfirmasi tim Sinar Star dan ditandai dengan [ ].', 'Draft: some answers are still waiting for the Sinar Star team and are marked with [ ].'),
       pendingChip: L('MENUNGGU KONFIRMASI', 'TO BE CONFIRMED'),
       moreTitle: L('Masih ada pertanyaan?', 'Still have a question?'),
@@ -125,50 +127,41 @@ class Component extends DCLogic {
         [L('Siapa Sinar Starbooks?', 'Who is Sinar Starbooks?'), L('Importir dan distributor buku, alat tulis, dan hadiah berbahasa Inggris yang berdiri di Jakarta sejak 2000. Kami membeli langsung dari penerbit AS dan Inggris dan memasok lebih dari 100 toko di seluruh Indonesia.', 'An importer and distributor of English-language books, stationery and gifts, founded in Jakarta in 2000. We buy directly from US and UK publishers and supply 100+ stores across Indonesia.')],
         [L('Penerbit apa saja yang bekerja sama dengan kalian?', 'Which publishers do you work with?'), L('Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic, Hay House, dan lainnya. Brand hadiah antara lain Kikkerland dan Fred.', 'Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic, Hay House and more. Gift brands include Kikkerland and Fred.')],
         [L('Di mana lokasi kalian?', 'Where are you located?'), 'Jl. Cendrawasih No. 7, Sukapura, Jakarta Utara 14140.'],
-        [L('Apakah kalian punya toko fisik?', 'Do you have physical stores?'), L('Ya, Wonder Bookstore milik kami memiliki 6 toko di Jakarta dan Bali. Buku kami juga tersedia di Gramedia, Kinokuniya, Paperclip, dan Lintas Bookstore.', 'Yes, our own Wonder Bookstore has 6 stores in Jakarta and Bali. Our books are also sold at Gramedia, Kinokuniya, Paperclip and Lintas Bookstore.')],
-        [L('Apakah kalian menjual ke pembeli perorangan?', 'Do you sell to individual readers?'), L('Ya, melalui webstore, Shopee, Tokopedia, dan Wonder Bookstore. Website ini khusus untuk usaha yang membeli untuk dijual kembali.', 'Yes, through our webstore, Shopee, Tokopedia and Wonder Bookstore. This site is for businesses buying to resell.')]
+        [L('Apakah kalian menjual ke pembeli perorangan?', 'Do you sell to individual readers?'), L('Tidak. Sinar Starbooks hanya melayani penjualan grosir untuk usaha yang menjual kembali, bukan penjualan eceran.', 'No. Sinar Starbooks sells wholesale only, to businesses that resell. We do not sell retail.')]
       ] },
       { id: 'reseller', title: L('Menjadi reseller', 'Becoming a reseller'), items: [
-        [L('Siapa yang bisa menjadi reseller?', 'Who can become a reseller?'), L('Toko buku, sekolah dan perpustakaan, toko hadiah dan gaya hidup, serta penjual online.', 'Bookshops, schools and libraries, gift and lifestyle stores, and online sellers.')],
-        [L('Apa yang dibutuhkan untuk mendaftar?', 'What do I need to register?'), L('Nama dan jenis usaha, nama kontak, nomor WhatsApp, email, kota, serta dokumen usaha (NIB / NPWP). [Apakah toko tanpa NIB bisa mendaftar?]', 'Business name and type, contact name, WhatsApp number, email, city, and your business documents (NIB / NPWP). [Can shops without an NIB register?]')],
-        [L('Berapa lama proses persetujuannya?', 'How long does approval take?'), L('[X] hari kerja. Kami akan membalas lewat email dan WhatsApp.', '[X] working days. We reply by email and WhatsApp.')],
-        [L('Apakah ada biaya pendaftaran?', 'Is there a fee to join?'), L('[Pendaftaran gratis / konfirmasi.]', '[Registration is free / confirm.]')],
+        [L('Siapa yang bisa menjadi reseller?', 'Who can become a reseller?'), L('Usaha yang menjual kembali buku dan hadiah, seperti toko buku, toko hadiah, dan penjual online. Untuk sekolah dan institusi, silakan hubungi kami.', 'Businesses that resell books and gifts, such as bookshops, gift stores and online sellers. Schools and institutions, please contact us.')],
+        [L('Bagaimana cara mendaftar?', 'How do I register?'), L('Isi formulir pendaftaran reseller dengan data usaha dan kontak Anda, lalu bayar deposit Rp 1.000.000.', 'Fill in the reseller application with your business and contact details, then pay a Rp 1,000,000 deposit.')],
+        [L('Berapa lama deposit berlaku?', 'How long is the deposit valid?'), L('Deposit Rp 1.000.000 berlaku selama 3 bulan.', 'The Rp 1,000,000 deposit is valid for 3 months.')],
+        [L('Kapan akun saya disetujui?', 'When is my account approved?'), L('Tim kami akan meninjau pengajuan Anda dan menghubungi Anda lewat email atau WhatsApp.', 'Our team reviews your application and contacts you by email or WhatsApp.')],
         [L('Kenapa harga reseller tidak terlihat?', "Why can't I see reseller prices?"), L('Harga reseller akan muncul setelah akun Anda disetujui dan Anda masuk (login).', 'Reseller prices appear once your account is approved and you are logged in.')]
       ] },
-      { id: 'ordering', title: L('Harga & pemesanan', 'Prices & ordering'), items: [
-        [L('Berapa diskon untuk reseller?', 'How much discount do resellers get?'), L('[X]% di bawah harga retail, dengan harga lebih baik untuk jumlah lebih banyak (harga grosir tertera di setiap produk).', '[X]% below retail, with better rates at higher quantities (volume pricing is shown on each product).')],
-        [L('Apakah ada minimum pembelian?', 'Is there a minimum order?'), L('Setiap judul menampilkan minimum jumlah pembelian. [Minimum nilai pesanan, jika ada.]', 'Each title shows its minimum order quantity. [Minimum order value, if any.]')],
-        [L('Bisakah saya memesan dengan purchase order (PO)?', 'Can I order with a purchase order (PO)?'), L('Bisa. Masukkan nomor PO saat checkout dan unggah dokumen PO (PDF, JPG, atau PNG, maks. [X] MB).', 'Yes. Enter your PO number at checkout and upload your PO document (PDF, JPG or PNG, max [X] MB).')],
-        [L('Bisakah saya memesan banyak judul sekaligus?', 'Can I order many titles at once?'), L('Bisa, di tampilan daftar katalog Anda dapat mengisi jumlah untuk banyak judul sekaligus. [Fitur unggah CSV?]', 'Yes, in the catalog list view you can enter quantities for many titles at once. [CSV upload?]')],
+      { id: 'pricing', title: L('Harga & diskon', 'Prices & discounts'), items: [
+        [L('Berapa diskon untuk reseller?', 'How much discount do resellers get?'), L('Diskon dihitung dari nilai pembelian, mulai 20% untuk pembelian Rp 1.000.000 ke atas, dan naik untuk pembelian yang lebih besar.', 'The discount depends on the purchase value, starting at 20% for purchases of Rp 1,000,000 or more and rising for larger purchases.')],
+        [L('Apakah ada minimum pembelian?', 'Is there a minimum purchase?'), L('Diskon reseller berlaku mulai pembelian Rp 1.000.000.', 'The reseller discount applies from Rp 1,000,000 per purchase.')],
+        [L('Apa itu Star, Bright Star, dan Super Star?', 'What are Star, Bright Star and Super Star?'), L('Tiga level reseller kami. Level ditentukan dari total pembelian Anda, dan level yang lebih tinggi mendapat diskon serta keuntungan yang lebih besar.', 'Our three reseller levels. Your level is based on your total purchases, and higher levels get bigger discounts and more benefits.')],
+        [L('Bagaimana dengan komik dan manga?', 'What about comics and manga?'), L('Pembelian komik minimal Rp 3.000.000 mendapat diskon 10%.', 'Comic purchases of at least Rp 3,000,000 get 10% off.')]
+      ] },
+      { id: 'ordering', title: L('Pemesanan', 'Ordering'), items: [
+        [L('Bisakah saya memesan dengan purchase order (PO)?', 'Can I order with a purchase order (PO)?'), L('Bisa. Masukkan nomor PO dan unggah dokumen PO saat checkout.', 'Yes. Enter your PO number and upload your PO document at checkout.')],
+        [L('Bisakah saya memesan banyak judul sekaligus?', 'Can I order many titles at once?'), L('Bisa. Gunakan tampilan daftar atau ringkas di katalog untuk mengisi jumlah banyak judul sekaligus.', 'Yes. Use the list or compact view in the catalog to enter quantities for many titles at once.')],
         [L('Bisakah saya pre-order buku baru?', 'Can I pre-order new releases?'), L('Bisa. Judul pre-order ditandai di katalog beserta perkiraan tanggal tibanya.', 'Yes. Pre-order titles are marked in the catalog with their expected arrival date.')],
-        [L('Bisakah kalian mencarikan judul yang tidak ada di katalog?', "Can you source a title that isn't in the catalog?"), L('Bisa. Gunakan menu "Minta buku" di akun Anda. Kami akan mengecek ke penerbit dan mengirimkan harga serta perkiraan waktu tiba dalam [X] hari kerja.', 'Yes. Use "Request a book" in your account. We check with our publishers and send a price and arrival time within [X] working days.')],
-        [L('Bisakah saya pesan lewat WhatsApp?', 'Can I order via WhatsApp?'), L('Bisa, klik tombol WhatsApp di halaman mana pun untuk cek stok, minta penawaran, atau memesan.', 'Yes, tap the WhatsApp button on any page to check stock, get a quote or place an order.')]
+        [L('Bisakah kalian mencarikan judul yang tidak ada di katalog?', "Can you source a title that isn't in the catalog?"), L('Bisa. Gunakan menu "Minta buku" di akun Anda. Kami akan mengecek ke penerbit dan mengabari harga serta perkiraan waktu tiba.', 'Yes. Use "Request a book" in your account. We check with our publishers and let you know the price and arrival time.')]
       ] },
-      { id: 'payment', title: L('Pembayaran', 'Payment'), items: [
-        [L('Bagaimana cara membayar?', 'How do I pay?'), L('Transfer bank sesuai invoice. Akun yang disetujui bisa mendapatkan tempo pembayaran [14 / 30] hari.', 'By bank transfer against our invoice. Approved accounts may get payment terms of [14 / 30] days.')],
+      { id: 'payment', title: L('Pembayaran & pajak', 'Payment & tax'), items: [
+        [L('Bagaimana cara membayar?', 'How do I pay?'), L('Pembayaran tunai atau transfer bank (beli putus).', 'By cash or bank transfer (outright purchase).')],
         [L('Apakah harga sudah termasuk PPN?', 'Do prices include VAT (PPN)?'), L('Buku dibebaskan dari PPN, jadi tidak ada PPN pada buku. Harga alat tulis dan hadiah sudah termasuk PPN.', 'Books are exempt from VAT (PPN), so there is no PPN on books. Stationery and gift prices include PPN.')],
-        [L('Bisakah saya mendapat faktur pajak?', 'Can I get a tax invoice (faktur pajak)?'), L('Bisa. Sinar Starbooks adalah PKP, dan faktur pajak diterbitkan untuk alat tulis dan hadiah. Masukkan NPWP usaha Anda di profil toko.', 'Yes. Sinar Starbooks is VAT-registered (PKP) and issues a faktur pajak for stationery and gifts. Add your business NPWP to your store profile.')],
-        [L('Di mana saya bisa mengunduh invoice?', 'Where can I download invoices?'), L('Di Akun Saya › Pesanan & PO. Kami juga mengirim pro-forma invoice lewat email saat pesanan dikonfirmasi.', 'Under My Account › Orders & POs. We also email a pro-forma invoice when we confirm your order.')]
+        [L('Bisakah saya mendapat faktur pajak?', 'Can I get a tax invoice (faktur pajak)?'), L('Bisa. Sinar Starbooks adalah PKP, dan faktur pajak diterbitkan untuk alat tulis dan hadiah.', 'Yes. Sinar Starbooks is VAT-registered (PKP) and issues a faktur pajak for stationery and gifts.')],
+        [L('Di mana saya bisa mengunduh invoice?', 'Where can I download invoices?'), L('Di Akun Saya › Pesanan & PO.', 'Under My Account › Orders & POs.')]
       ] },
-      { id: 'shipping', title: L('Pengiriman', 'Shipping'), items: [
-        [L('Apakah ongkir gratis?', 'Is shipping free?'), L('[Gratis ongkir se-Jawa untuk pesanan di atas Rp 500.000 / ongkir ditanggung pembeli — konfirmasi.]', '[Free shipping in Java over Rp 500.000 / buyer pays shipping — confirm.]')],
-        [L('Berapa lama pengiriman?', 'How long does delivery take?'), L('Pesanan dikirim dari Jakarta dalam [X] hari kerja. Lama pengiriman tergantung kota tujuan.', 'Orders ship from Jakarta within [X] working days. Delivery time depends on your city.')],
-        [L('Bisakah saya pakai kurir sendiri?', 'Can I use my own courier?'), L('Bisa, pilih "Kurir sendiri" saat checkout dan ambil pesanan di gudang kami.', 'Yes, choose "Arrange my own courier" at checkout and pick up from our warehouse.')],
-        [L('Bagaimana cara melacak pesanan?', 'How do I track my order?'), L('Buka Akun Saya › Pesanan & PO untuk melihat status dan nomor resi setiap pesanan.', 'Go to My Account › Orders & POs to see each order’s status and tracking number.')]
+      { id: 'shipping', title: L('Pengiriman & retur', 'Shipping & returns'), items: [
+        [L('Siapa yang membayar ongkos kirim?', 'Who pays for shipping?'), L('Ongkos kirim ditanggung pembeli. Anda juga bisa mengambil pesanan sendiri di gudang kami di Jakarta.', 'Shipping is paid by the buyer. You can also collect your order from our Jakarta warehouse.')],
+        [L('Bagaimana cara melacak pesanan?', 'How do I track my order?'), L('Buka Akun Saya › Pesanan & PO untuk melihat status dan nomor resi setiap pesanan.', 'Go to My Account › Orders & POs to see each order’s status and tracking number.')],
+        [L('Bisakah barang diretur?', 'Can I return goods?'), L('Barang yang sudah dibeli tidak dapat diretur.', 'Goods that have been purchased cannot be returned.')]
       ] },
-      { id: 'returns', title: L('Retur', 'Returns'), items: [
-        [L('Bisakah saya meretur stok yang tidak terjual?', 'Can I return unsold stock?'), L('[Kebijakan retur — konfirmasi.]', '[Return policy — confirm.]')],
-        [L('Bagaimana jika buku tiba dalam kondisi rusak?', 'What if books arrive damaged?'), L('Hubungi kami dalam [X] hari setelah barang diterima dengan menyertakan foto, dan kami akan mengganti atau memberikan kredit.', 'Contact us within [X] days of delivery with photos and we will replace or credit them.')]
-      ] },
-      { id: 'rewards', title: L('Program reward', 'Rewards program'), items: [
-        [L('Bagaimana program reward bekerja?', 'How does the rewards program work?'), L('Diskon reseller naik sesuai total pembelian: [20% / 30% / 35% / 37%]. Level lebih tinggi mendapat diskon lebih besar dan keuntungan lainnya.', 'Your reseller discount grows with your purchases: [20% / 30% / 35% / 37%]. Higher tiers get bigger discounts and extra perks.')],
-        [L('Bagaimana cara naik level?', 'How do I move up a tier?'), L('[Dihitung per pesanan atau total pembelian 12 bulan — konfirmasi.]', '[Counted per order or on 12-month purchases — confirm.]')],
-        [L('Di mana saya bisa melihat level saya?', 'Where can I see my tier?'), L('Di Akun Saya dan halaman Reward Saya.', 'In My Account and on the My Rewards page.')]
-      ] },
-      { id: 'account', title: L('Akun & website', 'Account & website'), items: [
+      { id: 'account', title: L('Akun & kontak', 'Account & contact'), items: [
         [L('Bisakah saya mengganti bahasa website?', 'Can I switch the website language?'), L('Bisa, gunakan tombol ID / EN di bagian atas setiap halaman.', 'Yes, use the ID / EN button at the top of every page.')],
-        [L('Bisakah beberapa staf memakai satu akun reseller?', 'Can several staff use one reseller account?'), L('[Konfirmasi.]', '[Confirm.]')],
-        [L('Bagaimana cara menghubungi kalian?', 'How do I contact you?'), L('Telepon +62 21 4404188, WhatsApp [nomor WhatsApp bisnis], email info@sinarstarbook.com, atau Instagram @sinarstarbooks.', 'Phone +62 21 4404188, WhatsApp [business WhatsApp number], email info@sinarstarbook.com, or Instagram @sinarstarbooks.')]
+        [L('Bagaimana cara menghubungi kalian?', 'How do I contact you?'), L('Telepon +62 21 4404188, email info@sinarstarbook.com, atau Instagram @sinarstarbooks.', 'Phone +62 21 4404188, email info@sinarstarbook.com, or Instagram @sinarstarbooks.')]
       ] }
     ];
     const sections = raw.map((s) => ({
@@ -178,7 +171,8 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, sections, langs };
+    const anyPending = sections.some((sec) => sec.items.some((q) => q.pending));
+    return { t, sections, langs, anyPending };
   }
 }
 </script>
