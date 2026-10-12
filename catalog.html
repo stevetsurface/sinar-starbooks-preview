@@ -72,7 +72,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
         <label for="sort" style="font-size: 14px; color: #6E6478">{{t.sortBy}}</label>
         <select id="sort" style="height: 44px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 14px; font: inherit; font-size: 14px; color: #1E1A24">
-          <option>{{t.sortNewest}}</option><option>{{t.sortPriceLow}}</option><option>{{t.sortPriceHigh}}</option><option>{{t.sortTitle}}</option>
+          <option>{{t.sortBest}}</option><option>{{t.sortNewest}}</option><option>{{t.sortPriceLow}}</option><option>{{t.sortPriceHigh}}</option><option>{{t.sortTitle}}</option>
         </select>
       </div>
     </div>
@@ -122,6 +122,19 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <a href="#" style="font-size: 13px; font-weight: 600; margin-left: 4px">{{t.clearAll}}</a>
         </div>
 
+        <!-- Quick filter: best sellers -->
+        <div role="tablist" aria-label="{{t.showLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+          <span style="font-size: 14px; color: #6E6478; margin-right: 4px">{{t.showLabel}}</span>
+          <sc-for list="{{views}}" as="v" hint-placeholder-count="3">
+            <sc-if value="{{v.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" role="tab" aria-selected="true" onClick="{{v.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{v.label}}</button>
+            </sc-if>
+            <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" role="tab" aria-selected="false" onClick="{{v.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{v.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+
         <!-- List-style rows: resellers scan and add quantities in bulk -->
         <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
           <div style="min-width: 720px">
@@ -132,7 +145,12 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               <div style="display: grid; grid-template-columns: 72px minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 160px; gap: 16px; padding: 16px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
                 <div style="width: 56px; height: 78px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14)"></div>
                 <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-                  <a href="product.html" style="font-weight: 600; font-size: 15px; color: #1E1A24">{{r.title}}</a>
+                  <span style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+                    <a href="product.html" style="font-weight: 600; font-size: 15px; color: #1E1A24">{{r.title}}</a>
+                    <sc-if value="{{r.isBest}}" hint-placeholder-val="{{false}}">
+                      <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 999px; background: #FDE9C4; color: #6B4A00">{{r.badge}}</span>
+                    </sc-if>
+                  </span>
                   <span style="font-size: 13px; color: #6E6478">{{r.author}} · {{r.publisher}}</span>
                   <span style="font-size: 12px; color: #6E6478">ISBN {{r.isbn}} · {{r.stock}} · {{t.minShort}} {{r.moq}}</span>
                 </div>
@@ -151,7 +169,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </div>
 
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; color: #6E6478">
-          <span>{{t.showing}}</span>
+          <span>{{showingText}}</span>
           <div style="display: flex; gap: 6px">
             <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: #5B2A86; color: #FFFFFF; font-weight: 600">1</a>
             <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">2</a>
@@ -195,6 +213,8 @@ class Component extends DCLogic {
       pageTitle: L('Buku', 'Books'),
       pageSub: L('29 judul · harga reseller ditampilkan', '29 titles · reseller prices shown'),
       sortBy: L('Urutkan', 'Sort by'),
+      sortBest: L('Terlaris', 'Best selling'),
+      showLabel: L('Tampilkan:', 'Show:'),
       sortNewest: L('Terbaru', 'Newest first'),
       sortPriceLow: L('Harga: terendah ke tertinggi', 'Price: low to high'),
       sortPriceHigh: L('Harga: tertinggi ke terendah', 'Price: high to low'),
@@ -234,17 +254,33 @@ class Component extends DCLogic {
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const inStock = t.inStock;
     const rows = [
-      { title: 'Dog Man #1', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157479', price: 185000, cover: '#1F3B73', stock: inStock, moq: 3 },
-      { title: 'Dog Man #2: Dogman Unleashed', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157486', price: 185000, cover: '#B0476A', stock: inStock, moq: 3 },
-      { title: 'Dog Man #3: Tale of Two Kitties', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157493', price: 185000, cover: '#F2B33D', stock: inStock, moq: 3 },
-      { title: 'Dog Man #10: Mothering Heights', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789814947657', price: 185000, cover: '#3E7A5A', stock: inStock, moq: 3 },
-      { title: 'Dog Man #13: Big Jim Begins', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789813512672', price: 185000, cover: '#6B4FA0', stock: inStock, moq: 3 },
-      { title: 'Dog Man #14: Big Jim Believes', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9781546176183', price: 306000, cover: '#7FB7C9', stock: inStock, moq: 3 }
+      { title: 'Dog Man #1', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157479', sold: 23, price: 185000, cover: '#1F3B73', stock: inStock, moq: 3 },
+      { title: 'Dog Man #2: Dogman Unleashed', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157486', sold: 12, price: 185000, cover: '#B0476A', stock: inStock, moq: 3 },
+      { title: 'Dog Man #3: Tale of Two Kitties', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157493', sold: 19, price: 185000, cover: '#F2B33D', stock: inStock, moq: 3 },
+      { title: 'Dog Man #10: Mothering Heights', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789814947657', sold: 21, price: 185000, cover: '#3E7A5A', stock: inStock, moq: 3 },
+      { title: 'Dog Man #13: Big Jim Begins', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789813512672', sold: 9, price: 185000, cover: '#6B4FA0', stock: inStock, moq: 3 },
+      { title: 'Dog Man #14: Big Jim Believes', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9781546176183', sold: 43, price: 306000, cover: '#7FB7C9', stock: inStock, moq: 3 }
     ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, langs, rows: rows.map((r) => ({ ...r, retail: fmt(r.price), reseller: fmt(r.price * (1 - d / 100)) })) };
+    const view = (this.state && this.state.view) || 'all';
+    const ranked = rows.slice().sort((a, b) => b.sold - a.sold);
+    const rankOf = (r) => ranked.indexOf(r) + 1;
+    const BEST_N = 3;
+    let list = rows.map((r) => {
+      const rank = rankOf(r);
+      return { ...r, rank, isBest: rank <= BEST_N, badge: L('TERLARIS #', 'BEST SELLER #') + rank, retail: fmt(r.price), reseller: fmt(r.price * (1 - d / 100)) };
+    });
+    if (view === 'best') list = list.filter((r) => r.isBest).sort((a, b) => a.rank - b.rank);
+    const views = [
+      { id: 'all', label: L('Semua judul', 'All titles') },
+      { id: 'best', label: L('Terlaris', 'Best sellers') }
+    ].map((v) => ({ label: v.label, on: view === v.id, off: view !== v.id, pick: () => this.setState({ view: v.id }) }));
+    const showingText = view === 'best'
+      ? L('Menampilkan ' + list.length + ' judul terlaris (penjualan 3 bulan terakhir)', 'Showing the ' + list.length + ' best-selling titles (last 3 months of sales)')
+      : t.showing;
+    return { t, langs, views, showingText, rows: list };
   }
 }
 </script>
