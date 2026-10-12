@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Utility bar -->
+  <div style="background: #2A1640; color: #EDE4F5; font-size: 13px">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center">
+      <span>{{t.shipping}}</span>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap">
+        <a href="#" style="color: #EDE4F5">{{t.help}}</a>
+        <a href="Reseller.dc.html" style="color: #F2B33D; font-weight: 600">{{t.becomeReseller}}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">{{t.logoSub}}</span>
+        </span>
+      </a>
+      <form style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
+        <label for="q" style="position: absolute; left: -9999px">{{t.searchLabel}}</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="q" type="search" placeholder="{{t.searchPlaceholder}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
+      </form>
+      <div style="display: flex; gap: 8px; align-items: center">
+        <a href="#" style="display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid #ECE6F1; color: #1E1A24">
+          <span style="width: 34px; height: 34px; border-radius: 50%; background: #F1EBF6; color: #5B2A86; display: grid; place-items: center; font-weight: 700; font-size: 13px">TB</span>
+          <span style="display: flex; flex-direction: column; line-height: 1.15">
+            <span style="font-size: 13px; font-weight: 600">{{t.storeName}}</span>
+            <span style="font-size: 11px; color: #7A3FB0; font-weight: 600">{{t.verified}}</span>
+          </span>
+        </a>
+        <a href="#" aria-label="{{t.wishlist}}" style="width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #1E1A24">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+        </a>
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="Checkout.dc.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+          {{t.cart}}
+        </a>
+      </div>
+    </div>
+    <nav aria-label="{{t.mainNavAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
+      <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
+      <a href="Reseller.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
+      <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNews}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section style="background: #F1EBF6">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+      <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 24px">
+        <span style="align-self: flex-start; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: #5B2A86; background: #FFFFFF; padding: 8px 14px; border-radius: 999px">{{t.heroEyebrow}}</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -1px; color: #2A1640">{{t.heroTitle}}</h1>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #4A4252; max-width: 540px">{{t.heroSub}}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="Catalog.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.ctaBrowse}}</a>
+          <a href="Reseller.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #FFFFFF; color: #2A1640; font-weight: 600; font-size: 16px; border: 1px solid #D9CCE6">{{t.ctaApply}}</a>
+        </div>
+      </div>
+      <div style="flex: 1 1 420px; display: flex; gap: 18px; justify-content: center; align-items: flex-end">
+        <div style="width: 180px; height: 250px; border-radius: 6px 14px 14px 6px; background: #7FB7C9; box-shadow: 0 24px 40px rgba(42,22,64,0.18); padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-4deg)">
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.1; color: #FFFFFF">Twinkle, Twinkle, Little Sheepy</span>
+          <span style="font-size: 11px; color: #FFFFFF; letter-spacing: 1px">PENGUIN RANDOM HOUSE</span>
+        </div>
+        <div style="width: 200px; height: 290px; border-radius: 6px 14px 14px 6px; background: #1F3B73; box-shadow: 0 28px 48px rgba(42,22,64,0.22); padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1; color: #F2B33D">World's Best Dad</span>
+          <span style="font-size: 11px; color: #FFFFFF; letter-spacing: 1px">LYNN GIUNTA</span>
+        </div>
+        <div style="width: 160px; height: 220px; border-radius: 6px 14px 14px 6px; background: #F2B33D; box-shadow: 0 20px 36px rgba(42,22,64,0.16); padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(5deg)">
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 20px; line-height: 1.1; color: #2A1640">{{t.newTitlePh}}</span>
+          <span style="font-size: 11px; color: #2A1640; letter-spacing: 1px">{{t.publisherPh}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publisher strip -->
+  <section style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; justify-content: space-between">
+      <span style="font-size: 13px; font-weight: 600; color: #6E6478; letter-spacing: 1px">{{t.directFrom}}</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">Penguin Random House</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">Simon &amp; Schuster</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">Hachette</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">HarperCollins</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">Scholastic</span>
+      <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #4A4252">Macmillan</span>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 28px">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.catTitle}}</h2>
+      <a href="Catalog.dc.html" style="font-weight: 600; font-size: 15px">{{t.catViewAll}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #FDE9C4; color: #2A1640">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catKids}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.catKidsSub}}</span>
+      </a>
+      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DCEBF0; color: #2A1640">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catNonFiction}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.catNonFictionSub}}</span>
+      </a>
+      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #E6DDF0; color: #2A1640">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catFiction}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.catFictionSub}}</span>
+      </a>
+      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #F6D9D4; color: #2A1640">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catManga}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.catMangaSub}}</span>
+      </a>
+      <a href="Catalog.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; padding: 24px; border-radius: 20px; background: #DDEBDD; color: #2A1640">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600">{{t.catGifts}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.catGiftsSub}}</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- New releases -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 24px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 28px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.newTitle}}</h2>
+        <span style="font-size: 15px; color: #6E6478">{{t.priceNoteA}} {{discountLabel}} {{t.priceNoteB}}</span>
+      </div>
+      <a href="#" style="font-weight: 600; font-size: 15px">{{t.newSeeAll}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px">
+      <sc-for list="{{products}}" as="p" hint-placeholder-count="4">
+        <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+          <a href="Product.dc.html" style="display: block; background: #F4F0F8; padding: 24px; position: relative">
+            <span style="position: absolute; top: 14px; left: 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; padding: 5px 10px; border-radius: 999px; background: #FFFFFF; color: #5B2A86">{{p.tag}}</span>
+            <div style="height: 220px; width: 160px; margin: 16px auto 0; border-radius: 4px 10px 10px 4px; background: {{p.cover}}; box-shadow: 0 14px 24px rgba(42,22,64,0.16); padding: 16px; box-sizing: border-box; display: flex; align-items: flex-end">
+              <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 17px; line-height: 1.15; color: #FFFFFF">{{p.title}}</span>
+            </div>
+          </a>
+          <div style="padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1">
+            <span style="font-size: 12px; color: #6E6478; font-weight: 600; letter-spacing: 0.5px">{{p.publisher}}</span>
+            <a href="Product.dc.html" style="font-weight: 600; font-size: 16px; line-height: 1.3; color: #1E1A24">{{p.title}}</a>
+            <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px">
+              <span style="font-size: 19px; font-weight: 700; color: #2A1640">{{p.reseller}}</span>
+              <span style="font-size: 13px; color: #6E6478; text-decoration: line-through">{{p.retail}}</span>
+            </div>
+            <span style="font-size: 12px; color: #6E6478">{{t.minOrder}} {{p.moq}} {{t.pcs}} · {{p.stock}}</span>
+            <button type="button" style="margin-top: 12px; height: 44px; border-radius: 12px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer">{{t.addPre}} {{p.moq}} {{t.addPost}}</button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px">
+    <div style="background: #2A1640; color: #FFFFFF; border-radius: 28px; padding: 56px 48px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 40px; max-width: 560px; line-height: 1.1">{{t.howTitle}}</h2>
+        <a href="Reseller.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 28px; border-radius: 999px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px">{{t.becomeReseller}}</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 44px; font-weight: 600; color: #F2B33D">01</span>
+          <span style="font-size: 20px; font-weight: 600">{{t.step1Title}}</span>
+          <span style="font-size: 15px; line-height: 1.6; color: #D4C6E2">{{t.step1Body}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 44px; font-weight: 600; color: #F2B33D">02</span>
+          <span style="font-size: 20px; font-weight: 600">{{t.step2Title}}</span>
+          <span style="font-size: 15px; line-height: 1.6; color: #D4C6E2">{{t.step2Body}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 44px; font-weight: 600; color: #F2B33D">03</span>
+          <span style="font-size: 20px; font-weight: 600">{{t.step3Title}}</span>
+          <span style="font-size: 15px; line-height: 1.6; color: #D4C6E2">{{t.step3Body}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #FFFFFF; border-top: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 32px; display: flex; flex-wrap: wrap; gap: 40px">
+      <div style="flex: 2 1 280px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 22px; color: #5B2A86">Sinar Starbooks</span>
+        <span style="font-size: 14px; line-height: 1.6; color: #6E6478; max-width: 320px">{{t.footerAbout}}</span>
+        <span style="font-size: 14px; color: #4A4252">{{t.footerContact}}</span>
+      </div>
+      <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+        <span style="font-weight: 700; color: #1E1A24">{{t.fInfo}}</span>
+        <a href="About.dc.html">{{t.fAbout}}</a><a href="#">{{t.fDelivery}}</a><a href="#">{{t.fPrivacy}}</a><a href="#">{{t.fTerms}}</a>
+      </div>
+      <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+        <span style="font-weight: 700; color: #1E1A24">{{t.fResellers}}</span>
+        <a href="Reseller.dc.html">{{t.becomeReseller}}</a><a href="#">{{t.fOrders}}</a><a href="#">{{t.fInvoices}}</a><a href="#">{{t.fReturns}}</a>
+      </div>
+      <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+        <span style="font-weight: 700; color: #1E1A24">{{t.fFollow}}</span>
+        <a href="https://www.instagram.com/sinarstarbooks/">Instagram @sinarstarbooks</a><a href="#">{{t.fContact}}</a>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 32px; font-size: 13px; color: #6E6478; border-top: 1px solid #ECE6F1">{{t.copyright}}</div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const t = {
+      shipping: L('Gratis ongkir se-Jawa untuk pesanan di atas Rp 500.000', 'Free shipping across Java for orders over Rp 500.000'),
+      help: L('Bantuan & FAQ', 'Help & FAQ'),
+      becomeReseller: L('Daftar jadi reseller', 'Become a reseller'),
+      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      logoSub: L('AND GIFTS · RESELLER', 'AND GIFTS · RESELLER'),
+      searchLabel: L('Cari katalog', 'Search catalog'),
+      searchPlaceholder: L('Cari berdasarkan judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      storeName: L('[Nama Toko Buku]', '[Toko Buku Name]'),
+      verified: L('Reseller terverifikasi', 'Verified reseller'),
+      wishlist: L('Wishlist', 'Wish list'),
+      cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      mainNavAria: L('Utama', 'Main'),
+      navCatalog: L('Katalog', 'Catalog'),
+      navNew: L('Rilis Baru & Pre-order', 'New Releases & Pre-orders'),
+      navPublishers: L('Penerbit', 'Publishers'),
+      navPartnership: L('Kemitraan', 'Partnership'),
+      navAbout: L('Tentang Kami', 'About'),
+      navNews: L('Berita', 'News'),
+      navContact: L('Kontak', 'Contact'),
+      heroEyebrow: L('BUKU & HADIAH IMPOR · SEJAK 2000', 'IMPORTED BOOKS & GIFTS · SINCE 2000'),
+      heroTitle: L('Isi rak toko Anda langsung dari penerbit-penerbit terbaik dunia.', "Stock your shelves straight from the world's great publishers."),
+      heroSub: L('Sinar Starbooks memasok toko buku, sekolah, dan toko hadiah di seluruh Indonesia dengan buku berbahasa Inggris dan hadiah pilihan — dengan harga reseller, lengkap dengan Purchase Order (PO) dan invoice.', 'Sinar Starbooks supplies bookshops, schools and gift stores across Indonesia with English-language books and curated gifts — at reseller prices, with purchase orders and invoicing built in.'),
+      ctaBrowse: L('Jelajahi katalog', 'Browse the catalog'),
+      ctaApply: L('Ajukan akun reseller', 'Apply for a reseller account'),
+      newTitlePh: L('[Judul rilis baru]', '[New release title]'),
+      publisherPh: L('[PENERBIT]', '[PUBLISHER]'),
+      directFrom: L('LANGSUNG DARI', 'DIRECT FROM'),
+      catTitle: L('Belanja per kategori', 'Shop by category'),
+      catViewAll: L('Lihat semua katalog →', 'View full catalog →'),
+      catKids: L('Anak & Remaja', 'Kids & Teens'),
+      catKidsSub: L('Board book, buku bergambar, YA', 'Board books, picture books, YA'),
+      catNonFiction: L('Nonfiksi', 'Non-Fiction'),
+      catNonFictionSub: L('Bisnis, sains, sejarah', 'Business, science, history'),
+      catFiction: L('Fiksi', 'Fiction'),
+      catFictionSub: L('Sastra, bestseller, klasik', 'Literary, bestsellers, classics'),
+      catManga: L('Manga & Novel Grafis', 'Manga & Graphic Novels'),
+      catMangaSub: L('Serial, box set', 'Series, box sets'),
+      catGifts: L('Hadiah & Alat Tulis', 'Gifts & Stationery'),
+      catGiftsSub: L('IF, Kikkerland, voucher', 'IF, Kikkerland, vouchers'),
+      newTitle: L('Rilis baru & pre-order', 'New releases & pre-orders'),
+      priceNoteA: L('Harga reseller Anda ditampilkan —', 'Your reseller price is shown —'),
+      priceNoteB: L('di bawah harga eceran.', 'below retail.'),
+      newSeeAll: L('Lihat semua rilis baru →', 'See all new releases →'),
+      minOrder: L('Min. pembelian', 'Min. order'),
+      pcs: L('pcs', 'pcs'),
+      addPre: L('Tambah', 'Add'),
+      addPost: L('ke keranjang', 'to cart'),
+      howTitle: L('Belanja untuk toko Anda, jadi lebih mudah.', 'Ordering for your store, made simple.'),
+      step1Title: L('Daftarkan usaha Anda', 'Register your business'),
+      step1Body: L('Ceritakan tentang toko Anda dan unggah NIB / NPWP. Tim kami memverifikasi akun baru dalam [X] hari kerja.', 'Tell us about your store and upload your NIB / NPWP. Our team verifies new accounts within [X] working days.'),
+      step2Title: L('Lihat harga reseller', 'See reseller pricing'),
+      step2Body: L('Setelah disetujui, setiap judul menampilkan harga reseller, minimal pembelian, dan stok terkini.', 'Once approved, every title shows your reseller price, minimum order and live stock.'),
+      step3Title: L('Pesan dengan PO', 'Order with a PO'),
+      step3Body: L('Checkout dengan nomor Purchase Order (PO) Anda, lalu unduh invoice dan lacak setiap pesanan di akun Anda.', 'Check out with your purchase order number, then download invoices and track every order in your account.'),
+      footerAbout: L('Importir dan distributor buku serta hadiah berbahasa Inggris di Indonesia sejak 2000.', 'Importer and distributor of English-language books and gifts in Indonesia since 2000.'),
+      footerContact: L('[Alamat] · [Telepon] · [Email]', '[Address] · [Phone] · [Email]'),
+      fInfo: L('Informasi', 'Information'),
+      fAbout: L('Tentang kami', 'About us'),
+      fDelivery: L('Informasi pengiriman', 'Delivery information'),
+      fPrivacy: L('Kebijakan privasi', 'Privacy policy'),
+      fTerms: L('Syarat & ketentuan', 'Terms & conditions'),
+      fResellers: L('Reseller', 'Resellers'),
+      fOrders: L('Riwayat pesanan', 'Order history'),
+      fInvoices: L('Invoice', 'Invoices'),
+      fReturns: L('Retur', 'Returns'),
+      fFollow: L('Ikuti kami', 'Follow'),
+      fContact: L('Hubungi kami', 'Contact us'),
+      copyright: L('© 2026 PT Sinar Star Books. Hak cipta dilindungi undang-undang.', '© 2026 PT Sinar Star Books. All rights reserved.')
+    };
+    const d = this.props.resellerDiscount ?? 20;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const inStock = L('Stok tersedia', 'In stock');
+    const items = [
+      { title: 'Twinkle, Twinkle, Little Sheepy', publisher: 'PENGUIN RANDOM HOUSE', price: 180000, cover: '#7FB7C9', tag: L('BARU', 'NEW'), moq: 3, stock: inStock },
+      { title: "World's Best Dad", publisher: 'PENGUIN RANDOM HOUSE', price: 183308, cover: '#1F3B73', tag: L('BARU', 'NEW'), moq: 3, stock: inStock },
+      { title: L('[Judul pre-order]', '[Pre-order title]'), publisher: L('[PENERBIT]', '[PUBLISHER]'), price: 250000, cover: '#B0476A', tag: 'PRE-ORDER', moq: 5, stock: L('Dikirim [tanggal]', 'Ships [date]') },
+      { title: L('[Produk hadiah]', '[Gift item]'), publisher: 'KIKKERLAND', price: 150000, cover: '#3E7A5A', tag: L('HADIAH', 'GIFT'), moq: 6, stock: inStock }
+    ];
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return {
+      t,
+      langs,
+      discountLabel: d + '%',
+      products: items.map((p) => ({ ...p, retail: fmt(p.price), reseller: fmt(p.price * (1 - d / 100)) }))
+    };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

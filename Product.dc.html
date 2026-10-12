@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — World's Best Dad</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <form style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
+        <label for="q3" style="position: absolute; left: -9999px">{{t.searchLabel}}</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="q3" type="search" placeholder="{{t.searchPh}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
+      </form>
+      <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+            <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+          <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+            <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <a href="Checkout.dc.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+        {{t.cartLabel}}
+      </a>
+    </div>
+    <nav aria-label="{{t.navAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
+      <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
+      <a href="Reseller.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
+      <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px; display: flex; flex-direction: column; gap: 56px">
+    <nav aria-label="{{t.breadcrumbAria}}" style="font-size: 14px; color: #6E6478; display: flex; gap: 8px; margin-bottom: -32px">
+      <a href="Main.dc.html">{{t.crumbHome}}</a><span aria-hidden="true">/</span><a href="Catalog.dc.html">{{t.crumbBooks}}</a><span aria-hidden="true">/</span><span>World's Best Dad</span>
+    </nav>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+      <!-- Gallery -->
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #F1EBF6; border-radius: 28px; padding: 56px; display: grid; place-items: center">
+          <div style="width: 320px; height: 320px; border-radius: 8px; background: #1F3B73; box-shadow: 0 30px 50px rgba(42,22,64,0.25); padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; text-align: center">
+            <span style="font-size: 12px; font-weight: 700; color: #1F3B73; background: #F2B33D; padding: 6px 10px; border-radius: 999px">A LOVE POP-UP BOOK</span>
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 52px; line-height: 0.95; color: #F2B33D">World's Best Dad</span>
+            <span style="font-size: 14px; color: #FFFFFF">Lynn Giunta</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button type="button" aria-label="{{t.viewImage1}}" style="width: 84px; height: 84px; border-radius: 14px; border: 2px solid #5B2A86; background: #1F3B73; cursor: pointer"></button>
+          <button type="button" aria-label="{{t.viewImage2}}" style="width: 84px; height: 84px; border-radius: 14px; border: 1px solid #ECE6F1; background: #E07A3F; cursor: pointer"></button>
+          <button type="button" aria-label="{{t.viewImage3}}" style="width: 84px; height: 84px; border-radius: 14px; border: 1px solid #ECE6F1; background: #E9A8C4; cursor: pointer"></button>
+        </div>
+      </div>
+
+      <!-- Buy box -->
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 22px">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #5B2A86">PENGUIN RANDOM HOUSE</span>
+          <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 46px; line-height: 1.05; color: #2A1640">World's Best Dad</h1>
+          <span style="font-size: 15px; color: #6E6478">{{t.byline}}</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #DDEBDD; color: #24523A">{{t.inStock}}</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">ISBN 9798217143238</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">{{t.ages}}</span>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px">
+            <span style="font-size: 36px; font-weight: 700; color: #2A1640">{{yourPrice}}</span>
+            <span style="font-size: 16px; color: #6E6478; text-decoration: line-through">{{retail}}</span>
+            <span style="font-size: 13px; font-weight: 700; color: #2A1640; background: #FDE9C4; padding: 5px 10px; border-radius: 999px">{{discountLabel}}</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 700">{{t.volumePricing}}</span>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+              <sc-for list="{{tiers}}" as="tier" hint-placeholder-count="3">
+                <div style="border-radius: 14px; padding: 14px; border: {{tier.border}}; background: {{tier.bg}}; display: flex; flex-direction: column; gap: 4px">
+                  <span style="font-size: 12px; color: #6E6478; font-weight: 600">{{tier.range}}</span>
+                  <span style="font-size: 17px; font-weight: 700; color: #2A1640">{{tier.price}}</span>
+                  <span style="font-size: 12px; color: #5B2A86; font-weight: 600">{{tier.save}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+            <div style="display: flex; align-items: center; border: 1px solid #D9CCE6; border-radius: 12px; height: 52px">
+              <button type="button" aria-label="{{t.decQty}}" style="width: 48px; height: 50px; border: 0; background: transparent; font-size: 20px; color: #4A4252; cursor: pointer">−</button>
+              <label for="pqty" style="position: absolute; left: -9999px">{{t.qtyLabel}}</label>
+              <input id="pqty" type="number" value="12" style="width: 56px; border: 0; text-align: center; font: inherit; font-size: 17px; font-weight: 600; outline: none">
+              <button type="button" aria-label="{{t.incQty}}" style="width: 48px; height: 50px; border: 0; background: transparent; font-size: 20px; color: #4A4252; cursor: pointer">+</button>
+            </div>
+            <a href="Checkout.dc.html" style="flex: 1 1 200px; display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.addToCart}}</a>
+            <button type="button" aria-label="{{t.wishlist}}" style="width: 52px; height: 52px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A4252" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+            </button>
+          </div>
+          <span style="font-size: 13px; color: #6E6478">{{t.orderNote}}</span>
+        </div>
+
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4A4252">{{t.description}}</p>
+      </div>
+    </div>
+
+    <!-- Specification -->
+    <section style="display: flex; flex-wrap: wrap; gap: 32px">
+      <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.bookDetails}}</h2>
+        <dl style="margin: 0; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 8px 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); font-size: 15px">
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtAuthor}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">Isabel Otter</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">ISBN-13</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">9798217143238</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtPubDate}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.pubDate}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtPublisher}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">Penguin Random House</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtBinding}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.binding}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478">{{t.dtPages}}</dt><dd style="margin: 0; padding: 14px 0">{{t.pages}}</dd>
+        </dl>
+      </div>
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.forResellers}}</h2>
+        <div style="background: #F1EBF6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.5; color: #4A4252">
+          <span><strong style="color: #2A1640">{{t.shelfPrice}}</strong> {{retail}}</span>
+          <span><strong style="color: #2A1640">{{t.marginLabel}}</strong> {{margin}} {{t.perCopy}}</span>
+          <span><strong style="color: #2A1640">{{t.returnsLabel}}</strong> {{t.returnsPolicy}}</span>
+          <a href="#" style="font-weight: 600">{{t.downloadSheet}}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const d = this.props.resellerDiscount ?? 20;
+    const price = 183308;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const t = {
+      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      searchLabel: L('Cari katalog', 'Search catalog'),
+      searchPh: L('Cari judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      cartLabel: L('Keranjang · 24 item', 'Cart · 24 items'),
+      navAria: L('Menu utama', 'Main'),
+      navCatalog: L('Katalog', 'Catalog'),
+      navNew: L('Rilis Baru & Pre-order', 'New Releases & Pre-orders'),
+      navPublishers: L('Penerbit', 'Publishers'),
+      navPartnership: L('Kemitraan', 'Partnership'),
+      navAbout: L('Tentang Kami', 'About'),
+      navContact: L('Kontak', 'Contact'),
+      breadcrumbAria: L('Navigasi halaman', 'Breadcrumb'),
+      crumbHome: L('Beranda', 'Home'),
+      crumbBooks: L('Buku', 'Books'),
+      viewImage1: L('Lihat gambar 1', 'View image 1'),
+      viewImage2: L('Lihat gambar 2', 'View image 2'),
+      viewImage3: L('Lihat gambar 3', 'View image 3'),
+      byline: L('oleh Isabel Otter · ilustrasi oleh Lynn Giunta', 'by Isabel Otter · illustrated by Lynn Giunta'),
+      inStock: L('Stok tersedia · [qty] eksemplar', 'In stock · [qty] available'),
+      ages: L('Usia 0–2 tahun', 'Ages 0–2'),
+      volumePricing: L('Harga grosir', 'Volume pricing'),
+      decQty: L('Kurangi jumlah', 'Decrease quantity'),
+      qtyLabel: L('Jumlah', 'Quantity'),
+      incQty: L('Tambah jumlah', 'Increase quantity'),
+      addToCart: L('Tambah 12 ke keranjang', 'Add 12 to cart'),
+      wishlist: L('Tambah ke wishlist', 'Add to wish list'),
+      orderNote: L('Min. pembelian 3 · Kelipatan 1 · Dikirim dari Jakarta dalam [X] hari kerja', 'Minimum order 3 · Sold in multiples of 1 · Ships from Jakarta in [X] working days'),
+      description: L('Rayakan sosok ayah dan segala cara luar biasa mereka memberi inspirasi dan dukungan lewat buku yang menyentuh hati ini. [Deskripsi lengkap dari penerbit]', 'Celebrate fathers and all the wonderful ways they inspire and provide support with this heartfelt book. [Full publisher description]'),
+      bookDetails: L('Detail buku', 'Book details'),
+      dtAuthor: L('Penulis', 'Author'),
+      dtPubDate: L('Tanggal terbit', 'Publication date'),
+      pubDate: L('28 April 2026', '28 April 2026'),
+      dtPublisher: L('Penerbit', 'Publisher'),
+      dtBinding: L('Jenis sampul', 'Binding'),
+      binding: L('[Board book / Hardcover]', '[Board book / Hardcover]'),
+      dtPages: L('Jumlah halaman', 'Page count'),
+      pages: L('[Jumlah halaman]', '[Pages]'),
+      forResellers: L('Untuk reseller', 'For resellers'),
+      shelfPrice: L('Harga jual yang disarankan:', 'Suggested shelf price:'),
+      marginLabel: L('Margin Anda untuk 1–9 eksemplar:', 'Your margin at 1–9 copies:'),
+      perCopy: L('per eksemplar', 'per copy'),
+      returnsLabel: L('Retur:', 'Returns:'),
+      returnsPolicy: L('[Kebijakan retur reseller]', '[Return policy for resellers]'),
+      downloadSheet: L('Unduh lembar produk (PDF)', 'Download product sheet (PDF)')
+    };
+    const tiers = [
+      { range: L('1–9 eksemplar', '1–9 copies'), off: d, active: false },
+      { range: L('10–49 eksemplar', '10–49 copies'), off: d + 5, active: true },
+      { range: L('50+ eksemplar', '50+ copies'), off: d + 10, active: false }
+    ].map((x) => ({
+      range: x.range,
+      price: fmt(price * (1 - x.off / 100)),
+      save: L('Hemat ' + x.off + '% dari harga retail', x.off + '% off retail'),
+      border: x.active ? '2px solid #5B2A86' : '1px solid #ECE6F1',
+      bg: x.active ? '#F7F2FB' : '#FFFFFF'
+    }));
+    const discount = (d + 5) + '%';
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return {
+      t,
+      langs,
+      retail: fmt(price),
+      yourPrice: fmt(price * (1 - (d + 5) / 100)),
+      discount,
+      discountLabel: L('Diskon reseller ' + discount, 'Reseller ' + discount + ' off'),
+      margin: fmt(price * d / 100),
+      tiers
+    };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Star Partner Rewards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="HomeV2.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS</span>
+        </span>
+      </a>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 15px; font-weight: 700">
+        <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0">{{t.navBooks}}</a>
+        <a href="Reseller.dc.html" style="color: #5B2A86; padding: 12px 0">{{t.navReseller}}</a>
+        <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0">{{t.navAbout}}</a>
+        <a href="#" style="color: #1E1A24; padding: 12px 0">{{t.navContact}}</a>
+      </nav>
+      <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+            <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+          <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+            <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="background: #2A1640; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px 80px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-end">
+      <div style="flex: 2 1 560px; display: flex; flex-direction: column; gap: 20px">
+        <span style="font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #F2B33D">STAR PARTNER REWARDS</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 60px; line-height: 1.04; letter-spacing: -1px">{{t.heroTitle}}</h1>
+      </div>
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 20px">
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D4C6E2">{{t.heroSub}}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="Reseller.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px">{{t.ctaApply}}</a>
+          <a href="Rewards.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid #6B4C8A; color: #FFFFFF; font-weight: 700; font-size: 16px">{{t.ctaMine}}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tiers -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 80px 24px 24px; display: flex; flex-direction: column; gap: 32px">
+    <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 40px; color: #2A1640">{{t.tiersTitle}}</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; align-items: stretch">
+      <sc-for list="{{tiers}}" as="tier" hint-placeholder-count="3">
+        <article style="border-radius: 24px; padding: 32px; background: {{tier.bg}}; color: {{tier.ink}}; display: flex; flex-direction: column; gap: 20px">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="display: flex; gap: 2px">
+              <sc-for list="{{tier.stars}}" as="s" hint-placeholder-count="1">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="{{tier.starColor}}" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"></path></svg>
+              </sc-for>
+            </span>
+            <sc-if value="{{tier.popular}}" hint-placeholder-val="{{false}}">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 999px; background: #F2B33D; color: #2A1640">{{t.popular}}</span>
+            </sc-if>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 34px">{{tier.name}}</span>
+            <span style="font-size: 15px; font-weight: 600; opacity: 0.8">{{tier.who}}</span>
+          </div>
+          <div style="height: 1px; background: {{tier.rule}}"></div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.45">
+            <sc-for list="{{tier.perks}}" as="p" hint-placeholder-count="4">
+              <li style="display: flex; gap: 10px; align-items: flex-start">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tier.check}}" stroke-width="2.4" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="m5 12 5 5 9-10"></path></svg>
+                <span>{{p}}</span>
+              </li>
+            </sc-for>
+          </ul>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 32px">
+    <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 40px; color: #2A1640">{{t.howTitle}}</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 44px; font-weight: 600; color: #5B2A86">{{s.n}}</span>
+          <span style="font-size: 20px; font-weight: 700; color: #2A1640">{{s.title}}</span>
+          <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{s.body}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Bonus actions -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 96px">
+    <div style="background: #F1EBF6; border-radius: 28px; padding: 40px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 32px; color: #2A1640">{{t.bonusTitle}}</h2>
+        <span style="font-size: 15px; color: #4A4252">{{t.bonusSub}}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+        <sc-for list="{{bonuses}}" as="b" hint-placeholder-count="3">
+          <div style="background: #FFFFFF; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 17px; font-weight: 700; color: #2A1640">{{b.title}}</span>
+            <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{b.body}}</span>
+            <span style="font-size: 14px; font-weight: 700; color: #5B2A86">{{b.reward}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 13px; color: #6E6478">{{t.terms}}</span>
+    </div>
+  </section>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const t = {
+      navBooks: L('Buku', 'Books'),
+      navReseller: L('Untuk Reseller', 'For Reseller'),
+      navAbout: L('Tentang Kami', 'About Us'),
+      navContact: L('Kontak', 'Contact'),
+      heroTitle: L('Semakin berkembang toko Anda, semakin besar keuntungannya.', 'The more your store grows, the more you earn.'),
+      heroSub: L('Tiga level berdasarkan total pembelian 12 bulan terakhir. Naik level terjadi otomatis.', 'Three tiers based on your purchases over the last 12 months. Moving up happens automatically.'),
+      ctaApply: L('Daftar jadi reseller', 'Become a reseller'),
+      ctaMine: L('Lihat reward saya', 'See my rewards'),
+      tiersTitle: L('Level reseller', 'Reseller tiers'),
+      popular: L('PALING BANYAK DIPILIH', 'MOST POPULAR'),
+      howTitle: L('Cara kerjanya', 'How it works'),
+      bonusTitle: L('Bonus tambahan', 'Extra rewards'),
+      bonusSub: L('Berlaku di semua level.', 'Available at every tier.'),
+      terms: L('Syarat & ketentuan berlaku. Angka dalam [ ] akan ditentukan oleh tim Sinar Star.', 'Terms apply. Figures in [ ] to be set by the Sinar Star team.')
+    };
+    const tiers = [
+      {
+        name: 'Star', stars: [1], bg: '#FFFFFF', ink: '#1E1A24', rule: '#ECE6F1', check: '#5B2A86', starColor: '#C9B6DC', popular: false,
+        who: L('Semua reseller terverifikasi', 'Every approved reseller'),
+        perks: [
+          L('Harga reseller standar', 'Standard reseller pricing'),
+          L('Gratis ongkir Jawa di atas Rp 500.000', 'Free Java shipping over Rp 500.000'),
+          L('Pembayaran transfer sesuai invoice', 'Pay by bank transfer on invoice'),
+          L('Akses ke katalog & pre-order', 'Full catalog and pre-order access')
+        ]
+      },
+      {
+        name: 'Bright Star', stars: [1, 2], bg: '#F1EBF6', ink: '#1E1A24', rule: '#D9CCE6', check: '#5B2A86', starColor: '#7A3FB0', popular: true,
+        who: L('Pembelian di atas Rp [X] / 12 bulan', 'Over Rp [X] in 12 months'),
+        perks: [
+          L('Tambahan diskon [3]% di setiap pesanan', 'Extra [3]% off every order'),
+          L('Tempo pembayaran [14] hari', 'Net [14]-day payment terms'),
+          L('Stok terjamin untuk buku terbaru', 'Reserved stock on new releases'),
+          L('Retur hingga [X]% stok tidak terjual', 'Return up to [X]% of unsold stock'),
+          L('Gratis poster & materi display', 'Free posters and display materials')
+        ]
+      },
+      {
+        name: 'Super Star', stars: [1, 2, 3], bg: '#2A1640', ink: '#FFFFFF', rule: '#4A3463', check: '#F2B33D', starColor: '#F2B33D', popular: false,
+        who: L('Pembelian di atas Rp [Y] / 12 bulan', 'Over Rp [Y] in 12 months'),
+        perks: [
+          L('Tambahan diskon [5]% di setiap pesanan', 'Extra [5]% off every order'),
+          L('Gratis ongkir untuk semua pesanan', 'Free shipping on every order'),
+          L('Tempo pembayaran [30] hari', 'Net [30]-day payment terms'),
+          L('Akses pre-order lebih awal & kuota terjamin', 'First access to pre-orders, with guaranteed allocation'),
+          L('Account manager khusus via WhatsApp', 'Dedicated account manager on WhatsApp'),
+          L('Undangan acara penulis & penghargaan Partner of the Year', 'Author event invites and Partner of the Year award')
+        ]
+      }
+    ];
+    const steps = [
+      { n: '01', title: L('Belanja seperti biasa', 'Order as usual'), body: L('Setiap pesanan yang sudah dibayar dihitung untuk level Anda.', 'Every paid order counts toward your tier.') },
+      { n: '02', title: L('Ditinjau setiap kuartal', 'Reviewed every quarter'), body: L('Anda langsung naik level begitu memenuhi syarat. Jika pembelian turun, level Anda tetap berlaku satu kuartal lagi.', 'You move up as soon as you qualify. If purchases dip, you keep your tier for one more quarter.') },
+      { n: '03', title: L('Bonus pertumbuhan', 'Growth bonus'), body: L('Pembelian naik dibanding kuartal yang sama tahun lalu? Dapatkan [X]% kembali sebagai saldo belanja.', 'Buy more than in the same quarter last year and get [X]% back as store credit.') }
+    ];
+    const bonuses = [
+      { title: L('Bayar tepat waktu', 'Pay on time'), body: L('Lunasi invoice sebelum jatuh tempo.', 'Settle invoices before the due date.'), reward: L('[Reward]', '[Reward]') },
+      { title: L('Pesan pre-order', 'Place pre-orders'), body: L('Pre-order buku baru sebelum tanggal rilis.', 'Pre-order new titles before release.'), reward: L('[Reward]', '[Reward]') },
+      { title: L('Pasang display Star Books', 'Show a Star Books display'), body: L('Kirim foto display di toko Anda.', 'Send us a photo of the display in your store.'), reward: L('[Reward]', '[Reward]') }
+    ];
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, tiers, steps, bonuses, langs };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

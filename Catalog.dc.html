@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Catalog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <form style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
+        <label for="q2" style="position: absolute; left: -9999px">{{t.searchLabel}}</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="q2" type="search" placeholder="{{t.searchPlaceholder}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
+      </form>
+      <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+            <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+          <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+            <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <a href="Checkout.dc.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+        {{t.cart}}
+      </a>
+    </div>
+    <nav aria-label="{{t.mainNavAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
+      <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
+      <a href="Reseller.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
+      <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
+      <a href="#" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px">
+    <nav aria-label="{{t.breadcrumbAria}}" style="font-size: 14px; color: #6E6478; display: flex; gap: 8px; margin-bottom: 20px">
+      <a href="Main.dc.html">{{t.crumbHome}}</a><span aria-hidden="true">/</span><span>{{t.pageTitle}}</span>
+    </nav>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end; margin-bottom: 32px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 48px; color: #2A1640">{{t.pageTitle}}</h1>
+        <span style="font-size: 16px; color: #6E6478">{{t.pageSub}}</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+        <label for="sort" style="font-size: 14px; color: #6E6478">{{t.sortBy}}</label>
+        <select id="sort" style="height: 44px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 14px; font: inherit; font-size: 14px; color: #1E1A24">
+          <option>{{t.sortNewest}}</option><option>{{t.sortPriceLow}}</option><option>{{t.sortPriceHigh}}</option><option>{{t.sortTitle}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+      <!-- Filters -->
+      <aside aria-label="{{t.filtersAria}}" style="flex: 1 1 260px; max-width: 300px; display: flex; flex-direction: column; gap: 28px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px; box-sizing: border-box">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 15px">{{t.fCategory}}</span>
+          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #5B2A86; font-weight: 600"><span>{{t.catKids}}</span><span>4</span></a>
+          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catBusiness}}</span><span>5</span></a>
+          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catScience}}</span><span>3</span></a>
+          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catHistory}}</span><span>2</span></a>
+          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catPhilosophy}}</span><span>1</span></a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 15px">{{t.fPublisher}}</span>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> Penguin Random House</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Simon &amp; Schuster</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Hachette Book Group</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> HarperCollins</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Scholastic</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Macmillan</label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 15px">{{t.fAge}}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #5B2A86; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600">{{t.ageBaby}}</button>
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageToddler}}</button>
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageEarly}}</button>
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageMiddle}}</button>
+            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageYA}}</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span style="font-weight: 700; font-size: 15px">{{t.fAvailability}}</span>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.inStock}}</label>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.preOrder}}</label>
+        </div>
+      </aside>
+
+      <!-- Results -->
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+          <span style="font-size: 14px; color: #6E6478">{{t.activeFilters}}</span>
+          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">Penguin Random House ×</button>
+          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">{{t.ageBaby}} ×</button>
+          <a href="#" style="font-size: 13px; font-weight: 600; margin-left: 4px">{{t.clearAll}}</a>
+        </div>
+
+        <!-- List-style rows: resellers scan and add quantities in bulk -->
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
+          <div style="min-width: 720px">
+            <div style="display: grid; grid-template-columns: 72px minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 160px; gap: 16px; padding: 14px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
+              <span></span><span>{{t.colTitle}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
+            </div>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+              <div style="display: grid; grid-template-columns: 72px minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 160px; gap: 16px; padding: 16px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
+                <div style="width: 56px; height: 78px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14)"></div>
+                <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+                  <a href="Product.dc.html" style="font-weight: 600; font-size: 15px; color: #1E1A24">{{r.title}}</a>
+                  <span style="font-size: 13px; color: #6E6478">{{r.author}} · {{r.publisher}}</span>
+                  <span style="font-size: 12px; color: #6E6478">ISBN {{r.isbn}} · {{r.stock}} · {{t.minShort}} {{r.moq}}</span>
+                </div>
+                <span style="font-size: 14px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
+                <span style="font-size: 16px; font-weight: 700; color: #2A1640">{{r.reseller}}</span>
+                <div style="display: flex; gap: 8px; align-items: center">
+                  <label style="position: absolute; left: -9999px" for="qty-{{$index}}">{{t.qtyFor}} {{r.title}}</label>
+                  <input id="qty-{{$index}}" type="number" value="{{r.moq}}" min="0" style="width: 64px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 15px">
+                  <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; color: #6E6478">
+          <span>{{t.showing}}</span>
+          <div style="display: flex; gap: 6px">
+            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: #5B2A86; color: #FFFFFF; font-weight: 600">1</a>
+            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">2</a>
+            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">3</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const t = {
+      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      searchLabel: L('Cari katalog', 'Search catalog'),
+      searchPlaceholder: L('Cari berdasarkan judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      mainNavAria: L('Utama', 'Main'),
+      navCatalog: L('Katalog', 'Catalog'),
+      navNew: L('Rilis Baru & Pre-order', 'New Releases & Pre-orders'),
+      navPublishers: L('Penerbit', 'Publishers'),
+      navPartnership: L('Kemitraan', 'Partnership'),
+      navAbout: L('Tentang Kami', 'About'),
+      navContact: L('Kontak', 'Contact'),
+      breadcrumbAria: L('Breadcrumb', 'Breadcrumb'),
+      crumbHome: L('Beranda', 'Home'),
+      pageTitle: L('Buku', 'Books'),
+      pageSub: L('16 judul · harga reseller ditampilkan', '16 titles · reseller prices shown'),
+      sortBy: L('Urutkan', 'Sort by'),
+      sortNewest: L('Terbaru', 'Newest first'),
+      sortPriceLow: L('Harga: terendah ke tertinggi', 'Price: low to high'),
+      sortPriceHigh: L('Harga: tertinggi ke terendah', 'Price: high to low'),
+      sortTitle: L('Judul A–Z', 'Title A–Z'),
+      filtersAria: L('Filter', 'Filters'),
+      fCategory: L('Kategori', 'Category'),
+      catKids: L('Anak & Remaja', 'Kids & Teens'),
+      catBusiness: L('Bisnis', 'Business'),
+      catScience: L('Sains', 'Science'),
+      catHistory: L('Sejarah', 'History'),
+      catPhilosophy: L('Filsafat', 'Philosophy'),
+      fPublisher: L('Penerbit', 'Publisher'),
+      fAge: L('Usia', 'Age'),
+      ageBaby: L('Bayi 0–2', 'Baby 0–2'),
+      ageToddler: L('Balita 3–5', 'Toddler 3–5'),
+      ageEarly: L('Pembaca awal 6–8', 'Early reader 6–8'),
+      ageMiddle: L('Anak 9–12', 'Middle grade 9–12'),
+      ageYA: L('Remaja 13–17', 'Young adult 13–17'),
+      fAvailability: L('Ketersediaan', 'Availability'),
+      inStock: L('Stok tersedia', 'In stock'),
+      preOrder: L('Pre-order', 'Pre-order'),
+      activeFilters: L('Filter aktif:', 'Active filters:'),
+      clearAll: L('Hapus semua', 'Clear all'),
+      colTitle: L('JUDUL', 'TITLE'),
+      colRetail: L('HARGA ECERAN', 'RETAIL'),
+      colPrice: L('HARGA ANDA', 'YOUR PRICE'),
+      colQty: L('JUMLAH', 'QTY'),
+      minShort: L('min.', 'min.'),
+      qtyFor: L('Jumlah untuk', 'Quantity for'),
+      addToCart: L('Tambah ke keranjang', 'Add to cart'),
+      showing: L('Menampilkan 1–6 dari 16', 'Showing 1–6 of 16')
+    };
+    const d = this.props.resellerDiscount ?? 20;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const inStock = t.inStock;
+    const author = L('[Penulis]', '[Author]');
+    const rows = [
+      { title: 'Twinkle, Twinkle, Little Sheepy: A Sleepy Sheepy Story', author: 'Lucy Ruth Cummins', publisher: 'Penguin Random House', isbn: '[ISBN]', price: 180000, cover: '#7FB7C9', stock: inStock, moq: 3 },
+      { title: "World's Best Dad", author: 'Lynn Giunta', publisher: 'Penguin Random House', isbn: '9798217143238', price: 183308, cover: '#1F3B73', stock: inStock, moq: 3 },
+      { title: L('[Judul board book]', '[Board book title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 145000, cover: '#F2B33D', stock: inStock, moq: 5 },
+      { title: L('[Judul buku bergambar]', '[Picture book title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 210000, cover: '#B0476A', stock: t.preOrder, moq: 5 },
+      { title: L('[Judul buku lift-the-flap]', '[Lift-the-flap title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 165000, cover: '#3E7A5A', stock: L('Stok terbatas', 'Low stock'), moq: 3 },
+      { title: L('[Judul cerita pengantar tidur]', '[Bedtime story title]'), author: author, publisher: 'Penguin Random House', isbn: '[ISBN]', price: 195000, cover: '#6B4FA0', stock: inStock, moq: 3 }
+    ];
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, langs, rows: rows.map((r) => ({ ...r, retail: fmt(r.price), reseller: fmt(r.price * (1 - d / 100)) })) };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

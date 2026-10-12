@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Become a reseller</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header (logged out) -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <nav aria-label="{{t.navAria}}" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
+        <a href="Catalog.dc.html" style="color: #1E1A24; padding: 12px 0">{{t.navCatalog}}</a>
+        <a href="Reseller.dc.html" style="color: #5B2A86; padding: 12px 0">{{t.navPartnership}}</a>
+        <a href="About.dc.html" style="color: #1E1A24; padding: 12px 0">{{t.navAbout}}</a>
+        <a href="#" style="color: #1E1A24; padding: 12px 0">{{t.navContact}}</a>
+      </nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="#" style="display: flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.login}}</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero + form -->
+  <section style="background: #F1EBF6">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 24px">
+        <span style="align-self: flex-start; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: #5B2A86; background: #FFFFFF; padding: 8px 14px; border-radius: 999px">{{t.eyebrow}}</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 56px; line-height: 1.04; letter-spacing: -1px; color: #2A1640">{{t.heroTitle}}</h1>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #4A4252; max-width: 520px">{{t.heroSub}}</p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px">
+          <li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg><span><strong>{{t.b1Bold}}</strong> {{t.b1Rest}}</span></li>
+          <li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg><span><strong>{{t.b2Bold}}</strong>{{t.b2Rest}}</span></li>
+          <li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg><span><strong>{{t.b3Bold}}</strong> {{t.b3Rest}}</span></li>
+          <li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg><span><strong>{{t.b4Bold}}</strong> {{t.b4Rest}}</span></li>
+        </ul>
+      </div>
+
+      <form style="flex: 1 1 440px; background: #FFFFFF; border-radius: 28px; padding: 36px; box-shadow: 0 24px 60px rgba(42,22,64,0.10); display: flex; flex-direction: column; gap: 18px; box-sizing: border-box">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.formTitle}}</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="bn" style="font-size: 14px; font-weight: 600">{{t.fBusinessName}}</label>
+            <input id="bn" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="bt" style="font-size: 14px; font-weight: 600">{{t.fBusinessType}}</label>
+            <select id="bt" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF">
+              <option>{{t.optBookshop}}</option><option>{{t.optSchool}}</option><option>{{t.optGift}}</option><option>{{t.optOnline}}</option><option>{{t.optOther}}</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="cn" style="font-size: 14px; font-weight: 600">{{t.fContactName}}</label>
+            <input id="cn" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="wa" style="font-size: 14px; font-weight: 600">{{t.fWhatsapp}}</label>
+            <input id="wa" type="tel" placeholder="+62" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="em" style="font-size: 14px; font-weight: 600">{{t.fEmail}}</label>
+            <input id="em" type="email" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="ct" style="font-size: 14px; font-weight: 600">{{t.fCity}}</label>
+            <input id="ct" type="text" style="height: 48px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 14px; font-weight: 600">{{t.fDocs}}</span>
+          <label for="docs" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 18px; background: #FBF8FD; cursor: pointer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+            <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.uploadBold}}</strong> · {{t.uploadRest}}</span>
+          </label>
+          <input id="docs" type="file" multiple style="position: absolute; left: -9999px">
+        </div>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #4A4252">
+          <input type="checkbox" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86">
+          <span>{{t.agree1}} <a href="#">{{t.agreeTerms}}</a> {{t.agree2}} <a href="#">{{t.agreePrivacy}}</a>.</span>
+        </label>
+        <button type="submit" style="height: 54px; border-radius: 14px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{{t.submit}}</button>
+        <span style="font-size: 13px; color: #6E6478">{{t.reviewNote}}</span>
+      </form>
+    </div>
+  </section>
+
+  <!-- Who we work with -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px">
+    <h2 style="margin: 0 0 28px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.whoTitle}}</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+      <div style="background: #FDE9C4; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w1Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w1Body}}</span>
+      </div>
+      <div style="background: #DCEBF0; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w2Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w2Body}}</span>
+      </div>
+      <div style="background: #DDEBDD; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w3Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w3Body}}</span>
+      </div>
+      <div style="background: #E6DDF0; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w4Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w4Body}}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 0 24px 96px; display: flex; flex-wrap: wrap; gap: 40px">
+    <h2 style="flex: 1 1 280px; margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.faqTitle}}</h2>
+    <div style="flex: 2 1 520px; display: flex; flex-direction: column; gap: 12px">
+      <details open style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 20px 24px">
+        <summary style="font-weight: 600; font-size: 16px; cursor: pointer">{{t.q1}}</summary>
+        <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #4A4252">{{t.a1}}</p>
+      </details>
+      <details style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 20px 24px">
+        <summary style="font-weight: 600; font-size: 16px; cursor: pointer">{{t.q2}}</summary>
+        <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #4A4252">{{t.a2}}</p>
+      </details>
+      <details style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 20px 24px">
+        <summary style="font-weight: 600; font-size: 16px; cursor: pointer">{{t.q3}}</summary>
+        <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #4A4252">{{t.a3}}</p>
+      </details>
+      <details style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 20px 24px">
+        <summary style="font-weight: 600; font-size: 16px; cursor: pointer">{{t.q4}}</summary>
+        <p style="margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #4A4252">{{t.a4}}</p>
+      </details>
+    </div>
+  </section>
+</div>
+</template>
+<div id="dc-root"></div>
+<a href="index.html" style="position:fixed;left:16px;bottom:16px;z-index:50;background:#2A1640;color:#fff;font:600 12px/1 Figtree,system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.2)">Design preview · all screens</a>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const t = {
+      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      navAria: L('Utama', 'Main'),
+      navCatalog: L('Katalog', 'Catalog'),
+      navPartnership: L('Kemitraan', 'Partnership'),
+      navAbout: L('Tentang Kami', 'About'),
+      navContact: L('Kontak', 'Contact'),
+      login: L('Masuk reseller', 'Reseller login'),
+      eyebrow: L('KEMITRAAN', 'PARTNERSHIP'),
+      heroTitle: L('Kembangkan toko Anda bersama Sinar Starbooks.', 'Grow your store with Sinar Starbooks.'),
+      heroSub: L('Toko buku, sekolah, perpustakaan, toko hadiah, dan penjual online dapat membeli langsung dari katalog impor kami dengan harga reseller.', 'Bookshops, schools, libraries, gift stores and online sellers can buy directly from our imported catalog at reseller prices.'),
+      b1Bold: L('Harga reseller', 'Reseller pricing'),
+      b1Rest: L('untuk setiap judul, dengan harga lebih baik untuk volume lebih besar', 'on every title, with better rates at higher volumes'),
+      b2Bold: L('Pesan dengan purchase order', 'Order by purchase order'),
+      b2Rest: L(', bayar sesuai invoice', ', pay on invoice'),
+      b3Bold: L('Akses lebih awal', 'Early access'),
+      b3Rest: L('ke buku terbaru dan pre-order', 'to new releases and pre-orders'),
+      b4Bold: L('Gratis ongkir ke seluruh Jawa', 'Free shipping across Java'),
+      b4Rest: L('untuk pesanan di atas Rp 500.000', 'on orders over Rp 500.000'),
+      formTitle: L('Ajukan akun reseller', 'Apply for a reseller account'),
+      fBusinessName: L('Nama usaha', 'Business name'),
+      fBusinessType: L('Jenis usaha', 'Business type'),
+      optBookshop: L('Toko buku', 'Bookshop'),
+      optSchool: L('Sekolah / perpustakaan', 'School / library'),
+      optGift: L('Toko hadiah', 'Gift store'),
+      optOnline: L('Penjual online', 'Online seller'),
+      optOther: L('Lainnya', 'Other'),
+      fContactName: L('Nama kontak', 'Contact name'),
+      fWhatsapp: L('Nomor WhatsApp', 'WhatsApp number'),
+      fEmail: L('Email', 'Email'),
+      fCity: L('Kota', 'City'),
+      fDocs: L('Dokumen usaha (NIB / NPWP)', 'Business documents (NIB / NPWP)'),
+      uploadBold: L('Unggah file', 'Upload files'),
+      uploadRest: L('PDF atau gambar, maks. [X] MB per file', 'PDF or image, max [X] MB each'),
+      agree1: L('Saya menyetujui', 'I agree to the'),
+      agreeTerms: L('syarat reseller', 'reseller terms'),
+      agree2: L('dan', 'and'),
+      agreePrivacy: L('kebijakan privasi', 'privacy policy'),
+      submit: L('Kirim pengajuan', 'Submit application'),
+      reviewNote: L('Kami meninjau pengajuan dalam [X] hari kerja dan membalas melalui email dan WhatsApp.', 'We review applications within [X] working days and reply by email and WhatsApp.'),
+      whoTitle: L('Mitra kami', 'Who we work with'),
+      w1Title: L('Toko buku', 'Bookshops'),
+      w1Body: L('Toko independen maupun jaringan yang menjual buku impor berbahasa Inggris.', 'Independent and chain stores stocking imported English titles.'),
+      w2Title: L('Sekolah & perpustakaan', 'Schools & libraries'),
+      w2Body: L('Paket buku kelas, program membaca, dan koleksi perpustakaan.', 'Class sets, reading programmes and library collections.'),
+      w3Title: L('Toko hadiah & gaya hidup', 'Gift & lifestyle stores'),
+      w3Body: L('Hadiah dan alat tulis pilihan dari IF dan Kikkerland.', 'Curated gifts and stationery from IF and Kikkerland.'),
+      w4Title: L('Penjual online', 'Online sellers'),
+      w4Body: L('Penjual di marketplace dan social commerce di seluruh Indonesia.', 'Marketplace and social-commerce sellers across Indonesia.'),
+      faqTitle: L('Pertanyaan seputar reseller', 'Reseller questions'),
+      q1: L('Apakah ada minimum pemesanan?', 'Is there a minimum order?'),
+      a1: L('[Nilai minimum pesanan atau jumlah per judul]', '[Minimum order value or quantity per title]'),
+      q2: L('Bagaimana cara kerja diskon volume?', 'How do volume discounts work?'),
+      a2: L('[Struktur level]', '[Tier structure]'),
+      q3: L('Pilihan pembayaran apa saja yang tersedia?', 'Which payment terms are available?'),
+      a3: L('[Transfer bank / tempo pembayaran]', '[Bank transfer / net terms]'),
+      q4: L('Apakah stok yang tidak terjual bisa diretur?', 'Can I return unsold stock?'),
+      a4: L('[Kebijakan retur]', '[Return policy]')
+    };
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, langs };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>
