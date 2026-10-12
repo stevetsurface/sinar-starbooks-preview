@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FBFAFC}
 a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
@@ -21,7 +21,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
   <!-- Header -->
   <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center">
       <a href="reseller-home.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
         <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
         <span style="display: flex; flex-direction: column; line-height: 1">
@@ -29,7 +29,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
         </span>
       </a>
-      <form style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
+      <form style="flex: 1 1 300px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
         <label for="q2" style="position: absolute; left: -9999px">{{t.searchLabel}}</label>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
         <input id="q2" type="search" placeholder="{{t.searchPlaceholder}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
@@ -44,136 +44,243 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </sc-if>
         </sc-for>
       </div>
+      <a href="account.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+        {{t.myAccount}}
+      </a>
       <a href="checkout.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
         {{t.cart}}
       </a>
     </div>
-    <nav aria-label="{{t.mainNavAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
+    <nav aria-label="{{t.mainNavAria}}" style="max-width: 1320px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
       <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
-      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
       <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
-      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
-      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
-      <a href="about.html#faq" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+      <a href="request-a-book.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navRequest}}</a>
+      <a href="orders.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navOrders}}</a>
+      <a href="faq.html" style="color: #1E1A24; padding: 12px 0 14px">FAQ</a>
     </nav>
   </header>
 
-  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px">
-    <nav aria-label="{{t.breadcrumbAria}}" style="font-size: 14px; color: #6E6478; display: flex; gap: 8px; margin-bottom: 20px">
-      <a href="reseller-home.html">{{t.crumbHome}}</a><span aria-hidden="true">/</span><span>{{t.pageTitle}}</span>
+  <div style="max-width: 1320px; margin: 0 auto; padding: 28px 24px 80px">
+    <nav aria-label="Breadcrumb" style="font-size: 14px; color: #6E6478; display: flex; gap: 8px; margin-bottom: 20px">
+      <a href="reseller-home.html">{{t.crumbHome}}</a><span aria-hidden="true">/</span><span>{{t.pageTitle}}</span><span aria-hidden="true">{{crumbSep}}</span><span>{{crumbCat}}</span>
     </nav>
 
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end; margin-bottom: 32px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end; margin-bottom: 24px">
       <div style="display: flex; flex-direction: column; gap: 8px">
-        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 48px; color: #2A1640">{{t.pageTitle}}</h1>
-        <span style="font-size: 16px; color: #6E6478">{{t.pageSub}}</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 48px; color: #2A1640">{{heading}}</h1>
+        <span style="font-size: 16px; color: #6E6478">{{countLabel}}</span>
       </div>
+      <!-- Toolbar: sort, items per page, view -->
       <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
         <label for="sort" style="font-size: 14px; color: #6E6478">{{t.sortBy}}</label>
-        <select id="sort" style="height: 44px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 14px; font: inherit; font-size: 14px; color: #1E1A24">
-          <option>{{t.sortBest}}</option><option>{{t.sortNewest}}</option><option>{{t.sortPriceLow}}</option><option>{{t.sortPriceHigh}}</option><option>{{t.sortTitle}}</option>
+        <select id="sort" onChange="{{onSort}}" style="height: 44px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 12px; font: inherit; font-size: 14px; color: #1E1A24">
+          <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="4">
+            <option value="{{o.id}}" selected="{{o.sel}}">{{o.label}}</option>
+          </sc-for>
         </select>
+        <label for="perpage" style="font-size: 14px; color: #6E6478">{{t.perPage}}</label>
+        <select id="perpage" onChange="{{onPerPage}}" style="height: 44px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; padding: 0 12px; font: inherit; font-size: 14px; color: #1E1A24">
+          <sc-for list="{{perOpts}}" as="o" hint-placeholder-count="3">
+            <option value="{{o.id}}" selected="{{o.sel}}">{{o.label}}</option>
+          </sc-for>
+        </select>
+        <div role="group" aria-label="{{t.viewLabel}}" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 12px">
+          <sc-for list="{{viewOpts}}" as="v" hint-placeholder-count="3">
+            <sc-if value="{{v.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" aria-label="{{v.label}}" title="{{v.label}}" onClick="{{v.pick}}" style="width: 44px; height: 36px; border-radius: 9px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="{{v.icon}}"></path></svg>
+              </button>
+            </sc-if>
+            <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" aria-label="{{v.label}}" title="{{v.label}}" onClick="{{v.pick}}" style="width: 44px; height: 36px; border-radius: 9px; border: 0; background: transparent; color: #4A4252; display: grid; place-items: center; cursor: pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="{{v.icon}}"></path></svg>
+              </button>
+            </sc-if>
+          </sc-for>
+        </div>
       </div>
     </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
       <!-- Filters -->
-      <aside aria-label="{{t.filtersAria}}" style="flex: 1 1 260px; max-width: 300px; display: flex; flex-direction: column; gap: 28px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px; box-sizing: border-box">
-        <div style="display: flex; flex-direction: column; gap: 12px">
-          <span style="font-weight: 700; font-size: 15px">{{t.fCategory}}</span>
-          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #5B2A86; font-weight: 600"><span>{{t.catKids}}</span><span>4</span></a>
-          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catBusiness}}</span><span>5</span></a>
-          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catScience}}</span><span>3</span></a>
-          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catHistory}}</span><span>2</span></a>
-          <a href="#" style="display: flex; justify-content: space-between; font-size: 14px; color: #4A4252"><span>{{t.catPhilosophy}}</span><span>1</span></a>
+      <aside aria-label="{{t.filtersAria}}" style="flex: 1 1 240px; max-width: 280px; display: flex; flex-direction: column; gap: 24px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 20px; box-sizing: border-box">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-weight: 800; font-size: 15px; margin-bottom: 6px">{{t.fCategory}}</span>
+          <sc-if value="{{allCatOn}}" hint-placeholder-val="{{true}}">
+            <button type="button" onClick="{{pickAllCat}}" style="display: flex; justify-content: space-between; width: 100%; padding: 8px 10px; border: 0; border-radius: 10px; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; text-align: left"><span>{{t.allCats}}</span><span>{{totalCount}}</span></button>
+          </sc-if>
+          <sc-if value="{{allCatOff}}" hint-placeholder-val="{{false}}">
+            <button type="button" onClick="{{pickAllCat}}" style="display: flex; justify-content: space-between; width: 100%; padding: 8px 10px; border: 0; border-radius: 10px; background: transparent; color: #1E1A24; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-align: left"><span>{{t.allCats}}</span><span>{{totalCount}}</span></button>
+          </sc-if>
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="5">
+            <span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6E6478; padding: 12px 10px 4px">{{g.label}}</span>
+            <sc-for list="{{g.cats}}" as="c" hint-placeholder-count="3">
+              <sc-if value="{{c.on}}" hint-placeholder-val="{{false}}">
+                <button type="button" onClick="{{c.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; text-align: left"><span>{{c.label}}</span><span>{{c.count}}</span></button>
+              </sc-if>
+              <sc-if value="{{c.off}}" hint-placeholder-val="{{true}}">
+                <button type="button" onClick="{{c.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: transparent; color: #4A4252; font: inherit; font-size: 14px; cursor: pointer; text-align: left"><span>{{c.label}}</span><span>{{c.count}}</span></button>
+              </sc-if>
+            </sc-for>
+          </sc-for>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 12px">
-          <span style="font-weight: 700; font-size: 15px">{{t.fPublisher}}</span>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Penguin Random House</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Simon &amp; Schuster</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Hachette Book Group</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> HarperCollins</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> Scholastic</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> Macmillan</label>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-weight: 800; font-size: 15px; margin-bottom: 6px">{{t.fPublisher}}</span>
+          <sc-for list="{{pubs}}" as="p" hint-placeholder-count="8">
+            <sc-if value="{{p.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{p.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; text-align: left"><span>{{p.label}}</span><span>{{p.count}}</span></button>
+            </sc-if>
+            <sc-if value="{{p.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{p.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: transparent; color: #4A4252; font: inherit; font-size: 14px; cursor: pointer; text-align: left"><span>{{p.label}}</span><span>{{p.count}}</span></button>
+            </sc-if>
+          </sc-for>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 12px">
-          <span style="font-weight: 700; font-size: 15px">{{t.fAge}}</span>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px">
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageBaby}}</button>
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageToddler}}</button>
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageEarly}}</button>
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageMiddle}}</button>
-            <button type="button" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 13px">{{t.ageYA}}</button>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px">
-          <span style="font-weight: 700; font-size: 15px">{{t.fAvailability}}</span>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.inStock}}</label>
-          <label style="display: flex; gap: 10px; align-items: center; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #5B2A86"> {{t.preOrder}}</label>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-weight: 800; font-size: 15px; margin-bottom: 6px">{{t.fAvailability}}</span>
+          <sc-for list="{{avails}}" as="a" hint-placeholder-count="3">
+            <sc-if value="{{a.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{a.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; text-align: left"><span>{{a.label}}</span><span>{{a.count}}</span></button>
+            </sc-if>
+            <sc-if value="{{a.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{a.pick}}" style="display: flex; justify-content: space-between; width: 100%; padding: 7px 10px; border: 0; border-radius: 10px; background: transparent; color: #4A4252; font: inherit; font-size: 14px; cursor: pointer; text-align: left"><span>{{a.label}}</span><span>{{a.count}}</span></button>
+            </sc-if>
+          </sc-for>
         </div>
       </aside>
 
       <!-- Results -->
-      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+      <div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
         <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-          <span style="font-size: 14px; color: #6E6478">{{t.activeFilters}}</span>
-          <button type="button" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 600">Scholastic ×</button>
-          <a href="#" style="font-size: 13px; font-weight: 600; margin-left: 4px">{{t.clearAll}}</a>
-        </div>
-
-        <!-- Quick filter: best sellers -->
-        <div role="tablist" aria-label="{{t.showLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-          <span style="font-size: 14px; color: #6E6478; margin-right: 4px">{{t.showLabel}}</span>
-          <sc-for list="{{views}}" as="v" hint-placeholder-count="3">
-            <sc-if value="{{v.on}}" hint-placeholder-val="{{false}}">
-              <button type="button" role="tab" aria-selected="true" onClick="{{v.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{v.label}}</button>
-            </sc-if>
-            <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}">
-              <button type="button" role="tab" aria-selected="false" onClick="{{v.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{v.label}}</button>
-            </sc-if>
-          </sc-for>
-        </div>
-
-        <!-- List-style rows: resellers scan and add quantities in bulk -->
-        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
-          <div style="min-width: 720px">
-            <div style="display: grid; grid-template-columns: 72px minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 160px; gap: 16px; padding: 14px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
-              <span></span><span>{{t.colTitle}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
-            </div>
-            <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
-              <div style="display: grid; grid-template-columns: 72px minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 160px; gap: 16px; padding: 16px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
-                <div style="width: 56px; height: 78px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14)"></div>
-                <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-                  <span style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
-                    <a href="product.html" style="font-weight: 600; font-size: 15px; color: #1E1A24">{{r.title}}</a>
-                    <sc-if value="{{r.isBest}}" hint-placeholder-val="{{false}}">
-                      <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 999px; background: #FDE9C4; color: #6B4A00">{{r.badge}}</span>
-                    </sc-if>
-                  </span>
-                  <span style="font-size: 13px; color: #6E6478">{{r.author}} · {{r.publisher}}</span>
-                  <span style="font-size: 12px; color: #6E6478">ISBN {{r.isbn}} · {{r.stock}} · {{t.minShort}} {{r.moq}}</span>
-                </div>
-                <span style="font-size: 14px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
-                <span style="font-size: 16px; font-weight: 700; color: #2A1640">{{r.reseller}}</span>
-                <div style="display: flex; gap: 8px; align-items: center">
-                  <label style="position: absolute; left: -9999px" for="qty-{{$index}}">{{t.qtyFor}} {{r.title}}</label>
-                  <input id="qty-{{$index}}" type="number" value="{{r.moq}}" min="0" style="width: 64px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 15px">
-                  <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
-                  </button>
-                </div>
-              </div>
+          <div role="tablist" aria-label="{{t.showLabel}}" style="display: flex; gap: 8px; margin-right: 8px">
+            <sc-for list="{{tabs}}" as="v" hint-placeholder-count="2">
+              <sc-if value="{{v.on}}" hint-placeholder-val="{{false}}">
+                <button type="button" role="tab" aria-selected="true" onClick="{{v.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{v.label}}</button>
+              </sc-if>
+              <sc-if value="{{v.off}}" hint-placeholder-val="{{true}}">
+                <button type="button" role="tab" aria-selected="false" onClick="{{v.pick}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #4A4252; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{v.label}}</button>
+              </sc-if>
             </sc-for>
           </div>
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="1">
+            <button type="button" onClick="{{c.clear}}" aria-label="{{c.aria}}" style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #F1EBF6; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{c.label}} ×</button>
+          </sc-for>
+          <sc-if value="{{hasChips}}" hint-placeholder-val="{{false}}">
+            <button type="button" onClick="{{clearAll}}" style="border: 0; background: transparent; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{t.clearAll}}</button>
+          </sc-if>
         </div>
 
+        <!-- LIST VIEW -->
+        <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+          <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
+            <div style="min-width: 720px">
+              <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
+                <span></span><span>{{t.colTitle}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
+              </div>
+              <sc-for list="{{page}}" as="r" hint-placeholder-count="6">
+                <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
+                  <div style="width: 52px; height: 72px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14)"></div>
+                  <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+                    <span style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+                      <a href="product.html" style="font-weight: 700; font-size: 15px; color: #1E1A24">{{r.title}}</a>
+                      <sc-if value="{{r.isBest}}" hint-placeholder-val="{{false}}">
+                        <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 4px 8px; border-radius: 999px; background: #FDE9C4; color: #6B4A00">{{r.badge}}</span>
+                      </sc-if>
+                    </span>
+                    <span style="font-size: 13px; color: #6E6478">{{r.author}} · {{r.publisher}} · {{r.catLabel}}</span>
+                    <span style="font-size: 12px; color: #6E6478">{{r.isbnLabel}}{{r.stock}} · {{t.minShort}} {{r.moq}}</span>
+                  </div>
+                  <span style="font-size: 14px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
+                  <span style="font-size: 16px; font-weight: 800; color: #2A1640">{{r.reseller}}</span>
+                  <div style="display: flex; gap: 8px; align-items: center">
+                    <label style="position: absolute; left: -9999px" for="ql-{{r.key}}">{{t.qtyFor}} {{r.title}}</label>
+                    <input id="ql-{{r.key}}" type="number" value="{{r.moq}}" min="0" style="width: 60px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 15px">
+                    <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- GRID VIEW -->
+        <sc-if value="{{isGrid}}" hint-placeholder-val="{{false}}">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 14px">
+            <sc-for list="{{page}}" as="r" hint-placeholder-count="10">
+              <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column">
+                <a href="product.html" style="display: block; background: #F4F0F8; padding: 16px 0; position: relative">
+                  <sc-if value="{{r.isBest}}" hint-placeholder-val="{{false}}">
+                    <span style="position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; padding: 4px 7px; border-radius: 999px; background: #FDE9C4; color: #6B4A00">{{r.badge}}</span>
+                  </sc-if>
+                  <div style="width: 100px; height: 140px; margin: 8px auto 0; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; box-shadow: 0 10px 18px rgba(42,22,64,0.18); padding: 10px; box-sizing: border-box; display: flex; align-items: flex-end">
+                    <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 12px; line-height: 1.15; color: #FFFFFF">{{r.title}}</span>
+                  </div>
+                </a>
+                <div style="padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1">
+                  <a href="product.html" style="font-weight: 700; font-size: 14px; line-height: 1.3; color: #1E1A24">{{r.title}}</a>
+                  <span style="font-size: 12px; color: #6E6478">{{r.author}}</span>
+                  <span style="margin-top: auto; padding-top: 6px; font-size: 12px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+                    <span style="font-size: 15px; font-weight: 800; color: #2A1640">{{r.reseller}}</span>
+                    <button type="button" aria-label="{{t.addToCart}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- COMPACT VIEW -->
+        <sc-if value="{{isCompact}}" hint-placeholder-val="{{false}}">
+          <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; overflow-x: auto">
+            <div style="min-width: 940px; font-size: 13px">
+              <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 100px 100px 120px; gap: 12px; padding: 10px 16px; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1; background: #FBFAFC">
+                <span>{{t.colTitle}}</span><span>{{t.colAuthor}}</span><span>{{t.colPublisher}}</span><span>{{t.colCategory}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
+              </div>
+              <sc-for list="{{page}}" as="r" hint-placeholder-count="12">
+                <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 100px 100px 120px; gap: 12px; padding: 6px 16px; align-items: center; border-bottom: 1px solid #F3EFF6">
+                  <a href="product.html" style="font-weight: 700; color: #1E1A24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.title}}</a>
+                  <span style="color: #4A4252; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.author}}</span>
+                  <span style="color: #4A4252; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.publisher}}</span>
+                  <span style="color: #4A4252; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.catLabel}}</span>
+                  <span style="color: #6E6478; text-decoration: line-through">{{r.retail}}</span>
+                  <span style="font-weight: 800; color: #2A1640">{{r.reseller}}</span>
+                  <span style="display: flex; gap: 6px; align-items: center">
+                    <label style="position: absolute; left: -9999px" for="qc-{{r.key}}">{{t.qtyFor}} {{r.title}}</label>
+                    <input id="qc-{{r.key}}" type="number" value="{{r.moq}}" min="0" style="width: 52px; height: 32px; border-radius: 8px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 13px">
+                    <button type="button" aria-label="{{t.addToCart}}" style="width: 32px; height: 32px; border-radius: 8px; border: 0; background: #5B2A86; color: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                    </button>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{isEmpty}}" hint-placeholder-val="{{false}}">
+          <div style="padding: 40px; text-align: center; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; color: #4A4252">{{t.empty}}</div>
+        </sc-if>
+
+        <!-- Pagination -->
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; color: #6E6478">
           <span>{{showingText}}</span>
-          <div style="display: flex; gap: 6px">
-            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: #5B2A86; color: #FFFFFF; font-weight: 600">1</a>
-            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">2</a>
-            <a href="#" style="width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; border: 1px solid #D9CCE6; color: #1E1A24">3</a>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap">
+            <button type="button" onClick="{{prevPage}}" aria-label="{{t.prev}}" style="height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; cursor: pointer">‹</button>
+            <sc-for list="{{pages}}" as="pg" hint-placeholder-count="3">
+              <sc-if value="{{pg.on}}" hint-placeholder-val="{{false}}">
+                <button type="button" aria-current="page" onClick="{{pg.pick}}" style="width: 44px; height: 44px; border-radius: 10px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">{{pg.n}}</button>
+              </sc-if>
+              <sc-if value="{{pg.off}}" hint-placeholder-val="{{true}}">
+                <button type="button" onClick="{{pg.pick}}" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; cursor: pointer">{{pg.n}}</button>
+              </sc-if>
+            </sc-for>
+            <button type="button" onClick="{{nextPage}}" aria-label="{{t.next}}" style="height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; cursor: pointer">›</button>
           </div>
         </div>
 
@@ -191,96 +298,148 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 </div>
 </template>
 <div id="dc-root"></div>
-<script type="text/x-dc" data-dc-script data-props='{"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":1900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":30,"section":"Pricing"},"$preview":{"width":1440,"height":2600}}'>
 class Component extends DCLogic {
   renderVals() {
-    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
+    const d = this.props.resellerDiscount ?? 30;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'id' ? '.' : ',');
     const t = {
-      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      homeAria: L('Beranda reseller', 'Reseller home'),
       searchLabel: L('Cari katalog', 'Search catalog'),
-      searchPlaceholder: L('Cari berdasarkan judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      searchPlaceholder: L('Cari judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      myAccount: L('Akun Saya', 'My Account'),
       cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       mainNavAria: L('Utama', 'Main'),
-      navCatalog: L('Katalog', 'Catalog'),
-      navNew: L('Rilis Baru & Pre-order', 'New Releases & Pre-orders'),
-      navPublishers: L('Penerbit', 'Publishers'),
-      navPartnership: L('Kemitraan', 'Partnership'),
-      navAbout: L('Tentang Kami', 'About'),
-      navContact: L('Kontak', 'Contact'),
-      breadcrumbAria: L('Breadcrumb', 'Breadcrumb'),
-      crumbHome: L('Beranda', 'Home'),
-      pageTitle: L('Buku', 'Books'),
-      pageSub: L('29 judul · harga reseller ditampilkan', '29 titles · reseller prices shown'),
-      sortBy: L('Urutkan', 'Sort by'),
-      sortBest: L('Terlaris', 'Best selling'),
-      showLabel: L('Tampilkan:', 'Show:'),
-      sortNewest: L('Terbaru', 'Newest first'),
-      sortPriceLow: L('Harga: terendah ke tertinggi', 'Price: low to high'),
-      sortPriceHigh: L('Harga: tertinggi ke terendah', 'Price: high to low'),
-      sortTitle: L('Judul A–Z', 'Title A–Z'),
-      filtersAria: L('Filter', 'Filters'),
-      fCategory: L('Kategori', 'Category'),
-      catKids: L('Anak & Remaja', 'Kids & Teens'),
-      catBusiness: L('Bisnis', 'Business'),
-      catScience: L('Sains', 'Science'),
-      catHistory: L('Sejarah', 'History'),
-      catPhilosophy: L('Filsafat', 'Philosophy'),
-      fPublisher: L('Penerbit', 'Publisher'),
-      fAge: L('Usia', 'Age'),
-      ageBaby: L('Bayi 0–2', 'Baby 0–2'),
-      ageToddler: L('Balita 3–5', 'Toddler 3–5'),
-      ageEarly: L('Pembaca awal 6–8', 'Early reader 6–8'),
-      ageMiddle: L('Anak 9–12', 'Middle grade 9–12'),
-      ageYA: L('Remaja 13–17', 'Young adult 13–17'),
-      fAvailability: L('Ketersediaan', 'Availability'),
-      inStock: L('Stok tersedia', 'In stock'),
-      preOrder: L('Pre-order', 'Pre-order'),
-      activeFilters: L('Filter aktif:', 'Active filters:'),
-      clearAll: L('Hapus semua', 'Clear all'),
-      colTitle: L('JUDUL', 'TITLE'),
-      colRetail: L('HARGA ECERAN', 'RETAIL'),
-      colPrice: L('HARGA ANDA', 'YOUR PRICE'),
-      colQty: L('JUMLAH', 'QTY'),
-      minShort: L('min.', 'min.'),
-      qtyFor: L('Jumlah untuk', 'Quantity for'),
-      addToCart: L('Tambah ke keranjang', 'Add to cart'),
-      showing: L('Menampilkan 1–6 dari 29', 'Showing 1–6 of 29'),
+      navCatalog: L('Katalog', 'Catalog'), navPublishers: L('Penerbit', 'Publishers'), navRequest: L('Minta buku', 'Request a book'), navOrders: L('Pesanan & PO', 'Orders & POs'),
+      crumbHome: L('Beranda', 'Home'), pageTitle: L('Buku', 'Books'),
+      sortBy: L('Urutkan', 'Sort by'), perPage: L('Per halaman', 'Per page'), viewLabel: L('Tampilan', 'View'),
+      filtersAria: L('Filter', 'Filters'), fCategory: L('Kategori', 'Category'), allCats: L('Semua kategori', 'All categories'),
+      fPublisher: L('Penerbit', 'Publisher'), fAvailability: L('Ketersediaan', 'Availability'),
+      showLabel: L('Tampilkan', 'Show'), clearAll: L('Hapus semua', 'Clear all'),
+      colTitle: L('JUDUL', 'TITLE'), colAuthor: L('PENULIS', 'AUTHOR'), colPublisher: L('PENERBIT', 'PUBLISHER'), colCategory: L('KATEGORI', 'CATEGORY'),
+      colRetail: L('ECERAN', 'RETAIL'), colPrice: L('HARGA ANDA', 'YOUR PRICE'), colQty: L('JUMLAH', 'QTY'),
+      minShort: L('min.', 'min.'), qtyFor: L('Jumlah untuk', 'Quantity for'), addToCart: L('Tambah ke keranjang', 'Add to cart'),
+      empty: L('Tidak ada judul yang cocok dengan filter ini.', 'No titles match these filters.'),
+      prev: L('Halaman sebelumnya', 'Previous page'), next: L('Halaman berikutnya', 'Next page'),
       reqTitle: L('Tidak menemukan judul yang dicari?', 'Can’t find the title you need?'),
       reqBody: L('Minta ke kami, dan kami carikan langsung dari penerbit.', 'Request it and we’ll source it directly from the publisher.'),
       reqCta: L('Minta buku', 'Request a book')
     };
-    const d = this.props.resellerDiscount ?? 20;
-    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    const inStock = t.inStock;
-    const rows = [
-      { title: 'Dog Man #1', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157479', sold: 23, price: 185000, cover: '#1F3B73', stock: inStock, moq: 3 },
-      { title: 'Dog Man #2: Dogman Unleashed', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157486', sold: 12, price: 185000, cover: '#B0476A', stock: inStock, moq: 3 },
-      { title: 'Dog Man #3: Tale of Two Kitties', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789811157493', sold: 19, price: 185000, cover: '#F2B33D', stock: inStock, moq: 3 },
-      { title: 'Dog Man #10: Mothering Heights', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789814947657', sold: 21, price: 185000, cover: '#3E7A5A', stock: inStock, moq: 3 },
-      { title: 'Dog Man #13: Big Jim Begins', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9789813512672', sold: 9, price: 185000, cover: '#6B4FA0', stock: inStock, moq: 3 },
-      { title: 'Dog Man #14: Big Jim Believes', author: 'Dav Pilkey', publisher: 'Scholastic', isbn: '9781546176183', sold: 43, price: 306000, cover: '#7FB7C9', stock: inStock, moq: 3 }
+    // Sinar Star departments, grouped
+    const GROUPS = [
+      { id: 'fic', label: L('FIKSI', 'FICTION'), cats: [['nov', 'Novel', 'Novels'], ['rom', 'Romance', 'Romance'], ['fan', 'Sci-Fi & Fantasi', 'Sci-Fi & Fantasy'], ['mys', 'Misteri & Thriller', 'Mystery & Thriller'], ['ya', 'Young Adult', 'Young Adult']] },
+      { id: 'non', label: L('NON-FIKSI', 'NON-FICTION'), cats: [['self', 'Pengembangan Diri', 'Self-Improvement'], ['biz', 'Bisnis & Ekonomi', 'Business & Economics'], ['psy', 'Psikologi', 'Psychology'], ['phil', 'Filsafat', 'Philosophy'], ['mem', 'Memoar & Biografi', 'Memoir & Biography'], ['soc', 'Ilmu Sosial', 'Social Sciences'], ['rel', 'Agama & Spiritualitas', 'Religion & Spirituality'], ['health', 'Kesehatan', 'Health & Wellness']] },
+      { id: 'kids', label: L('ANAK', 'CHILDREN'), cats: [['tod', 'Balita', 'Toddler'], ['early', 'Pembaca Awal', 'Early Reader']] },
+      { id: 'comics', label: L('KOMIK', 'COMICS'), cats: [['com', 'Komik & Manga', 'Comics & Manga']] },
+      { id: 'ref', label: L('EDUKASI & REFERENSI', 'EDUCATION & REFERENCE'), cats: [['edu', 'Edukasi', 'Education'], ['dict', 'Kamus', 'Dictionaries'], ['ref', 'Referensi', 'Reference']] }
     ];
+    const catName = {};
+    GROUPS.forEach((g) => g.cats.forEach(([id, idn, en]) => { catName[id] = L(idn, en); }));
+    const PALETTE = ['#5B2A86', '#1F3B73', '#B0476A', '#3E7A5A', '#B07A12', '#2E5F8A', '#9C4F7A', '#6B4FA0', '#C2402F', '#2A1640'];
+    // [title, author, publisher, retail price, department, units sold (Apr), in stock, isbn]
+    const DATA = [["The Let Them Theory","Mel Robbins","Hay House",535000,"self",42,1,"9781401971366"],["Tuesdays With Morrie","Mitch Albom","Random House",149000,"self",104,1,"9780385496490"],["How to Win Friends and Influence People","Dale Carnegie","Simon & Schuster",196000,"self",38,1,"9781439199190"],["Conversations on Love","Natasha Lunn","Penguin",228000,"self",8,0,"9780241448748"],["Atomic Habits","James Clear","Avery",335000,"self",15,1,"9780593189641"],["The Psychology of Money","Morgan Housel","Harriman",335000,"self",5,1,"9780857197689"],["The Art of Spending Money","Morgan Housel","Portfolio",335000,"self",11,1,"9798217048601"],["When Things Don't Go Your Way","Haemin Sunim","PRH",235000,"self",1,1,"9780593513095"],["Love for Imperfect Things","Haemin Sunim","PRH UK",222000,"self",17,1,"9780241331149"],["Things You Can See When You Slow Down","Haemin Sunim","Penguin UK",230000,"self",4,1,"9780241340660"],["Surrounded by Idiots","Thomas Erikson","St. Martin's",250000,"self",6,0,"9781250420466"],["The Subtle Art of Not Giving a F*ck","Mark Manson","Harper",280000,"self",8,0,"9780062457714"],["Four Thousand Weeks","Oliver Burkeman","FSG",280000,"self",5,0,"9780374159122"],["Why Has Nobody Told Me This Before?","Julie Smith","PRH",300000,"self",3,0,"9780241529720"],["The Alchemist","Paulo Coelho","Harper Collins",166000,"nov",33,1,"9780062355300"],["Norwegian Wood","Haruki Murakami","Vintage",144000,"nov",1,0,"9780307744661"],["Kafka on the Shore","Haruki Murakami","Vintage",166000,"nov",3,0,"9780307275264"],["Days at the Morisaki Bookshop","Satoshi Yagisawa","PRH",214000,"nov",3,0,"9780063278677"],["More Days at the Morisaki Bookshop","Satoshi Yagisawa","PRH",214000,"nov",1,0,"9780063278714"],["Before the Coffee Gets Cold","Toshikazu Kawaguchi","Harper Collins",235000,"nov",3,0,"9781335915283"],["The Convenience Store by the Sea","Sonoko Machida","Bloomsbury",214000,"nov",0,0,"9781484710784"],["As Long as the Lemon Trees Grow","Zoulfa Katouh","Bloomsbury UK",177000,"nov",7,1,"9781526648549"],["A Little Life","Hanya Yanagihara","PRH US",232000,"nov",5,0,"9780804172707"],["Crime and Punishment","Fyodor Dostoevsky","Wordsworth",100000,"nov",0,1,"9780486415871"],["Wordsworth: Anna Karenina","Leo Tolstoy","Wordsworth",100000,"nov",1,1,"9781853262715"],["Wordsworth: War and Peace","Leo Tolstoy","Wordsworth",100000,"nov",0,1,"9781853260629"],["Wordsworth: Pride and Prejudice","Jane Austen","Wordsworth",100000,"nov",0,1,"9781853260001"],["Wordsworth: Essential Kafka","Franz Kafka","Wordsworth",100000,"nov",0,1,"9781840227260"],["1984","George Orwell","Signet",185000,"nov",2,0,"9780451524935"],["What You Are Looking For Is In the Library","Michiko Aoyama","PRH UK",216000,"nov",0,0,""],["Babel","R.F. Kuang","HarperCollins",185000,"nov",7,0,"9780063021433"],["Katabasis","R.F. Kuang","HarperVoyager",280000,"nov",0,0,"9780063455245"],["The Poppy War #1","R.F. Kuang","Harper Voyager",185000,"nov",0,0,"9780062662583"],["The Song of Achilles","Madeline Miller","Harper Collins",199000,"nov",9,0,"9780062060624"],["Circe","Madeline Miller","Hachette",157000,"nov",1,0,"9780316556347"],["Normal People","Sally Rooney","Hogarth",282000,"nov",2,0,"9781984822178"],["The Secret of Secrets","Dan Brown","Doubleday",565000,"nov",1,0,"9780385546898"],["Dog Man #1","Dav Pilkey","Scholastic",185000,"early",23,1,"9789811157479"],["Dog Man #2: Dogman Unleashed","Dav Pilkey","Scholastic",185000,"early",12,1,"9789811157486"],["Dog Man #3: Tale of Two Kitties","Dav Pilkey","Scholastic",185000,"early",19,1,"9789811157493"],["Dog Man #4: Dogman and Cat Kid","Dav Pilkey","Scholastic",185000,"early",24,1,"9789814820042"],["Dog Man #5: Lord of the Fleas","Dav Pilkey","Scholastic",185000,"early",17,1,"9789811191008"],["Dog Man #6: Brawl of the Wild","Dav Pilkey","Scholastic",185000,"early",13,1,"9789814857987"],["Dog Man #7: For Whom the Ball Rolls","Dav Pilkey","Scholastic",185000,"early",20,1,"9789814885775"],["Dog Man #9: Grime and Punishment","Dav Pilkey","Scholastic",185000,"early",15,0,""],["Dog Man #10: Mothering Heights","Dav Pilkey","Scholastic",185000,"early",21,1,"9789814947657"],["Dog Man #11: Twenty Thousand Fleas","Dav Pilkey","Scholastic",185000,"early",12,0,""],["Dog Man #12: The Scarlet Shedder","Dav Pilkey","Scholastic",185000,"early",14,0,""],["Dog Man #13: Big Jim Begins","Dav Pilkey","Scholastic",185000,"early",9,1,"9789813512672"],["Dog Man #14: Big Jim Believes","Dav Pilkey","Scholastic",306000,"early",43,1,"9781546176183"],["Cat Kid Comic Club #1","Dav Pilkey","Scholastic MY",182000,"early",10,0,""],["Diary of a Wimpy Kid #1","Jeff Kinney","Hachette",135000,"early",7,0,"9780810993136"],["Diary of a Wimpy Kid #12: The Getaway","Jeff Kinney","Hachette",135000,"early",3,0,""],["Diary of a Wimpy Kid #20: Partypooper","Jeff Kinney","Hachette",266000,"early",6,0,""],["Haikyu!! (3-in-1) Vol. 6","Haruichi Furudate","VIZ Media",302000,"com",0,1,""],["Gachiakuta 8","Kei Urana","Kodansha",232000,"com",0,1,""],["Witch Hat Atelier 5","Kamome Shirahama","Kodansha",198000,"com",1,0,""],["Bluey: I Love My Family","Bluey","Ladybird",150000,"tod",3,0,""],["Bluey: Beep Beep! Sticker Activity","Bluey","PRH UK",69000,"tod",15,0,""],["Bluey: The Creek","Bluey","Ladybird",136000,"tod",0,0,""],["Peppa Pig: Mermaid","Peppa","Ladybird",156000,"tod",0,0,""],["Peppa Goes to the Hospital","Peppa","Ladybird",116000,"tod",0,1,""],["5 Minute Tales for Bedtime: Kindness Stories","Igloo Books","Igloo",85000,"tod",11,0,""],["7 Days of Stories Disney: Bedtime Stories","Disney","Autumn",198000,"tod",15,0,""],["Healthy Habits: Koala's Guide to Sleep","Franklin Watts","Watts",89000,"tod",0,1,""],["Push Pull Slide: Busy Trains","Campbell Books","Campbell",99000,"tod",19,0,""],["Push Pull Slide: Busy Airport","Campbell Books","Campbell",99000,"tod",19,0,""],["Push Pull Slide: Busy Park","Campbell Books","Campbell",99000,"tod",19,0,""],["My Favourite: ABC","Melon","Melon",49000,"tod",21,1,""],["2001 Sticker Book: Dinosaur Danger","Laughing Lobster","Laughing Lobster",135000,"tod",15,1,""],["American Born Chinese","Gene Luen Yang","Macmillan",260000,"ya",17,1,""],["Five Nights at Freddy's #1: Into the Pit","Scott Cawthon","Scholastic",190000,"ya",7,1,""],["It Starts With Us","Colleen Hoover","Simon & Schuster",272000,"rom",0,1,"9781668001226"],["The Housemaid #1","Freida McFadden","Poisoned Pen",230000,"mys",3,0,"9781538742570"],["The Silent Patient","Alex Michaelides","Celadon",190000,"mys",6,0,"9781250301697"],["Dune","Frank Herbert","Ace",196000,"fan",2,0,"9780441172719"],["Fahrenheit 451","Ray Bradbury","Simon & Schuster",166000,"fan",2,0,"9781451673319"],["When Breath Becomes Air","Paul Kalanithi","Random House",192000,"mem",6,0,"9780812988406"],["For One More Day","Mitch Albom","Hachette",157000,"mem",2,0,""],["Five People You Meet in Heaven","Mitch Albom","Hachette",166000,"mem",2,0,""],["Daily Stoic","Ryan Holiday","Portfolio",222000,"phil",12,0,"9780735211735"],["The Body Keeps the Score","Bessel van der Kolk","Penguin",280000,"psy",8,0,"9780670785933"],["The Anxious Generation","Jonathan Haidt","Penguin",280000,"psy",0,0,"9780593655030"],["The Book You Wish Your Parents Had Read","Philippa Perry","PRH",236000,"psy",0,0,"9780241250983"],["The Art of Thinking Clearly","Rolf Dobelli","Harper",168000,"psy",14,0,""],["Noise","Daniel Kahneman","Little Brown",188000,"psy",7,0,""],["The Intelligent Investor","Benjamin Graham","Harper",445000,"biz",9,1,"9780063423527"],["Sapiens","Yuval Noah Harari","Harper",270000,"biz",0,0,"9780099590088"],["Why Nations Fail","Acemoglu & Robinson","Crown",298000,"biz",6,0,"9780307719225"],["Originals","Adam Grant","Viking",195000,"biz",5,0,"9780525429562"],["Freakonomics","Levitt & Dubner","Harper Perennial",155000,"biz",4,0,""],["How Democracies Die","Levitsky & Ziblatt","Crown",166000,"biz",4,0,""],["The Art of War (black cover)","Sun Tzu","PRH",155000,"biz",8,1,""],["Indonesia, Etc.","Elizabeth Pisani","Norton",338000,"soc",7,0,""],["Oxford Learner's Pocket Dictionary","Oxford","Oxford",179000,"dict",0,0,"9780194398725"],["TOEFL iBT Premium (Kaplan)","Kaplan","Kaplan",790000,"ref",0,0,"9781506263656"],["MYP by Concept 4&5: Chemistry","Hodder","Hodder Education",995000,"edu",0,1,""],["MYP by Concept 4&5: Biology","Hodder","Hodder Education",995000,"edu",0,1,""],["MYP by Concept 4&5: Physics","Hodder","Hodder Education",995000,"edu",0,1,""],["Collins International Primary Science Book 3","Collins","Harper Collins UK",185000,"edu",0,1,""],["Wordsworth: Jane Eyre","Charlotte Brontë","Wordsworth",100000,"nov",0,0,"9781853260209"],["Wordsworth: Emma","Jane Austen","Wordsworth",100000,"nov",6,0,"9781853260285"],["Wordsworth: Great Gatsby","F. Scott Fitzgerald","Wordsworth",100000,"nov",0,0,"9781853260414"],["The Goldfinch","Donna Tartt","Little Brown",216000,"nov",4,0,""]];
+    const books = DATA.map((b, i) => ({ key: i, title: b[0], author: b[1], publisher: b[2], price: b[3], cat: b[4], sold: b[5], inStock: !!b[6], isbn: b[7] }));
+    const bestRank = {};
+    books.slice().sort((a, b) => b.sold - a.sold).slice(0, 10).forEach((b, i) => { bestRank[b.key] = i + 1; });
+
+    let initCat = null;
+    if (st.cat === undefined && typeof location !== 'undefined') {
+      const m = /[?&]cat=([a-z]+)/.exec(location.search || '');
+      if (m) initCat = m[1];
+    }
+    const cat = st.cat !== undefined ? st.cat : initCat;
+    const pub = st.pub || null;
+    const avail = st.avail || 'all';
+    const view = st.view || 'list';
+    const tab = st.tab || 'all';
+    const sort = st.sort || 'best';
+    const per = st.per || 30;
+    const pageNo = st.page || 1;
+    const set = (patch) => this.setState(Object.assign({ page: 1 }, patch));
+
+    const matchCat = (b) => !cat || b.cat === cat || (GROUPS.find((g) => g.id === cat) || { cats: [] }).cats.some((c) => c[0] === b.cat);
+    const matchPub = (b) => !pub || b.publisher === pub;
+    const matchAvail = (b) => avail === 'all' || (avail === 'in' ? b.inStock : !b.inStock);
+    const matchTab = (b) => tab === 'all' || bestRank[b.key];
+
+    let list = books.filter((b) => matchCat(b) && matchPub(b) && matchAvail(b) && matchTab(b));
+    const sorters = {
+      best: (a, b) => b.sold - a.sold,
+      title: (a, b) => a.title.localeCompare(b.title),
+      low: (a, b) => a.price - b.price,
+      high: (a, b) => b.price - a.price
+    };
+    list = list.slice().sort(sorters[sort]);
+    const total = list.length;
+    const pagesCount = Math.max(1, Math.ceil(total / per));
+    const cur = Math.min(pageNo, pagesCount);
+    const from = (cur - 1) * per;
+    const page = list.slice(from, from + per).map((b) => ({
+      key: b.key, title: b.title, author: b.author, publisher: b.publisher, moq: 3,
+      cover: PALETTE[b.key % PALETTE.length], catLabel: catName[b.cat] || '',
+      isbnLabel: b.isbn ? 'ISBN ' + b.isbn + ' · ' : '',
+      stock: b.inStock ? L('Stok tersedia', 'In stock') : L('Bisa dipesan', 'On request'),
+      isBest: !!bestRank[b.key], badge: L('TERLARIS #', 'BEST SELLER #') + bestRank[b.key],
+      retail: fmt(b.price), reseller: fmt(b.price * (1 - d / 100))
+    }));
+
+    const countIn = (pred) => books.filter(pred).length;
+    const groups = GROUPS.map((g) => ({
+      label: g.label,
+      cats: g.cats.map(([id]) => ({ id, label: catName[id], count: countIn((b) => b.cat === id) }))
+        .filter((c) => c.count > 0)
+        .map((c) => ({ label: c.label, count: c.count, on: cat === c.id, off: cat !== c.id, pick: () => set({ cat: c.id }) }))
+    })).filter((g) => g.cats.length);
+
+    const pubCounts = {};
+    books.forEach((b) => { if (b.publisher) pubCounts[b.publisher] = (pubCounts[b.publisher] || 0) + 1; });
+    const pubs = Object.keys(pubCounts).sort((a, b) => pubCounts[b] - pubCounts[a]).slice(0, 10)
+      .map((p) => ({ label: p, count: pubCounts[p], on: pub === p, off: pub !== p, pick: () => set({ pub: pub === p ? null : p }) }));
+
+    const avails = [['all', L('Semua', 'All'), books.length], ['in', L('Stok tersedia', 'In stock'), countIn((b) => b.inStock)], ['req', L('Bisa dipesan', 'On request'), countIn((b) => !b.inStock)]]
+      .map(([id, label, count]) => ({ label, count, on: avail === id, off: avail !== id, pick: () => set({ avail: id }) }));
+
+    const tabs = [['all', L('Semua judul', 'All titles')], ['best', L('Terlaris', 'Best sellers')]]
+      .map(([id, label]) => ({ label, on: tab === id, off: tab !== id, pick: () => set({ tab: id }) }));
+
+    const chips = [];
+    if (cat) chips.push({ label: catName[cat] || cat, aria: L('Hapus filter kategori', 'Remove category filter'), clear: () => set({ cat: null }) });
+    if (pub) chips.push({ label: pub, aria: L('Hapus filter penerbit', 'Remove publisher filter'), clear: () => set({ pub: null }) });
+    if (avail !== 'all') chips.push({ label: avail === 'in' ? L('Stok tersedia', 'In stock') : L('Bisa dipesan', 'On request'), aria: L('Hapus filter ketersediaan', 'Remove availability filter'), clear: () => set({ avail: 'all' }) });
+
+    const sortOpts = [['best', L('Terlaris', 'Best selling')], ['title', L('Judul A–Z', 'Title A–Z')], ['low', L('Harga terendah', 'Price: low to high')], ['high', L('Harga tertinggi', 'Price: high to low')]]
+      .map(([id, label]) => ({ id, label, sel: sort === id }));
+    const perOpts = [30, 50, 100].map((n) => ({ id: String(n), label: n + ' ' + L('judul', 'titles'), sel: per === n }));
+    const ICONS = { list: 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01', grid: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z', compact: 'M3 5h18M3 9h18M3 13h18M3 17h18M3 21h18' };
+    const viewOpts = [['list', L('Tampilan daftar', 'List view')], ['grid', L('Tampilan grid', 'Grid view')], ['compact', L('Tampilan ringkas', 'Compact view')]]
+      .map(([id, label]) => ({ label, icon: ICONS[id], on: view === id, off: view !== id, pick: () => this.setState({ view: id }) }));
+
+    const pages = [];
+    for (let n = 1; n <= pagesCount; n++) pages.push({ n, on: n === cur, off: n !== cur, pick: () => this.setState({ page: n }) });
+
+    const heading = cat ? catName[cat] : t.pageTitle;
+    const showingText = total
+      ? L('Menampilkan ' + (from + 1) + '–' + Math.min(from + per, total) + ' dari ' + total + ' judul', 'Showing ' + (from + 1) + '–' + Math.min(from + per, total) + ' of ' + total + ' titles')
+      : '';
+
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    const view = (this.state && this.state.view) || 'all';
-    const ranked = rows.slice().sort((a, b) => b.sold - a.sold);
-    const rankOf = (r) => ranked.indexOf(r) + 1;
-    const BEST_N = 3;
-    let list = rows.map((r) => {
-      const rank = rankOf(r);
-      return { ...r, rank, isBest: rank <= BEST_N, badge: L('TERLARIS #', 'BEST SELLER #') + rank, retail: fmt(r.price), reseller: fmt(r.price * (1 - d / 100)) };
-    });
-    if (view === 'best') list = list.filter((r) => r.isBest).sort((a, b) => a.rank - b.rank);
-    const views = [
-      { id: 'all', label: L('Semua judul', 'All titles') },
-      { id: 'best', label: L('Terlaris', 'Best sellers') }
-    ].map((v) => ({ label: v.label, on: view === v.id, off: view !== v.id, pick: () => this.setState({ view: v.id }) }));
-    const showingText = view === 'best'
-      ? L('Menampilkan ' + list.length + ' judul terlaris (penjualan 3 bulan terakhir)', 'Showing the ' + list.length + ' best-selling titles (last 3 months of sales)')
-      : t.showing;
-    return { t, langs, views, showingText, rows: list };
+    return {
+      t, langs, groups, pubs, avails, tabs, chips, sortOpts, perOpts, viewOpts, pages, page,
+      heading, showingText, crumbSep: cat ? '/' : '', crumbCat: cat ? catName[cat] : '',
+      countLabel: L(total + ' judul · harga reseller (diskon ' + d + '%) ditampilkan', total + ' titles · reseller prices (' + d + '% off) shown'),
+      totalCount: books.length, allCatOn: !cat, allCatOff: !!cat, pickAllCat: () => set({ cat: null }),
+      hasChips: chips.length > 0, clearAll: () => set({ cat: null, pub: null, avail: 'all', tab: 'all' }),
+      isList: view === 'list' && total > 0, isGrid: view === 'grid' && total > 0, isCompact: view === 'compact' && total > 0, isEmpty: total === 0,
+      onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
+      onPerPage: (e) => this.setState({ per: Number(e.target.value), page: 1 }),
+      prevPage: () => this.setState({ page: Math.max(1, cur - 1) }),
+      nextPage: () => this.setState({ page: Math.min(pagesCount, cur + 1) })
+    };
   }
 }
 </script>
