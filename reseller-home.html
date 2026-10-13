@@ -72,14 +72,13 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </a>
       </div>
     </div>
-    <nav aria-label="{{t.mainNavAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
-      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
-      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
-      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
-      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
-      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
-      <a href="index.html#behind-the-book" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNews}}</a>
-      <a href="about.html#faq" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
     </nav>
   </header>
 
@@ -250,6 +249,7 @@ class Component extends DCLogic {
     const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
     const t = {
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
       shipping: L('Harga grosir khusus reseller · diskon mulai 20% untuk pembelian Rp 1.000.000', 'Wholesale prices for resellers · from 20% off on purchases of Rp 1,000,000'),
       help: L('Bantuan & FAQ', 'Help & FAQ'),
       becomeReseller: L('Daftar jadi reseller', 'Become a reseller'),

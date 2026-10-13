@@ -50,13 +50,13 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         {{t.cartLabel}}
       </a>
     </div>
-    <nav aria-label="{{t.navAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 600">
-      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.navCatalog}}</a>
-      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navNew}}</a>
-      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPublishers}}</a>
-      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navPartnership}}</a>
-      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.navAbout}}</a>
-      <a href="about.html#faq" style="color: #1E1A24; padding: 12px 0 14px">{{t.navContact}}</a>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #5B2A86; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
     </nav>
   </header>
 
@@ -202,7 +202,7 @@ class Component extends DCLogic {
     const price = 183308;
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const t = {
-      myAccountBtn: L('Akun Saya', 'My Account'),
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
       homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
       searchLabel: L('Cari katalog', 'Search catalog'),
       searchPh: L('Cari judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
