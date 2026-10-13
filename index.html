@@ -78,25 +78,33 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </nav>
   </header>
 
-  <!-- Order-now banner -->
+  <!-- Become-a-reseller banner -->
   <section style="background: #6B2F9A; color: #FFFFFF; overflow: hidden">
     <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between">
-      <!-- phone mockup -->
-      <div style="flex: 0 0 200px; height: 300px; border-radius: 32px; background: #1E1A24; padding: 10px; box-sizing: border-box; transform: rotate(-8deg); box-shadow: 0 30px 60px rgba(0,0,0,0.3)">
-        <div style="height: 100%; border-radius: 24px; background: #ECE5DD; padding: 16px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
-          <div style="align-self: flex-start; max-width: 80%; background: #FFFFFF; border-radius: 10px; padding: 8px 10px; font-size: 10px; color: #1E1A24">{{t.chat1}}</div>
-          <div style="align-self: flex-end; max-width: 80%; background: #D9FDD3; border-radius: 10px; padding: 8px 10px; font-size: 10px; color: #1E1A24">{{t.chat2}}</div>
-          <div style="align-self: flex-start; max-width: 80%; background: #FFFFFF; border-radius: 10px; padding: 8px 10px; font-size: 10px; color: #1E1A24">{{t.chat3}}</div>
-          <div style="align-self: flex-end; max-width: 80%; background: #D9FDD3; border-radius: 10px; padding: 8px 10px; font-size: 10px; color: #1E1A24">{{t.chat4}}</div>
-        </div>
+      <!-- how it works card -->
+      <div style="flex: 0 1 260px; background: #FFFFFF; color: #2A1640; border-radius: 24px; padding: 24px; box-sizing: border-box; box-shadow: 0 30px 60px rgba(0,0,0,0.25); display: flex; flex-direction: column; gap: 16px; transform: rotate(-3deg)">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #5B2A86">{{t.stepsTitle}}</span>
+        <sc-for list="{{heroSteps}}" as="st" hint-placeholder-count="3">
+          <div style="display: flex; gap: 12px; align-items: flex-start">
+            <span style="flex: none; width: 30px; height: 30px; border-radius: 50%; background: #F2B33D; color: #2A1640; display: grid; place-items: center; font-weight: 800; font-size: 14px">{{st.n}}</span>
+            <span style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-weight: 800; font-size: 15px">{{st.title}}</span>
+              <span style="font-size: 13px; line-height: 1.45; color: #4A4252">{{st.body}}</span>
+            </span>
+          </div>
+        </sc-for>
       </div>
       <div style="flex: 1 1 420px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px">
         <span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #F2B33D">{{t.bannerEyebrow}}</span>
         <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 72px; line-height: 1; letter-spacing: -1px">{{t.bannerTitle}}</h1>
         <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #E6D8F2; max-width: 440px">{{t.bannerBody}}</p>
-        <a href="#" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; color: #5B2A86; font-weight: 700; font-size: 17px">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path></svg>
-          {{t.bannerCta}}
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center">
+          <a href="become-a-reseller.html" style="display: inline-flex; align-items: center; height: 56px; padding: 0 30px; border-radius: 999px; background: #F2B33D; color: #2A1640; font-weight: 800; font-size: 17px">{{t.bannerCta}}</a>
+          <a href="account.html" style="display: inline-flex; align-items: center; height: 56px; padding: 0 26px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.5); color: #FFFFFF; font-weight: 700; font-size: 16px">{{t.bannerLogin}}</a>
+        </div>
+        <a href="https://wa.me/" style="display: inline-flex; align-items: center; gap: 8px; color: #E6D8F2; font-size: 14px; font-weight: 600">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path></svg>
+          {{t.bannerWa}}
         </a>
       </div>
       <div style="flex: 0 0 200px; height: 290px; border-radius: 4px 12px 12px 4px; background: #E9EEF2; box-shadow: 0 30px 60px rgba(0,0,0,0.3); padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(4deg); position: relative; overflow: hidden">
@@ -341,10 +349,13 @@ class Component extends DCLogic {
       navReseller: L('Untuk Reseller ▾', 'For Reseller ▾'),
       navAbout: L('Tentang Kami ▾', 'About Us ▾'),
       navContact: L('Hubungi Kami', 'Contact Us'),
-      bannerEyebrow: L('PESAN LEWAT WHATSAPP', 'ORDER VIA WHATSAPP'),
-      bannerTitle: L('Pesan sekarang', 'Order now'),
-      bannerBody: L('Chat dengan tim kami untuk cek stok, minta penawaran harga, atau pesan dalam jumlah besar hanya dalam hitungan menit.', 'Chat with our team to check stock, get a quote, or place a bulk order in minutes.'),
-      bannerCta: L('Chat dengan kami', 'Chat with us'),
+      bannerEyebrow: L('PORTAL RESELLER', 'RESELLER PORTAL'),
+      bannerTitle: L('Jadi reseller kami', 'Become our reseller'),
+      bannerBody: L('Buku impor berbahasa Inggris langsung dari penerbit AS dan Inggris. Harga grosir mulai 20%, pesan dengan purchase order.', 'English-language books imported directly from US and UK publishers. Wholesale prices from 20% off, order by purchase order.'),
+      bannerCta: L('Daftar jadi reseller', 'Become a reseller'),
+      bannerLogin: L('Sudah reseller? Masuk', 'Already a reseller? Log in'),
+      bannerWa: L('Ada pertanyaan? Chat lewat WhatsApp', 'Questions? Chat on WhatsApp'),
+      stepsTitle: L('CARA MULAI', 'HOW TO START'),
       chat1: 'Halo, saya mau order buku ini',
       chat2: 'Siap kak, stok tersedia!',
       chat3: 'Kirim ke Surabaya ya',
@@ -482,7 +493,7 @@ class Component extends DCLogic {
       { url: 'https://www.instagram.com/sinarstarbooks/p/DeDrc7wg5OE/', reel: false, bg: '#1F3B73', date: L('3 Okt 2026', 'Oct 3, 2026'), caption: 'Pokémon grand prize alert!' }
     ];
     const nlDone = !!(this.state && this.state.nlDone);
-    return { t, tabs, books: lists[this.state.tab].map((b) => Object.assign({}, b, coverOf(b.title))), heroCover: coverOf('The Girl Who Was Taken'), langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
+    return { t, tabs, books: lists[this.state.tab].map((b) => Object.assign({}, b, coverOf(b.title))), heroCover: coverOf('The Girl Who Was Taken'), heroSteps: [{ n: '1', title: L('Daftar', 'Apply'), body: L('Isi data usaha dan dokumen.', 'Fill in your business details and documents.') }, { n: '2', title: L('Disetujui', 'Get approved'), body: L('Tim kami meninjau dan mengaktifkan akun.', 'Our team reviews and activates your account.') }, { n: '3', title: L('Pesan dengan PO', 'Order by PO'), body: L('Lihat harga grosir dan kirim purchase order.', 'See wholesale prices and send a purchase order.') }], langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
   }
 }
 </script>
