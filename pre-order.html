@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Pre-order</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <a href="account.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px; white-space: nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>{{t.myAccountBtn}}</a>
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="catalog.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.catalog}}</a>
+        <a href="checkout.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
+      </div>
+    </div>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px; display: flex; flex-direction: column; gap: 28px">
+
+    <!-- Intro -->
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #5B2A86">{{t.eyebrow}}</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; line-height: 1.1; color: #2A1640">{{t.title}}</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A4252">{{t.sub}}</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap">
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 14px 20px; display: flex; flex-direction: column; gap: 2px; min-width: 150px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6E6478">{{t.kOpen}}</span><span style="font-family: Fraunces, Georgia, serif; font-size: 28px; font-weight: 600; color: #2A1640">{{kpiOpen}}</span></div>
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; padding: 14px 20px; display: flex; flex-direction: column; gap: 2px; min-width: 150px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6E6478">{{t.kMine}}</span><span style="font-family: Fraunces, Georgia, serif; font-size: 28px; font-weight: 600; color: #2A1640">{{kpiMine}}</span></div>
+        <div style="background: #2A1640; color: #FFFFFF; border-radius: 16px; padding: 14px 20px; display: flex; flex-direction: column; gap: 2px; min-width: 150px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #B8A6CC">{{t.kResellers}}</span><span style="font-family: Fraunces, Georgia, serif; font-size: 28px; font-weight: 600; color: #F2B33D">{{kpiResellers}}</span></div>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <section style="background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <div style="display: flex; gap: 14px; align-items: flex-start">
+          <span style="flex: none; width: 30px; height: 30px; border-radius: 50%; background: #F2B33D; color: #2A1640; display: grid; place-items: center; font-weight: 800; font-size: 14px">{{s.n}}</span>
+          <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 15px">{{s.title}}</span><span style="font-size: 14px; line-height: 1.5; color: #D4C6E2">{{s.body}}</span></span>
+        </div>
+      </sc-for>
+    </section>
+
+    <!-- Filters -->
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+        <sc-if value="{{f.on}}" hint-placeholder-val="{{true}}">
+          <button type="button" aria-pressed="true" onClick="{{f.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{f.label}}</button>
+        </sc-if>
+        <sc-if value="{{f.off}}" hint-placeholder-val="{{false}}">
+          <button type="button" aria-pressed="false" onClick="{{f.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{f.label}}</button>
+        </sc-if>
+      </sc-for>
+      <span style="margin-left: auto; font-size: 14px; color: #6E6478">{{t.sortNote}}</span>
+    </div>
+
+    <!-- Campaign cards -->
+    <sc-if value="{{confirmed}}" hint-placeholder-val="{{false}}">
+      <div role="status" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px; border-radius: 16px; background: #DDEBDD; color: #24523A; font-weight: 600; font-size: 15px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        <span>{{confirmMsg}}</span>
+      </div>
+    </sc-if>
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <sc-for list="{{campaigns}}" as="c" hint-placeholder-count="5">
+        <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 22px 24px; display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center">
+          <div style="width: 84px; height: 118px; border-radius: 3px 8px 8px 3px; background: {{c.cover}}; flex: none; position: relative; overflow: hidden; box-shadow: 0 6px 16px rgba(42,22,64,.15)"><sc-if value="{{c.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{c.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; padding: 5px 10px; border-radius: 999px; background: {{c.chipBg}}; color: {{c.chipInk}}">{{c.status}}</span>
+              <span style="font-size: 13px; color: #6E6478">{{c.publisher}} · {{c.format}}</span>
+            </div>
+            <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640; line-height: 1.2">{{c.title}}</span>
+            <span style="font-size: 14px; color: #4A4252">{{c.author}}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #6E6478; margin-top: 4px">
+              <span>{{t.release}} <strong style="color: #1E1A24">{{c.release}}</strong></span>
+              <span>{{t.cutoff}} <strong style="color: #B0476A">{{c.cutoff}}</strong></span>
+              <span>{{t.eta}} <strong style="color: #1E1A24">{{c.eta}}</strong></span>
+            </div>
+          </div>
+          <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; justify-content: space-between; font-size: 13px; color: #4A4252"><span>{{t.committed}}</span><span><strong style="color: #2A1640">{{c.committed}}</strong> / {{c.target}} {{t.copies}}</span></div>
+            <div style="height: 10px; border-radius: 999px; background: #F1EBF6; overflow: hidden"><div style="height: 100%; width: {{c.pct}}; background: {{c.barColor}}; border-radius: 999px"></div></div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px; color: #6E6478"><span>{{c.resellers}} {{t.resellersIn}}</span><span>{{c.pctLabel}}</span></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #4A4252; margin-top: 2px">
+              <span>{{t.retail}} <s style="color: #6E6478">{{c.retail}}</s></span>
+              <span>{{t.yourPrice}} <strong style="color: #2A1640; font-size: 15px">{{c.price}}</strong> <span style="color: #5B2A86; font-weight: 700">{{c.disc}}</span></span>
+              <span>{{t.moq}} <strong style="color: #1E1A24">{{c.moq}}</strong></span>
+            </div>
+          </div>
+          <sc-if value="{{c.open}}" hint-placeholder-val="{{true}}">
+            <div style="flex: 0 1 230px; display: flex; flex-direction: column; gap: 8px">
+              <sc-if value="{{c.mine}}" hint-placeholder-val="{{false}}">
+                <span style="font-size: 13px; font-weight: 700; color: #24523A; background: #DDEBDD; padding: 6px 10px; border-radius: 8px">{{t.youCommitted}} {{c.myQty}} {{t.copies}}</span>
+              </sc-if>
+              <div style="display: flex; gap: 8px; align-items: center">
+                <label for="pq-{{$index}}" style="font-size: 13px; color: #6E6478">{{t.qty}}</label>
+                <input id="pq-{{$index}}" type="number" min="{{c.moqNum}}" step="1" value="{{c.suggest}}" style="width: 76px; height: 44px; border-radius: 10px; border: 1px solid #D9CCE6; text-align: center; font: inherit; font-size: 15px">
+                <button type="button" onClick="{{c.join}}" style="flex: 1; height: 44px; border-radius: 12px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap">{{c.cta}}</button>
+              </div>
+              <span style="font-size: 12px; color: #6E6478; line-height: 1.4">{{t.depositNote}}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{c.closed}}" hint-placeholder-val="{{false}}">
+            <div style="flex: 0 1 230px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #4A4252">
+              <span style="font-weight: 700; color: #2A1640">{{c.closedTitle}}</span>
+              <span style="line-height: 1.5">{{c.closedBody}}</span>
+            </div>
+          </sc-if>
+        </article>
+      </sc-for>
+    </div>
+
+    <!-- My pre-orders -->
+    <section id="mine" style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline">
+        <h2 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.mineTitle}}</h2>
+        <span style="font-size: 14px; color: #6E6478">{{t.mineNote}}</span>
+      </div>
+      <div style="overflow-x: auto">
+        <div style="min-width: 720px">
+          <div style="display: grid; grid-template-columns: minmax(0, 2.2fr) 70px 130px 150px 170px minmax(0, 1.4fr); gap: 16px; padding: 10px 0; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
+            <span>{{t.colTitle}}</span><span>{{t.colQty}}</span><span>{{t.colValue}}</span><span>{{t.colDeposit}}</span><span>{{t.colStatus}}</span><span>{{t.colNext}}</span>
+          </div>
+          <sc-for list="{{mine}}" as="m" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: minmax(0, 2.2fr) 70px 130px 150px 170px minmax(0, 1.4fr); gap: 16px; padding: 14px 0; font-size: 15px; border-bottom: 1px solid #F3EFF6; align-items: center">
+              <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-weight: 600">{{m.title}}</span><span style="font-size: 13px; color: #6E6478">{{m.meta}}</span></span>
+              <span>{{m.qty}}</span>
+              <span>{{m.value}}</span>
+              <span style="font-size: 14px; color: #4A4252">{{m.deposit}}</span>
+              <span style="justify-self: start; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; padding: 6px 10px; border-radius: 999px; background: {{m.chipBg}}; color: {{m.chipInk}}">{{m.status}}</span>
+              <span style="font-size: 14px; color: #4A4252">{{m.next}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- Request a campaign -->
+    <a href="request-a-book.html" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px; border-radius: 20px; background: #F1EBF6; color: #2A1640">
+      <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600">{{t.suggestTitle}}</span><span style="font-size: 15px; color: #4A4252">{{t.suggestBody}}</span></span>
+      <span style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 14px">{{t.suggestCta}}</span>
+    </a>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":25,"section":"Pricing"},"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const COVERS = {"1984": "assets/covers/1984.jpg", "alittlelife": "assets/covers/a-little-life.jpg", "americanbornchinese": "assets/covers/american-born-chinese.jpg", "aslongasthelemontreesgrow": "assets/covers/as-long-as-the-lemon-trees-grow.jpg", "atomichabits": "assets/covers/atomic-habits.jpg", "babel": "assets/covers/babel.jpg", "beachread": "assets/covers/beach-read.jpg", "beforethecoffeegetscold": "assets/covers/before-the-coffee-gets-cold.jpg", "blueyilovemyfamily": "assets/covers/bluey-i-love-my-family.jpg", "blueythecreek": "assets/covers/bluey-the-creek.jpg", "circe": "assets/covers/circe.jpg", "collinsinternationalprimarysciencebook3": "assets/covers/collins-international-primary-science-book-3.jpg", "conversationsonlove": "assets/covers/conversations-on-love.jpg", "crimeandpunishment": "assets/covers/crime-and-punishment.jpg", "dailystoic": "assets/covers/daily-stoic.jpg", "daysatthemorisakibookshop": "assets/covers/days-at-the-morisaki-bookshop.jpg", "diaryofawimpykid1": "assets/covers/diary-of-a-wimpy-kid-1.jpg", "diaryofawimpykid12thegetaway": "assets/covers/diary-of-a-wimpy-kid-12-the-getaway.jpg", "dogman1": "assets/covers/dog-man-1.jpg", "dogman10motheringheights": "assets/covers/dog-man-10-mothering-heights.jpg", "dogman11twentythousandfleas": "assets/covers/dog-man-11-twenty-thousand-fleas.jpg", "dogman12thescarletshedder": "assets/covers/dog-man-12-the-scarlet-shedder.jpg", "dogman13bigjimbegins": "assets/covers/dog-man-13-big-jim-begins.jpg", "dogman14bigjimbelieves": "assets/covers/dog-man-14-big-jim-believes.jpg", "dogman3taleoftwokitties": "assets/covers/dog-man-3-tale-of-two-kitties.jpg", "dogman5lordofthefleas": "assets/covers/dog-man-5-lord-of-the-fleas.jpg", "dogman6brawlofthewild": "assets/covers/dog-man-6-brawl-of-the-wild.jpg", "dogman7forwhomtheballrolls": "assets/covers/dog-man-7-for-whom-the-ball-rolls.jpg", "dogman9grimeandpunishment": "assets/covers/dog-man-9-grime-and-punishment.jpg", "dune": "assets/covers/dune.jpg", "enlightenmentnow": "assets/covers/enlightenment-now.jpg", "factfulness": "assets/covers/factfulness.jpg", "fahrenheit451": "assets/covers/fahrenheit-451.jpg", "fivenightsatfreddys1intothepit": "assets/covers/five-nights-at-freddy-s-1-into-the-pit.jpg", "fivepeopleyoumeetinheaven": "assets/covers/five-people-you-meet-in-heaven.jpg", "foronemoreday": "assets/covers/for-one-more-day.jpg", "fourthousandweeks": "assets/covers/four-thousand-weeks.jpg", "freakonomics": "assets/covers/freakonomics.jpg", "goodmaterial": "assets/covers/good-material.jpg", "howdemocraciesdie": "assets/covers/how-democracies-die.jpg", "howtowinfriendsandinfluencepeople": "assets/covers/how-to-win-friends-and-influence-people.jpg", "indonesiaetc": "assets/covers/indonesia-etc.jpg", "itstartswithus": "assets/covers/it-starts-with-us.jpg", "kafkaontheshore": "assets/covers/kafka-on-the-shore.jpg", "katabasis": "assets/covers/katabasis.jpg", "loveforimperfectthings": "assets/covers/love-for-imperfect-things.jpg", "moredaysatthemorisakibookshop": "assets/covers/more-days-at-the-morisaki-bookshop.jpg", "nineteeneightyfour": "assets/covers/nineteen-eighty-four.jpg", "noise": "assets/covers/noise.jpg", "normalpeople": "assets/covers/normal-people.jpg", "norwegianwood": "assets/covers/norwegian-wood.jpg", "originals": "assets/covers/originals.jpg", "oxfordlearnerspocketdictionary": "assets/covers/oxford-learner-s-pocket-dictionary.jpg", "sapiens": "assets/covers/sapiens.jpg", "surroundedbyidiots": "assets/covers/surrounded-by-idiots.jpg", "the7habitsofhighlyeffectivepeople": "assets/covers/the-7-habits-of-highly-effective-people.jpg", "thealchemist": "assets/covers/the-alchemist.jpg", "theanxiousgeneration": "assets/covers/the-anxious-generation.jpg", "theartofspendingmoney": "assets/covers/the-art-of-spending-money.jpg", "theartofthinkingclearly": "assets/covers/the-art-of-thinking-clearly.jpg", "theartofwarblackcover": "assets/covers/the-art-of-war-black-cover.jpg", "thebodykeepsthescore": "assets/covers/the-body-keeps-the-score.jpg", "thebookyouwishyourparentshadread": "assets/covers/the-book-you-wish-your-parents-had-read.jpg", "theconveniencestorebythesea": "assets/covers/the-convenience-store-by-the-sea.jpg", "thegirlwhowastaken": "assets/covers/the-girl-who-was-taken.jpg", "thegoldfinch": "assets/covers/the-goldfinch.jpg", "theintelligentinvestor": "assets/covers/the-intelligent-investor.jpg", "theletthemtheory": "assets/covers/the-let-them-theory.jpg", "themythofsisyphus": "assets/covers/the-myth-of-sisyphus.jpg", "thepoppywar": "assets/covers/the-poppy-war.jpg", "thepoppywar1": "assets/covers/the-poppy-war-1.jpg", "thepsychologyofmoney": "assets/covers/the-psychology-of-money.jpg", "thesecretofsecrets": "assets/covers/the-secret-of-secrets.jpg", "thesilentpatient": "assets/covers/the-silent-patient.jpg", "thesongofachilles": "assets/covers/the-song-of-achilles.jpg", "thesubtleartofnotgivingafck": "assets/covers/the-subtle-art-of-not-giving-a-f-ck.jpg", "thingsyoucanseewhenyouslowdown": "assets/covers/things-you-can-see-when-you-slow-down.jpg", "tuesdayswithmorrie": "assets/covers/tuesdays-with-morrie.jpg", "whenbreathbecomesair": "assets/covers/when-breath-becomes-air.jpg", "whenthingsdontgoyourway": "assets/covers/when-things-don-t-go-your-way.jpg", "whyhasnobodytoldmethisbefore": "assets/covers/why-has-nobody-told-me-this-before.jpg", "whynationsfail": "assets/covers/why-nations-fail.jpg", "wordsworthannakarenina": "assets/covers/wordsworth-anna-karenina.jpg", "wordsworthemma": "assets/covers/wordsworth-emma.jpg", "wordsworthessentialkafka": "assets/covers/wordsworth-essential-kafka.jpg", "wordsworthgreatgatsby": "assets/covers/wordsworth-great-gatsby.jpg", "wordsworthjaneeyre": "assets/covers/wordsworth-jane-eyre.jpg", "wordsworthprideandprejudice": "assets/covers/wordsworth-pride-and-prejudice.jpg", "wordsworthwarandpeace": "assets/covers/wordsworth-war-and-peace.jpg"};
+    const coverOf = (title) => { const u = COVERS[String(title).toLowerCase().replace(/[^a-z0-9]/g, '')]; return { img: u || '', hasImg: !!u }; };
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const d = this.props.resellerDiscount ?? 25;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const t = {
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
+      catalog: L('Katalog', 'Catalog'),
+      cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      eyebrow: L('PRE-ORDER GABUNGAN', 'POOLED PRE-ORDERS'),
+      title: L('Pesan bersama sebelum buku terbit, dapat harga impor langsung', 'Order together before release and get the direct import price'),
+      sub: L('Kami menggabungkan pesanan semua reseller menjadi satu PO ke penerbit. Begitu target tercapai, buku dipesan; Anda membayar deposit saat tutup pesanan dan sisanya sebelum pengiriman. Tidak ada stok mengendap, tidak ada tebak-tebakan.', 'We pool every reseller’s order into one PO to the publisher. Once the target is reached the books are ordered; you pay a deposit at cut-off and the balance before shipping. No dead stock, no guessing.'),
+      kOpen: L('PRE-ORDER TERBUKA', 'OPEN PRE-ORDERS'), kMine: L('PESANAN SAYA', 'MY COMMITMENTS'), kResellers: L('RESELLER IKUT BULAN INI', 'RESELLERS IN THIS MONTH'),
+      sortNote: L('Urut: tutup pesanan terdekat', 'Sorted by nearest cut-off'),
+      release: L('Terbit', 'Release'), cutoff: L('Tutup pesanan', 'Cut-off'), eta: L('Tiba di Jakarta', 'Arrives Jakarta'),
+      committed: L('Terkumpul', 'Committed'), copies: L('eks.', 'copies'), resellersIn: L('reseller ikut', 'resellers in'),
+      retail: L('Retail', 'Retail'), yourPrice: L('Harga Anda', 'Your price'), moq: L('Min.', 'Min.'),
+      youCommitted: L('Anda sudah pesan', 'You committed'), qty: L('Jml', 'Qty'),
+      depositNote: L('Deposit [30]% ditagih saat tutup pesanan, sisanya sebelum kirim. Bisa diubah sampai tutup pesanan.', 'A [30]% deposit is billed at cut-off, the balance before shipping. Editable until cut-off.'),
+      mineTitle: L('Pre-order saya', 'My pre-orders'),
+      mineNote: L('Semua pre-order dihitung untuk level reseller Anda setelah lunas.', 'Every pre-order counts toward your reseller level once paid.'),
+      colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colValue: L('NILAI', 'VALUE'), colDeposit: L('DEPOSIT', 'DEPOSIT'), colStatus: L('STATUS', 'STATUS'), colNext: L('LANGKAH BERIKUTNYA', 'NEXT STEP'),
+      suggestTitle: L('Ada judul yang ingin Anda pre-order?', 'A title you’d like us to open a pre-order for?'),
+      suggestBody: L('Usulkan lewat Minta buku. Kalau [5] reseller meminta judul yang sama, kami buka pre-order gabungannya.', 'Suggest it via Request a book. If [5] resellers ask for the same title, we open a pooled pre-order.'),
+      suggestCta: L('Usulkan judul', 'Suggest a title')
+    };
+    const steps = [
+      { n: '1', title: L('Pilih judul & jumlah', 'Pick titles and quantities'), body: L('Pesanan minimum per reseller kecil (5–10 eks.). Ubah kapan saja sampai tutup pesanan.', 'Small minimum per reseller (5–10 copies). Change it any time before cut-off.') },
+      { n: '2', title: L('Target tercapai, kami pesan', 'Target reached, we order'), body: L('Gabungan semua reseller menjadi satu PO ke penerbit. Harga Anda mengikuti level reseller.', 'All resellers pooled into one publisher PO. Your price follows your reseller level.') },
+      { n: '3', title: L('Deposit saat tutup pesanan', 'Deposit at cut-off'), body: L('[30]% ditagih lewat tautan bayar; sisanya saat buku tiba, sebelum dikirim.', '[30]% billed by pay link; the balance when the books land, before shipping.') },
+      { n: '4', title: L('Kirim lebih dulu', 'Shipped first'), body: L('Pre-order dikirim sebelum stok masuk katalog umum. Super Star mendapat kuota terjamin.', 'Pre-orders ship before stock reaches the open catalog. Super Star gets guaranteed allocation.') }
+    ];
+    const S = {
+      open: { status: L('TERBUKA', 'OPEN'), chipBg: '#DCEBF0', chipInk: '#1F4A63', barColor: '#5B2A86' },
+      closing: { status: L('TUTUP 3 HARI LAGI', 'CLOSES IN 3 DAYS'), chipBg: '#FDE9C4', chipInk: '#6B4A00', barColor: '#B0476A' },
+      reached: { status: L('TARGET TERCAPAI', 'TARGET REACHED'), chipBg: '#DDEBDD', chipInk: '#24523A', barColor: '#3E7A5A' },
+      ordered: { status: L('DIPESAN KE PENERBIT', 'ORDERED'), chipBg: '#E6DDF0', chipInk: '#5B2A86', barColor: '#3E7A5A' },
+      arrived: { status: L('TIBA · DIKIRIM', 'ARRIVED · SHIPPING'), chipBg: '#DDEBDD', chipInk: '#24523A', barColor: '#3E7A5A' }
+    };
+    const base = [
+      { key: 'katabasis', title: 'Katabasis', author: 'R.F. Kuang', publisher: 'Harper Voyager', format: 'Hardcover', retail: 420000, release: L('26 Agu 2026', 'Aug 26, 2026'), cutoff: L('20 Okt 2026', 'Oct 20, 2026'), eta: L('awal Des 2026', 'early Dec 2026'), target: 300, committed: 246, resellers: 19, moq: 5, s: 'closing', myQty: 20 },
+      { key: 'sapiens', title: 'Sapiens: A Graphic History Vol. 3', author: 'Yuval Noah Harari', publisher: 'Penguin Random House', format: 'Hardcover', retail: 450000, release: L('3 Nov 2026', 'Nov 3, 2026'), cutoff: L('28 Okt 2026', 'Oct 28, 2026'), eta: L('pertengahan Des 2026', 'mid Dec 2026'), target: 200, committed: 88, resellers: 11, moq: 5, s: 'open', myQty: 0 },
+      { key: 'theanxiousgeneration', title: 'The Anxious Generation (Paperback)', author: 'Jonathan Haidt', publisher: 'Penguin Random House', format: 'Paperback', retail: 280000, release: L('10 Nov 2026', 'Nov 10, 2026'), cutoff: L('31 Okt 2026', 'Oct 31, 2026'), eta: L('akhir Des 2026', 'late Dec 2026'), target: 400, committed: 412, resellers: 27, moq: 10, s: 'reached', myQty: 30 },
+      { key: 'theconveniencestorebythesea', title: 'The Convenience Store by the Sea', author: 'Sonoko Machida', publisher: 'Bloomsbury', format: 'Paperback', retail: 214000, release: L('17 Nov 2026', 'Nov 17, 2026'), cutoff: L('7 Nov 2026', 'Nov 7, 2026'), eta: L('Jan 2027', 'Jan 2027'), target: 250, committed: 35, resellers: 6, moq: 5, s: 'open', myQty: 0 },
+      { key: 'thepoppywar', title: 'The Poppy War (Collector’s Edition)', author: 'R.F. Kuang', publisher: 'Harper Voyager', format: 'Hardcover', retail: 520000, release: L('Sudah terbit', 'Released'), cutoff: L('30 Sep 2026', 'Sep 30, 2026'), eta: L('tiba 12 Okt', 'landed Oct 12'), target: 150, committed: 164, resellers: 14, moq: 5, s: 'arrived', myQty: 10 }
+    ];
+    const joined = st.joined || {};
+    const filter = st.filter || 'all';
+    const filters = [['all', L('Semua', 'All')], ['open', L('Terbuka', 'Open')], ['mine', L('Pesanan saya', 'Mine')], ['done', L('Dipesan / tiba', 'Ordered / arrived')]].map(([id, label]) => ({ label, on: filter === id, off: filter !== id, pick: () => this.setState({ filter: id }) }));
+    const campaigns = base.map((c, i) => {
+      const myQty = joined[c.key] != null ? joined[c.key] : c.myQty;
+      const committed = c.committed + (joined[c.key] != null ? joined[c.key] - c.myQty : 0);
+      let s = c.s; if (s === 'open' && committed >= c.target) s = 'reached';
+      const pctNum = Math.min(100, Math.round(committed / c.target * 100));
+      const isOpen = s === 'open' || s === 'closing' || s === 'reached';
+      const price = c.retail * (1 - d / 100);
+      const closedMap = {
+        ordered: [L('Sudah dipesan ke penerbit', 'Ordered from the publisher'), L('Tutup pesanan lewat. Sisa tagihan ditagih saat buku tiba.', 'Cut-off passed. The balance is billed when the books land.')],
+        arrived: [L('Tiba, sedang dikirim', 'Arrived, shipping now'), L('Pre-order Anda dikirim lebih dulu; resi di Pesanan & PO.', 'Your pre-order ships first; tracking under Orders & POs.')]
+      };
+      return Object.assign({}, c, coverOf(c.title), S[s], {
+        cover: '#4A3463', committed, pct: pctNum + '%', pctLabel: pctNum + '%', moqNum: c.moq, moq: c.moq + ' ' + L('eks./reseller', 'copies/reseller'),
+        retail: fmt(c.retail), price: fmt(price), disc: '−' + d + '%',
+        open: isOpen, closed: !isOpen, mine: myQty > 0, myQty, suggest: myQty > 0 ? myQty : c.moq,
+        cta: myQty > 0 ? L('Ubah jumlah', 'Update quantity') : L('Ikut pre-order', 'Join pre-order'),
+        closedTitle: (closedMap[s] || ['', ''])[0], closedBody: (closedMap[s] || ['', ''])[1],
+        join: (e) => { const inp = e && e.currentTarget && e.currentTarget.parentElement && e.currentTarget.parentElement.querySelector('input'); const q = Math.max(c.moq, Number(inp && inp.value) || c.moq); this.setState({ joined: Object.assign({}, joined, { [c.key]: q }), confirmed: c.title + '|' + q }); },
+        _s: s, _myQty: myQty, _price: price
+      });
+    }).filter((c) => filter === 'all' || (filter === 'open' && c.open) || (filter === 'mine' && c.mine) || (filter === 'done' && c.closed));
+    const M = {
+      closing: { status: L('MENUNGGU TUTUP', 'AWAITING CUT-OFF'), chipBg: '#FDE9C4', chipInk: '#6B4A00', deposit: L('ditagih 20 Okt', 'billed Oct 20'), next: L('Bisa diubah sampai 20 Okt', 'Editable until Oct 20') },
+      open: { status: L('MENUNGGU TUTUP', 'AWAITING CUT-OFF'), chipBg: '#FDE9C4', chipInk: '#6B4A00', deposit: L('ditagih saat tutup', 'billed at cut-off'), next: L('Bisa diubah sampai tutup pesanan', 'Editable until cut-off') },
+      reached: { status: L('DEPOSIT DITAGIH', 'DEPOSIT DUE'), chipBg: '#DCEBF0', chipInk: '#1F4A63', deposit: L('[30]% · bayar sebelum 2 Nov', '[30]% · pay by Nov 2'), next: L('Bayar deposit lewat tautan di e-mail', 'Pay the deposit via the e-mailed link') },
+      ordered: { status: L('DIPESAN', 'ORDERED'), chipBg: '#E6DDF0', chipInk: '#5B2A86', deposit: L('lunas', 'paid'), next: L('Sisa tagihan saat tiba', 'Balance when it lands') },
+      arrived: { status: L('SIAP KIRIM', 'READY TO SHIP'), chipBg: '#DDEBDD', chipInk: '#24523A', deposit: L('lunas', 'paid'), next: L('Bayar sisa, lalu dikirim 2–3 hari', 'Pay the balance, ships in 2–3 days') }
+    };
+    const mine = base.map((c) => {
+      const myQty = joined[c.key] != null ? joined[c.key] : c.myQty; if (!myQty) return null;
+      let s = c.s; if (s === 'open' && (c.committed + (joined[c.key] != null ? joined[c.key] - c.myQty : 0)) >= c.target) s = 'reached';
+      const value = c.retail * (1 - d / 100) * myQty;
+      return Object.assign({ title: c.title, meta: c.author + ' · ' + c.publisher + ' · ' + L('tutup', 'cut-off') + ' ' + c.cutoff, qty: myQty, value: fmt(value) }, M[s]);
+    }).filter(Boolean);
+    const openCount = base.filter((c) => c.s === 'open' || c.s === 'closing' || c.s === 'reached').length;
+    const confirmedRaw = st.confirmed ? String(st.confirmed).split('|') : null;
+    const confirmMsg = confirmedRaw ? L('Tercatat: ' + confirmedRaw[1] + ' eks. ' + confirmedRaw[0] + '. Deposit ditagih saat tutup pesanan.', 'Saved: ' + confirmedRaw[1] + ' copies of ' + confirmedRaw[0] + '. The deposit is billed at cut-off.') : '';
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return { t, steps, filters, campaigns, mine, langs, confirmed: !!st.confirmed, confirmMsg, kpiOpen: String(openCount), kpiMine: String(mine.length), kpiResellers: '41' };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

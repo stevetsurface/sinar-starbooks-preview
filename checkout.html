@@ -104,17 +104,52 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <!-- Delivery -->
         <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
           <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.delivery}}</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; font-size: 14px; color: #4A4252">
+            <span><strong>{{t.shipTo}}</strong> {{t.savedAddress}} · <a href="account.html">{{t.changeAddress}}</a></span>
+            <span style="color: #6E6478">{{t.weightLine}}</span>
+          </div>
           <fieldset style="border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
             <legend style="position: absolute; left: -9999px">{{t.deliveryMethod}}</legend>
-            <label style="display: flex; gap: 12px; align-items: flex-start; padding: 18px; border-radius: 14px; border: 2px solid #5B2A86; background: #F7F2FB; cursor: pointer">
-              <input type="radio" name="ship" checked style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86">
-              <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{t.shipStore}}</span><span style="font-size: 13px; color: #6E6478">{{t.savedAddress}}</span></span>
-            </label>
-            <label style="display: flex; gap: 12px; align-items: flex-start; padding: 18px; border-radius: 14px; border: 1px solid #D9CCE6; cursor: pointer">
-              <input type="radio" name="ship" style="width: 18px; height: 18px; margin-top: 2px; accent-color: #5B2A86">
-              <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{t.pickup}}</span><span style="font-size: 13px; color: #6E6478">{{t.pickupNote}}</span></span>
-            </label>
+            <sc-for list="{{shipOptions}}" as="o" hint-placeholder-count="4">
+              <sc-if value="{{o.on}}" hint-placeholder-val="{{true}}">
+                <button type="button" aria-pressed="true" onClick="{{o.pick}}" style="display: flex; gap: 12px; align-items: flex-start; text-align: left; padding: 18px; border-radius: 14px; border: 2px solid #5B2A86; background: #F7F2FB; cursor: pointer; font: inherit; color: inherit">
+                  <span style="width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; border: 5px solid #5B2A86; box-sizing: border-box; flex: none"></span>
+                  <span style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{o.name}}</span><span style="font-weight: 700; color: #2A1640; white-space: nowrap">{{o.price}}</span></span><span style="font-size: 13px; color: #6E6478">{{o.note}}</span></span>
+                </button>
+              </sc-if>
+              <sc-if value="{{o.off}}" hint-placeholder-val="{{false}}">
+                <button type="button" aria-pressed="false" onClick="{{o.pick}}" style="display: flex; gap: 12px; align-items: flex-start; text-align: left; padding: 18px; border-radius: 14px; border: 1px solid #D9CCE6; background: #FFFFFF; cursor: pointer; font: inherit; color: inherit">
+                  <span style="width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; border: 1.5px solid #B8A6CC; box-sizing: border-box; flex: none"></span>
+                  <span style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{o.name}}</span><span style="font-weight: 700; color: #2A1640; white-space: nowrap">{{o.price}}</span></span><span style="font-size: 13px; color: #6E6478">{{o.note}}</span></span>
+                </button>
+              </sc-if>
+            </sc-for>
           </fieldset>
+          <span style="font-size: 13px; color: #6E6478">{{t.shipNote}}</span>
+        </section>
+
+        <!-- Payment -->
+        <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.payment}}</h2>
+          <span style="font-size: 14px; color: #4A4252">{{t.payIntro}}</span>
+          <fieldset style="border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+            <legend style="position: absolute; left: -9999px">{{t.payMethod}}</legend>
+            <sc-for list="{{payOptions}}" as="p" hint-placeholder-count="4">
+              <sc-if value="{{p.on}}" hint-placeholder-val="{{true}}">
+                <button type="button" aria-pressed="true" onClick="{{p.pick}}" style="display: flex; gap: 12px; align-items: flex-start; text-align: left; padding: 18px; border-radius: 14px; border: 2px solid #5B2A86; background: #F7F2FB; cursor: pointer; font: inherit; color: inherit">
+                  <span style="width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; border: 5px solid #5B2A86; box-sizing: border-box; flex: none"></span>
+                  <span style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{p.name}}</span><span style="font-size: 13px; color: #6E6478; white-space: nowrap">{{p.fee}}</span></span><span style="font-size: 13px; color: #6E6478">{{p.note}}</span></span>
+                </button>
+              </sc-if>
+              <sc-if value="{{p.off}}" hint-placeholder-val="{{false}}">
+                <button type="button" aria-pressed="false" onClick="{{p.pick}}" style="display: flex; gap: 12px; align-items: flex-start; text-align: left; padding: 18px; border-radius: 14px; border: 1px solid #D9CCE6; background: #FFFFFF; cursor: pointer; font: inherit; color: inherit">
+                  <span style="width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; border: 1.5px solid #B8A6CC; box-sizing: border-box; flex: none"></span>
+                  <span style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{p.name}}</span><span style="font-size: 13px; color: #6E6478; white-space: nowrap">{{p.fee}}</span></span><span style="font-size: 13px; color: #6E6478">{{p.note}}</span></span>
+                </button>
+              </sc-if>
+            </sc-for>
+          </fieldset>
+          <span style="font-size: 13px; color: #6E6478">{{t.payNote}}</span>
         </section>
       </div>
 
@@ -124,18 +159,19 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.retailValue}}</span><span style="text-decoration: line-through">{{retailTotal}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.savings}}</span><span style="color: #F2B33D">− {{savings}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.subtotal}}</span><span>{{subtotal}}</span></div>
-        <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.shipping}}</span><span style="text-align: right">{{t.shippingTbc}}</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.shipping}} · {{shipName}}</span><span style="text-align: right">{{shipCost}}</span></div>
         <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.tax}}</span><span>{{t.taxValue}}</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 15px; color: #D4C6E2"><span>{{t.payFee}} · {{payName}}</span><span>{{payFeeValue}}</span></div>
         <div style="height: 1px; background: #4A3463"></div>
         <div style="display: flex; flex-direction: column; gap: 4px">
-          <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 600">{{t.total}}</span><span style="font-size: 28px; font-weight: 700">{{subtotal}}</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 600">{{t.total}}</span><span style="font-size: 28px; font-weight: 700">{{grandTotal}}</span></div>
           <span style="font-size: 12px; color: #B8A6CC">{{t.totalNote}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #D4C6E2">
           <span style="font-weight: 600; color: #FFFFFF">{{t.payment}}</span>
           <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 12px; background: #3A2354; line-height: 1.5">
-            <span style="font-weight: 600; color: #F2B33D">{{t.payOffline}}</span>
-            <span>{{t.payOfflineNote}}</span>
+            <span style="font-weight: 600; color: #F2B33D">{{payName}}</span>
+            <span>{{payWhen}}</span>
           </div>
         </div>
         <a href="#" style="display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 14px; background: #F2B33D; color: #2A1640; font-weight: 700; font-size: 16px; margin-top: 4px">{{t.submit}}</a>
@@ -160,8 +196,8 @@ class Component extends DCLogic {
       homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
       stepsAria: L('Langkah checkout', 'Checkout steps'),
       step1: L('Keranjang', 'Cart'),
-      step2: L('Purchase Order', 'Purchase order'),
-      step3: L('Terkirim', 'Submitted'),
+      step2: L('Pengiriman & pembayaran', 'Shipping & payment'),
+      step3: L('PO terkirim', 'PO submitted'),
       title: L('Pesanan Anda', 'Your order'),
       each: L('/ eksemplar', 'each'),
       qty: L('Jumlah', 'Qty'),
@@ -180,27 +216,41 @@ class Component extends DCLogic {
       notesPh: L('Jadwal pengiriman, permintaan pengemasan…', 'Delivery window, packing requests…'),
       delivery: L('Pengiriman', 'Delivery'),
       deliveryMethod: L('Metode pengiriman', 'Delivery method'),
-      shipStore: L('Kirim ke alamat toko — ongkir dikonfirmasi tim kami', 'Ship to store address — shipping cost confirmed by our team'),
-      savedAddress: L('[Alamat gudang/toko tersimpan]', '[Saved warehouse/store address]'),
-      pickup: L('Ambil sendiri di gudang (Jakarta)', 'Pick up at our warehouse (Jakarta)'),
-      pickupNote: L('Tanpa biaya kirim', 'No shipping charge'),
+      shipTo: L('Kirim ke:', 'Ship to:'),
+      savedAddress: L('[Alamat toko tersimpan], Bandung', '[Saved store address], Bandung'),
+      changeAddress: L('ubah', 'change'),
+      weightLine: L('Estimasi berat 24 item ≈ 10,8 kg', 'Estimated weight of 24 items ≈ 10.8 kg'),
+      shipNote: L('Tarif dihitung dari berat dan tujuan (contoh tarif Biteship). Pengiriman dibuat setelah PO disetujui dan dibayar; nomor resi muncul di Pesanan & PO. Ongkir ditanggung pembeli.', 'Rates are from weight and destination (sample Biteship rates). The shipment is booked once the PO is approved and paid; the tracking number appears under Orders & POs. Buyer pays shipping.'),
+      payIntro: L('Pilih cara bayar sekarang; tagihan dikirim setelah PO disetujui (biasanya 1 hari kerja).', 'Choose how you will pay now; the bill is issued once the PO is approved (usually 1 working day).'),
+      payMethod: L('Metode pembayaran', 'Payment method'),
+      payNote: L('Pembayaran diproses lewat Midtrans/Xendit. Faktur pajak untuk produk non-buku diterbitkan setelah lunas.', 'Payments run through Midtrans/Xendit. Tax invoices for non-book items are issued after settlement.'),
+      payFee: L('Biaya pembayaran', 'Payment fee'),
       summaryAria: L('Ringkasan pesanan', 'Order summary'),
       summary: L('Ringkasan', 'Summary'),
       retailValue: L('Nilai harga retail', 'Retail value'),
       savings: L('Hemat sebagai reseller', 'Reseller savings'),
       subtotal: L('Subtotal (24 item)', 'Subtotal (24 items)'),
       shipping: L('Ongkir', 'Shipping'),
-      shippingTbc: L('dikonfirmasi setelah verifikasi', 'confirmed after verification'),
       tax: L('PPN', 'VAT (PPN)'),
       taxValue: L('Rp 0 · buku bebas PPN', 'Rp 0 · books are PPN-exempt'),
-      total: L('Estimasi total', 'Estimated total'),
-      totalNote: L('Belum termasuk ongkir', 'Shipping not included'),
+      total: L('Total tagihan', 'Total due'),
+      totalNote: L('Ongkir final dikonfirmasi saat PO disetujui bila berat berbeda', 'Final shipping is confirmed at approval if the weight differs'),
       payment: L('Pembayaran', 'Payment'),
-      payOffline: L('Pembayaran offline', 'Offline payment'),
-      payOfflineNote: L('Setelah PO disetujui, kami kirim invoice; bayar dengan transfer bank.', 'Once your PO is approved, we send an invoice; pay by bank transfer.'),
       submit: L('Kirim PO', 'Submit PO'),
-      footnote: L("Setelah dikirim, PO berstatus 'PO Diajukan'. Tim kami memverifikasi stok dan ongkir, lalu mengirim invoice. Unduh PO (PDF) di Akun › Pesanan & PO.", "Once submitted, your PO's status is 'PO Diajukan' (PO submitted). Our team verifies stock and shipping, then sends an invoice. Download the PO (PDF) under Account › Orders & POs.")
+      footnote: L("Setelah dikirim, PO berstatus 'PO Diajukan'. Tim kami memverifikasi stok, lalu PO disetujui dan tautan bayar dikirim ke e-mail dan Pesanan & PO. Setelah lunas, pengiriman dibuat otomatis.", "Once submitted, your PO's status is 'PO Diajukan' (submitted). We verify stock, approve the PO and send the pay link by e-mail and under Orders & POs. Once paid, the shipment is booked automatically.")
     };
+    const SHIP = [
+      { id: 'pickup', name: L('Ambil sendiri di gudang (Jakarta)', 'Pick up at our warehouse (Jakarta)'), note: L('Senin–Sabtu 09.00–17.00 · siap 1 hari kerja setelah lunas', 'Mon–Sat 9am–5pm · ready 1 working day after payment'), cost: 0 },
+      { id: 'cargo', name: 'J&T Cargo', note: L('3–5 hari · untuk pesanan ≥ 10 kg · Rp 5.000/kg', '3–5 days · for orders ≥ 10 kg · Rp 5,000/kg'), cost: 54000 },
+      { id: 'reg', name: 'JNE Reguler (REG)', note: L('2–3 hari · Rp 9.000/kg · asuransi opsional', '2–3 days · Rp 9,000/kg · optional insurance'), cost: 97200 },
+      { id: 'instant', name: L('Gojek / Grab Instan', 'Gojek / Grab Instant'), note: L('Hari ini · hanya Jabodetabek · maks. 20 kg', 'Today · Jabodetabek only · max 20 kg'), cost: 45000 }
+    ];
+    const PAY = [
+      { id: 'va', name: L('Virtual account bank', 'Bank virtual account'), note: L('BCA · Mandiri · BNI · BRI · otomatis terkonfirmasi', 'BCA · Mandiri · BNI · BRI · confirmed automatically'), fee: () => 4500, feeLabel: 'Rp 4.500', when: L('Nomor VA dikirim setelah PO disetujui; berlaku 3 hari.', 'VA number sent once the PO is approved; valid 3 days.') },
+      { id: 'qris', name: 'QRIS', note: L('Scan dari aplikasi bank atau e-wallet mana pun', 'Scan from any bank or e-wallet app'), fee: (s) => s * 0.007, feeLabel: '0,7%', when: L('Kode QR dikirim setelah PO disetujui.', 'QR code sent once the PO is approved.') },
+      { id: 'card', name: L('Kartu kredit / debit', 'Credit / debit card'), note: L('Visa · Mastercard · JCB · cicilan 0% [bank]', 'Visa · Mastercard · JCB · 0% instalments [bank]'), fee: (s) => s * 0.029 + 2000, feeLabel: '2,9% + Rp 2.000', when: L('Tautan bayar dikirim setelah PO disetujui.', 'Pay link sent once the PO is approved.') },
+      { id: 'transfer', name: L('Transfer manual', 'Manual bank transfer'), note: L('Unggah bukti transfer di Pesanan & PO · dicek 1 hari kerja', 'Upload proof under Orders & POs · checked within 1 working day'), fee: () => 0, feeLabel: L('gratis', 'free'), when: L('Invoice dan rekening dikirim setelah PO disetujui.', 'Invoice and bank details sent once the PO is approved.') }
+    ];
     const items = [
       { title: "World's Best Dad", publisher: 'Penguin Random House', price: 183308, qty: 12, cover: '#1F3B73' },
       { title: 'Twinkle, Twinkle, Little Sheepy', publisher: 'Penguin Random House', price: 180000, qty: 6, cover: '#7FB7C9' },
@@ -215,7 +265,14 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, langs, lines, retailTotal: fmt(retail), savings: fmt(retail - sub), subtotal: fmt(sub) };
+    const shipId = (this.state && this.state.ship) || 'cargo';
+    const payId = (this.state && this.state.pay) || 'va';
+    const ship = SHIP.find((o) => o.id === shipId) || SHIP[0];
+    const pay = PAY.find((o) => o.id === payId) || PAY[0];
+    const payFee = pay.fee(sub + ship.cost);
+    const shipOptions = SHIP.map((o) => ({ name: o.name, note: o.note, price: o.cost ? fmt(o.cost) : L('Gratis', 'Free'), on: o.id === ship.id, off: o.id !== ship.id, pick: () => this.setState({ ship: o.id }) }));
+    const payOptions = PAY.map((o) => ({ name: o.name, note: o.note, fee: o.feeLabel, on: o.id === pay.id, off: o.id !== pay.id, pick: () => this.setState({ pay: o.id }) }));
+    return { t, langs, lines, shipOptions, payOptions, shipName: ship.name, shipCost: ship.cost ? fmt(ship.cost) : L('Gratis', 'Free'), payName: pay.name, payFeeValue: payFee ? fmt(payFee) : 'Rp 0', payWhen: pay.when, grandTotal: fmt(sub + ship.cost + payFee), retailTotal: fmt(retail), savings: fmt(retail - sub), subtotal: fmt(sub) };
   }
 }
 </script>
