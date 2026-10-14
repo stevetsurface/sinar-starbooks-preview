@@ -279,6 +279,28 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </div>
   </section>
 
+  <!-- Benefits for resellers -->
+  <section id="benefits" style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #5B2A86">{{t.bnEyebrow}}</span>
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; line-height: 1.1; color: #2A1640">{{t.bnTitle}}</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4252">{{t.bnSub}}</p>
+      </div>
+      <a href="become-a-reseller.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 15px">{{t.bnCta}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px">
+      <sc-for list="{{benefits}}" as="b" hint-placeholder-count="8">
+        <div style="background: {{b.bg}}; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+          <span style="width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="2.2" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 21px; font-weight: 600; line-height: 1.2; color: #2A1640">{{b.title}}</span>
+          <span style="font-size: 14px; line-height: 1.55; color: #4A4252">{{b.body}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <span style="font-size: 13px; color: #6E6478">{{t.bnNote}}</span>
+  </section>
+
   <!-- Who we work with -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px">
     <h2 style="margin: 0 0 28px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.whoTitle}}</h2>
@@ -415,6 +437,11 @@ class Component extends DCLogic {
       sentTitle: L('Pengajuan terkirim.', 'Application sent.'),
       sentBody: L('Tim kami meninjau dan menghubungi Anda lewat email/WhatsApp. Setelah disetujui, akun Anda mulai di level Star.', 'Our team will review it and contact you by email/WhatsApp. Once approved, your account starts at the Star level.'),
       sentCta: L('Lihat katalog', 'Browse the catalog'),
+      bnEyebrow: L('KEUNTUNGAN RESELLER', 'RESELLER BENEFITS'),
+      bnTitle: L('Mengapa toko buku bermitra dengan Star Books', 'Why bookshops partner with Star Books'),
+      bnSub: L('Satu pemasok untuk buku impor berbahasa Inggris, alat tulis, dan hadiah: harga grosir, stok asli dari penerbit, dan portal yang memudahkan pesanan ulang.', 'One supplier for imported English-language books, stationery and gifts: wholesale prices, genuine stock straight from publishers, and a portal that makes reordering easy.'),
+      bnCta: L('Daftar jadi reseller', 'Become a reseller'),
+      bnNote: L('Angka dalam [ ] masih usulan dan akan dikonfirmasi dalam S&K Reseller 2027.', 'Figures in [ ] are proposals, to be confirmed in the 2027 reseller terms.'),
       whoTitle: L('Mitra kami', 'Who we work with'),
       w1Title: L('Toko buku', 'Bookshops'),
       w1Body: L('Toko independen maupun jaringan yang menjual buku impor berbahasa Inggris.', 'Independent and chain stores stocking imported English titles.'),
@@ -453,8 +480,18 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
+    const benefits = [
+      { bg: '#FDE9C4', title: L('Buku asli, langsung dari penerbit', 'Genuine books, straight from the publisher'), body: L('Importir resmi sejak 2000 untuk Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic, dan lainnya. Tidak ada bajakan, tidak ada cetakan ulang.', 'Official importer since 2000 for Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic and more. No counterfeits, no reprints.') },
+      { bg: '#E6DDF0', title: L('Harga grosir mulai 20%, naik sampai 35%', 'Wholesale from 20% off, up to 35%'), body: L('Diskon per invoice dari Rp 1.000.000: [20 / 25 / 30 / 33]% sesuai nilai pesanan, dan 35% flat untuk Super Star. Harga reseller terlihat di setiap judul setelah login.', 'Per-invoice discount from Rp 1,000,000: [20 / 25 / 30 / 33]% by order value, and a flat 35% for Super Star. Reseller prices show on every title once you log in.') },
+      { bg: '#DCEBF0', title: L('Tiga level yang bisa dicapai', 'Three levels you can earn'), body: L('Star, Bright Star, Super Star: dari pembelian 12 bulan, ditinjau tiap kuartal. Stok terjamin, pre-order lebih awal, account manager WhatsApp, dan Partner of the Year.', 'Star, Bright Star, Super Star: earned on 12-month purchases, reviewed quarterly. Reserved stock, early pre-orders, a WhatsApp account manager and Partner of the Year.') },
+      { bg: '#DDEBDD', title: L('Pre-order gabungan sebelum terbit', 'Pooled pre-orders before release'), body: L('Pesan bersama reseller lain, kami impor dalam satu PO ke penerbit. Harga impor langsung, dikirim lebih dulu, tanpa stok mengendap.', 'Order together with other resellers; we import in one PO to the publisher. Direct import price, shipped first, no dead stock.') },
+      { bg: '#F6D9D4', title: L('Minta buku yang belum ada', 'Request a book we do not stock'), body: L('Kirim judul atau daftar ISBN; kami cek ke penerbit dan beri penawaran dalam [X] hari kerja. Permintaan Anda bisa menjadi pre-order gabungan.', 'Send a title or an ISBN list; we check with the publisher and quote within [X] working days. Your request can become a pooled pre-order.') },
+      { bg: '#F1EBF6', title: L('Rekomendasi untuk toko Anda', 'Picks for your shop'), body: L('Portal mengingatkan judul yang perlu dipesan ulang, buku yang akan terbit sesuai rak Anda, dan yang dibeli reseller serupa. Satu klik masuk ke PO.', 'The portal flags titles to reorder, upcoming books that fit your shelves, and what similar resellers buy. One click adds them to your PO.') },
+      { bg: '#FDE9C4', title: L('Bayar dan kirim tanpa ribet', 'Easy payment and delivery'), body: L('Virtual account, QRIS, kartu, atau transfer. Ongkir dihitung saat checkout (JNE, J&T Cargo, instan Jabodetabek) atau ambil sendiri di gudang Jakarta. Beli putus, tanpa minimum tahunan.', 'Virtual account, QRIS, card or transfer. Shipping quoted at checkout (JNE, J&T Cargo, instant in Jabodetabek) or pick up at our Jakarta warehouse. Outright purchase, no annual minimum.') },
+      { bg: '#E6DDF0', title: L('Materi promo dan dukungan penjualan', 'Promo material and sales support'), body: L('Poster dan materi display, konten media sosial untuk setiap rilis besar, undangan IIBF dan peluncuran buku, serta PO, invoice, dan pelacakan dalam satu akun.', 'Posters and display material, social content for every big release, IIBF and launch invitations, and POs, invoices and tracking in one account.') }
+    ];
     return {
-      t, langs, steps, types, next, back, submit,
+      t, benefits, langs, steps, types, next, back, submit,
       stepOf: L('LANGKAH ' + step + ' DARI 3', 'STEP ' + step + ' OF 3'),
       typeChip: type === 'badan' ? t.typeBizTitle : t.typePerTitle,
       s1: step === 1, s2: step === 2, s3: step === 3,
