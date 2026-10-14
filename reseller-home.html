@@ -125,6 +125,39 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </div>
   </section>
 
+  <!-- Recommendations for this reseller -->
+  <section style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 20px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.recTitle}}</h2>
+        <span style="font-size: 15px; color: #6E6478">{{t.recSub}}</span>
+      </div>
+      <a href="pre-order.html" style="font-weight: 600; font-size: 15px">{{t.recSeePre}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+      <sc-for list="{{recGroups}}" as="g" hint-placeholder-count="3">
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+            <span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: {{g.ink}}">{{g.label}}</span>
+            <span style="font-size: 12px; color: #6E6478">{{g.hint}}</span>
+          </div>
+          <sc-for list="{{g.items}}" as="r" hint-placeholder-count="3">
+            <div style="display: flex; gap: 12px; align-items: center; padding-top: 10px; border-top: 1px solid #F3EFF6">
+              <a href="product.html" style="width: 44px; height: 62px; border-radius: 2px 5px 5px 2px; background: {{r.cover}}; flex: none; position: relative; overflow: hidden; display: block"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></a>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+                <a href="product.html" style="font-weight: 600; font-size: 14px; line-height: 1.25; color: #1E1A24">{{r.title}}</a>
+                <span style="font-size: 12px; color: #6E6478; line-height: 1.35">{{r.reason}}</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2A1640">{{r.unit}}</span>
+              </div>
+              <sc-if value="{{r.added}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; font-weight: 700; color: #24523A; white-space: nowrap">{{t.recAdded}}</span></sc-if>
+              <sc-if value="{{r.notAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{r.add}}" aria-label="{{r.aria}}" style="height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap">{{r.cta}}</button></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
   <!-- Categories -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 28px">
@@ -290,6 +323,10 @@ class Component extends DCLogic {
       catGifts: L('Hadiah & Alat Tulis', 'Gifts & Stationery'),
       catGiftsSub: L('IF, Kikkerland, voucher', 'IF, Kikkerland, vouchers'),
       newTitle: L('Rilis baru & pre-order', 'New releases & pre-orders'),
+      recTitle: L('Rekomendasi untuk [Nama Toko]', 'Picks for [Bookshop name]'),
+      recSub: L('Dari riwayat pembelian toko Anda, stok hari ini, dan pre-order yang sedang terbuka. Diperbarui setiap malam.', 'From your purchase history, today’s stock and the open pre-orders. Updated nightly.'),
+      recSeePre: L('Semua pre-order →', 'All pre-orders →'),
+      recAdded: L('✓ Di keranjang', '✓ In cart'),
       priceNoteA: L('Harga reseller Anda ditampilkan —', 'Your reseller price is shown —'),
       priceNoteB: L('di bawah harga eceran.', 'below retail.'),
       newSeeAll: L('Lihat semua rilis baru →', 'See all new releases →'),
@@ -328,12 +365,38 @@ class Component extends DCLogic {
       { title: 'Katabasis', publisher: 'HARPERVOYAGER', price: 280000, cover: '#B0476A', tag: 'PRE-ORDER', moq: 5, stock: L('Bisa dipesan', 'On request') },
       { title: 'Atomic Habits', publisher: 'AVERY', price: 335000, cover: '#3E7A5A', tag: L('BARU', 'NEW'), moq: 6, stock: inStock }
     ];
+    const added = (this.state && this.state.recAdded) || [];
+    const mkRec = (key, title, price, qty, reason) => ({
+      key, title, reason, ...coverOf(title), cover: '#4A3463',
+      unit: fmt(price * (1 - d / 100)) + ' ' + L('/ eks.', 'each'),
+      cta: '+ ' + qty, aria: L('Tambah ' + qty + ' eksemplar ' + title + ' ke keranjang', 'Add ' + qty + ' copies of ' + title + ' to cart'),
+      added: added.includes(key), notAdded: !added.includes(key),
+      add: () => this.setState({ recAdded: added.concat(key) })
+    });
+    const recGroups = [
+      { label: L('PESAN ULANG', 'REORDER'), ink: '#3E7A5A', hint: L('Pernah dibeli · stok ada', 'Bought before · in stock'), items: [
+        mkRec('r1', 'Tuesdays with Morrie', 188000, 6, L('Terakhir 24 Sep, 6 eks. · #1 reseller di IIBF', 'Last Sep 24, 6 copies · #1 reseller title at IIBF')),
+        mkRec('r2', 'The Psychology of Money', 335000, 6, L('Dibeli 3× tahun ini, 14 eks. · 41 hari lalu', 'Bought 3× this year, 14 copies · 41 days ago')),
+        mkRec('r3', 'Atomic Habits', 335000, 6, L('Terakhir 2 Okt · 1.203 eks. terjual di IIBF', 'Last Oct 2 · 1,203 copies sold at IIBF'))
+      ] },
+      { label: L('TERBIT SEGERA · PRE-ORDER', 'COMING SOON · PRE-ORDER'), ink: '#B0476A', hint: L('Cocok dengan rak Anda', 'Matches your shelves'), items: [
+        mkRec('p1', 'Katabasis', 420000, 5, L('Anda menjual 10 eks. The Poppy War · tutup 20 Okt', 'You sold 10 copies of The Poppy War · closes Oct 20')),
+        mkRec('p2', 'The Anxious Generation', 280000, 10, L('Pembeli Psychology of Money · tutup 31 Okt', 'Psychology of Money buyers · closes Oct 31')),
+        mkRec('p3', 'The Convenience Store by the Sea', 214000, 5, L('Anda menjual Morisaki Bookshop · tutup 7 Nov', 'You sold Morisaki Bookshop · closes Nov 7'))
+      ] },
+      { label: L('RESELLER SERUPA JUGA MEMBELI', 'SIMILAR RESELLERS ALSO BUY'), ink: '#5B2A86', hint: L('Bulan ini · tanpa nama toko', 'This month · no shop names'), items: [
+        mkRec('s1', 'The Let Them Theory', 535000, 3, L('11 reseller pengembangan diri', '11 self-help resellers')),
+        mkRec('s2', 'Dog Man 14: Big Jim Believes', 199000, 6, L('9 toko anak · rilis baru', '9 kids’ shops · new release')),
+        mkRec('s3', 'Good Material', 240000, 4, L('8 reseller fiksi kontemporer', '8 contemporary-fiction resellers'))
+      ] }
+    ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
     return {
       t,
       langs,
+      recGroups,
       discountLabel: d + '%',
       products: items.map((p) => ({ ...p, ...coverOf(p.title), retail: fmt(p.price), reseller: fmt(p.price * (1 - d / 100)) }))
     };
