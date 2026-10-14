@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://stevetsurface.github.io/sinar-starbooks-preview/sitemap.xml
