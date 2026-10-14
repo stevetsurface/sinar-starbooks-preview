@@ -286,6 +286,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 8px">
         <span style="font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #5B2A86">NEWSLETTER</span>
         <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.1; color: #2A1640">{{t.nlTitle}}</h2>
+        <a href="coming-soon.html" style="font-weight: 700; font-size: 15px">{{t.nlSee}}</a>
         <span style="font-size: 16px; line-height: 1.55; color: #4A4252">{{t.nlBody}}</span>
       </div>
       <sc-if value="{{nlNotDone}}" hint-placeholder-val="{{true}}">
@@ -430,6 +431,7 @@ class Component extends DCLogic {
       nlPh: L('Alamat email Anda', 'Your email address'),
       nlCta: L('Daftar', 'Sign up'),
       nlNew: L('Rilis baru & pre-order', 'New releases & pre-orders'),
+      nlSee: L('Lihat kalender rilis →', 'See the release calendar →'),
       nlPromo: L('Promo & event', 'Offers & events'),
       nlReseller: L('Info untuk reseller', 'Reseller updates'),
       nlNote: L('Bisa berhenti berlangganan kapan saja.', 'Unsubscribe any time.'),

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Segera terbit & kabar buku</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <a href="account.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px; white-space: nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>{{t.myAccountBtn}}</a>
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="catalog.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.catalog}}</a>
+        <a href="checkout.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{t.cart}}</a>
+      </div>
+    </div>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px; display: flex; flex-direction: column; gap: 40px">
+
+    <!-- Intro + newsletter -->
+    <section style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+      <div style="flex: 2 1 480px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #5B2A86">{{t.eyebrow}}</span>
+        <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; line-height: 1.1; color: #2A1640">{{t.title}}</h1>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A4252; max-width: 680px">{{t.sub}}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px">
+          <sc-for list="{{months}}" as="m" hint-placeholder-count="4">
+            <sc-if value="{{m.on}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="true" onClick="{{m.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{m.label}}</button></sc-if>
+            <sc-if value="{{m.off}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="false" onClick="{{m.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{m.label}}</button></sc-if>
+          </sc-for>
+        </div>
+      </div>
+      <form style="flex: 1 1 320px; max-width: 420px; background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #F2B33D">{{t.nlEyebrow}}</span>
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 600; line-height: 1.15">{{t.nlTitle}}</span>
+        <span style="font-size: 14px; line-height: 1.5; color: #D4C6E2">{{t.nlBody}}</span>
+        <sc-if value="{{nlNotDone}}" hint-placeholder-val="{{true}}">
+          <label for="nl-email" style="font-size: 13px; font-weight: 600; color: #D4C6E2">{{t.nlEmail}}</label>
+          <input id="nl-email" type="email" placeholder="nama@toko.id" style="height: 48px; border-radius: 12px; border: 0; padding: 0 14px; font: inherit; font-size: 15px">
+          <label style="display: flex; gap: 8px; align-items: center; font-size: 14px; color: #D4C6E2"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #F2B33D"> {{t.nlWa}}</label>
+          <button type="button" onClick="{{nlSubmit}}" style="height: 48px; border-radius: 12px; border: 0; background: #F2B33D; color: #2A1640; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{t.nlCta}}</button>
+        </sc-if>
+        <sc-if value="{{nlDone}}" hint-placeholder-val="{{false}}">
+          <span role="status" style="display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 12px; background: #DDEBDD; color: #24523A; font-weight: 700; font-size: 15px">{{t.nlDone}}</span>
+        </sc-if>
+        <span style="font-size: 12px; color: #B8A6CC">{{t.nlNote}}</span>
+      </form>
+    </section>
+
+    <!-- Releases -->
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 30px; color: #2A1640">{{listTitle}}</h2>
+        <span style="font-size: 14px; color: #6E6478">{{t.listNote}}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px">
+        <sc-for list="{{releases}}" as="r" hint-placeholder-count="8">
+          <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 18px; display: flex; gap: 16px">
+            <div style="width: 96px; height: 136px; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; flex: none; position: relative; overflow: hidden; box-shadow: 0 8px 18px rgba(42,22,64,.16)"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: {{r.tagInk}}">{{r.tag}}</span>
+              <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; line-height: 1.2; color: #2A1640">{{r.title}}</span>
+              <span style="font-size: 13px; color: #4A4252">{{r.author}} · {{r.publisher}}</span>
+              <span style="font-size: 13px; color: #6E6478; line-height: 1.45">{{r.blurb}}</span>
+              <span style="font-size: 13px; color: #6E6478">{{t.release}} <strong style="color: #1E1A24">{{r.date}}</strong> · {{r.format}}</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 4px">
+                <span style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 700; color: #2A1640">{{r.price}}</span><span style="font-size: 11px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span></span>
+                <a href="{{r.href}}" style="display: inline-flex; align-items: center; height: 38px; padding: 0 14px; border-radius: 999px; background: {{r.ctaBg}}; color: {{r.ctaInk}}; font-weight: 700; font-size: 13px; white-space: nowrap">{{r.cta}}</a>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Blog / news -->
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 30px; color: #2A1640">{{t.blogTitle}}</h2>
+        <span style="font-size: 14px; color: #6E6478">{{t.blogNote}}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+        <sc-for list="{{posts}}" as="p" hint-placeholder-count="4">
+          <a href="#" style="background: {{p.bg}}; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 200px; color: #2A1640">
+            <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #5B2A86">{{p.kicker}}</span>
+            <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.15">{{p.title}}</span>
+            <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{p.body}}</span>
+            <span style="margin-top: auto; font-size: 13px; color: #6E6478">{{p.date}} · {{p.read}}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":25,"section":"Pricing"},"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const COVERS = {"1984": "assets/covers/1984.jpg", "alittlelife": "assets/covers/a-little-life.jpg", "americanbornchinese": "assets/covers/american-born-chinese.jpg", "aslongasthelemontreesgrow": "assets/covers/as-long-as-the-lemon-trees-grow.jpg", "atomichabits": "assets/covers/atomic-habits.jpg", "babel": "assets/covers/babel.jpg", "beachread": "assets/covers/beach-read.jpg", "beforethecoffeegetscold": "assets/covers/before-the-coffee-gets-cold.jpg", "blueyilovemyfamily": "assets/covers/bluey-i-love-my-family.jpg", "blueythecreek": "assets/covers/bluey-the-creek.jpg", "circe": "assets/covers/circe.jpg", "collinsinternationalprimarysciencebook3": "assets/covers/collins-international-primary-science-book-3.jpg", "conversationsonlove": "assets/covers/conversations-on-love.jpg", "crimeandpunishment": "assets/covers/crime-and-punishment.jpg", "dailystoic": "assets/covers/daily-stoic.jpg", "daysatthemorisakibookshop": "assets/covers/days-at-the-morisaki-bookshop.jpg", "diaryofawimpykid1": "assets/covers/diary-of-a-wimpy-kid-1.jpg", "diaryofawimpykid12thegetaway": "assets/covers/diary-of-a-wimpy-kid-12-the-getaway.jpg", "dogman1": "assets/covers/dog-man-1.jpg", "dogman10motheringheights": "assets/covers/dog-man-10-mothering-heights.jpg", "dogman11twentythousandfleas": "assets/covers/dog-man-11-twenty-thousand-fleas.jpg", "dogman12thescarletshedder": "assets/covers/dog-man-12-the-scarlet-shedder.jpg", "dogman13bigjimbegins": "assets/covers/dog-man-13-big-jim-begins.jpg", "dogman14bigjimbelieves": "assets/covers/dog-man-14-big-jim-believes.jpg", "dogman3taleoftwokitties": "assets/covers/dog-man-3-tale-of-two-kitties.jpg", "dogman5lordofthefleas": "assets/covers/dog-man-5-lord-of-the-fleas.jpg", "dogman6brawlofthewild": "assets/covers/dog-man-6-brawl-of-the-wild.jpg", "dogman7forwhomtheballrolls": "assets/covers/dog-man-7-for-whom-the-ball-rolls.jpg", "dogman9grimeandpunishment": "assets/covers/dog-man-9-grime-and-punishment.jpg", "dune": "assets/covers/dune.jpg", "enlightenmentnow": "assets/covers/enlightenment-now.jpg", "factfulness": "assets/covers/factfulness.jpg", "fahrenheit451": "assets/covers/fahrenheit-451.jpg", "fivenightsatfreddys1intothepit": "assets/covers/five-nights-at-freddy-s-1-into-the-pit.jpg", "fivepeopleyoumeetinheaven": "assets/covers/five-people-you-meet-in-heaven.jpg", "foronemoreday": "assets/covers/for-one-more-day.jpg", "fourthousandweeks": "assets/covers/four-thousand-weeks.jpg", "freakonomics": "assets/covers/freakonomics.jpg", "goodmaterial": "assets/covers/good-material.jpg", "howdemocraciesdie": "assets/covers/how-democracies-die.jpg", "howtowinfriendsandinfluencepeople": "assets/covers/how-to-win-friends-and-influence-people.jpg", "indonesiaetc": "assets/covers/indonesia-etc.jpg", "itstartswithus": "assets/covers/it-starts-with-us.jpg", "kafkaontheshore": "assets/covers/kafka-on-the-shore.jpg", "katabasis": "assets/covers/katabasis.jpg", "loveforimperfectthings": "assets/covers/love-for-imperfect-things.jpg", "moredaysatthemorisakibookshop": "assets/covers/more-days-at-the-morisaki-bookshop.jpg", "nineteeneightyfour": "assets/covers/nineteen-eighty-four.jpg", "noise": "assets/covers/noise.jpg", "normalpeople": "assets/covers/normal-people.jpg", "norwegianwood": "assets/covers/norwegian-wood.jpg", "originals": "assets/covers/originals.jpg", "oxfordlearnerspocketdictionary": "assets/covers/oxford-learner-s-pocket-dictionary.jpg", "sapiens": "assets/covers/sapiens.jpg", "surroundedbyidiots": "assets/covers/surrounded-by-idiots.jpg", "the7habitsofhighlyeffectivepeople": "assets/covers/the-7-habits-of-highly-effective-people.jpg", "thealchemist": "assets/covers/the-alchemist.jpg", "theanxiousgeneration": "assets/covers/the-anxious-generation.jpg", "theartofspendingmoney": "assets/covers/the-art-of-spending-money.jpg", "theartofthinkingclearly": "assets/covers/the-art-of-thinking-clearly.jpg", "theartofwarblackcover": "assets/covers/the-art-of-war-black-cover.jpg", "thebodykeepsthescore": "assets/covers/the-body-keeps-the-score.jpg", "thebookyouwishyourparentshadread": "assets/covers/the-book-you-wish-your-parents-had-read.jpg", "theconveniencestorebythesea": "assets/covers/the-convenience-store-by-the-sea.jpg", "thegirlwhowastaken": "assets/covers/the-girl-who-was-taken.jpg", "thegoldfinch": "assets/covers/the-goldfinch.jpg", "theintelligentinvestor": "assets/covers/the-intelligent-investor.jpg", "theletthemtheory": "assets/covers/the-let-them-theory.jpg", "themythofsisyphus": "assets/covers/the-myth-of-sisyphus.jpg", "thepoppywar": "assets/covers/the-poppy-war.jpg", "thepoppywar1": "assets/covers/the-poppy-war-1.jpg", "thepsychologyofmoney": "assets/covers/the-psychology-of-money.jpg", "thesecretofsecrets": "assets/covers/the-secret-of-secrets.jpg", "thesilentpatient": "assets/covers/the-silent-patient.jpg", "thesongofachilles": "assets/covers/the-song-of-achilles.jpg", "thesubtleartofnotgivingafck": "assets/covers/the-subtle-art-of-not-giving-a-f-ck.jpg", "thingsyoucanseewhenyouslowdown": "assets/covers/things-you-can-see-when-you-slow-down.jpg", "tuesdayswithmorrie": "assets/covers/tuesdays-with-morrie.jpg", "whenbreathbecomesair": "assets/covers/when-breath-becomes-air.jpg", "whenthingsdontgoyourway": "assets/covers/when-things-don-t-go-your-way.jpg", "whyhasnobodytoldmethisbefore": "assets/covers/why-has-nobody-told-me-this-before.jpg", "whynationsfail": "assets/covers/why-nations-fail.jpg", "wordsworthannakarenina": "assets/covers/wordsworth-anna-karenina.jpg", "wordsworthemma": "assets/covers/wordsworth-emma.jpg", "wordsworthessentialkafka": "assets/covers/wordsworth-essential-kafka.jpg", "wordsworthgreatgatsby": "assets/covers/wordsworth-great-gatsby.jpg", "wordsworthjaneeyre": "assets/covers/wordsworth-jane-eyre.jpg", "wordsworthprideandprejudice": "assets/covers/wordsworth-pride-and-prejudice.jpg", "wordsworthwarandpeace": "assets/covers/wordsworth-war-and-peace.jpg"};
+    const coverOf = (title) => { const u = COVERS[String(title).toLowerCase().replace(/[^a-z0-9]/g, '')]; return { img: u || '', hasImg: !!u }; };
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const d = this.props.resellerDiscount ?? 25;
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const t = {
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
+      catalog: L('Katalog', 'Catalog'), cart: L('Keranjang · 24 item', 'Cart · 24 items'),
+      eyebrow: L('SEGERA TERBIT · KABAR BUKU', 'COMING SOON · BOOK NEWS'),
+      title: L('Buku yang akan terbit, dan apa yang perlu Anda tahu sebelum memesan', 'What is about to be released, and what you need to know before you order'),
+      sub: L('Kalender rilis dari semua penerbit kami, tiga bulan ke depan. Judul dengan pre-order gabungan bisa langsung diikuti; yang lain bisa diingatkan saat stok tiba. Setiap bulan kami kirim ringkasannya lewat e-mail dan WhatsApp.', 'The release calendar from all our publishers, three months ahead. Titles with a pooled pre-order can be joined right away; the others can remind you when stock lands. We send the summary by e-mail and WhatsApp every month.'),
+      nlEyebrow: L('NEWSLETTER RESELLER', 'RESELLER NEWSLETTER'),
+      nlTitle: L('Rilis bulan depan, langsung ke inbox Anda', 'Next month’s releases, straight to your inbox'),
+      nlBody: L('Satu e-mail tiap awal bulan: judul yang terbit, pre-order yang dibuka, dan apa yang laku di toko lain. Opsional lewat WhatsApp.', 'One e-mail at the start of each month: what is being released, which pre-orders open, and what sells in other shops. Optional via WhatsApp.'),
+      nlEmail: L('E-mail toko', 'Shop e-mail'), nlWa: L('Kirim juga ke WhatsApp toko saya', 'Also send to my shop’s WhatsApp'), nlCta: L('Berlangganan', 'Subscribe'), nlDone: L('✓ Terdaftar. Edisi berikutnya 1 Nov.', '✓ Subscribed. Next issue Nov 1.'),
+      nlNote: L('Hanya untuk reseller terdaftar. Berhenti kapan saja.', 'Registered resellers only. Unsubscribe any time.'),
+      listNote: L('Tanggal dari penerbit; bisa bergeser. Harga mengikuti level Anda.', 'Dates from publishers; may move. Prices follow your level.'),
+      release: L('Terbit', 'Release'),
+      blogTitle: L('Kabar buku', 'Book news'), blogNote: L('Ditulis tim kami, 2–3 kali sebulan', 'Written by our team, 2–3 times a month')
+    };
+    const month = st.month || 'nov';
+    const months = [['nov', L('November 2026', 'November 2026')], ['dec', L('Desember 2026', 'December 2026')], ['jan', L('Januari 2027', 'January 2027')], ['all', L('Semua', 'All')]]
+      .map(([id, label]) => ({ label, on: month === id, off: month !== id, pick: () => this.setState({ month: id }) }));
+    const PRE = [L('PRE-ORDER TERBUKA', 'PRE-ORDER OPEN'), '#B0476A', L('Ikut pre-order', 'Join pre-order'), 'pre-order.html', '#5B2A86', '#FFFFFF'];
+    const REM = [L('SEGERA TERBIT', 'COMING SOON'), '#5B2A86', L('Ingatkan saya', 'Remind me'), '#', '#F1EBF6', '#2A1640'];
+    const raw = [
+      { m: 'nov', title: 'Sapiens: A Graphic History Vol. 3', author: 'Yuval Noah Harari', publisher: 'Penguin Random House', date: L('3 Nov 2026', 'Nov 3, 2026'), format: 'Hardcover', retail: 450000, kind: PRE, blurb: L('Jilid penutup seri grafis. Jilid 1–2 terjual stabil di toko umum dan sekolah.', 'Closing volume of the graphic series. Vols 1–2 sell steadily in general shops and schools.') },
+      { m: 'nov', title: 'The Anxious Generation', author: 'Jonathan Haidt', publisher: 'Penguin Random House', date: L('10 Nov 2026', 'Nov 10, 2026'), format: L('Paperback (edisi baru)', 'Paperback (new edition)'), retail: 280000, kind: PRE, blurb: L('Edisi paperback dari buku parenting terlaris 2024–25; permintaan dari sekolah dan orang tua.', 'Paperback of the 2024–25 parenting best seller; demand from schools and parents.') },
+      { m: 'nov', title: 'The Convenience Store by the Sea', author: 'Sonoko Machida', publisher: 'Bloomsbury', date: L('17 Nov 2026', 'Nov 17, 2026'), format: 'Paperback', retail: 214000, kind: PRE, blurb: L('Fiksi Jepang hangat untuk pembaca Morisaki Bookshop dan Before the Coffee Gets Cold.', 'Cosy Japanese fiction for readers of Morisaki Bookshop and Before the Coffee Gets Cold.') },
+      { m: 'nov', title: 'Good Material', author: 'Dolly Alderton', publisher: 'Knopf', date: L('[tgl] Nov 2026', '[date] Nov 2026'), format: 'Paperback', retail: 240000, kind: REM, blurb: L('Fiksi kontemporer; sering diminta lewat Minta buku.', 'Contemporary fiction; often requested via Request a book.') },
+      { m: 'dec', title: 'Dog Man 14: Big Jim Believes', author: 'Dav Pilkey', publisher: 'Scholastic', date: L('[tgl] Des 2026', '[date] Dec 2026'), format: 'Hardcover', retail: 199000, kind: REM, blurb: L('Seri anak terlaris kami; jilid baru selalu habis di minggu pertama.', 'Our best-selling kids’ series; new volumes sell out in week one.') },
+      { m: 'dec', title: 'The Let Them Theory', author: 'Mel Robbins', publisher: 'Hay House', date: L('[tgl] Des 2026', '[date] Dec 2026'), format: L('Edisi hadiah', 'Gift edition'), retail: 535000, kind: REM, blurb: L('Edisi hadiah menjelang akhir tahun; cocok untuk meja hadiah.', 'Gift edition for the year-end; suits gift tables.') },
+      { m: 'dec', title: 'Wordsworth Pride and Prejudice', author: 'Jane Austen', publisher: 'Wordsworth', date: L('[tgl] Des 2026', '[date] Dec 2026'), format: L('Edisi koleksi', 'Collector’s edition'), retail: 95000, kind: REM, blurb: L('Klasik murah dengan sampul baru; margin bagus untuk sekolah dan hadiah.', 'Affordable classic with a new cover; good margin for schools and gifts.') },
+      { m: 'jan', title: 'Katabasis', author: 'R.F. Kuang', publisher: 'Harper Voyager', date: L('[tgl] Jan 2027', '[date] Jan 2027'), format: 'Paperback', retail: 280000, kind: REM, blurb: L('Paperback dari hardcover yang pre-order-nya terkumpul 246 eks. bulan ini.', 'Paperback of the hardcover whose pre-order pooled 246 copies this month.') },
+      { m: 'jan', title: 'Days at the Morisaki Bookshop', author: 'Satoshi Yagisawa', publisher: 'Manilla', date: L('[tgl] Jan 2027', '[date] Jan 2027'), format: L('Box set 1–2', 'Box set 1–2'), retail: 398000, kind: REM, blurb: L('Box set dua jilid; permintaan dari toko kurasi dan kafe.', 'Two-volume box set; demand from curated shops and cafés.') }
+    ];
+    const releases = raw.filter((r) => month === 'all' || r.m === month).map((r) => ({ ...r, ...coverOf(r.title), cover: '#4A3463', tag: r.kind[0], tagInk: r.kind[1], cta: r.kind[2], href: r.kind[3], ctaBg: r.kind[4], ctaInk: r.kind[5], price: fmt(r.retail * (1 - d / 100)), retail: fmt(r.retail) }));
+    const listTitle = month === 'all' ? L('Semua rilis mendatang', 'All upcoming releases') : L('Terbit ' + months.find((x) => x.on).label, 'Releasing ' + months.find((x) => x.on).label) + ' · ' + releases.length + ' ' + L('judul', 'titles');
+    const posts = [
+      { bg: '#FDE9C4', kicker: L('KALENDER', 'CALENDAR'), title: L('Yang terbit November: 12 judul dan 3 pre-order gabungan', 'November releases: 12 titles and 3 pooled pre-orders'), body: L('Ringkasan per kategori, mana yang layak dipesan sekarang, dan mana yang bisa menunggu paperback.', 'By category, which to order now, and which can wait for the paperback.'), date: L('14 Okt 2026', 'Oct 14, 2026'), read: L('4 menit', '4 min') },
+      { bg: '#E6DDF0', kicker: L('DATA', 'DATA'), title: L('Rekap IIBF 2026 untuk reseller: apa yang laku di meja mana', 'IIBF 2026 recap for resellers: what sold on which table'), body: L('Reseller 52% dari Rp 2,9 M; Tuesdays with Morrie 589 eks.; buku anak laris di baris kecil, bukan baris besar.', 'Resellers were 52% of Rp 2.9B; Tuesdays with Morrie 589 copies; kids’ books sold on the small lines, not the big ones.'), date: L('9 Okt 2026', 'Oct 9, 2026'), read: L('5 menit', '5 min') },
+      { bg: '#DCEBF0', kicker: L('TREN', 'TRENDS'), title: L('BookTok Indonesia Oktober: 8 judul yang sedang dibicarakan', 'BookTok Indonesia October: 8 titles creators are talking about'), body: L('Dari 74 kreator yang kami pantau. Stok dan harga reseller di tiap judul.', 'From the 74 creators we follow. Stock and reseller price on each title.'), date: L('7 Okt 2026', 'Oct 7, 2026'), read: L('3 menit', '3 min') },
+      { bg: '#DDEBDD', kicker: L('CARA', 'HOW-TO'), title: L('Cara menyusun meja rilis baru dengan anggaran Rp 2 juta', 'How to build a new-releases table on a Rp 2M budget'), body: L('Contoh dari tiga toko mitra, dengan daftar judulnya.', 'Examples from three partner shops, with their title lists.'), date: L('1 Okt 2026', 'Oct 1, 2026'), read: L('4 menit', '4 min') }
+    ];
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({ label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id }) }));
+    return { t, langs, months, releases, listTitle, posts, nlDone: !!st.nlDone, nlNotDone: !st.nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>
