@@ -147,6 +147,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <a href="catalog.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qOrder}}</a>
         <a href="request-a-book.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qRequest}}</a>
         <a href="pre-order.html" style="background: #FDE9C4; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qPreorder}}</a>
+        <a href="help-me-choose.html" style="background: #2A1640; border-radius: 18px; padding: 20px; font-weight: 700; color: #F2B33D">{{t.qHelp}}</a>
         <a href="orders.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qReorder}}</a>
         <a href="https://wa.me/" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qWa}}</a>
       </div>
@@ -177,15 +178,16 @@ class Component extends DCLogic {
       seeRewards: L('Lihat detail level →', 'See tier details →'),
       depositTitle: L('DEPOSIT', 'DEPOSIT'),
       depositBody: L('Berlaku sampai [tanggal]. Dipotong otomatis dari pesanan berikutnya.', 'Valid until [date]. Deducted automatically from your next order.'),
-      unpaid: L('Menunggu transfer', 'Awaiting transfer'),
-      payNow: L('Lihat PO & invoice →', 'View PO & invoice →'),
+      unpaid: L('Menunggu pembayaran', 'Awaiting payment'),
+      payNow: L('Bayar sekarang →', 'Pay now →'),
       yourRef: L('Ref. Anda', 'Your ref.'),
       recent: L('Pesanan terbaru', 'Recent orders'),
       allOrders: L('Semua pesanan →', 'All orders →'),
       qOrder: L('Pesan buku', 'Order books'),
       qRequest: L('Minta buku yang belum ada', 'Request a book we don’t stock'),
       qPreorder: L('Pre-order gabungan: 4 terbuka', 'Pooled pre-orders: 4 open'),
-      qReorder: L('Pesan ulang dari PO lama', 'Reorder from a past PO'),
+      qHelp: L('Bantu saya memilih: susun pesanan', 'Help me choose: build an order'),
+      qReorder: L('Pesan ulang dari pesanan lama', 'Reorder from a past order'),
       qWa: L('Chat dengan tim kami', 'Chat with our team'),
       dummy: L('Contoh data untuk desain.', 'Sample data for the design.')
     };
@@ -195,21 +197,21 @@ class Component extends DCLogic {
       { label: L('Rata-rata per pesanan', 'Average order'), value: 'Rp 3.475.680' },
       { label: L('Pesanan terakhir', 'Last order'), value: L('8 Okt 2026', 'Oct 8, 2026') }
     ];
-    // Same statuses, PO numbers and totals as orders.html (oc-b2b PO flow).
+    // Same statuses, order numbers and totals as orders.html.
     const S = {
-      submitted: { status: L('PO DIAJUKAN', 'PO SUBMITTED'), chipBg: '#ECE6F1', chipInk: '#4A4252' },
-      verified: { status: L('PO DIVERIFIKASI', 'PO VERIFIED'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
-      approved: { status: L('PO DISETUJUI', 'PO APPROVED'), chipBg: '#FDE9C4', chipInk: '#6B4A00' }
+      submitted: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#ECE6F1', chipInk: '#4A4252' },
+      verified: { status: L('DIBAYAR', 'PAID'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
+      approved: { status: L('DIKEMAS', 'PACKING'), chipBg: '#FDE9C4', chipInk: '#6B4A00' }
     };
     const recent = [
-      { no: 'PO-202610-0014', ref: 'PO-TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: L('Rp 5.241.600 + ongkir', 'Rp 5,241,600 + shipping'), s: 'submitted' },
-      { no: 'PO-202610-0009', ref: 'PO-TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), items: L('18 buku', '18 books'), total: L('Rp 2.146.200 + ongkir', 'Rp 2,146,200 + shipping'), s: 'verified' },
-      { no: 'PO-202610-0004', ref: 'PO-TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), items: L('30 buku', '30 books'), total: L('Rp 3.960.000', 'Rp 3,960,000'), s: 'approved' }
+      { no: 'ORD-202610-0014', ref: 'TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: L('Rp 5.241.600 + ongkir', 'Rp 5,241,600 + shipping'), s: 'submitted' },
+      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), items: L('18 buku', '18 books'), total: L('Rp 2.146.200 + ongkir', 'Rp 2,146,200 + shipping'), s: 'verified' },
+      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), items: L('30 buku', '30 books'), total: L('Rp 3.960.000', 'Rp 3,960,000'), s: 'approved' }
     ].map((o) => Object.assign({}, o, S[o.s]));
-    const awaiting = { no: 'PO-202610-0004', note: L('Invoice dikirim', 'Invoice sent'), total: L('Rp 3.960.000', 'Rp 3,960,000') };
+    const awaiting = { no: 'ORD-202610-0014', note: L('VA BCA berlaku sampai 9 Okt 14.00', 'BCA VA valid until Oct 9, 2 pm'), total: L('Rp 3.960.000', 'Rp 3,960,000') };
     const menu = [
       { label: L('Dasbor', 'Dashboard'), href: 'account.html', on: true },
-      { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html' },
+      { label: L('Pesanan', 'Orders'), href: 'orders.html' },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
       { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },

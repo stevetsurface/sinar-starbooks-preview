@@ -79,7 +79,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </div>
         </section>
 
-        <!-- Recommendations for this PO -->
+        <!-- Recommendations for this order -->
         <section style="background: #F7F2FB; border: 1px solid #E6DDF0; border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline">
             <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px; color: #2A1640">{{t.recTitle}}</h2>
@@ -104,25 +104,16 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           </div>
         </section>
 
-        <!-- PO details -->
-        <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
-          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.poTitle}}</h2>
+        <!-- Notes -->
+        <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px 28px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{t.notesTitle}}</h2>
           <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="po" style="font-size: 14px; font-weight: 600">{{t.poNumber}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
-            <input id="po" type="text" placeholder="{{t.poPh}}" style="height: 48px; max-width: 420px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
-            <span style="font-size: 13px; color: #6E6478">{{t.poAssigned}}</span>
+            <label for="notes" style="font-size: 14px; font-weight: 600">{{t.notes}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+            <textarea id="notes" rows="2" placeholder="{{t.notesPh}}" style="border-radius: 12px; border: 1px solid #D9CCE6; padding: 12px 14px; font: inherit; font-size: 15px; resize: vertical"></textarea>
           </div>
           <div style="display: flex; flex-direction: column; gap: 6px">
-            <label for="notes" style="font-size: 14px; font-weight: 600">{{t.notes}}</label>
-            <textarea id="notes" rows="3" placeholder="{{t.notesPh}}" style="border-radius: 12px; border: 1px solid #D9CCE6; padding: 12px 14px; font: inherit; font-size: 15px; resize: vertical"></textarea>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px">
-            <span style="font-size: 14px; font-weight: 600">{{t.attachPo}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></span>
-            <label for="pofile" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border: 1.5px dashed #C9B6DC; border-radius: 14px; padding: 20px; background: #FBF8FD; cursor: pointer">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
-              <span style="font-size: 14px; color: #4A4252"><strong style="color: #5B2A86">{{t.chooseFile}}</strong> {{t.dragHint}}</span>
-            </label>
-            <input id="pofile" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" style="position: absolute; left: -9999px">
+            <label for="yourref" style="font-size: 14px; font-weight: 600">{{t.yourRef}} <span style="font-weight: 400; color: #6E6478">{{t.optional}}</span></label>
+            <input id="yourref" type="text" placeholder="{{t.yourRefPh}}" style="height: 48px; max-width: 420px; border-radius: 12px; border: 1px solid #D9CCE6; padding: 0 14px; font: inherit; font-size: 15px">
           </div>
         </section>
 
@@ -222,22 +213,18 @@ class Component extends DCLogic {
       stepsAria: L('Langkah checkout', 'Checkout steps'),
       step1: L('Keranjang', 'Cart'),
       step2: L('Pengiriman & pembayaran', 'Shipping & payment'),
-      step3: L('PO terkirim', 'PO submitted'),
+      step3: L('Pesanan dibuat', 'Order placed'),
       title: L('Pesanan Anda', 'Your order'),
       each: L('/ eksemplar', 'each'),
       qty: L('Jumlah', 'Qty'),
       removeItem: L('Hapus item', 'Remove item'),
       continueShopping: L('← Lanjut belanja', '← Continue shopping'),
       uploadCsv: L('Unggah daftar pesanan (CSV)', 'Upload a CSV order list'),
-      poTitle: L('Purchase order', 'Purchase order'),
-      poNumber: L('Nomor PO Anda', 'Your PO number'),
-      poPh: L('Nomor PO internal toko Anda', "Your store's internal PO number"),
-      poAssigned: L('Sistem kami memberi nomor PO sendiri (PO-YYYYMM-####) setelah dikirim.', 'Our system assigns its own PO number (PO-YYYYMM-####) on submit.'),
       optional: L('(opsional)', '(optional)'),
-      attachPo: L('Lampiran dokumen PO', 'PO document attachment'),
-      chooseFile: L('Pilih file', 'Choose a file'),
-      dragHint: L('atau seret ke sini · PDF, JPG, PNG atau WEBP, maks. 5 MB', 'or drag it here · PDF, JPG, PNG or WEBP, max 5 MB'),
+      notesTitle: L('Catatan', 'Notes'),
       notes: L('Catatan untuk tim kami', 'Notes for our team'),
+      yourRef: L('Referensi internal toko Anda', 'Your store’s internal reference'),
+      yourRefPh: L('mis. nomor pesanan di sistem Anda', 'e.g. the order number in your own system'),
       notesPh: L('Jadwal pengiriman, permintaan pengemasan…', 'Delivery window, packing requests…'),
       delivery: L('Pengiriman', 'Delivery'),
       deliveryMethod: L('Metode pengiriman', 'Delivery method'),
@@ -245,12 +232,12 @@ class Component extends DCLogic {
       savedAddress: L('[Alamat toko tersimpan], Bandung', '[Saved store address], Bandung'),
       changeAddress: L('ubah', 'change'),
       weightLine: L('Estimasi berat 24 item ≈ 10,8 kg', 'Estimated weight of 24 items ≈ 10.8 kg'),
-      shipNote: L('Tarif dihitung dari berat dan tujuan (contoh tarif Biteship). Pengiriman dibuat setelah PO disetujui dan dibayar; nomor resi muncul di Pesanan & PO. Ongkir ditanggung pembeli.', 'Rates are from weight and destination (sample Biteship rates). The shipment is booked once the PO is approved and paid; the tracking number appears under Orders & POs. Buyer pays shipping.'),
-      payIntro: L('Pilih cara bayar sekarang; tagihan dikirim setelah PO disetujui (biasanya 1 hari kerja).', 'Choose how you will pay now; the bill is issued once the PO is approved (usually 1 working day).'),
+      shipNote: L('Tarif dihitung dari berat dan tujuan (contoh tarif Biteship). Pengiriman dibuat begitu pembayaran terkonfirmasi; nomor resi muncul di Pesanan. Ongkir ditanggung pembeli.', 'Rates are from weight and destination (sample Biteship rates). The shipment is booked as soon as payment is confirmed; the tracking number appears under Orders. Buyer pays shipping.'),
+      payIntro: L('Bayar langsung saat checkout. Virtual account, QRIS, dan kartu terkonfirmasi otomatis; transfer manual dicek dalam 1 hari kerja.', 'Pay at checkout. Virtual account, QRIS and card confirm automatically; manual transfer is checked within 1 working day.'),
       payMethod: L('Metode pembayaran', 'Payment method'),
       payNote: L('Pembayaran diproses lewat Midtrans/Xendit. Faktur pajak untuk produk non-buku diterbitkan setelah lunas.', 'Payments run through Midtrans/Xendit. Tax invoices for non-book items are issued after settlement.'),
       payFee: L('Biaya pembayaran', 'Payment fee'),
-      recTitle: L('Lengkapi PO ini', 'Round out this PO'),
+      recTitle: L('Lengkapi pesanan ini', 'Round out this order'),
       recNote: L('Dari riwayat pembelian toko Anda dan reseller serupa', 'From your store’s history and similar resellers'),
       recAdded: L('✓ Ditambahkan', '✓ Added'),
       summaryAria: L('Ringkasan pesanan', 'Order summary'),
@@ -262,10 +249,10 @@ class Component extends DCLogic {
       tax: L('PPN', 'VAT (PPN)'),
       taxValue: L('Rp 0 · buku bebas PPN', 'Rp 0 · books are PPN-exempt'),
       total: L('Total tagihan', 'Total due'),
-      totalNote: L('Ongkir final dikonfirmasi saat PO disetujui bila berat berbeda', 'Final shipping is confirmed at approval if the weight differs'),
+      totalNote: L('Ongkir final mengikuti berat saat dikemas; selisih dikembalikan atau ditagih', 'Final shipping follows the packed weight; any difference is refunded or billed'),
       payment: L('Pembayaran', 'Payment'),
-      submit: L('Kirim PO', 'Submit PO'),
-      footnote: L("Setelah dikirim, PO berstatus 'PO Diajukan'. Tim kami memverifikasi stok, lalu PO disetujui dan tautan bayar dikirim ke e-mail dan Pesanan & PO. Setelah lunas, pengiriman dibuat otomatis.", "Once submitted, your PO's status is 'PO Diajukan' (submitted). We verify stock, approve the PO and send the pay link by e-mail and under Orders & POs. Once paid, the shipment is booked automatically.")
+      submit: L('Bayar & buat pesanan', 'Pay & place order'),
+      footnote: L("Setelah pembayaran terkonfirmasi, pesanan berstatus 'Dibayar', dikemas dalam 1 hari kerja, dan nomor resi muncul di Akun › Pesanan. Invoice dan faktur pajak (non-buku) bisa diunduh di sana.", "Once payment is confirmed, the order is marked 'Paid', packed within 1 working day, and the tracking number appears under Account › Orders. Invoices and tax invoices (non-books) can be downloaded there.")
     };
     const SHIP = [
       { id: 'pickup', name: L('Ambil sendiri di gudang (Jakarta)', 'Pick up at our warehouse (Jakarta)'), note: L('Senin–Sabtu 09.00–17.00 · siap 1 hari kerja setelah lunas', 'Mon–Sat 9am–5pm · ready 1 working day after payment'), cost: 0 },
@@ -274,10 +261,10 @@ class Component extends DCLogic {
       { id: 'instant', name: L('Gojek / Grab Instan', 'Gojek / Grab Instant'), note: L('Hari ini · hanya Jabodetabek · maks. 20 kg', 'Today · Jabodetabek only · max 20 kg'), cost: 45000 }
     ];
     const PAY = [
-      { id: 'va', name: L('Virtual account bank', 'Bank virtual account'), note: L('BCA · Mandiri · BNI · BRI · otomatis terkonfirmasi', 'BCA · Mandiri · BNI · BRI · confirmed automatically'), fee: () => 4500, feeLabel: 'Rp 4.500', when: L('Nomor VA dikirim setelah PO disetujui; berlaku 3 hari.', 'VA number sent once the PO is approved; valid 3 days.') },
-      { id: 'qris', name: 'QRIS', note: L('Scan dari aplikasi bank atau e-wallet mana pun', 'Scan from any bank or e-wallet app'), fee: (s) => s * 0.007, feeLabel: '0,7%', when: L('Kode QR dikirim setelah PO disetujui.', 'QR code sent once the PO is approved.') },
-      { id: 'card', name: L('Kartu kredit / debit', 'Credit / debit card'), note: L('Visa · Mastercard · JCB · cicilan 0% [bank]', 'Visa · Mastercard · JCB · 0% instalments [bank]'), fee: (s) => s * 0.029 + 2000, feeLabel: '2,9% + Rp 2.000', when: L('Tautan bayar dikirim setelah PO disetujui.', 'Pay link sent once the PO is approved.') },
-      { id: 'transfer', name: L('Transfer manual', 'Manual bank transfer'), note: L('Unggah bukti transfer di Pesanan & PO · dicek 1 hari kerja', 'Upload proof under Orders & POs · checked within 1 working day'), fee: () => 0, feeLabel: L('gratis', 'free'), when: L('Invoice dan rekening dikirim setelah PO disetujui.', 'Invoice and bank details sent once the PO is approved.') }
+      { id: 'va', name: L('Virtual account bank', 'Bank virtual account'), note: L('BCA · Mandiri · BNI · BRI · otomatis terkonfirmasi', 'BCA · Mandiri · BNI · BRI · confirmed automatically'), fee: () => 4500, feeLabel: 'Rp 4.500', when: L('Nomor VA muncul setelah klik Bayar; berlaku 24 jam.', 'The VA number appears after you click Pay; valid 24 hours.') },
+      { id: 'qris', name: 'QRIS', note: L('Scan dari aplikasi bank atau e-wallet mana pun', 'Scan from any bank or e-wallet app'), fee: (s) => s * 0.007, feeLabel: '0,7%', when: L('Kode QR muncul setelah klik Bayar; berlaku 30 menit.', 'The QR code appears after you click Pay; valid 30 minutes.') },
+      { id: 'card', name: L('Kartu kredit / debit', 'Credit / debit card'), note: L('Visa · Mastercard · JCB · cicilan 0% [bank]', 'Visa · Mastercard · JCB · 0% instalments [bank]'), fee: (s) => s * 0.029 + 2000, feeLabel: '2,9% + Rp 2.000', when: L('Halaman kartu aman muncul setelah klik Bayar.', 'A secure card page opens after you click Pay.') },
+      { id: 'transfer', name: L('Transfer manual', 'Manual bank transfer'), note: L('Unggah bukti transfer di Pesanan · dicek 1 hari kerja', 'Upload proof under Orders · checked within 1 working day'), fee: () => 0, feeLabel: L('gratis', 'free'), when: L('Rekening dan nominal ditampilkan setelah klik Bayar; pesanan diproses setelah bukti dicek.', 'Bank details and amount shown after you click Pay; the order is processed once proof is checked.') }
     ];
     const items = [
       { title: "World's Best Dad", publisher: 'Penguin Random House', price: 183308, qty: 12, cover: '#1F3B73' },

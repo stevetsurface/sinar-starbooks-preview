@@ -235,7 +235,7 @@ class Component extends DCLogic {
     const requests = added.concat(base).map((r) => Object.assign({}, r, S[r.s]));
     const menu = [
       { label: L('Dasbor', 'Dashboard'), href: 'account.html' },
-      { label: L('Pesanan & PO', 'Orders & POs'), href: 'orders.html' },
+      { label: L('Pesanan', 'Orders'), href: 'orders.html' },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html', on: true },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
       { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },

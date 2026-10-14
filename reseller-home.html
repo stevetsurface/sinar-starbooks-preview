@@ -132,7 +132,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.recTitle}}</h2>
         <span style="font-size: 15px; color: #6E6478">{{t.recSub}}</span>
       </div>
-      <a href="pre-order.html" style="font-weight: 600; font-size: 15px">{{t.recSeePre}}</a>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="help-me-choose.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 14px">{{t.recHelp}}</a><a href="pre-order.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.recSeePre}}</a></div>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
       <sc-for list="{{recGroups}}" as="g" hint-placeholder-count="3">
@@ -325,7 +325,8 @@ class Component extends DCLogic {
       newTitle: L('Rilis baru & pre-order', 'New releases & pre-orders'),
       recTitle: L('Rekomendasi untuk [Nama Toko]', 'Picks for [Bookshop name]'),
       recSub: L('Dari riwayat pembelian toko Anda, stok hari ini, dan pre-order yang sedang terbuka. Diperbarui setiap malam.', 'From your purchase history, today’s stock and the open pre-orders. Updated nightly.'),
-      recSeePre: L('Semua pre-order →', 'All pre-orders →'),
+      recSeePre: L('Semua pre-order', 'All pre-orders'),
+      recHelp: L('Bantu saya memilih', 'Help me choose'),
       recAdded: L('✓ Di keranjang', '✓ In cart'),
       priceNoteA: L('Harga reseller Anda ditampilkan —', 'Your reseller price is shown —'),
       priceNoteB: L('di bawah harga eceran.', 'below retail.'),
@@ -339,8 +340,8 @@ class Component extends DCLogic {
       step1Body: L('Ceritakan tentang toko Anda dan unggah NIB / NPWP. Tim kami memverifikasi akun baru dalam [X] hari kerja.', 'Tell us about your store and upload your NIB / NPWP. Our team verifies new accounts within [X] working days.'),
       step2Title: L('Lihat harga reseller', 'See reseller pricing'),
       step2Body: L('Setelah disetujui, setiap judul menampilkan harga reseller, minimal pembelian, dan stok terkini.', 'Once approved, every title shows your reseller price, minimum order and live stock.'),
-      step3Title: L('Pesan dengan PO', 'Order with a PO'),
-      step3Body: L('Checkout dengan nomor Purchase Order (PO) Anda, lalu unduh invoice dan lacak setiap pesanan di akun Anda.', 'Check out with your purchase order number, then download invoices and track every order in your account.'),
+      step3Title: L('Pesan dan bayar online', 'Order and pay online'),
+      step3Body: L('Bayar dengan virtual account, QRIS, kartu, atau transfer; pilih kurir saat checkout; lacak resi dan unduh invoice di akun Anda.', 'Pay by virtual account, QRIS, card or transfer; pick a courier at checkout; track shipments and download invoices in your account.'),
       footerAbout: L('Importir dan distributor buku serta hadiah berbahasa Inggris di Indonesia sejak 2000.', 'Importer and distributor of English-language books and gifts in Indonesia since 2000.'),
       footerContact: L('[Alamat] · [Telepon] · [Email]', '[Address] · [Phone] · [Email]'),
       fInfo: L('Informasi', 'Information'),
@@ -377,7 +378,7 @@ class Component extends DCLogic {
       { label: L('PESAN ULANG', 'REORDER'), ink: '#3E7A5A', hint: L('Pernah dibeli · stok ada', 'Bought before · in stock'), items: [
         mkRec('r1', 'Tuesdays with Morrie', 188000, 6, L('Terakhir 24 Sep, 6 eks. · #1 reseller di IIBF', 'Last Sep 24, 6 copies · #1 reseller title at IIBF')),
         mkRec('r2', 'The Psychology of Money', 335000, 6, L('Dibeli 3× tahun ini, 14 eks. · 41 hari lalu', 'Bought 3× this year, 14 copies · 41 days ago')),
-        mkRec('r3', 'Atomic Habits', 335000, 6, L('Terakhir 2 Okt · 1.203 eks. terjual di IIBF', 'Last Oct 2 · 1,203 copies sold at IIBF'))
+        mkRec('r3', 'Atomic Habits', 335000, 6, L('Terakhir 2 Okt · nonfiksi terlaris 12 bulan', 'Last Oct 2 · top non-fiction, 12 months'))
       ] },
       { label: L('TERBIT SEGERA · PRE-ORDER', 'COMING SOON · PRE-ORDER'), ink: '#B0476A', hint: L('Cocok dengan rak Anda', 'Matches your shelves'), items: [
         mkRec('p1', 'Katabasis', 420000, 5, L('Anda menjual 10 eks. The Poppy War · tutup 20 Okt', 'You sold 10 copies of The Poppy War · closes Oct 20')),

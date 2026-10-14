@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Sinar Starbooks — Bantu saya memilih</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px" aria-label="Star Books and Gifts">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF"></rect><rect x="7" y="7" width="26" height="26" rx="5" fill="#A463BF" transform="rotate(45 20 20)"></rect></svg>
+        <span style="display: flex; flex-direction: column; line-height: 1">
+          <span style="font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 400; font-size: 23px; color: #2B2B2B; letter-spacing: 1px">STAR BOOKS</span>
+          <span style="font-size: 10px; letter-spacing: 2.5px; color: #2B2B2B; font-family: 'Avenir Next', Avenir, 'Nunito Sans', 'Century Gothic', sans-serif; font-weight: 500; margin-top: 4px">AND GIFTS · RESELLER</span>
+        </span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <a href="account.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px; white-space: nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>{{t.myAccountBtn}}</a>
+        <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+          <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+            <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+            <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <a href="catalog.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.catalog}}</a>
+        <a href="checkout.html" style="display: flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">{{cartLabel}}</a>
+      </div>
+    </div>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px; display: flex; flex-direction: column; gap: 32px">
+
+    <!-- Intro -->
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 760px">
+      <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #5B2A86">{{t.eyebrow}}</span>
+      <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; line-height: 1.1; color: #2A1640">{{t.title}}</h1>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A4252">{{t.sub}}</p>
+    </div>
+
+    <!-- Builder -->
+    <section style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <div style="flex: 1 1 320px; max-width: 380px; background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #F2B33D">{{t.q1}}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{types}}" as="o" hint-placeholder-count="5">
+              <sc-if value="{{o.on}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="true" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #F2B33D; color: #2A1640; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{o.label}}</button></sc-if>
+              <sc-if value="{{o.off}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="false" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #6B5A80; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{o.label}}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #F2B33D">{{t.q2}}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{budgets}}" as="o" hint-placeholder-count="4">
+              <sc-if value="{{o.on}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="true" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #F2B33D; color: #2A1640; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{o.label}}</button></sc-if>
+              <sc-if value="{{o.off}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="false" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #6B5A80; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{o.label}}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #F2B33D">{{t.q3}}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{focuses}}" as="o" hint-placeholder-count="4">
+              <sc-if value="{{o.on}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="true" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #F2B33D; color: #2A1640; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{o.label}}</button></sc-if>
+              <sc-if value="{{o.off}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="false" onClick="{{o.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #6B5A80; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{o.label}}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="border-top: 1px solid #4A3463; padding-top: 18px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; color: #D4C6E2"><span>{{t.sumTitles}}</span><span>{{sumTitles}} · {{sumUnits}} {{t.copies}}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; color: #D4C6E2"><span>{{t.sumRetail}}</span><span style="text-decoration: line-through">{{sumRetail}}</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; font-weight: 600">{{t.sumTotal}}</span><span style="font-size: 26px; font-weight: 700">{{sumTotal}}</span></div>
+          <span style="font-size: 13px; color: #F2B33D; font-weight: 700">{{tierLine}}</span>
+          <span style="font-size: 12px; color: #B8A6CC; line-height: 1.5">{{t.sumNote}}</span>
+        </div>
+        <sc-if value="{{added}}" hint-placeholder-val="{{false}}"><span role="status" style="display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 14px; background: #DDEBDD; color: #24523A; font-weight: 700; font-size: 15px">{{t.addedMsg}}</span></sc-if>
+        <sc-if value="{{notAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{addAll}}" style="height: 52px; border-radius: 14px; border: 0; background: #F2B33D; color: #2A1640; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{t.addAll}}</button></sc-if>
+      </div>
+
+      <div style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 8px 24px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; padding: 16px 0 8px">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; color: #2A1640">{{planTitle}}</h2>
+          <span style="font-size: 13px; color: #6E6478">{{t.planNote}}</span>
+        </div>
+        <sc-for list="{{plan}}" as="p" hint-placeholder-count="8">
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid #F3EFF6">
+            <a href="product.html" style="width: 48px; height: 68px; border-radius: 2px 6px 6px 2px; background: {{p.cover}}; flex: none; position: relative; overflow: hidden; display: block"><sc-if value="{{p.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{p.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></a>
+            <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: {{p.tagInk}}">{{p.tag}}</span>
+              <a href="product.html" style="font-weight: 600; font-size: 15px; color: #1E1A24; line-height: 1.25">{{p.title}}</a>
+              <span style="font-size: 12px; color: #6E6478">{{p.meta}}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; min-width: 150px">
+              <span style="font-weight: 700; font-size: 15px; color: #2A1640">{{p.qty}} × {{p.unit}}</span>
+              <span style="font-size: 12px; color: #6E6478">{{p.sub}}</span>
+            </div>
+            <button type="button" onClick="{{p.drop}}" aria-label="{{p.dropAria}}" style="width: 44px; height: 44px; border: 1px solid #D9CCE6; background: #FFFFFF; border-radius: 10px; display: grid; place-items: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+          </div>
+        </sc-for>
+        <div style="padding: 14px 0 16px; border-top: 1px solid #F3EFF6; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: #6E6478">
+          <span>{{t.legend1}}</span><span>{{t.legend2}}</span><span>{{t.legend3}}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bundles -->
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 30px; color: #2A1640">{{t.bundleTitle}}</h2>
+          <span style="font-size: 15px; color: #6E6478">{{t.bundleSub}}</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+        <sc-for list="{{bundles}}" as="b" hint-placeholder-count="4">
+          <article style="background: {{b.bg}}; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 8px; min-height: 230px">
+            <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #5B2A86">{{b.kicker}}</span>
+            <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.15; color: #2A1640">{{b.title}}</span>
+            <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{b.body}}</span>
+            <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-top: 8px">
+              <span style="display: flex; flex-direction: column"><span style="font-size: 18px; font-weight: 700; color: #2A1640">{{b.price}}</span><span style="font-size: 12px; color: #6E6478">{{b.count}}</span></span>
+              <a href="checkout.html" style="display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 700; font-size: 13px">{{t.bundleCta}}</a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- What is selling -->
+    <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 26px; color: #2A1640">{{t.sellTitle}}</h2>
+        <span style="font-size: 13px; color: #6E6478">{{t.sellNote}}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 8px 32px">
+        <sc-for list="{{selling}}" as="s" hint-placeholder-count="10">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #F3EFF6">
+            <span style="width: 26px; font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; color: #5B2A86">{{s.rank}}</span>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px"><span style="font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{s.title}}</span><span style="color: #6E6478; white-space: nowrap">{{s.stat}}</span></div>
+              <div style="height: 6px; border-radius: 999px; background: #F1EBF6; overflow: hidden"><div style="height: 100%; width: {{s.w}}; background: #5B2A86; border-radius: 999px"></div></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</div>
+</template>
+<div id="dc-root"></div>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const COVERS = {"1984": "assets/covers/1984.jpg", "alittlelife": "assets/covers/a-little-life.jpg", "americanbornchinese": "assets/covers/american-born-chinese.jpg", "aslongasthelemontreesgrow": "assets/covers/as-long-as-the-lemon-trees-grow.jpg", "atomichabits": "assets/covers/atomic-habits.jpg", "babel": "assets/covers/babel.jpg", "beachread": "assets/covers/beach-read.jpg", "beforethecoffeegetscold": "assets/covers/before-the-coffee-gets-cold.jpg", "blueyilovemyfamily": "assets/covers/bluey-i-love-my-family.jpg", "blueythecreek": "assets/covers/bluey-the-creek.jpg", "circe": "assets/covers/circe.jpg", "collinsinternationalprimarysciencebook3": "assets/covers/collins-international-primary-science-book-3.jpg", "conversationsonlove": "assets/covers/conversations-on-love.jpg", "crimeandpunishment": "assets/covers/crime-and-punishment.jpg", "dailystoic": "assets/covers/daily-stoic.jpg", "daysatthemorisakibookshop": "assets/covers/days-at-the-morisaki-bookshop.jpg", "diaryofawimpykid1": "assets/covers/diary-of-a-wimpy-kid-1.jpg", "diaryofawimpykid12thegetaway": "assets/covers/diary-of-a-wimpy-kid-12-the-getaway.jpg", "dogman1": "assets/covers/dog-man-1.jpg", "dogman10motheringheights": "assets/covers/dog-man-10-mothering-heights.jpg", "dogman11twentythousandfleas": "assets/covers/dog-man-11-twenty-thousand-fleas.jpg", "dogman12thescarletshedder": "assets/covers/dog-man-12-the-scarlet-shedder.jpg", "dogman13bigjimbegins": "assets/covers/dog-man-13-big-jim-begins.jpg", "dogman14bigjimbelieves": "assets/covers/dog-man-14-big-jim-believes.jpg", "dogman3taleoftwokitties": "assets/covers/dog-man-3-tale-of-two-kitties.jpg", "dogman5lordofthefleas": "assets/covers/dog-man-5-lord-of-the-fleas.jpg", "dogman6brawlofthewild": "assets/covers/dog-man-6-brawl-of-the-wild.jpg", "dogman7forwhomtheballrolls": "assets/covers/dog-man-7-for-whom-the-ball-rolls.jpg", "dogman9grimeandpunishment": "assets/covers/dog-man-9-grime-and-punishment.jpg", "dune": "assets/covers/dune.jpg", "enlightenmentnow": "assets/covers/enlightenment-now.jpg", "factfulness": "assets/covers/factfulness.jpg", "fahrenheit451": "assets/covers/fahrenheit-451.jpg", "fivenightsatfreddys1intothepit": "assets/covers/five-nights-at-freddy-s-1-into-the-pit.jpg", "fivepeopleyoumeetinheaven": "assets/covers/five-people-you-meet-in-heaven.jpg", "foronemoreday": "assets/covers/for-one-more-day.jpg", "fourthousandweeks": "assets/covers/four-thousand-weeks.jpg", "freakonomics": "assets/covers/freakonomics.jpg", "goodmaterial": "assets/covers/good-material.jpg", "howdemocraciesdie": "assets/covers/how-democracies-die.jpg", "howtowinfriendsandinfluencepeople": "assets/covers/how-to-win-friends-and-influence-people.jpg", "indonesiaetc": "assets/covers/indonesia-etc.jpg", "itstartswithus": "assets/covers/it-starts-with-us.jpg", "kafkaontheshore": "assets/covers/kafka-on-the-shore.jpg", "katabasis": "assets/covers/katabasis.jpg", "loveforimperfectthings": "assets/covers/love-for-imperfect-things.jpg", "moredaysatthemorisakibookshop": "assets/covers/more-days-at-the-morisaki-bookshop.jpg", "nineteeneightyfour": "assets/covers/nineteen-eighty-four.jpg", "noise": "assets/covers/noise.jpg", "normalpeople": "assets/covers/normal-people.jpg", "norwegianwood": "assets/covers/norwegian-wood.jpg", "originals": "assets/covers/originals.jpg", "oxfordlearnerspocketdictionary": "assets/covers/oxford-learner-s-pocket-dictionary.jpg", "sapiens": "assets/covers/sapiens.jpg", "surroundedbyidiots": "assets/covers/surrounded-by-idiots.jpg", "the7habitsofhighlyeffectivepeople": "assets/covers/the-7-habits-of-highly-effective-people.jpg", "thealchemist": "assets/covers/the-alchemist.jpg", "theanxiousgeneration": "assets/covers/the-anxious-generation.jpg", "theartofspendingmoney": "assets/covers/the-art-of-spending-money.jpg", "theartofthinkingclearly": "assets/covers/the-art-of-thinking-clearly.jpg", "theartofwarblackcover": "assets/covers/the-art-of-war-black-cover.jpg", "thebodykeepsthescore": "assets/covers/the-body-keeps-the-score.jpg", "thebookyouwishyourparentshadread": "assets/covers/the-book-you-wish-your-parents-had-read.jpg", "theconveniencestorebythesea": "assets/covers/the-convenience-store-by-the-sea.jpg", "thegirlwhowastaken": "assets/covers/the-girl-who-was-taken.jpg", "thegoldfinch": "assets/covers/the-goldfinch.jpg", "theintelligentinvestor": "assets/covers/the-intelligent-investor.jpg", "theletthemtheory": "assets/covers/the-let-them-theory.jpg", "themythofsisyphus": "assets/covers/the-myth-of-sisyphus.jpg", "thepoppywar": "assets/covers/the-poppy-war.jpg", "thepoppywar1": "assets/covers/the-poppy-war-1.jpg", "thepsychologyofmoney": "assets/covers/the-psychology-of-money.jpg", "thesecretofsecrets": "assets/covers/the-secret-of-secrets.jpg", "thesilentpatient": "assets/covers/the-silent-patient.jpg", "thesongofachilles": "assets/covers/the-song-of-achilles.jpg", "thesubtleartofnotgivingafck": "assets/covers/the-subtle-art-of-not-giving-a-f-ck.jpg", "thingsyoucanseewhenyouslowdown": "assets/covers/things-you-can-see-when-you-slow-down.jpg", "tuesdayswithmorrie": "assets/covers/tuesdays-with-morrie.jpg", "whenbreathbecomesair": "assets/covers/when-breath-becomes-air.jpg", "whenthingsdontgoyourway": "assets/covers/when-things-don-t-go-your-way.jpg", "whyhasnobodytoldmethisbefore": "assets/covers/why-has-nobody-told-me-this-before.jpg", "whynationsfail": "assets/covers/why-nations-fail.jpg", "wordsworthannakarenina": "assets/covers/wordsworth-anna-karenina.jpg", "wordsworthemma": "assets/covers/wordsworth-emma.jpg", "wordsworthessentialkafka": "assets/covers/wordsworth-essential-kafka.jpg", "wordsworthgreatgatsby": "assets/covers/wordsworth-great-gatsby.jpg", "wordsworthjaneeyre": "assets/covers/wordsworth-jane-eyre.jpg", "wordsworthprideandprejudice": "assets/covers/wordsworth-pride-and-prejudice.jpg", "wordsworthwarandpeace": "assets/covers/wordsworth-war-and-peace.jpg"};
+    const coverOf = (title) => { const u = COVERS[String(title).toLowerCase().replace(/[^a-z0-9]/g, '')]; return { img: u || '', hasImg: !!u }; };
+    const st = this.state || {};
+    const lang = st.lang || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const t = {
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
+      catalog: L('Katalog', 'Catalog'),
+      eyebrow: L('BANTU SAYA MEMILIH', 'HELP ME CHOOSE'),
+      title: L('Tidak yakin harus pesan apa? Kami susunkan pesanan yang terbukti laku', 'Not sure what to order? We build you an order that is proven to sell'),
+      sub: L('Jawab tiga pertanyaan. Kami memilih judul dari data penjualan reseller 12 bulan terakhir, IIBF, dan stok hari ini, lalu menyesuaikan jumlahnya dengan anggaran Anda. Hapus yang tidak cocok, sisanya masuk keranjang dengan satu klik.', 'Answer three questions. We pick titles from the last 12 months of reseller sales, IIBF and today’s stock, then size quantities to your budget. Remove what does not fit; the rest goes to your cart in one click.'),
+      q1: L('1 · JENIS TOKO ANDA', '1 · YOUR SHOP'), q2: L('2 · ANGGARAN', '2 · BUDGET'), q3: L('3 · FOKUS', '3 · FOCUS'),
+      sumTitles: L('Judul', 'Titles'), copies: L('eks.', 'copies'), sumRetail: L('Nilai retail', 'Retail value'), sumTotal: L('Total reseller', 'Reseller total'),
+      sumNote: L('Harga mengikuti level Anda. Jumlah bisa diubah di keranjang.', 'Prices follow your level. Quantities can be changed in the cart.'),
+      addAll: L('Masukkan semua ke keranjang', 'Add everything to cart'), addedMsg: L('✓ Masuk keranjang', '✓ Added to cart'),
+      planNote: L('Hapus judul yang tidak cocok; total ikut berubah', 'Remove what does not fit; the total updates'),
+      legend1: L('TERLARIS = 90 hari terakhir ke reseller', 'BEST SELLER = last 90 days to resellers'), legend2: L('TOKO SERUPA = dibeli ≥ 8 toko sejenis', 'SIMILAR SHOPS = bought by ≥ 8 shops like yours'), legend3: L('RILIS BARU = < 60 hari', 'NEW = < 60 days'),
+      bundleTitle: L('Paket siap jual', 'Ready-to-sell packs'), bundleSub: L('Disusun tim kami dari judul yang paling cepat habis di toko sejenis. Harga sudah harga reseller.', 'Built by our team from the titles that sell out fastest in shops like yours. Prices are reseller prices.'), bundleCta: L('Lihat isi', 'See contents'),
+      sellTitle: L('Apa yang laku ke reseller bulan ini', 'What resellers are buying this month'), sellNote: L('Eksemplar ke reseller, 30 hari terakhir · contoh data', 'Copies to resellers, last 30 days · sample data')
+    };
+    const C = {
+      morrie: { title: 'Tuesdays with Morrie', pub: 'Little, Brown', price: 188000, cat: ['umum', 'sekolah', 'online', 'hadiah'], score: 98, tag: 'best', meta: L('#1 di IIBF: 589 eks. · 41 toko memesan ulang', '#1 at IIBF: 589 copies · 41 shops reordered') },
+      atomic: { title: 'Atomic Habits', pub: 'Avery', price: 335000, cat: ['umum', 'online', 'sekolah'], score: 95, tag: 'best', meta: L('Nonfiksi terlaris 12 bulan', 'Top non-fiction, 12 months') },
+      psych: { title: 'The Psychology of Money', pub: 'Harriman', price: 335000, cat: ['umum', 'online'], score: 90, tag: 'best', meta: L('Dibeli 37 toko dalam 90 hari', 'Bought by 37 shops in 90 days') },
+      dog14: { title: 'Dog Man 14: Big Jim Believes', pub: 'Scholastic', price: 199000, cat: ['anak', 'sekolah'], score: 93, tag: 'similar', meta: L('Dibeli 12 toko anak bulan ini', 'Bought by 12 kids’ shops this month') },
+      dog1: { title: 'Dog Man 1', pub: 'Scholastic', price: 199000, cat: ['anak', 'sekolah'], score: 88, tag: 'similar', meta: L('Judul masuk seri; selalu habis', 'Series entry point; always sells out') },
+      wimpy: { title: 'Diary of a Wimpy Kid 1', pub: 'Penguin Random House', price: 170000, cat: ['anak', 'sekolah'], score: 86, tag: 'best', meta: L('Terlaris anak 8–12 tahun', 'Top seller, ages 8–12') },
+      bluey: { title: 'Bluey: The Creek', pub: 'Penguin Random House', price: 120000, cat: ['anak', 'hadiah'], score: 84, tag: 'similar', meta: L('Dibeli 9 toko anak · balita', 'Bought by 9 kids’ shops · toddlers') },
+      lemon: { title: 'As Long as the Lemon Trees Grow', pub: 'Bloomsbury', price: 215000, cat: ['online', 'umum'], score: 82, tag: 'best', meta: L('BookTok Indonesia · 8 kreator', 'BookTok Indonesia · 8 creators') },
+      coffee: { title: 'Before the Coffee Gets Cold', pub: 'Picador', price: 210000, cat: ['umum', 'online', 'hadiah'], score: 87, tag: 'best', meta: L('Fiksi terlaris 12 bulan', 'Top fiction, 12 months') },
+      morisaki: { title: 'Days at the Morisaki Bookshop', pub: 'Manilla', price: 199000, cat: ['umum', 'hadiah', 'online'], score: 80, tag: 'similar', meta: L('Dibeli 11 toko kurasi', 'Bought by 11 curated shops') },
+      letthem: { title: 'The Let Them Theory', pub: 'Hay House', price: 535000, cat: ['umum', 'online'], score: 78, tag: 'new', meta: L('Rilis baru · 11 reseller pengembangan diri', 'New · 11 self-help resellers') },
+      goodmat: { title: 'Good Material', pub: 'Knopf', price: 240000, cat: ['online', 'umum'], score: 70, tag: 'new', meta: L('Rilis baru · fiksi kontemporer', 'New · contemporary fiction') },
+      anxious: { title: 'The Anxious Generation', pub: 'Penguin Random House', price: 280000, cat: ['sekolah', 'umum'], score: 83, tag: 'best', meta: L('Diminta guru & orang tua', 'Requested by teachers and parents') },
+      sapiens: { title: 'Sapiens', pub: 'Vintage', price: 270000, cat: ['umum', 'sekolah'], score: 76, tag: 'best', meta: L('Backlist stabil, 30 eks./bulan', 'Steady backlist, 30 copies a month') },
+      stoic: { title: 'Daily Stoic', pub: 'Profile', price: 299000, cat: ['hadiah', 'umum'], score: 72, tag: 'similar', meta: L('Favorit toko hadiah & kafe', 'Gift-shop and café favourite') },
+      '1984': { title: '1984', pub: 'Penguin', price: 150000, cat: ['sekolah', 'umum'], score: 74, tag: 'best', meta: L('Bacaan wajib sekolah', 'School reading list') },
+      oxford: { title: 'Oxford Learner’s Pocket Dictionary', pub: 'Oxford', price: 165000, cat: ['sekolah'], score: 79, tag: 'similar', meta: L('Dibeli 14 sekolah', 'Bought by 14 schools') },
+      pride: { title: 'Wordsworth Pride and Prejudice', pub: 'Wordsworth', price: 75000, cat: ['sekolah', 'hadiah', 'umum'], score: 71, tag: 'similar', meta: L('Klasik murah, margin bagus', 'Cheap classic, good margin') }
+    };
+    const type = st.type || 'anak';
+    const budget = st.budget || 5000000;
+    const focus = st.focus || 'best';
+    const removed = st.removed || [];
+    const d = 25;
+    const types = [['anak', L('Toko anak', 'Kids’ shop')], ['umum', L('Toko buku umum', 'General bookshop')], ['sekolah', L('Sekolah & perpustakaan', 'School & library')], ['hadiah', L('Toko hadiah & kafe', 'Gift shop & café')], ['online', L('Online / TikTok', 'Online / TikTok')]]
+      .map(([id, label]) => ({ label, on: type === id, off: type !== id, pick: () => this.setState({ type: id, removed: [], added: false }) }));
+    const budgets = [[2000000, 'Rp 2 jt'], [5000000, 'Rp 5 jt'], [10000000, 'Rp 10 jt'], [25000000, 'Rp 25 jt']]
+      .map(([id, label]) => ({ label, on: budget === id, off: budget !== id, pick: () => this.setState({ budget: id, removed: [], added: false }) }));
+    const focuses = [['best', L('Terlaris', 'Best sellers')], ['new', L('Rilis baru', 'New releases')], ['cheap', L('Di bawah Rp 200 rb', 'Under Rp 200k')], ['mix', L('Campuran', 'Balanced')]]
+      .map(([id, label]) => ({ label, on: focus === id, off: focus !== id, pick: () => this.setState({ focus: id, removed: [], added: false }) }));
+    const keys = Object.keys(C).filter((k) => C[k].cat.includes(type)).filter((k) => !removed.includes(k));
+    const scored = keys.map((k) => { const c = C[k]; let s = c.score; if (focus === 'new') s += c.tag === 'new' ? 40 : -10; if (focus === 'cheap') s += c.price < 200000 ? 30 : -25; if (focus === 'best') s += c.tag === 'best' ? 10 : 0; return [s, k]; }).sort((a, b) => b[0] - a[0]);
+    const n = budget <= 2000000 ? 5 : budget <= 5000000 ? 8 : budget <= 10000000 ? 10 : 12;
+    const chosen = scored.slice(0, n).map((x) => x[1]);
+    const unitTotal = chosen.reduce((a, k) => a + C[k].price * (1 - d / 100), 0);
+    const base = Math.max(3, Math.floor(budget / unitTotal));
+    const tagMap = { best: [L('TERLARIS', 'BEST SELLER'), '#3E7A5A'], similar: [L('TOKO SERUPA', 'SIMILAR SHOPS'), '#5B2A86'], new: [L('RILIS BARU', 'NEW'), '#B0476A'] };
+    let total = 0, retail = 0, units = 0;
+    const plan = chosen.map((k, i) => {
+      const c = C[k]; const qty = base + (i < 3 ? Math.ceil(base / 2) : 0); const unit = c.price * (1 - d / 100);
+      total += unit * qty; retail += c.price * qty; units += qty;
+      return { title: c.title, meta: c.pub + ' · ' + c.meta, ...coverOf(c.title), cover: '#4A3463', tag: tagMap[c.tag][0], tagInk: tagMap[c.tag][1], qty, unit: fmt(unit), sub: fmt(unit * qty), dropAria: L('Hapus ' + c.title, 'Remove ' + c.title), drop: () => this.setState({ removed: removed.concat(k), added: false }) };
+    });
+    const tier = total >= 25000000 ? 33 : total >= 10000000 ? 30 : total >= 5000000 ? 25 : 20;
+    const nextAt = total >= 25000000 ? null : total >= 10000000 ? 25000000 : total >= 5000000 ? 10000000 : 5000000;
+    const tierLine = nextAt ? L('Diskon ' + tier + '% · Rp ' + fmt(nextAt - total).slice(3) + ' lagi untuk ' + (tier + 5) + '%', tier + '% off · Rp ' + fmt(nextAt - total).slice(3) + ' more for ' + (tier + 5) + '%') : L('Diskon 33%: tangga tertinggi', '33% off: top of the ladder');
+    const typeLabel = { anak: L('toko anak', 'a kids’ shop'), umum: L('toko buku umum', 'a general bookshop'), sekolah: L('sekolah & perpustakaan', 'a school or library'), hadiah: L('toko hadiah & kafe', 'a gift shop or café'), online: L('toko online / TikTok', 'an online / TikTok shop') }[type];
+    const planTitle = L('Usulan pesanan untuk ' + typeLabel + ', ' + fmt(budget).replace('.000.000', ' jt'), 'Suggested order for ' + typeLabel + ', ' + fmt(budget).replace('.000.000', 'M'));
+    const bundles = [
+      { bg: '#FDE9C4', kicker: L('TOKO ANAK · PEMBUKA', 'KIDS’ SHOP · STARTER'), title: L('Paket Pembuka Toko Anak', 'Kids’ Shop Starter Pack'), body: L('Dog Man 1–3, Wimpy Kid 1–2, Bluey ×3, buku balita bersuara ×4. Habis rata-rata dalam 5 minggu di toko anak.', 'Dog Man 1–3, Wimpy Kid 1–2, Bluey ×3, four toddler sound books. Sells through in about 5 weeks in kids’ shops.'), price: 'Rp 3.150.000', count: L('24 judul · 36 eks.', '24 titles · 36 copies') },
+      { bg: '#E6DDF0', kicker: L('BOOKTOK · ONLINE', 'BOOKTOK · ONLINE'), title: L('Paket BookTok Indonesia', 'BookTok Indonesia Pack'), body: L('20 judul yang sedang dibicarakan kreator Indonesia bulan ini: romantasy, fiksi Jepang, Colleen Hoover. Diperbarui tiap bulan.', 'The 20 titles Indonesian creators are talking about this month: romantasy, Japanese fiction, Colleen Hoover. Refreshed monthly.'), price: 'Rp 4.900.000', count: L('20 judul · 40 eks.', '20 titles · 40 copies') },
+      { bg: '#DCEBF0', kicker: L('SEKOLAH', 'SCHOOL'), title: L('Paket Perpustakaan Sekolah', 'School Library Pack'), body: L('Bacaan wajib dan klasik Wordsworth, kamus Oxford, nonfiksi remaja. Dipakai 14 sekolah tahun ini.', 'Reading-list classics (Wordsworth), Oxford dictionaries, teen non-fiction. Used by 14 schools this year.'), price: 'Rp 6.200.000', count: L('45 judul · 90 eks.', '45 titles · 90 copies') },
+      { bg: '#DDEBDD', kicker: L('HADIAH & KAFE', 'GIFTS & CAFÉ'), title: L('Paket Meja Hadiah', 'Gift Table Pack'), body: L('Daily Stoic, Morisaki Bookshop, Tuesdays with Morrie, pembatas buku dan kartu Kikkerland. Rata-rata margin 45%.', 'Daily Stoic, Morisaki Bookshop, Tuesdays with Morrie, Kikkerland bookmarks and cards. Average margin 45%.'), price: 'Rp 2.400.000', count: L('12 judul + hadiah · 30 item', '12 titles + gifts · 30 items') }
+    ];
+    const sellRaw = [['Tuesdays with Morrie', 589], ['Atomic Habits', 412], ['Dog Man 14: Big Jim Believes', 380], ['The Psychology of Money', 344], ['Before the Coffee Gets Cold', 298], ['Diary of a Wimpy Kid 1', 261], ['The Anxious Generation', 240], ['As Long as the Lemon Trees Grow', 215], ['The Let Them Theory', 188], ['Bluey: The Creek', 172]];
+    const selling = sellRaw.map(([title, n], i) => ({ rank: String(i + 1), title, stat: n + ' ' + L('eks.', 'copies'), w: Math.round(n / sellRaw[0][1] * 100) + '%' }));
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({ label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id }) }));
+    return { t, langs, types, budgets, focuses, plan, planTitle, bundles, selling, tierLine, sumTitles: String(plan.length), sumUnits: String(units), sumRetail: fmt(retail), sumTotal: fmt(total), added: !!st.added, notAdded: !st.added, addAll: () => this.setState({ added: true }), cartLabel: st.added ? L('Keranjang · ' + (24 + units) + ' item', 'Cart · ' + (24 + units) + ' items') : L('Keranjang · 24 item', 'Cart · 24 items') };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>

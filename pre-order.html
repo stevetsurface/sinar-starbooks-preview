@@ -248,7 +248,7 @@ class Component extends DCLogic {
       const price = c.retail * (1 - d / 100);
       const closedMap = {
         ordered: [L('Sudah dipesan ke penerbit', 'Ordered from the publisher'), L('Tutup pesanan lewat. Sisa tagihan ditagih saat buku tiba.', 'Cut-off passed. The balance is billed when the books land.')],
-        arrived: [L('Tiba, sedang dikirim', 'Arrived, shipping now'), L('Pre-order Anda dikirim lebih dulu; resi di Pesanan & PO.', 'Your pre-order ships first; tracking under Orders & POs.')]
+        arrived: [L('Tiba, sedang dikirim', 'Arrived, shipping now'), L('Pre-order Anda dikirim lebih dulu; resi di Pesanan.', 'Your pre-order ships first; tracking under Orders.')]
       };
       return Object.assign({}, c, coverOf(c.title), S[s], {
         cover: '#4A3463', committed, pct: pctNum + '%', pctLabel: pctNum + '%', moqNum: c.moq, moq: c.moq + ' ' + L('eks./reseller', 'copies/reseller'),
