@@ -103,6 +103,29 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </div>
   </section>
 
+  <!-- Team -->
+  <section id="team" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px; max-width: 680px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #5B2A86">{{t.teamLabel}}</span>
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.teamTitle}}</h2>
+        <span style="font-size: 16px; line-height: 1.6; color: #4A4252">{{t.teamSub}}</span>
+      </div>
+      <a href="events.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.teamEvents}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px">
+      <sc-for list="{{team}}" as="m" hint-placeholder-count="8">
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+          <span style="width: 88px; height: 88px; border-radius: 50%; background: {{m.bg}}; border: 1.5px dashed #C9B6DC; display: grid; place-items: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+          <span style="font-weight: 700; font-size: 17px; color: #2A1640">{{m.name}}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #5B2A86">{{m.role}}</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{m.body}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <span style="font-size: 13px; color: #6E6478">{{t.teamNote}}</span>
+  </section>
+
   <!-- Mission -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
     <span style="flex: 1 1 200px; font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #5B2A86; padding-top: 14px">{{t.missionLabel}}</span>
@@ -154,6 +177,11 @@ class Component extends DCLogic {
       journeyTitle: L('Perjalanan kami', 'Our journey'),
       pubTitle: L('Kerja sama langsung dengan penerbit', 'Direct publisher relationships'),
       pubSub: L('Langsung dari penerbit terkemuka AS dan Inggris', 'Direct from leading US and UK publishers'),
+      teamLabel: L('TIM KAMI', 'OUR TEAM'),
+      teamTitle: L('Orang-orang di balik setiap pengiriman', 'The people behind every shipment'),
+      teamSub: L('Tim kecil di Jakarta Utara yang memilih judul, bernegosiasi dengan penerbit, mengemas pesanan, dan mengangkat telepon ketika toko Anda butuh sesuatu.', 'A small team in North Jakarta that picks the titles, negotiates with publishers, packs the orders and picks up the phone when your shop needs something.'),
+      teamEvents: L('Lihat acara & foto', 'See events & photos'),
+      teamNote: L('[Nama, foto, dan deskripsi tiap anggota tim diisi oleh Sinar Star; foto 1:1, latar polos.]', '[Names, photos and blurbs to be supplied by Sinar Star; 1:1 photos, plain background.]'),
       missionLabel: L('MISI KAMI', 'OUR MISSION'),
       missionBody: L('[Pernyataan misi — satu atau dua kalimat dari tim Sinar Star.]', '[Mission statement — one or two sentences from the Sinar Star team.]'),
       faqTitle: L('FAQ perusahaan', 'Company FAQs'),
@@ -178,7 +206,19 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return {
+    const team = [
+      { name: '[Nama]', role: L('PENDIRI & DIREKTUR', 'FOUNDER & DIRECTOR'), bg: '#F1EBF6', body: L('Memulai Sinar Starbooks tahun 2000; masih memilih penerbit dan judul besar setiap musim.', 'Started Sinar Starbooks in 2000; still picks the publishers and the big titles each season.') },
+      { name: '[Nama]', role: L('PEMBELIAN & PENERBIT', 'BUYING & PUBLISHERS'), bg: '#FDE9C4', body: L('Pesanan impor, pre-order gabungan, dan hubungan dengan PRH, HarperCollins, Hachette, dan lainnya.', 'Import orders, pooled pre-orders, and the relationships with PRH, HarperCollins, Hachette and the rest.') },
+      { name: '[Nama]', role: L('SALES RESELLER · R1', 'RESELLER SALES · R1'), bg: '#DCEBF0', body: L('Mendampingi toko mitra wilayah [X]; orang pertama yang Anda hubungi.', 'Looks after partner shops in [region]; your first call.') },
+      { name: '[Nama]', role: L('SALES RESELLER · R2', 'RESELLER SALES · R2'), bg: '#DCEBF0', body: L('Mendampingi toko mitra wilayah [X].', 'Looks after partner shops in [region].') },
+      { name: '[Nama]', role: L('SALES RESELLER · R3', 'RESELLER SALES · R3'), bg: '#DCEBF0', body: L('Toko baru dan reseller online; 56 toko bergabung tahun ini.', 'New shops and online resellers; 56 shops joined this year.') },
+      { name: '[Nama]', role: L('SALES RESELLER · R4', 'RESELLER SALES · R4'), bg: '#DCEBF0', body: L('Sekolah, perpustakaan, dan institusi.', 'Schools, libraries and institutions.') },
+      { name: '[Nama]', role: L('GUDANG & PENGIRIMAN', 'WAREHOUSE & SHIPPING'), bg: '#DDEBDD', body: L('Mengemas setiap pesanan di Sukapura dan menyiapkan pengambilan di gudang.', 'Packs every order in Sukapura and prepares warehouse pickups.') },
+      { name: '[Nama]', role: L('KEUANGAN & PAJAK', 'FINANCE & TAX'), bg: '#F6D9D4', body: L('Invoice, faktur pajak, dan deposit reseller.', 'Invoices, tax invoices and reseller deposits.') },
+      { name: '[Nama]', role: L('MARKETING & KONTEN', 'MARKETING & CONTENT'), bg: '#E6DDF0', body: L('@sinarstarbooks, program affiliate, kabar buku, dan newsletter bulanan.', '@sinarstarbooks, the affiliate programme, book news and the monthly newsletter.') },
+      { name: 'Kafi Digital Studios', role: L('MITRA WEBSITE', 'WEBSITE PARTNER'), bg: '#F4F0F8', body: L('Membangun portal reseller ini di OpenCart 4.', 'Builds this reseller portal on OpenCart 4.') }
+    ];
+    return { team,
       t,
       langs,
       milestones: ms.map((m, i) => ({ ...m, dot: i === last ? '#F2B33D' : '#5B2A86', yearColor: i === last ? '#B07A12' : '#5B2A86' })),

@@ -227,6 +227,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     <div style="display: flex; flex-direction: column; gap: 6px">
       <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.eventsTitle}}</h2>
       <span style="font-size: 15px; color: #6E6478">{{t.eventsSub}}</span>
+      <a href="events.html" style="font-weight: 700; font-size: 15px">{{t.eventsAll}}</a>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
       <sc-for list="{{events}}" as="ev" hint-placeholder-count="6">
@@ -386,6 +387,7 @@ class Component extends DCLogic {
       giftBrands: L('BRAND HADIAH', 'GIFT BRANDS'),
       eventsTitle: L('Acara & sekolah', 'Events & schools'),
       eventsSub: L('Pameran buku, acara komunitas, dan kunjungan sekolah yang kami ikuti.', 'Book fairs, community events and school visits we take part in.'),
+      eventsAll: L('Semua acara & foto →', 'All events & photos →'),
       igFollowers: L('6.402 pengikut', '6,402 followers'),
       igFollow: L('Ikuti di Instagram', 'Follow on Instagram'),
       igPhoto: L('[Foto post]', '[Post image]'),
