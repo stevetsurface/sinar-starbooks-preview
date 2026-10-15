@@ -505,6 +505,7 @@ class Component extends DCLogic {
     };
     const proof = (b) => {
       const bought = Math.max(2, Math.round(b.sold / 3));
+      if ((this.props.paidOrders ?? 1) < 3) return { hot: false, boughtLabel: '', cartsLabel: '' };
       return { hot: b.sold >= 15, boughtLabel: L('Dibeli ' + bought + ' reseller minggu ini', 'Bought by ' + bought + ' resellers this week'), cartsLabel: L('ada di ' + ((b.key * 7) % 9 + 2) + ' keranjang', 'in ' + ((b.key * 7) % 9 + 2) + ' carts right now') };
     };
 
