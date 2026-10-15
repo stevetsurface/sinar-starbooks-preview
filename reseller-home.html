@@ -411,8 +411,8 @@ class Component extends DCLogic {
     });
     const recGroups = [
       { label: L('PESAN ULANG', 'REORDER'), ink: '#3E7A5A', hint: L('Pernah dibeli · stok ada', 'Bought before · in stock'), items: [
-        mkRec('r1', 'Tuesdays with Morrie', 188000, 6, L('Terakhir 24 Sep, 6 eks. · #1 reseller di IIBF', 'Last Sep 24, 6 copies · #1 reseller title at IIBF')),
-        mkRec('r2', 'The Psychology of Money', 335000, 6, L('Dibeli 3× tahun ini, 14 eks. · 41 hari lalu', 'Bought 3× this year, 14 copies · 41 days ago')),
+        mkRec('r1', 'Tuesdays with Morrie', 188000, 6, L('Terakhir 24 Sep, 6 eks. · selalu dipesan ulang', 'Last Sep 24, 6 copies · a steady reorder')),
+        mkRec('r2', 'The Psychology of Money', 335000, 6, L('Dibeli 3× tahun ini · 41 hari lalu', 'Bought 3× this year · 41 days ago')),
         mkRec('r3', 'Atomic Habits', 335000, 6, L('Terakhir 2 Okt · nonfiksi terlaris 12 bulan', 'Last Oct 2 · top non-fiction, 12 months'))
       ] },
       { label: L('TERBIT SEGERA · PRE-ORDER', 'COMING SOON · PRE-ORDER'), ink: '#B0476A', hint: L('Cocok dengan rak Anda', 'Matches your shelves'), items: [
@@ -421,9 +421,9 @@ class Component extends DCLogic {
         mkRec('p3', 'The Convenience Store by the Sea', 214000, 5, L('Anda menjual Morisaki Bookshop · tutup 7 Nov', 'You sold Morisaki Bookshop · closes Nov 7'))
       ] },
       { label: L('RESELLER SERUPA JUGA MEMBELI', 'SIMILAR RESELLERS ALSO BUY'), ink: '#5B2A86', hint: L('Bulan ini · tanpa nama toko', 'This month · no shop names'), items: [
-        mkRec('s1', 'The Let Them Theory', 535000, 3, L('11 reseller pengembangan diri', '11 self-help resellers')),
-        mkRec('s2', 'Dog Man 14: Big Jim Believes', 199000, 6, L('9 toko anak · rilis baru', '9 kids’ shops · new release')),
-        mkRec('s3', 'Good Material', 240000, 4, L('8 reseller fiksi kontemporer', '8 contemporary-fiction resellers'))
+        mkRec('s1', 'The Let Them Theory', 535000, 3, L('Favorit toko pengembangan diri', 'A self-help shop favourite')),
+        mkRec('s2', 'Dog Man 14: Big Jim Believes', 199000, 6, L('Toko anak · rilis baru', 'Kids’ shops · new release')),
+        mkRec('s3', 'Good Material', 240000, 4, L('Toko fiksi kontemporer', 'Contemporary-fiction shops'))
       ] }
     ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
