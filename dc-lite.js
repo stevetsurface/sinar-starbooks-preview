@@ -135,3 +135,12 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
+
+// Prototype analytics: log article events (production = GA4 gtag('event', name, params)).
+document.addEventListener('click', function (e) {
+  var el = e.target.closest && e.target.closest('[data-event]');
+  if (!el) return;
+  var payload = { event: el.getAttribute('data-event'), article_slug: el.getAttribute('data-article'), isbn: el.getAttribute('data-isbn'), page: location.pathname };
+  try { var q = new URLSearchParams(location.search); if (q.get('utm_campaign')) payload.utm_campaign = q.get('utm_campaign'); } catch (err) {}
+  console.log('[analytics]', JSON.stringify(payload));
+});

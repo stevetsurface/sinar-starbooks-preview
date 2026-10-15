@@ -128,7 +128,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 4px">
                 <span style="font-size: 14px; font-weight: 700; color: #2A1640">{{k.price}}</span>
                 <sc-if value="{{k.added}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; font-weight: 700; color: #24523A">{{t.pickAdded}}</span></sc-if>
-                <sc-if value="{{k.notAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{k.add}}" aria-label="{{k.aria}}" style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{k.cta}}</button></sc-if>
+                <sc-if value="{{k.notAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{k.add}}" aria-label="{{k.aria}}" data-event="article_add_to_cart" data-article="{{k.article}}" data-isbn="{{k.slug}}" style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{k.cta}}</button></sc-if>
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               <span style="font-size: 13px; color: #6E6478; line-height: 1.45">{{r.blurb}}</span>
               <span style="font-size: 13px; color: #6E6478">{{t.release}} <strong style="color: #1E1A24">{{r.date}}</strong> · {{r.format}}</span>
               <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin-top: 6px; white-space: nowrap"><span style="font-size: 16px; font-weight: 700; color: #2A1640">{{r.price}} <span style="font-size: 12px; font-weight: 400; color: #6E6478">{{t.perCopy}}</span></span><span style="font-size: 12px; color: #6E6478">{{t.retailWas}} <s>{{r.retail}}</s></span></div>
-              <a href="{{r.href}}" style="display: flex; align-items: center; justify-content: center; height: 44px; margin-top: 10px; border-radius: 12px; background: {{r.ctaBg}}; color: {{r.ctaInk}}; border: 1px solid {{r.ctaBorder}}; font-weight: 700; font-size: 14px; white-space: nowrap">{{r.cta}}</a>
+              <a href="{{r.href}}" data-event="{{r.event}}" data-article="{{r.article}}" data-isbn="{{r.slug}}" style="display: flex; align-items: center; justify-content: center; height: 44px; margin-top: 10px; border-radius: 12px; background: {{r.ctaBg}}; color: {{r.ctaInk}}; border: 1px solid {{r.ctaBorder}}; font-weight: 700; font-size: 14px; white-space: nowrap">{{r.cta}}</a>
             </div>
           </article>
         </sc-for>
@@ -253,7 +253,7 @@ class Component extends DCLogic {
     const E = EDS[ed] || EDS.e3;
     const editions = [['e3', EDS.e3.label], ['e2', EDS.e2.label], ['e1', EDS.e1.label]].map(([id, label]) => ({ label, on: ed === id, off: ed !== id, pick: () => this.setState({ ed: id }) }));
     const pickAdded = st.pickAdded || [];
-    const picks = E.picks.map(([title, author, publisher, price, tag, why], i) => { const key = ed + i; return { title, author, publisher, tag, why, ...coverOf(title), cover: '#4A3463', price: fmt(price * (1 - d / 100)) + ' ' + L('/ eks.', 'each'), cta: '+ 6', aria: L('Tambah 6 eksemplar ' + title, 'Add 6 copies of ' + title), added: pickAdded.includes(key), notAdded: !pickAdded.includes(key), add: () => this.setState({ pickAdded: pickAdded.concat(key) }) }; });
+    const picks = E.picks.map(([title, author, publisher, price, tag, why], i) => { const key = ed + i; return { title, author, publisher, tag, why, article: 'rekomendasi-tim-' + ed, slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''), ...coverOf(title), cover: '#4A3463', price: fmt(price * (1 - d / 100)) + ' ' + L('/ eks.', 'each'), cta: '+ 6', aria: L('Tambah 6 eksemplar ' + title, 'Add 6 copies of ' + title), added: pickAdded.includes(key), notAdded: !pickAdded.includes(key), add: () => this.setState({ pickAdded: pickAdded.concat(key) }) }; });
     const allKeys = E.picks.map((_, i) => ed + i);
     const allAdded = allKeys.length > 0 && allKeys.every((k) => pickAdded.includes(k));
     const month = st.month || 'nov';
@@ -272,7 +272,9 @@ class Component extends DCLogic {
       { m: 'jan', title: 'Katabasis', author: 'R.F. Kuang', publisher: 'Harper Voyager', date: L('[tgl] Jan 2027', '[date] Jan 2027'), format: 'Paperback', retail: 280000, kind: REM, blurb: L('Paperback dari hardcover yang pre-order-nya baru ditutup bulan ini.', 'Paperback of the hardcover whose pre-order closed this month.') },
       { m: 'jan', title: 'Days at the Morisaki Bookshop', author: 'Satoshi Yagisawa', publisher: 'Manilla', date: L('[tgl] Jan 2027', '[date] Jan 2027'), format: L('Box set 1–2', 'Box set 1–2'), retail: 398000, kind: REM, blurb: L('Box set dua jilid; permintaan dari toko kurasi dan kafe.', 'Two-volume box set; demand from curated shops and cafés.') }
     ];
-    const releases = raw.filter((r) => month === 'all' || r.m === month).map((r) => ({ ...r, ...coverOf(r.title), cover: '#4A3463', tag: r.kind[0], tagInk: r.kind[1], cta: r.kind[2], href: r.kind[3], ctaBg: r.kind[4], ctaInk: r.kind[5], ctaBorder: r.kind[6], price: fmt(r.retail * (1 - d / 100)), retail: fmt(r.retail) }));
+    const slugOf = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const utm = (path, campaign, content) => path === '#' ? '#' : path + '?utm_source=kabar-buku&utm_medium=article&utm_campaign=' + campaign + '&utm_content=' + content;
+    const releases = raw.filter((r) => month === 'all' || r.m === month).map((r) => ({ ...r, ...coverOf(r.title), cover: '#4A3463', tag: r.kind[0], tagInk: r.kind[1], cta: r.kind[2], href: utm(r.kind[3], 'segera-terbit-2026-' + r.m, slugOf(r.title)), event: r.kind[3] === '#' ? 'article_remind_me' : 'article_preorder_join', article: 'segera-terbit-2026-' + r.m, slug: slugOf(r.title), ctaBg: r.kind[4], ctaInk: r.kind[5], ctaBorder: r.kind[6], price: fmt(r.retail * (1 - d / 100)), retail: fmt(r.retail) }));
     const listTitle = month === 'all' ? L('Semua rilis mendatang', 'All upcoming releases') : L('Terbit ' + months.find((x) => x.on).label, 'Releasing ' + months.find((x) => x.on).label) + ' · ' + releases.length + ' ' + L('judul', 'titles');
     const pillars = [
       { bg: '#FDE9C4', cadence: L('TIAP 2 MINGGU', 'EVERY 2 WEEKS'), name: L('Rekomendasi tim', 'Team picks'), body: L('Enam judul dan alasannya; satu klik ke keranjang.', 'Six titles and the reason; one click to cart.') },
