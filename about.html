@@ -119,29 +119,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </div>
   </section>
 
-  <!-- Team -->
-  <section id="team" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 24px">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
-      <div style="display: flex; flex-direction: column; gap: 6px; max-width: 680px">
-        <span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #5B2A86">{{t.teamLabel}}</span>
-        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.teamTitle}}</h2>
-        <span style="font-size: 16px; line-height: 1.6; color: #4A4252">{{t.teamSub}}</span>
-      </div>
-      <a href="events.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D9CCE6; color: #1E1A24; font-weight: 600; font-size: 14px">{{t.teamEvents}}</a>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px">
-      <sc-for list="{{team}}" as="m" hint-placeholder-count="8">
-        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
-          <span style="width: 88px; height: 88px; border-radius: 50%; background: {{m.bg}}; border: 1.5px dashed #C9B6DC; display: grid; place-items: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#5B2A86" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
-          <span style="font-weight: 700; font-size: 17px; color: #2A1640">{{m.name}}</span>
-          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #5B2A86">{{m.role}}</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{m.body}}</span>
-        </div>
-      </sc-for>
-    </div>
-    <span style="font-size: 13px; color: #6E6478">{{t.teamNote}}</span>
-  </section>
-
   <!-- Mission -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
     <span style="flex: 1 1 200px; font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #5B2A86; padding-top: 14px">{{t.missionLabel}}</span>
