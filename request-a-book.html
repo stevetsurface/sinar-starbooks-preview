@@ -59,6 +59,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
       <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
       <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="coming-soon.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNews}}</a>
+      <a href="events.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvEvents}}</a>
       <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
     </nav>
   </header>
@@ -191,7 +193,7 @@ class Component extends DCLogic {
     const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
     const t = {
-      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Kabar Buku', 'Book News'), nvEvents: L('Acara', 'Events'), myAccountBtn: L('Akun Saya', 'My Account'),
       catalog: L('Katalog', 'Catalog'),
       cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       accountNav: L('Akun', 'Account'),

@@ -61,6 +61,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
       <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
       <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="coming-soon.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNews}}</a>
+      <a href="events.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvEvents}}</a>
       <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
     </nav>
   </header>
@@ -95,6 +97,48 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </sc-if>
         <span style="font-size: 12px; color: #B8A6CC">{{t.nlNote}}</span>
       </form>
+    </section>
+
+    <!-- Team picks: recurring recommendations -->
+    <section id="picks" style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #B0476A">{{t.pickEyebrow}}</span>
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 30px; color: #2A1640">{{pickTitle}}</h2>
+          <span style="font-size: 15px; color: #6E6478">{{t.pickSub}}</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+          <span style="font-size: 13px; color: #6E6478">{{t.pickArchive}}</span>
+          <sc-for list="{{editions}}" as="e" hint-placeholder-count="3">
+            <sc-if value="{{e.on}}" hint-placeholder-val="{{true}}"><button type="button" aria-pressed="true" onClick="{{e.pick}}" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{e.label}}</button></sc-if>
+            <sc-if value="{{e.off}}" hint-placeholder-val="{{false}}"><button type="button" aria-pressed="false" onClick="{{e.pick}}" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{e.label}}</button></sc-if>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4A4252; max-width: 820px">{{pickIntro}}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px">
+        <sc-for list="{{picks}}" as="k" hint-placeholder-count="6">
+          <div style="display: flex; gap: 14px; align-items: flex-start; border: 1px solid #ECE6F1; border-radius: 16px; padding: 14px">
+            <div style="width: 64px; height: 90px; border-radius: 2px 6px 6px 2px; background: {{k.cover}}; flex: none; position: relative; overflow: hidden; box-shadow: 0 6px 14px rgba(42,22,64,.14)"><sc-if value="{{k.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{k.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #5B2A86">{{k.tag}}</span>
+              <span style="font-weight: 700; font-size: 15px; line-height: 1.25; color: #1E1A24">{{k.title}}</span>
+              <span style="font-size: 12px; color: #6E6478">{{k.author}} · {{k.publisher}}</span>
+              <span style="font-size: 13px; line-height: 1.45; color: #4A4252">{{k.why}}</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 4px">
+                <span style="font-size: 14px; font-weight: 700; color: #2A1640">{{k.price}}</span>
+                <sc-if value="{{k.added}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; font-weight: 700; color: #24523A">{{t.pickAdded}}</span></sc-if>
+                <sc-if value="{{k.notAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{k.add}}" aria-label="{{k.aria}}" style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{k.cta}}</button></sc-if>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; border-top: 1px solid #F3EFF6; padding-top: 14px">
+        <span style="font-size: 13px; color: #6E6478">{{t.pickBy}}</span>
+        <sc-if value="{{allNotAdded}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{addAllPicks}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{t.pickAddAll}}</button></sc-if>
+        <sc-if value="{{allAdded}}" hint-placeholder-val="{{false}}"><span style="font-size: 14px; font-weight: 700; color: #24523A">{{t.pickAllAdded}}</span></sc-if>
+      </div>
     </section>
 
     <!-- Releases -->
@@ -155,7 +199,7 @@ class Component extends DCLogic {
     const d = this.props.resellerDiscount ?? 25;
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const t = {
-      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), myAccountBtn: L('Akun Saya', 'My Account'),
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Kabar Buku', 'Book News'), nvEvents: L('Acara', 'Events'), myAccountBtn: L('Akun Saya', 'My Account'),
       catalog: L('Katalog', 'Catalog'), cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       eyebrow: L('SEGERA TERBIT · KABAR BUKU', 'COMING SOON · BOOK NEWS'),
       title: L('Buku yang akan terbit, dan apa yang perlu Anda tahu sebelum memesan', 'What is about to be released, and what you need to know before you order'),
@@ -167,8 +211,35 @@ class Component extends DCLogic {
       nlNote: L('Hanya untuk reseller terdaftar. Berhenti kapan saja.', 'Registered resellers only. Unsubscribe any time.'),
       listNote: L('Tanggal dari penerbit; bisa bergeser. Harga mengikuti level Anda.', 'Dates from publishers; may move. Prices follow your level.'),
       release: L('Terbit', 'Release'),
+      pickEyebrow: L('REKOMENDASI TIM · TERBIT SETIAP 2 MINGGU', 'TEAM PICKS · EVERY 2 WEEKS'),
+      pickSub: L('Enam judul yang menurut tim kami layak masuk rak Anda sekarang, dengan alasannya. Satu klik ke keranjang.', 'Six titles our team thinks belong on your shelves now, with the reason. One click to cart.'),
+      pickArchive: L('Edisi:', 'Edition:'),
+      pickAdded: L('✓ Di keranjang', '✓ In cart'), pickAddAll: L('Masukkan semua ke keranjang', 'Add all six to cart'), pickAllAdded: L('✓ Enam judul di keranjang', '✓ All six in cart'),
+      pickBy: L('Dipilih oleh tim pembelian Star Books; angka penjualan dari data reseller 90 hari terakhir.', 'Chosen by the Star Books buying team; sales figures from the last 90 days of reseller data.'),
       blogTitle: L('Kabar buku', 'Book news'), blogNote: L('Ditulis tim kami, 2–3 kali sebulan', 'Written by our team, 2–3 times a month')
     };
+    const ed = st.ed || 'e3';
+    const EDS = { e3: { label: L('15 Okt 2026', 'Oct 15, 2026'), intro: L('Edisi pertengahan Oktober: setelah IIBF, stok judul terlaris sudah masuk lagi, dan tiga rilis November mulai bisa di-pre-order. Pilihan kami condong ke judul yang terbukti laku di hari reseller IIBF.', 'Mid-October edition: post-IIBF restock of the best sellers is in, and three November releases are open for pre-order. We lean toward titles that proved themselves on IIBF reseller days.'), picks: [
+      ['Tuesdays with Morrie', 'Mitch Albom', 'Little, Brown', 188000, L('TERLARIS IIBF', 'IIBF BEST SELLER'), L('589 eks. di IIBF; stok baru tiba 12 Okt. Selalu habis di toko umum dan kafe.', '589 copies at IIBF; fresh stock landed Oct 12. Always sells out in general shops and cafés.')],
+      ['The Anxious Generation', 'Jonathan Haidt', 'Penguin Random House', 280000, L('PRE-ORDER', 'PRE-ORDER'), L('Paperback 10 Nov; sekolah dan orang tua menanyakannya sejak Agustus. Tutup pesanan 31 Okt.', 'Paperback Nov 10; schools and parents have asked since August. Cut-off Oct 31.')],
+      ['Dog Man 14: Big Jim Believes', 'Dav Pilkey', 'Scholastic', 199000, L('TOKO ANAK', 'KIDS’ SHOPS'), L('Jilid baru seri anak terlaris kami; 12 toko anak sudah memesan minggu ini.', 'New volume of our best-selling kids’ series; 12 kids’ shops ordered this week.')],
+      ['Days at the Morisaki Bookshop', 'Satoshi Yagisawa', 'Manilla', 199000, L('FIKSI JEPANG', 'JAPANESE FICTION'), L('Pintu masuk tren fiksi Jepang; cocok dipajang bersama Before the Coffee Gets Cold.', 'Entry point to the Japanese-fiction wave; pairs with Before the Coffee Gets Cold on the table.')],
+      ['The Let Them Theory', 'Mel Robbins', 'Hay House', 535000, L('PENGEMBANGAN DIRI', 'SELF-HELP'), L('Harga tinggi tapi perputaran cepat: 11 reseller pengembangan diri memesan ulang bulan ini.', 'High ticket, fast turn: 11 self-help resellers reordered this month.')],
+      ['As Long as the Lemon Trees Grow', 'Zoulfa Katouh', 'Bloomsbury', 215000, L('BOOKTOK', 'BOOKTOK'), L('Dibicarakan 8 kreator BookTok Indonesia bulan ini; stok cukup untuk 3 minggu.', 'Talked about by 8 Indonesian BookTok creators this month; stock for about 3 weeks.')]
+    ] }, e2: { label: L('1 Okt 2026', 'Oct 1, 2026'), intro: L('Edisi menjelang IIBF: judul yang kami bawa ke booth dan yang kami sarankan toko stok sebelum pameran.', 'Pre-IIBF edition: what we brought to the booth and what we suggested shops stock before the fair.'), picks: [
+      ['Atomic Habits', 'James Clear', 'Avery', 335000, L('TERLARIS', 'BEST SELLER'), L('Nonfiksi terlaris 12 bulan; selalu masuk 3 besar di setiap toko umum.', 'Top non-fiction over 12 months; top 3 in every general shop.')],
+      ['The Psychology of Money', 'Morgan Housel', 'Harriman', 335000, L('TERLARIS', 'BEST SELLER'), L('Pasangan Atomic Habits di meja pengembangan diri.', 'Atomic Habits’ partner on the self-help table.')],
+      ['Before the Coffee Gets Cold', 'Toshikazu Kawaguchi', 'Picador', 210000, L('FIKSI', 'FICTION'), L('Fiksi terlaris 12 bulan; cover baru.', 'Top fiction over 12 months; new cover.')],
+      ['Diary of a Wimpy Kid 1', 'Jeff Kinney', 'Penguin Random House', 170000, L('TOKO ANAK', 'KIDS’ SHOPS'), L('Judul masuk seri untuk usia 8–12.', 'Series entry point for ages 8–12.')],
+      ['Sapiens', 'Yuval Noah Harari', 'Vintage', 270000, L('BACKLIST', 'BACKLIST'), L('Backlist stabil, 30 eks. per bulan ke reseller.', 'Steady backlist, 30 copies a month to resellers.')],
+      ['1984', 'George Orwell', 'Penguin', 150000, L('SEKOLAH', 'SCHOOLS'), L('Bacaan wajib; stok untuk semester baru.', 'Reading-list staple; stock for the new term.')]
+    ] }, e1: { label: L('15 Sep 2026', 'Sep 15, 2026'), intro: L('[Edisi sebelumnya: arsip]', '[Earlier edition: archive]'), picks: [] } };
+    const E = EDS[ed] || EDS.e3;
+    const editions = [['e3', EDS.e3.label], ['e2', EDS.e2.label], ['e1', EDS.e1.label]].map(([id, label]) => ({ label, on: ed === id, off: ed !== id, pick: () => this.setState({ ed: id }) }));
+    const pickAdded = st.pickAdded || [];
+    const picks = E.picks.map(([title, author, publisher, price, tag, why], i) => { const key = ed + i; return { title, author, publisher, tag, why, ...coverOf(title), cover: '#4A3463', price: fmt(price * (1 - d / 100)) + ' ' + L('/ eks.', 'each'), cta: '+ 6', aria: L('Tambah 6 eksemplar ' + title, 'Add 6 copies of ' + title), added: pickAdded.includes(key), notAdded: !pickAdded.includes(key), add: () => this.setState({ pickAdded: pickAdded.concat(key) }) }; });
+    const allKeys = E.picks.map((_, i) => ed + i);
+    const allAdded = allKeys.length > 0 && allKeys.every((k) => pickAdded.includes(k));
     const month = st.month || 'nov';
     const months = [['nov', L('November 2026', 'November 2026')], ['dec', L('Desember 2026', 'December 2026')], ['jan', L('Januari 2027', 'January 2027')], ['all', L('Semua', 'All')]]
       .map(([id, label]) => ({ label, on: month === id, off: month !== id, pick: () => this.setState({ month: id }) }));
@@ -194,7 +265,7 @@ class Component extends DCLogic {
       { bg: '#DDEBDD', kicker: L('CARA', 'HOW-TO'), title: L('Cara menyusun meja rilis baru dengan anggaran Rp 2 juta', 'How to build a new-releases table on a Rp 2M budget'), body: L('Contoh dari tiga toko mitra, dengan daftar judulnya.', 'Examples from three partner shops, with their title lists.'), date: L('1 Okt 2026', 'Oct 1, 2026'), read: L('4 menit', '4 min') }
     ];
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({ label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id }) }));
-    return { t, langs, months, releases, listTitle, posts, nlDone: !!st.nlDone, nlNotDone: !st.nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
+    return { t, langs, months, releases, listTitle, posts, editions, picks, pickTitle: L('Rekomendasi tim · edisi ' + E.label, 'Team picks · ' + E.label + ' edition'), pickIntro: E.intro, allAdded, allNotAdded: !allAdded && allKeys.length > 0, addAllPicks: () => this.setState({ pickAdded: pickAdded.concat(allKeys) }), nlDone: !!st.nlDone, nlNotDone: !st.nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
   }
 }
 </script>
