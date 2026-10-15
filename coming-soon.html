@@ -150,15 +150,15 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px">
         <sc-for list="{{releases}}" as="r" hint-placeholder-count="8">
           <article style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 18px; display: flex; gap: 16px">
-            <div style="width: 96px; height: 136px; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; flex: none; position: relative; overflow: hidden; box-shadow: 0 8px 18px rgba(42,22,64,.16)"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
+            <div style="width: 84px; height: 120px; border-radius: 3px 8px 8px 3px; background: {{r.cover}}; flex: none; position: relative; overflow: hidden; box-shadow: 0 8px 18px rgba(42,22,64,.16)"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
             <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
               <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: {{r.tagInk}}">{{r.tag}}</span>
               <span style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 600; line-height: 1.2; color: #2A1640">{{r.title}}</span>
               <span style="font-size: 13px; color: #4A4252">{{r.author}} · {{r.publisher}}</span>
               <span style="font-size: 13px; color: #6E6478; line-height: 1.45">{{r.blurb}}</span>
               <span style="font-size: 13px; color: #6E6478">{{t.release}} <strong style="color: #1E1A24">{{r.date}}</strong> · {{r.format}}</span>
-              <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px"><span style="font-size: 16px; font-weight: 700; color: #2A1640">{{r.price}}</span><span style="font-size: 12px; color: #6E6478; text-decoration: line-through">{{r.retail}}</span><span style="font-size: 12px; color: #6E6478">{{t.perCopy}}</span></div>
-              <a href="{{r.href}}" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; margin-top: 8px; border-radius: 12px; background: {{r.ctaBg}}; color: {{r.ctaInk}}; border: 1px solid {{r.ctaBorder}}; font-weight: 700; font-size: 14px">{{r.cta}}</a>
+              <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin-top: 6px; white-space: nowrap"><span style="font-size: 16px; font-weight: 700; color: #2A1640">{{r.price}} <span style="font-size: 12px; font-weight: 400; color: #6E6478">{{t.perCopy}}</span></span><span style="font-size: 12px; color: #6E6478">{{t.retailWas}} <s>{{r.retail}}</s></span></div>
+              <a href="{{r.href}}" style="display: flex; align-items: center; justify-content: center; height: 44px; margin-top: 10px; border-radius: 12px; background: {{r.ctaBg}}; color: {{r.ctaInk}}; border: 1px solid {{r.ctaBorder}}; font-weight: 700; font-size: 14px; white-space: nowrap">{{r.cta}}</a>
             </div>
           </article>
         </sc-for>
@@ -225,7 +225,7 @@ class Component extends DCLogic {
       nlEmail: L('E-mail toko', 'Shop e-mail'), nlWa: L('Kirim juga ke WhatsApp toko saya', 'Also send to my shop’s WhatsApp'), nlCta: L('Berlangganan', 'Subscribe'), nlDone: L('✓ Terdaftar. Edisi berikutnya 1 Nov.', '✓ Subscribed. Next issue Nov 1.'),
       nlNote: L('Hanya untuk reseller terdaftar. Berhenti kapan saja.', 'Registered resellers only. Unsubscribe any time.'),
       listNote: L('Tanggal dari penerbit; bisa bergeser. Harga mengikuti level Anda.', 'Dates from publishers; may move. Prices follow your level.'),
-      release: L('Terbit', 'Release'), perCopy: L('/ eks.', 'each'),
+      release: L('Terbit', 'Release'), perCopy: L('/ eks.', 'each'), retailWas: L('retail', 'retail'),
       pickEyebrow: L('REKOMENDASI TIM · TERBIT SETIAP 2 MINGGU', 'TEAM PICKS · EVERY 2 WEEKS'),
       pickSub: L('Enam judul yang menurut tim kami layak masuk rak Anda sekarang, dengan alasannya. Satu klik ke keranjang.', 'Six titles our team thinks belong on your shelves now, with the reason. One click to cart.'),
       pickArchive: L('Edisi:', 'Edition:'),
@@ -259,8 +259,8 @@ class Component extends DCLogic {
     const month = st.month || 'nov';
     const months = [['nov', L('November 2026', 'November 2026')], ['dec', L('Desember 2026', 'December 2026')], ['jan', L('Januari 2027', 'January 2027')], ['all', L('Semua', 'All')]]
       .map(([id, label]) => ({ label, on: month === id, off: month !== id, pick: () => this.setState({ month: id }) }));
-    const PRE = [L('PRE-ORDER TERBUKA', 'PRE-ORDER OPEN'), '#B0476A', L('Ikut pre-order gabungan →', 'Join the pooled pre-order →'), 'pre-order.html', '#5B2A86', '#FFFFFF', '#5B2A86'];
-    const REM = [L('SEGERA TERBIT', 'COMING SOON'), '#5B2A86', L('Ingatkan saya saat stok tiba', 'Remind me when stock lands'), '#', '#FFFFFF', '#2A1640', '#D9CCE6'];
+    const PRE = [L('PRE-ORDER TERBUKA', 'PRE-ORDER OPEN'), '#B0476A', L('Ikut pre-order →', 'Join pre-order →'), 'pre-order.html', '#5B2A86', '#FFFFFF', '#5B2A86'];
+    const REM = [L('SEGERA TERBIT', 'COMING SOON'), '#5B2A86', L('Ingatkan saya', 'Remind me'), '#', '#FFFFFF', '#2A1640', '#D9CCE6'];
     const raw = [
       { m: 'nov', title: 'Sapiens: A Graphic History Vol. 3', author: 'Yuval Noah Harari', publisher: 'Penguin Random House', date: L('3 Nov 2026', 'Nov 3, 2026'), format: 'Hardcover', retail: 450000, kind: PRE, blurb: L('Jilid penutup seri grafis; pasangan jilid 1–2 di toko umum dan sekolah.', 'Closing volume of the graphic series; partner to vols 1–2 in general shops and schools.') },
       { m: 'nov', title: 'The Anxious Generation', author: 'Jonathan Haidt', publisher: 'Penguin Random House', date: L('10 Nov 2026', 'Nov 10, 2026'), format: L('Paperback (edisi baru)', 'Paperback (new edition)'), retail: 280000, kind: PRE, blurb: L('Edisi paperback dari buku parenting terlaris 2024–25; permintaan dari sekolah dan orang tua.', 'Paperback of the 2024–25 parenting best seller; demand from schools and parents.') },
