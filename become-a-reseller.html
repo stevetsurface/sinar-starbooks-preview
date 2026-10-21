@@ -315,7 +315,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
   <!-- Who we work with -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px">
-    <h2 style="margin: 0 0 28px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.whoTitle}}</h2>
+    <h2 style="margin: 0 0 8px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.whoTitle}}</h2>
+    <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.6; color: #4A4252; max-width: 720px">{{t.whoSub}}</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
       <div style="background: #FDE9C4; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
         <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w1Title}}</span>
@@ -333,7 +334,16 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w4Title}}</span>
         <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w4Body}}</span>
       </div>
+      <div style="background: #DDEBDD; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w5Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w5Body}}</span>
+      </div>
+      <div style="background: #F6D9D4; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640">{{t.w6Title}}</span>
+        <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{t.w6Body}}</span>
+      </div>
     </div>
+    <p style="margin: 20px 0 0; font-size: 14px; color: #6E6478">{{t.whoNote}}</p>
   </section>
 
   <!-- FAQ -->
@@ -363,6 +373,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
   </section>
 </div>
 </template>
+<div id="preview-strip" style="position:sticky;top:0;z-index:9999;font:600 12px/1 Figtree,system-ui,sans-serif;letter-spacing:.5px;text-align:center;padding:7px 12px;background:#DDEBDD;color:#24523A">PREVIEW · HALAMAN PUBLIK · bisa dilihat tanpa login, diindeks Google · harga reseller dan tombol beli hanya muncul setelah login</div>
 <div id="dc-root"></div>
 <script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":2200}}'>
 class Component extends DCLogic {
@@ -384,7 +395,7 @@ class Component extends DCLogic {
       login: L('Masuk reseller', 'Reseller login'),
       eyebrow: L('KEMITRAAN', 'PARTNERSHIP'),
       heroTitle: L('Kembangkan toko Anda bersama Sinar Starbooks.', 'Grow your store with Sinar Starbooks.'),
-      heroSub: L('Toko buku, sekolah, perpustakaan, toko hadiah, dan penjual online dapat membeli langsung dari katalog impor kami dengan harga reseller.', 'Bookshops, schools, libraries, gift stores and online sellers can buy directly from our imported catalog at reseller prices.'),
+      heroSub: L('Untuk usaha dari semua ukuran: toko buku, penjual online dan offline, kafe, sekolah, perpustakaan, dan perusahaan dapat membeli langsung dari katalog impor kami dengan harga reseller.', 'For businesses of all sizes: bookshops, online and offline sellers, cafes, schools, libraries and companies can buy directly from our imported catalog at reseller prices.'),
       b1Bold: L('Harga reseller', 'Reseller pricing'),
       b1Rest: L('untuk setiap judul, dengan harga lebih baik untuk volume lebih besar', 'on every title, with better rates at higher volumes'),
       b2Bold: L('Pesan dengan purchase order', 'Order by purchase order'),
@@ -454,7 +465,8 @@ class Component extends DCLogic {
       bnSub: L('Satu pemasok untuk buku impor berbahasa Inggris, alat tulis, dan hadiah: harga grosir, stok asli dari penerbit, dan portal yang memudahkan pesanan ulang.', 'One supplier for imported English-language books, stationery and gifts: wholesale prices, genuine stock straight from publishers, and a portal that makes reordering easy.'),
       bnCta: L('Daftar jadi reseller', 'Become a reseller'),
       bnNote: L('Angka dalam [ ] masih usulan dan akan dikonfirmasi dalam S&K Reseller 2027.', 'Figures in [ ] are proposals, to be confirmed in the 2027 reseller terms.'),
-      whoTitle: L('Mitra kami', 'Who we work with'),
+      whoTitle: L('Untuk usaha dari semua ukuran', 'For businesses of all sizes'),
+      whoSub: L('Dari satu rak di kafe sampai jaringan toko buku: brand dan usaha dari semua skala bisa menjadi reseller kami, online maupun offline.', 'From a single shelf in a cafe to a bookshop chain: brands and businesses of every size can become our reseller, online or offline.'),
       w1Title: L('Toko buku', 'Bookshops'),
       w1Body: L('Toko independen maupun jaringan yang menjual buku impor berbahasa Inggris.', 'Independent and chain stores stocking imported English titles.'),
       w2Title: L('Sekolah & perpustakaan', 'Schools & libraries'),
@@ -462,7 +474,12 @@ class Component extends DCLogic {
       w3Title: L('Toko hadiah & gaya hidup', 'Gift & lifestyle stores'),
       w3Body: L('Hadiah dan alat tulis pilihan dari IF dan Kikkerland.', 'Curated gifts and stationery from IF and Kikkerland.'),
       w4Title: L('Penjual online', 'Online sellers'),
-      w4Body: L('Penjual di marketplace dan social commerce di seluruh Indonesia.', 'Marketplace and social-commerce sellers across Indonesia.'),
+      w4Body: L('Penjual di Tokopedia, Shopee, TikTok Shop, Instagram, atau website sendiri.', 'Sellers on Tokopedia, Shopee, TikTok Shop, Instagram or their own website.'),
+      w5Title: L('Kafe & ruang kreatif', 'Cafes & creative spaces'),
+      w5Body: L('Kafe, coworking, dan hotel yang ingin menjual buku di pojok baca mereka.', 'Cafes, coworking spaces and hotels that want to sell books from their reading corner.'),
+      w6Title: L('Perusahaan & komunitas', 'Companies & communities'),
+      w6Body: L('Hadiah korporat, klub buku, dan pembelian dalam jumlah besar.', 'Corporate gifts, book clubs and bulk purchases.'),
+      whoNote: L('Belum punya badan usaha? Penjual perorangan dengan NIK dan NPWP juga bisa mendaftar.', 'No registered company yet? Individual sellers with a national ID and tax number can also apply.'),
       faqTitle: L('Pertanyaan seputar reseller', 'Reseller questions'),
       faqAll: L('Lihat semua FAQ', 'See all FAQ'),
       q1: L('Apakah ada minimum pemesanan?', 'Is there a minimum order?'),

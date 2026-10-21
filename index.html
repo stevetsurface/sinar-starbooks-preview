@@ -126,6 +126,28 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </div>
   </section>
 
+  <!-- For businesses of all sizes -->
+  <section id="for-everyone" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #5B2A86">{{t.szEyebrow}}</span>
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; line-height: 1.1; color: #2A1640">{{t.szTitle}}</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A4252">{{t.szSub}}</p>
+      </div>
+      <a href="become-a-reseller.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px; border: 1px solid #5B2A86; color: #5B2A86; font-weight: 700; font-size: 15px">{{t.szCta}}</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px">
+      <sc-for list="{{segments}}" as="sg" hint-placeholder-count="6">
+        <a href="become-a-reseller.html" style="background: {{sg.bg}}; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-height: 170px; color: #1E1A24">
+          <span style="width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF; display: grid; place-items: center; font-size: 20px">{{sg.icon}}</span>
+          <span style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.2; color: #2A1640">{{sg.title}}</span>
+          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{sg.body}}</span>
+        </a>
+      </sc-for>
+    </div>
+    <span style="font-size: 13px; color: #6E6478">{{t.szNote}}</span>
+  </section>
+
   <!-- Featured products with tabs -->
   <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 28px">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
@@ -357,6 +379,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
   </a>
 </div>
 </template>
+<div id="preview-strip" style="position:sticky;top:0;z-index:9999;font:600 12px/1 Figtree,system-ui,sans-serif;letter-spacing:.5px;text-align:center;padding:7px 12px;background:#DDEBDD;color:#24523A">PREVIEW · HALAMAN PUBLIK · bisa dilihat tanpa login, diindeks Google · harga reseller dan tombol beli hanya muncul setelah login</div>
 <div id="dc-root"></div>
 <script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"$preview":{"width":1440,"height":3200}}'>
 class Component extends DCLogic {
@@ -411,10 +434,15 @@ class Component extends DCLogic {
       fStores: L('Toko resmi', 'Official stores'),
       igPhoto: L('[Foto post]', '[Post image]'),
       igNote: L('Di website asli, bagian ini memuat post terbaru secara otomatis dari Instagram.', 'On the live site this feed loads the latest posts from Instagram automatically.'),
+      szEyebrow: L('UNTUK SEMUA SKALA USAHA', 'FOR BUSINESSES OF ALL SIZES'),
+      szTitle: L('Dari satu rak sampai satu jaringan toko', 'From a single shelf to a whole chain'),
+      szSub: L('Program reseller kami terbuka untuk brand dan usaha dari semua ukuran: toko buku, penjual online dan offline, kafe, sekolah, sampai perusahaan. Satu akun, harga grosir yang sama, tanpa minimum tahunan.', 'Our reseller program is open to brands and businesses of every size: bookshops, online and offline sellers, cafes, schools and companies. One account, the same wholesale prices, no annual minimum.'),
+      szCta: L('Lihat syarat bergabung', 'See how to join'),
+      szNote: L('Belum punya badan usaha? Penjual perorangan dengan NIK dan NPWP juga bisa mendaftar.', 'No registered company yet? Individual sellers with a national ID and tax number can also apply.'),
       partnersTitle: L('Mitra kami', 'Our partners'),
       partnersBody: L('Buku-buku kami tersedia di toko buku terkemuka di Indonesia.', "Our books are on the shelves of Indonesia's leading bookstores."),
       bnEyebrow: L('KEUNTUNGAN RESELLER', 'RESELLER BENEFITS'),
-      bnTitle: L('Mengapa toko buku bermitra dengan Star Books', 'Why bookshops partner with Star Books'),
+      bnTitle: L('Mengapa reseller bermitra dengan Star Books', 'Why resellers partner with Star Books'),
       bnSub: L('Satu pemasok untuk buku impor berbahasa Inggris, alat tulis, dan hadiah: harga grosir, stok asli dari penerbit, dan portal yang memudahkan pesanan ulang.', 'One supplier for imported English-language books, stationery and gifts: wholesale prices, genuine stock straight from publishers, and a portal that makes reordering easy.'),
       bnCta: L('Daftar jadi reseller', 'Become a reseller'),
       bnNote: L('Angka dalam [ ] masih usulan dan akan dikonfirmasi dalam S&K Reseller 2027.', 'Figures in [ ] are proposals, to be confirmed in the 2027 reseller terms.'),
@@ -538,6 +566,14 @@ class Component extends DCLogic {
       { url: 'https://www.instagram.com/sinarstarbooks/p/DeDrc7wg5OE/', reel: false, bg: '#1F3B73', date: L('3 Okt 2026', 'Oct 3, 2026'), caption: 'Pokémon grand prize alert!' }
     ];
     const nlDone = !!(this.state && this.state.nlDone);
+    const segments = [
+      { bg: '#FDE9C4', icon: '📚', title: L('Toko buku', 'Bookshops'), body: L('Toko independen maupun jaringan, dari satu cabang sampai puluhan.', 'Independent shops and chains, from one branch to dozens.') },
+      { bg: '#DCEBF0', icon: '🛒', title: L('Penjual online', 'Online sellers'), body: L('Toko di Tokopedia, Shopee, TikTok Shop, Instagram, atau website sendiri.', 'Stores on Tokopedia, Shopee, TikTok Shop, Instagram or your own website.') },
+      { bg: '#E6DDF0', icon: '🏬', title: L('Toko offline & hadiah', 'Offline & gift stores'), body: L('Toko hadiah, gaya hidup, mainan, dan alat tulis yang ingin menambah rak buku impor.', 'Gift, lifestyle, toy and stationery stores adding a shelf of imported books.') },
+      { bg: '#DDEBDD', icon: '☕', title: L('Kafe & ruang kreatif', 'Cafes & creative spaces'), body: L('Kafe, coworking, dan hotel yang ingin menjual buku di pojok baca mereka.', 'Cafes, coworking spaces and hotels that want to sell books from their reading corner.') },
+      { bg: '#F6D9D4', icon: '🎓', title: L('Sekolah & perpustakaan', 'Schools & libraries'), body: L('Paket buku kelas, bazar buku, program membaca, dan koleksi perpustakaan.', 'Class sets, book fairs, reading programmes and library collections.') },
+      { bg: '#F1EBF6', icon: '🏢', title: L('Perusahaan & komunitas', 'Companies & communities'), body: L('Hadiah korporat, klub buku, komunitas, dan pembelian dalam jumlah besar.', 'Corporate gifts, book clubs, communities and bulk purchases.') }
+    ];
     const benefits = [
       { bg: '#FDE9C4', title: L('Buku asli, langsung dari penerbit', 'Genuine books, straight from the publisher'), body: L('Importir resmi sejak 2000 untuk Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic, dan lainnya. Tidak ada bajakan, tidak ada cetakan ulang.', 'Official importer since 2000 for Penguin Random House, HarperCollins, Hachette, Simon & Schuster, Macmillan, Bloomsbury, Scholastic and more. No counterfeits, no reprints.') },
       { bg: '#E6DDF0', title: L('Harga grosir mulai 20%, naik sampai 35%', 'Wholesale from 20% off, up to 35%'), body: L('Diskon per invoice dari Rp 1.000.000: [20 / 25 / 30 / 33]% sesuai nilai pesanan, dan 35% flat untuk Super Star. Harga reseller terlihat di setiap judul setelah login.', 'Per-invoice discount from Rp 1,000,000: [20 / 25 / 30 / 33]% by order value, and a flat 35% for Super Star. Reseller prices show on every title once you log in.') },
@@ -548,7 +584,7 @@ class Component extends DCLogic {
       { bg: '#FDE9C4', title: L('Bayar dan kirim tanpa ribet', 'Easy payment and delivery'), body: L('Virtual account, QRIS, kartu, atau transfer. Ongkir dihitung saat checkout (JNE, J&T Cargo, instan Jabodetabek) atau ambil sendiri di gudang Jakarta. Beli putus, tanpa minimum tahunan.', 'Virtual account, QRIS, card or transfer. Shipping quoted at checkout (JNE, J&T Cargo, instant in Jabodetabek) or pick up at our Jakarta warehouse. Outright purchase, no annual minimum.') },
       { bg: '#E6DDF0', title: L('Materi promo dan dukungan penjualan', 'Promo material and sales support'), body: L('Poster dan materi display, konten media sosial untuk setiap rilis besar, undangan IIBF dan peluncuran buku, serta PO, invoice, dan pelacakan dalam satu akun.', 'Posters and display material, social content for every big release, IIBF and launch invitations, and POs, invoices and tracking in one account.') }
     ];
-    return { t, benefits, tabs, books: lists[this.state.tab].map((b) => Object.assign({}, b, coverOf(b.title))), heroCover: coverOf('The Girl Who Was Taken'), heroSteps: [{ n: '1', title: L('Daftar', 'Apply'), body: L('Isi data usaha dan dokumen.', 'Fill in your business details and documents.') }, { n: '2', title: L('Disetujui', 'Get approved'), body: L('Tim kami meninjau dan mengaktifkan akun.', 'Our team reviews and activates your account.') }, { n: '3', title: L('Pesan & bayar online', 'Order & pay online'), body: L('Lihat harga grosir, bayar dengan VA/QRIS/kartu, pilih kurir.', 'See wholesale prices, pay by VA/QRIS/card, pick a courier.') }], langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
+    return { t, benefits, segments, tabs, books: lists[this.state.tab].map((b) => Object.assign({}, b, coverOf(b.title))), heroCover: coverOf('The Girl Who Was Taken'), heroSteps: [{ n: '1', title: L('Daftar', 'Apply'), body: L('Isi data usaha dan dokumen.', 'Fill in your business details and documents.') }, { n: '2', title: L('Disetujui', 'Get approved'), body: L('Tim kami meninjau dan mengaktifkan akun.', 'Our team reviews and activates your account.') }, { n: '3', title: L('Pesan & bayar online', 'Order & pay online'), body: L('Lihat harga grosir, bayar dengan VA/QRIS/kartu, pilih kurir.', 'See wholesale prices, pay by VA/QRIS/card, pick a courier.') }], langs, pubLogos, giftLogos, retailLogos, events, igPosts, nlDone, nlNotDone: !nlDone, nlSubmit: () => this.setState({ nlDone: true }) };
   }
 }
 </script>
