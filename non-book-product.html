@@ -97,7 +97,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <span style="font-size: 15px; color: #6E6478">{{t.byline}}</span>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 8px">
-          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #DDEBDD; color: #24523A">{{t.inStock}}</span>
           <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">SKU [kode Kikkerland]</span>
           <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">{{t.ages}}</span>
         </div>
@@ -117,11 +116,18 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
               <button type="button" aria-label="{{t.incQty}}" style="width: 48px; height: 50px; border: 0; background: transparent; font-size: 20px; color: #4A4252; cursor: pointer">+</button>
             </div>
             <a href="checkout.html" style="flex: 1 1 200px; display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.addToCart}}</a>
-            <button type="button" aria-label="{{t.wishlist}}" style="width: 52px; height: 52px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; display: grid; place-items: center; cursor: pointer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A4252" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
-            </button>
+            <sc-if value="{{notWished}}" hint-placeholder-val="{{true}}">
+              <button type="button" aria-label="{{t.wishlist}}" aria-pressed="false" onClick="{{toggleWish}}" style="width: 52px; height: 52px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A4252" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+              </button>
+            </sc-if>
+            <sc-if value="{{wished}}" hint-placeholder-val="{{false}}">
+              <button type="button" aria-label="{{t.wishlisted}}" aria-pressed="true" onClick="{{toggleWish}}" style="width: 52px; height: 52px; border-radius: 12px; border: 1px solid #5B2A86; background: #F7F2FB; display: grid; place-items: center; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#5B2A86" stroke="#5B2A86" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+              </button>
+            </sc-if>
           </div>
-          <span style="font-size: 13px; color: #6E6478">{{t.orderNote}}</span>
+          <span style="font-size: 13px; color: #6E6478">{{t.orderNote}}<sc-if value="{{wished}}" hint-placeholder-val="{{false}}"> · <a href="wishlist.html" style="font-weight: 700">{{t.wishNote}}</a></sc-if></span>
         </div>
 
         <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4A4252">{{t.description}}</p>
@@ -186,7 +192,6 @@ class Component extends DCLogic {
       viewImage2: L('Lihat gambar 2', 'View image 2'),
       viewImage3: L('Lihat gambar 3', 'View image 3'),
       byline: L('Kit kerajinan · desain KDT', 'Craft kit · design by KDT'),
-      inStock: L('Stok tersedia · [qty] pcs', 'In stock · [qty] pcs'),
       ages: L('Cocok untuk pemula', 'Great for beginners'),
                   qtyCol: L('Jumlah', 'Quantity'),
       yourLevel: L('Level Anda', 'Your level'),
@@ -195,6 +200,8 @@ class Component extends DCLogic {
       incQty: L('Tambah jumlah', 'Increase quantity'),
       addToCart: L('Tambah 12 ke keranjang', 'Add 12 to cart'),
       wishlist: L('Tambah ke wishlist', 'Add to wish list'),
+      wishlisted: L('Tersimpan di wishlist · klik untuk hapus', 'Saved to wish list · click to remove'),
+      wishNote: L('✓ Tersimpan di wishlist', '✓ Saved to wish list'),
       orderNote: L('Min. pembelian 6 · Kelipatan 6 (1 inner box)', 'Minimum order 6 · Sold in multiples of 6 (1 inner box)'),
       description: L('Pelajari kerajinan tradisional punch needle atau "rug hooking" dan buat permadani mini Anda sendiri. Kit ini berisi semua yang dibutuhkan: 1 hoop bambu yang bisa diatur, 1 jarum punch, 1 alat pemasang benang, 1 kain katun dengan pola tercetak, dan benang yang cukup untuk menyelesaikan desain. Cocok untuk pemula!', 'Learn the traditional handicraft of punch needle or "rug hooking" and create your very own miniature tapestry. Kit comes with everything needed including: 1 adjustable bamboo hoop, 1 punch needle, 1 needle threader, 1 cotton cloth with printed template, and plenty of yarn to complete the design. Great for beginners!'),
       bookDetails: L('Detail produk', 'Product details'),
@@ -217,10 +224,12 @@ class Component extends DCLogic {
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
+    const wished = !!(this.state && this.state.wished);
     return {
       t,
       langs,
-      retail: fmt(price)
+      retail: fmt(price),
+      wished, notWished: !wished, toggleWish: () => this.setState({ wished: !wished })
     };
   }
 }

@@ -61,7 +61,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             <span style="font-size: 11px; color: #7A3FB0; font-weight: 600">{{t.verified}}</span>
           </span>
         </a>
-        <a href="catalog.html" aria-label="{{t.wishlist}}" style="width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #1E1A24">
+        <a href="wishlist.html" aria-label="{{t.wishlist}}" style="width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #1E1A24">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
         </a>
         <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
@@ -240,7 +240,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
             <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px">
               <span style="font-size: 19px; font-weight: 700; color: #2A1640">{{p.reseller}}</span>
             </div>
-            <span style="font-size: 12px; color: #6E6478">{{t.minOrder}} {{p.moq}} {{t.pcs}} · {{p.stock}}</span>
+            <span style="font-size: 12px; color: #6E6478">{{t.minOrder}} {{p.moq}} {{t.pcs}}</span>
             <button type="button" style="margin-top: 12px; height: 44px; border-radius: 12px; border: 1px solid #5B2A86; background: #FFFFFF; color: #5B2A86; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer">{{t.addPre}} {{p.moq}} {{t.addPost}}</button>
           </div>
         </article>
@@ -369,7 +369,7 @@ class Component extends DCLogic {
       step1Title: L('Daftarkan usaha Anda', 'Register your business'),
       step1Body: L('Ceritakan tentang toko Anda dan unggah NIB / NPWP. Tim kami memverifikasi akun baru dalam [X] hari kerja.', 'Tell us about your store and upload your NIB / NPWP. Our team verifies new accounts within [X] working days.'),
       step2Title: L('Lihat harga reseller', 'See reseller pricing'),
-      step2Body: L('Setelah disetujui, setiap judul menampilkan harga reseller, minimal pembelian, dan stok terkini.', 'Once approved, every title shows your reseller price, minimum order and live stock.'),
+      step2Body: L('Setelah disetujui, setiap judul menampilkan harga, minimal pembelian, dan tombol simpan ke wishlist.', 'Once approved, every title shows its price, minimum order and a save-to-wish-list button.'),
       step3Title: L('Pesan dulu, bayar saat stok siap', 'Order first, pay when stock is ready'),
       step3Body: L('Kirim pesanan awal tanpa pembayaran. Kami konfirmasi stok, lalu kirim tagihan saat buku siap dikirim (VA, QRIS, kartu, atau transfer). Lacak resi dan unduh invoice di akun Anda.', 'Place a pre-purchase order with nothing to pay. We confirm stock, then invoice when the books are ready to ship (VA, QRIS, card or transfer). Track shipments and download invoices in your account.'),
       footerAbout: L('Importir dan distributor buku serta hadiah berbahasa Inggris di Indonesia sejak 2000.', 'Importer and distributor of English-language books and gifts in Indonesia since 2000.'),
@@ -408,7 +408,7 @@ class Component extends DCLogic {
       add: () => this.setState({ recAdded: added.concat(key) })
     });
     const recGroups = [
-      { label: L('PESAN ULANG', 'REORDER'), ink: '#3E7A5A', hint: L('Pernah dibeli · stok ada', 'Bought before · in stock'), items: [
+      { label: L('PESAN ULANG', 'REORDER'), ink: '#3E7A5A', hint: L('Pernah dibeli', 'Bought before'), items: [
         mkRec('r1', 'Tuesdays with Morrie', 188000, 6, L('Terakhir 24 Sep, 6 eks. · selalu dipesan ulang', 'Last Sep 24, 6 copies · a steady reorder')),
         mkRec('r2', 'The Psychology of Money', 335000, 6, L('Dibeli 3× tahun ini · 41 hari lalu', 'Bought 3× this year · 41 days ago')),
         mkRec('r3', 'Atomic Habits', 335000, 6, L('Terakhir 2 Okt · nonfiksi terlaris 12 bulan', 'Last Oct 2 · top non-fiction, 12 months'))

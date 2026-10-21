@@ -328,7 +328,8 @@ class Component extends DCLogic {
       { label: L('Pesanan', 'Orders'), href: 'orders.html', on: true },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
-      { label: L('Profil toko', 'Store profile'), href: 'account.html' }
+      { label: L('Wishlist', 'Wish list'), href: 'wishlist.html' },
+      { label: L('Profil toko', 'Store profile'), href: 'store-profile.html' }
     ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
