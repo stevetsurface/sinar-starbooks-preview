@@ -204,7 +204,7 @@ class Component extends DCLogic {
       catalog: L('Katalog', 'Catalog'), cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       accountNav: L('Akun', 'Account'), storeName: L('[Nama Toko Buku]', '[Bookshop name]'),
       title: L('Pesanan', 'Orders'),
-      sub: L('Semua pesanan Anda: dibayar saat checkout, dikemas dalam 1 hari kerja, lacak resi dan unduh invoice di sini.', 'All your orders: paid at checkout, packed within 1 working day; track shipments and download invoices here.'),
+      sub: L('Semua pesanan awal Anda: kami konfirmasi stok, kirim tagihan saat stok siap, lalu kemas dalam 1 hari kerja setelah lunas. Lacak resi dan unduh invoice di sini.', 'All your pre-purchase orders: we confirm stock, invoice when it is ready, then pack within 1 working day of payment. Track shipments and download invoices here.'),
       search: L('Cari no. pesanan, ref. Anda, atau judul', 'Search order no., your ref. or title'),
       filterLabel: L('Filter status', 'Status filter'),
       yourRef: L('Ref. Anda', 'Your ref.'),
@@ -214,11 +214,11 @@ class Component extends DCLogic {
       retail: L('retail', 'retail'),
       payment: L('Pembayaran', 'Payment'), shipping: L('Pengiriman', 'Shipping'), courier: L('Kurir', 'Courier'), poDoc: L('Dokumen', 'Documents'),
       books: L('Buku', 'Books'), shipCost: L('Ongkir (ditanggung pembeli)', 'Shipping (paid by buyer)'),
-      transferInfo: L('Pembayaran diproses lewat Midtrans/Xendit. Pesanan dikemas otomatis setelah pembayaran terkonfirmasi.', 'Payments run through Midtrans/Xendit. Orders are packed automatically once payment is confirmed.'),
+      transferInfo: L('Stok siap. Tagihan dikirim ke e-mail/WhatsApp Anda; bayar lewat VA, QRIS, kartu, atau transfer. Pesanan dikemas setelah lunas.', 'Stock is ready. The invoice was sent to your e-mail/WhatsApp; pay by VA, QRIS, card or transfer. The order is packed once paid.'),
       poPdf: L('Unduh nota pesanan (PDF)', 'Download order slip (PDF)'),
       invoice: L('Unduh invoice (PDF)', 'Download invoice (PDF)'),
       reorder: L('Pesan ulang', 'Reorder'),
-      terms: L('Sesuai ketentuan reseller: bayar saat checkout (beli putus), barang tidak bisa diretur, ongkir ditanggung pembeli. Contoh data untuk desain.', 'Per reseller terms: cash/transfer payment, no returns, buyer pays shipping. Sample data for the design.')
+      terms: L('Sesuai ketentuan reseller: pesanan awal tanpa pembayaran, tagihan saat stok siap (beli putus), barang tidak bisa diretur, ongkir ditanggung pembeli. Contoh data untuk desain.', 'Per reseller terms: pre-purchase order with no upfront payment, invoice when stock is ready (outright purchase), no returns, buyer pays shipping. Sample data for the design.')
     };
     const books = {
       atomic: { title: 'Atomic Habits', isbn: '9780593189641', price: 335000 },
@@ -236,32 +236,33 @@ class Component extends DCLogic {
     // ship: null = freight not yet confirmed by staff; pickup: true = "Ambil sendiri di gudang"
     const raw = [
       { no: 'ORD-202610-0014', ref: 'TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), s: 'submitted', disc: 30, pickup: false, ship: null,
-        pay: L('Virtual account BCA · menunggu pembayaran, berlaku sampai 9 Okt 14.00', 'BCA virtual account · awaiting payment, valid until Oct 9, 2 pm'), lines: [['atomic', 6], ['psych', 6], ['dog14', 6], ['itstarts', 6]] },
-      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), s: 'verified', disc: 30, pickup: false, ship: null,
-        pay: L('QRIS · lunas 6 Okt 2026', 'QRIS · paid Oct 6, 2026'), lines: [['alchemist', 6], ['morrie', 6], ['carnegie', 6]] },
-      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'approved', disc: 30, pickup: false, ship: 75000,
-        pay: L('Transfer bank · bukti diunggah 2 Okt, lunas 3 Okt', 'Bank transfer · proof uploaded Oct 2, confirmed Oct 3'), lines: [['dog1', 10], ['dog2', 10], ['dog3', 10]] },
+        pay: L('Belum ada tagihan · stok dikonfirmasi dalam 1 hari kerja', 'No invoice yet · stock confirmed within 1 working day'), lines: [['atomic', 6], ['psych', 6], ['dog14', 6], ['itstarts', 6]] },
+      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), s: 'confirmed', disc: 30, pickup: false, ship: null,
+        pay: L('Stok siap · tagihan dikirim 8 Okt, berlaku sampai 11 Okt', 'Stock ready · invoice sent Oct 8, valid until Oct 11'), lines: [['alchemist', 6], ['morrie', 6], ['carnegie', 6]] },
+      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'verified', disc: 30, pickup: false, ship: 75000,
+        pay: L('Tagihan 5 Okt · lunas QRIS 6 Okt 2026', 'Invoiced Oct 5 · paid by QRIS Oct 6, 2026'), lines: [['dog1', 10], ['dog2', 10], ['dog3', 10]] },
       { no: 'ORD-202609-0027', ref: 'TB-2026-011', date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'shipped', disc: 30, pickup: false, ship: 70000,
         courier: L('JNE Cargo · resi [nomor resi] · dikirim 30 Sep 2026', 'JNE Cargo · waybill [waybill no.] · shipped Sep 30, 2026'),
         pay: L('Transfer bank · lunas 26 Sep 2026', 'Bank transfer · paid Sep 26, 2026'), lines: [['alchemist', 12], ['psych', 6]] },
       { no: 'ORD-202608-0018', ref: 'TB-2026-010', date: L('12 Agu 2026', 'Aug 12, 2026'), s: 'done', disc: 20, pickup: true, ship: 0,
         pay: L('Tunai · lunas 14 Agu 2026', 'Cash · paid Aug 14, 2026'), lines: [['sapiens', 6], ['atomic', 6]] },
       { no: 'ORD-202607-0022', ref: 'TB-2026-009', date: L('22 Jul 2026', 'Jul 22, 2026'), s: 'rejected', disc: 20, pickup: false, ship: null,
-        reason: L('Alasan: stok It Starts With Us habis di penerbit; pembayaran dikembalikan 24 Jul.', 'Reason: It Starts With Us out of stock at the publisher; payment refunded Jul 24.'),
+        reason: L('Alasan: stok It Starts With Us habis di penerbit; tidak ada tagihan.', 'Reason: It Starts With Us out of stock at the publisher; nothing was invoiced.'),
         pay: L('Tidak ada tagihan', 'Nothing to pay'), lines: [['itstarts', 12]] }
     ];
     // Real oc-b2b order statuses. step = position on the timeline; group = filter bucket.
     const S = {
-      submitted: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#ECE6F1', chipInk: '#4A4252', step: 0, group: 'submitted' },
-      verified: { status: L('DIBAYAR', 'PAID'), chipBg: '#DCEBF0', chipInk: '#1F4A63', step: 1, group: 'verified' },
-      approved: { status: L('DIKEMAS', 'PACKING'), chipBg: '#FDE9C4', chipInk: '#6B4A00', step: 2, group: 'approved' },
+      submitted: { status: L('MENUNGGU KONFIRMASI STOK', 'AWAITING STOCK CONFIRMATION'), chipBg: '#ECE6F1', chipInk: '#4A4252', step: 0, group: 'submitted' },
+      confirmed: { status: L('STOK SIAP · MENUNGGU PEMBAYARAN', 'STOCK READY · AWAITING PAYMENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00', step: 1, group: 'confirmed' },
+      verified: { status: L('DIBAYAR', 'PAID'), chipBg: '#DCEBF0', chipInk: '#1F4A63', step: 2, group: 'verified' },
+      approved: { status: L('DIKEMAS', 'PACKING'), chipBg: '#E1E5F7', chipInk: '#2F3A7A', step: 3, group: 'moving' },
       processing: { status: L('SIAP KIRIM', 'READY TO SHIP'), chipBg: '#E1E5F7', chipInk: '#2F3A7A', step: 3, group: 'moving' },
       shipped: { status: L('DIKIRIM', 'SHIPPED'), chipBg: '#E6DDF0', chipInk: '#5B2A86', step: 4, group: 'moving' },
       done: { status: L('SELESAI', 'COMPLETE'), chipBg: '#DDEBDD', chipInk: '#24523A', step: 5, group: 'done' },
       rejected: { status: L('DIBATALKAN · STOK', 'CANCELLED · STOCK'), chipBg: '#F8DCE3', chipInk: '#8A2443', step: -1, group: 'closed' },
       cancelled: { status: L('DIBATALKAN', 'CANCELLED'), chipBg: '#ECEAEE', chipInk: '#5A5260', step: -1, group: 'closed' }
     };
-    const stepLabels = [L('Dibuat', 'Placed'), L('Dibayar', 'Paid'), L('Dikemas', 'Packing'), L('Siap kirim', 'Ready'), L('Dikirim', 'Shipped'), L('Selesai', 'Complete')];
+    const stepLabels = [L('Dipesan', 'Placed'), L('Stok siap · tagihan', 'Stock ready · invoiced'), L('Dibayar', 'Paid'), L('Dikemas', 'Packing'), L('Dikirim', 'Shipped'), L('Selesai', 'Complete')];
     const openId = st.open === undefined ? 'ORD-202610-0014' : st.open;
     const filter = st.filter || 'all';
     const all = raw.map((o) => {
@@ -306,15 +307,15 @@ class Component extends DCLogic {
         totalCaption: (!o.pickup && !shipKnown && !closed) ? L('Total (belum termasuk ongkir)', 'Total (excl. shipping)') : 'Total',
         payment: o.pay, ship, courier: o.courier || '', hasCourier: !!o.courier, poFile: o.no + '.pdf',
         steps, hasTimeline: !closed, hasReason: closed, reason: o.reason || '',
-        awaitTransfer: o.s === 'approved', hasInvoice: s.step >= 2,
+        awaitTransfer: o.s === 'confirmed', hasInvoice: s.step >= 1,
         open: isOpen, expanded: isOpen ? 'true' : 'false',
         chevron: isOpen ? 'm6 15 6-6 6 6' : 'm6 9 6 6 6-6',
         toggle: () => this.setState({ open: isOpen ? null : o.no })
       });
     });
     const defs = [
-      ['all', L('Semua', 'All')], ['submitted', L('Menunggu pembayaran', 'Awaiting payment')], ['verified', L('Dibayar', 'Paid')],
-      ['approved', L('Dikemas', 'Packing')], ['moving', L('Siap kirim & Dikirim', 'Ready & Shipped')],
+      ['all', L('Semua', 'All')], ['submitted', L('Menunggu konfirmasi', 'Awaiting confirmation')], ['confirmed', L('Menunggu pembayaran', 'Awaiting payment')], ['verified', L('Dibayar', 'Paid')],
+      ['moving', L('Dikemas & Dikirim', 'Packing & Shipped')],
       ['done', L('Selesai', 'Complete')], ['closed', L('Dibatalkan', 'Cancelled')]
     ];
     const filters = defs.map(([id, label]) => ({
@@ -327,7 +328,6 @@ class Component extends DCLogic {
       { label: L('Pesanan', 'Orders'), href: 'orders.html', on: true },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
-      { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },
       { label: L('Profil toko', 'Store profile'), href: 'account.html' }
     ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({

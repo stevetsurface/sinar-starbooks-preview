@@ -256,20 +256,16 @@ class Component extends DCLogic {
       pages: L('[Jumlah halaman]', '[Pages]'),
       forResellers: L('Untuk reseller', 'For resellers'),
       shelfPrice: L('Harga jual yang disarankan:', 'Suggested shelf price:'),
-      marginLabel: L('Margin Anda untuk 3–9 eksemplar (Bright Star):', 'Your margin at 3–9 copies (Bright Star):'),
+      marginLabel: L('Margin Anda per eksemplar (diskon 20%):', 'Your margin per copy (20% off):'),
       perCopy: L('per eksemplar', 'per copy'),
       returnsLabel: L('Retur:', 'Returns:'),
       noReturns: L('Barang tidak dapat diretur.', 'Items cannot be returned.'),
       downloadSheet: L('Unduh lembar produk (PDF)', 'Download product sheet (PDF)')
     };
-    // OC customer groups Tier 1/2/3 shown as Star / Bright Star / Super Star.
-    // Example % off retail per quantity break (oc_product_discount); default d = 20 gives
-    // Star 20/22/25, Bright Star 25/27/30, Super Star 35/35/35.
-    const myTier = 1; // reseller's own group: Bright Star
+    // One reseller price: d% off retail (default 20). Volume pricing is discussed with the team, not shown.
+    const myTier = 0;
     const groups = [
-      { name: 'Star', offs: [d, d + 2, d + 5] },
-      { name: 'Bright Star', offs: [d + 5, d + 7, d + 10] },
-      { name: 'Super Star', offs: [d + 15, d + 15, d + 15] }
+      { name: L('Harga reseller', 'Reseller price'), offs: [d, d, d] }
     ];
     const breaks = [L('3+ (MOQ)', '3+ (MOQ)'), '10+', '50+'];
     const tierCols = groups.map((g, gi) => ({ name: g.name, mine: gi === myTier, other: gi !== myTier }));

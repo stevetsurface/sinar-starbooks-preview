@@ -93,6 +93,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
           <div style="flex: 1 1 420px; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px 28px; display: flex; flex-direction: column; gap: 8px">
             <span style="font-size: 20px; font-weight: 600; color: #2A1640">{{m.title}}</span>
             <span style="font-size: 15px; line-height: 1.6; color: #4A4252">{{m.body}}</span>
+            <sc-if value="{{m.hasLogo}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-self: flex-start; margin-top: 6px; padding: 10px 18px; border-radius: 12px; background: #2A1640"><img src="assets/logos/wonder-bookstore-white.png" alt="Wonder Bookstore" style="height: 44px; width: auto; display: block"></span></sc-if>
           </div>
         </li>
       </sc-for>
@@ -193,7 +194,8 @@ class Component extends DCLogic {
       { year: yr, kind: L('PENERBIT', 'PUBLISHERS'), title: L('Kemitraan langsung pertama dengan penerbit', 'First direct publisher partnership'), body: L('[Penerbit mana, dan apa artinya bagi katalog.]', '[Which publisher, and what it meant for the catalog.]') },
       { year: yr, kind: L('PERTUMBUHAN', 'GROWTH'), title: L('[Pencapaian — misalnya gudang baru atau jangkauan distribusi]', '[Milestone — e.g. new warehouse or distribution reach]'), body: L('[Deskripsi singkat.]', '[Short description.]') },
       { year: yr, kind: L('HADIAH', 'GIFTS'), title: L('Hadiah & alat tulis bergabung dalam koleksi', 'Gifts & stationery join the range'), body: L('[Kapan IF, Kikkerland, dan merek hadiah lainnya ditambahkan.]', '[When IF, Kikkerland and other gift brands were added.]') },
-      { year: '2026', kind: L('SAAT INI', 'TODAY'), title: L('Situs web reseller diluncurkan', 'Reseller website launches'), body: L('Reseller di seluruh Indonesia kini dapat menjelajahi katalog lengkap, melihat harga mereka, dan memesan secara online dengan purchase order.', 'Resellers across Indonesia can now browse the full catalog, see their prices and order online with a purchase order.') }
+      { year: yr, kind: L('RITEL', 'RETAIL'), title: L('Wonder Bookstore dibuka', 'Wonder Bookstore opens'), body: L('Toko ritel milik grup kami: lifestyle bookstore dengan buku, alat tulis, hadiah, dan kopi. Kini enam gerai di Jakarta dan Bali (Hublife, Ashta District 8, Pondok Indah Mall 5, Trans Studio Mall Cibubur, Trans Studio Mall Bali, Berawa). Apa yang laku di Wonder menjadi bahan rekomendasi kami untuk reseller.', 'Our group’s own retail chain: a lifestyle bookstore with books, stationery, gifts and coffee. Now six stores in Jakarta and Bali (Hublife, Ashta District 8, Pondok Indah Mall 5, Trans Studio Mall Cibubur, Trans Studio Mall Bali, Berawa). What sells at Wonder feeds our picks for resellers.'), logo: true },
+      { year: '2026', kind: L('SAAT INI', 'TODAY'), title: L('Situs web reseller diluncurkan', 'Reseller website launches'), body: L('Reseller di seluruh Indonesia kini dapat menjelajahi katalog lengkap, melihat harga mereka, dan mengirim pesanan awal secara online; tagihan menyusul saat stok siap.', 'Resellers across Indonesia can now browse the full catalog, see their prices and place pre-purchase orders online; the invoice follows when stock is ready.') }
     ];
     const last = ms.length - 1;
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
@@ -214,7 +216,7 @@ class Component extends DCLogic {
     return { team,
       t,
       langs,
-      milestones: ms.map((m, i) => ({ ...m, dot: i === last ? '#F2B33D' : '#5B2A86', yearColor: i === last ? '#B07A12' : '#5B2A86' })),
+      milestones: ms.map((m, i) => ({ ...m, hasLogo: !!m.logo, dot: i === last ? '#F2B33D' : '#5B2A86', yearColor: i === last ? '#B07A12' : '#5B2A86' })),
       publishers: [
         { name: 'Penguin Random House', logo: 'assets/logos/penguin-random-house.svg', h: '56px' },
         { name: 'HarperCollins', logo: 'assets/logos/harpercollins.png', h: '30px' },

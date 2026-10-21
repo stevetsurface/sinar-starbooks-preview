@@ -86,24 +86,13 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <span style="font-size: 15px; color: #6E6478">{{t.since}}</span>
       </div>
 
-      <!-- Tier + deposit -->
+      <!-- Discount + deposit -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
-        <section style="background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap">
-            <div style="display: flex; flex-direction: column; gap: 6px">
-              <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #B8A6CC">{{t.yourTier}}</span>
-              <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1">Bright Star</span>
-            </div>
-            <span style="font-size: 28px; font-weight: 800; color: #F2B33D">30%</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 8px">
-            <span style="font-size: 14px">{{t.toNext}}</span>
-            <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{progress}}" aria-label="{{t.toNext}}" style="height: 12px; border-radius: 999px; background: #4A3463; overflow: hidden">
-              <div style="height: 100%; width: {{progressWidth}}; border-radius: 999px; background: #F2B33D"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #B8A6CC"><span>Rp 10 jt · 30%</span><span>Rp 25 jt · 35%</span></div>
-          </div>
-          <a href="my-rewards.html" style="align-self: flex-start; color: #F2B33D; font-weight: 700; font-size: 14px">{{t.seeRewards}}</a>
+        <section style="background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #B8A6CC">{{t.discTitle}}</span>
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 44px; line-height: 1; color: #F2B33D">20%</span>
+          <span style="font-size: 14px; color: #D4C6E2; line-height: 1.5">{{t.discBody}}</span>
+          <a href="https://wa.me/628118069559" style="align-self: flex-start; color: #F2B33D; font-weight: 700; font-size: 14px">{{t.discMore}}</a>
         </section>
 
         <section style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
@@ -158,7 +147,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <a href="pre-order.html" style="background: #FDE9C4; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qPreorder}}</a>
         <a href="help-me-choose.html" style="background: #2A1640; border-radius: 18px; padding: 20px; font-weight: 700; color: #F2B33D">{{t.qHelp}}</a>
         <a href="orders.html" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qReorder}}</a>
-        <a href="https://wa.me/" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qWa}}</a>
+        <a href="https://wa.me/628118069559" style="background: #F1EBF6; border-radius: 18px; padding: 20px; font-weight: 700; color: #2A1640">{{t.qWa}}</a>
       </div>
       <span style="font-size: 12px; color: #6E6478">{{t.dummy}}</span>
     </main>
@@ -173,7 +162,6 @@ class Component extends DCLogic {
     const st = this.state || {};
     const lang = st.lang || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
-    const progress = 49;
     const t = {
       nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Segera Terbit', 'Coming Soon'), myAccountBtn: L('Akun Saya', 'My Account'),
       catalog: L('Katalog', 'Catalog'),
@@ -183,13 +171,13 @@ class Component extends DCLogic {
       logout: L('Keluar', 'Log out'),
       hello: L('Halo, [Nama Toko Buku]', 'Hello, [Bookshop name]'),
       since: L('Reseller sejak [bulan tahun] · Kode reseller RS-[0000]', 'Reseller since [month year] · Reseller code RS-[0000]'),
-      yourTier: L('LEVEL ANDA · DISKON', 'YOUR TIER · DISCOUNT'),
-      toNext: L('Rp 7.621.600 lagi untuk naik ke Super Star (35%)', 'Rp 7,621,600 more to reach Super Star (35%)'),
-      seeRewards: L('Lihat detail level →', 'See tier details →'),
+      discTitle: L('DISKON RESELLER ANDA', 'YOUR RESELLER DISCOUNT'),
+      discBody: L('Berlaku untuk setiap pesanan, tanpa minimum. Harga reseller terlihat di setiap judul.', 'Applies to every order, no minimum. Reseller prices show on every title.'),
+      discMore: L('Hubungi tim kami untuk harga volume →', 'Ask our team about volume pricing →'),
       depositTitle: L('DEPOSIT', 'DEPOSIT'),
       depositBody: L('Berlaku sampai [tanggal]. Dipotong otomatis dari pesanan berikutnya.', 'Valid until [date]. Deducted automatically from your next order.'),
-      unpaid: L('Menunggu pembayaran', 'Awaiting payment'),
-      payNow: L('Bayar sekarang →', 'Pay now →'),
+      unpaid: L('Stok siap · menunggu pembayaran', 'Stock ready · awaiting payment'),
+      payNow: L('Lihat tagihan & bayar →', 'View invoice & pay →'),
       yourRef: L('Ref. Anda', 'Your ref.'),
       recent: L('Pesanan terbaru', 'Recent orders'),
       allOrders: L('Semua pesanan →', 'All orders →'),
@@ -209,28 +197,27 @@ class Component extends DCLogic {
     ];
     // Same statuses, order numbers and totals as orders.html.
     const S = {
-      submitted: { status: L('MENUNGGU PEMBAYARAN', 'AWAITING PAYMENT'), chipBg: '#ECE6F1', chipInk: '#4A4252' },
-      verified: { status: L('DIBAYAR', 'PAID'), chipBg: '#DCEBF0', chipInk: '#1F4A63' },
-      approved: { status: L('DIKEMAS', 'PACKING'), chipBg: '#FDE9C4', chipInk: '#6B4A00' }
+      submitted: { status: L('MENUNGGU KONFIRMASI STOK', 'AWAITING STOCK CONFIRMATION'), chipBg: '#ECE6F1', chipInk: '#4A4252' },
+      confirmed: { status: L('STOK SIAP · MENUNGGU PEMBAYARAN', 'STOCK READY · AWAITING PAYMENT'), chipBg: '#FDE9C4', chipInk: '#6B4A00' },
+      verified: { status: L('DIBAYAR', 'PAID'), chipBg: '#DCEBF0', chipInk: '#1F4A63' }
     };
     const recent = [
       { no: 'ORD-202610-0014', ref: 'TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), items: L('24 buku', '24 books'), total: L('Rp 5.241.600 + ongkir', 'Rp 5,241,600 + shipping'), s: 'submitted' },
-      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), items: L('18 buku', '18 books'), total: L('Rp 2.146.200 + ongkir', 'Rp 2,146,200 + shipping'), s: 'verified' },
-      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), items: L('30 buku', '30 books'), total: L('Rp 3.960.000', 'Rp 3,960,000'), s: 'approved' }
+      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), items: L('18 buku', '18 books'), total: L('Rp 2.146.200 + ongkir', 'Rp 2,146,200 + shipping'), s: 'confirmed' },
+      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), items: L('30 buku', '30 books'), total: L('Rp 3.960.000', 'Rp 3,960,000'), s: 'verified' }
     ].map((o) => Object.assign({}, o, S[o.s]));
-    const awaiting = { no: 'ORD-202610-0014', note: L('VA BCA berlaku sampai 9 Okt 14.00', 'BCA VA valid until Oct 9, 2 pm'), total: L('Rp 3.960.000', 'Rp 3,960,000') };
+    const awaiting = { no: 'ORD-202610-0009', note: L('tagihan berlaku sampai 11 Okt', 'invoice valid until Oct 11'), total: L('Rp 2.221.200', 'Rp 2,221,200') };
     const menu = [
       { label: L('Dasbor', 'Dashboard'), href: 'account.html', on: true },
       { label: L('Pesanan', 'Orders'), href: 'orders.html' },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html' },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
-      { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },
       { label: L('Profil toko', 'Store profile'), href: 'account.html' }
     ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
-    return { t, stats, recent, awaiting, menu, langs, progress, progressWidth: progress + '%' };
+    return { t, stats, recent, awaiting, menu, langs };
   }
 }
 </script>

@@ -220,7 +220,7 @@ class Component extends DCLogic {
       youCommitted: L('Anda sudah pesan', 'You committed'), qty: L('Jml', 'Qty'),
       depositNote: L('Deposit [30]% ditagih saat tutup pesanan, sisanya sebelum kirim. Bisa diubah sampai tutup pesanan.', 'A [30]% deposit is billed at cut-off, the balance before shipping. Editable until cut-off.'),
       mineTitle: L('Pre-order saya', 'My pre-orders'),
-      mineNote: L('Semua pre-order dihitung untuk level reseller Anda setelah lunas.', 'Every pre-order counts toward your reseller level once paid.'),
+      mineNote: L('Harga reseller berlaku untuk semua pre-order.', 'Reseller pricing applies to every pre-order.'),
       colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colValue: L('NILAI', 'VALUE'), colDeposit: L('DEPOSIT', 'DEPOSIT'), colStatus: L('STATUS', 'STATUS'), colNext: L('LANGKAH BERIKUTNYA', 'NEXT STEP'),
       suggestTitle: L('Ada judul yang ingin Anda pre-order?', 'A title you’d like us to open a pre-order for?'),
       suggestBody: L('Usulkan lewat Minta buku. Kalau [5] reseller meminta judul yang sama, kami buka pre-order gabungannya.', 'Suggest it via Request a book. If [5] resellers ask for the same title, we open a pooled pre-order.'),
@@ -228,9 +228,9 @@ class Component extends DCLogic {
     };
     const steps = [
       { n: '1', title: L('Pilih judul & jumlah', 'Pick titles and quantities'), body: L('Pesanan minimum per reseller kecil (5–10 eks.). Ubah kapan saja sampai tutup pesanan.', 'Small minimum per reseller (5–10 copies). Change it any time before cut-off.') },
-      { n: '2', title: L('Target tercapai, kami pesan', 'Target reached, we order'), body: L('Gabungan semua reseller menjadi satu PO ke penerbit. Harga Anda mengikuti level reseller.', 'All resellers pooled into one publisher PO. Your price follows your reseller level.') },
+      { n: '2', title: L('Target tercapai, kami pesan', 'Target reached, we order'), body: L('Gabungan semua reseller menjadi satu PO ke penerbit. Harga reseller berlaku.', 'All resellers pooled into one publisher PO. Reseller pricing applies.') },
       { n: '3', title: L('Deposit saat tutup pesanan', 'Deposit at cut-off'), body: L('[30]% ditagih lewat tautan bayar; sisanya saat buku tiba, sebelum dikirim.', '[30]% billed by pay link; the balance when the books land, before shipping.') },
-      { n: '4', title: L('Kirim lebih dulu', 'Shipped first'), body: L('Pre-order dikirim sebelum stok masuk katalog umum. Super Star mendapat kuota terjamin.', 'Pre-orders ship before stock reaches the open catalog. Super Star gets guaranteed allocation.') }
+      { n: '4', title: L('Kirim lebih dulu', 'Shipped first'), body: L('Pre-order dikirim sebelum stok masuk katalog umum. Kuota mengikuti urutan pesanan.', 'Pre-orders ship before stock reaches the open catalog. Allocation follows order sequence.') }
     ];
     const S = {
       open: { status: L('TERBUKA', 'OPEN'), chipBg: '#DCEBF0', chipInk: '#1F4A63', barColor: '#5B2A86' },

@@ -254,9 +254,7 @@ class Component extends DCLogic {
       total += unit * qty; retail += c.price * qty; units += qty;
       return { title: c.title, meta: c.pub + ' · ' + c.meta, ...coverOf(c.title), cover: '#4A3463', tag: tagMap[c.tag][0], tagInk: tagMap[c.tag][1], qty, unit: fmt(unit), sub: fmt(unit * qty), dropAria: L('Hapus ' + c.title, 'Remove ' + c.title), drop: () => this.setState({ removed: removed.concat(k), added: false }) };
     });
-    const tier = total >= 25000000 ? 33 : total >= 10000000 ? 30 : total >= 5000000 ? 25 : 20;
-    const nextAt = total >= 25000000 ? null : total >= 10000000 ? 25000000 : total >= 5000000 ? 10000000 : 5000000;
-    const tierLine = nextAt ? L('Diskon ' + tier + '% · Rp ' + fmt(nextAt - total).slice(3) + ' lagi untuk ' + (tier + 5) + '%', tier + '% off · Rp ' + fmt(nextAt - total).slice(3) + ' more for ' + (tier + 5) + '%') : L('Diskon 33%: tangga tertinggi', '33% off: top of the ladder');
+    const tierLine = L('Diskon reseller 20% · pesan dulu, bayar saat stok siap', '20% reseller discount · order first, pay when stock is ready');
     const typeLabel = { anak: L('toko anak', 'a kids’ shop'), umum: L('toko buku umum', 'a general bookshop'), sekolah: L('sekolah & perpustakaan', 'a school or library'), hadiah: L('toko hadiah & kafe', 'a gift shop or café'), online: L('toko online / TikTok', 'an online / TikTok shop') }[type];
     const planTitle = L('Usulan pesanan untuk ' + typeLabel + ', ' + fmt(budget).replace('.000.000', ' jt'), 'Suggested order for ' + typeLabel + ', ' + fmt(budget).replace('.000.000', 'M'));
     const bundles = [

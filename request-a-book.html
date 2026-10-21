@@ -248,7 +248,6 @@ class Component extends DCLogic {
       { label: L('Pesanan', 'Orders'), href: 'orders.html' },
       { label: L('Minta buku', 'Request a book'), href: 'request-a-book.html', on: true },
       { label: L('Pre-order', 'Pre-orders'), href: 'pre-order.html' },
-      { label: L('Reward Saya', 'My Rewards'), href: 'my-rewards.html' },
       { label: L('Profil toko', 'Store profile'), href: 'account.html' }
     ].map((m) => ({ label: m.label, href: m.href, active: !!m.on, inactive: !m.on }));
     const submit = (e) => {
