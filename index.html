@@ -84,7 +84,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
       <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
       <a href="coming-soon.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNews}}</a>
-      <a href="events.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvEvents}}</a>
       <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
     </nav>
   </header>
@@ -260,25 +259,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
     </a>
   </section>
 
-  <!-- Events & schools -->
-  <section id="events" style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 24px; display: flex; flex-direction: column; gap: 24px">
-    <div style="display: flex; flex-direction: column; gap: 6px">
-      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 36px; color: #2A1640">{{t.eventsTitle}}</h2>
-      <span style="font-size: 15px; color: #6E6478">{{t.eventsSub}}</span>
-      <a href="events.html" style="font-weight: 700; font-size: 15px">{{t.eventsAll}}</a>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
-      <sc-for list="{{events}}" as="ev" hint-placeholder-count="6">
-        <article style="border-radius: 20px; padding: 24px; background: {{ev.bg}}; display: flex; flex-direction: column; gap: 10px; min-height: 170px; box-sizing: border-box">
-          <span style="align-self: flex-start; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; padding: 5px 10px; border-radius: 999px; background: #FFFFFF; color: #5B2A86">{{ev.kind}}</span>
-          <span style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #2A1640; line-height: 1.2">{{ev.title}}</span>
-          <span style="font-size: 14px; line-height: 1.5; color: #4A4252">{{ev.body}}</span>
-          <span style="margin-top: auto; font-size: 13px; font-weight: 700; color: #5B2A86">{{ev.when}}</span>
-        </article>
-      </sc-for>
-    </div>
-  </section>
-
   <!-- Behind the Book · Instagram feed widget -->
   <section id="behind-the-book" style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 96px; display: flex; flex-direction: column; gap: 24px">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
@@ -390,7 +370,7 @@ class Component extends DCLogic {
     const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
     const t = {
-      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Kabar Buku', 'Book News'), nvEvents: L('Acara', 'Events'), myAccountBtn: L('Akun Saya', 'My Account'),
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Kabar Buku', 'Book News'), myAccountBtn: L('Akun Saya', 'My Account'),
       promo: L('Harga grosir khusus reseller · diskon mulai 20% untuk pembelian Rp 1.000.000', 'Wholesale prices for resellers · from 20% off on purchases of Rp 1,000,000'),
       phone: L('[Telepon]', '[Phone]'),
       email: L('[Email]', '[Email]'),
@@ -428,7 +408,6 @@ class Component extends DCLogic {
       giftBrands: L('BRAND HADIAH', 'GIFT BRANDS'),
       eventsTitle: L('Acara & sekolah', 'Events & schools'),
       eventsSub: L('Pameran buku, acara komunitas, dan kunjungan sekolah yang kami ikuti.', 'Book fairs, community events and school visits we take part in.'),
-      eventsAll: L('Semua acara & foto →', 'All events & photos →'),
       igFollowers: L('6.402 pengikut', '6,402 followers'),
       igFollow: L('Ikuti di Instagram', 'Follow on Instagram'),
       fStores: L('Toko resmi', 'Official stores'),
