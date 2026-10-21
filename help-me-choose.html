@@ -105,7 +105,6 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         </div>
         <div style="border-top: 1px solid #4A3463; padding-top: 18px; display: flex; flex-direction: column; gap: 6px">
           <div style="display: flex; justify-content: space-between; font-size: 14px; color: #D4C6E2"><span>{{t.sumTitles}}</span><span>{{sumTitles}} · {{sumUnits}} {{t.copies}}</span></div>
-          <div style="display: flex; justify-content: space-between; font-size: 14px; color: #D4C6E2"><span>{{t.sumRetail}}</span><span style="text-decoration: line-through">{{sumRetail}}</span></div>
           <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; font-weight: 600">{{t.sumTotal}}</span><span style="font-size: 26px; font-weight: 700">{{sumTotal}}</span></div>
           <span style="font-size: 13px; color: #F2B33D; font-weight: 700">{{tierLine}}</span>
           <span style="font-size: 12px; color: #B8A6CC; line-height: 1.5">{{t.sumNote}}</span>
@@ -202,7 +201,7 @@ class Component extends DCLogic {
       title: L('Tidak yakin harus pesan apa? Kami susunkan pesanan yang terbukti laku', 'Not sure what to order? We build you an order that is proven to sell'),
       sub: L('Jawab tiga pertanyaan. Kami memilih judul yang terbukti laku di toko sejenis dan tersedia hari ini, lalu menyesuaikan jumlahnya dengan anggaran Anda. Hapus yang tidak cocok, sisanya masuk keranjang dengan satu klik.', 'Answer three questions. We pick titles proven to sell in shops like yours and in stock today, then size quantities to your budget. Remove what does not fit; the rest goes to your cart in one click.'),
       q1: L('1 · JENIS TOKO ANDA', '1 · YOUR SHOP'), q2: L('2 · ANGGARAN', '2 · BUDGET'), q3: L('3 · FOKUS', '3 · FOCUS'),
-      sumTitles: L('Judul', 'Titles'), copies: L('eks.', 'copies'), sumRetail: L('Nilai retail', 'Retail value'), sumTotal: L('Total reseller', 'Reseller total'),
+      sumTitles: L('Judul', 'Titles'), copies: L('eks.', 'copies'), sumRetail: L('Nilai retail', 'Retail value'), sumTotal: L('Total pesanan', 'Order total'),
       sumNote: L('Harga mengikuti level Anda. Jumlah bisa diubah di keranjang.', 'Prices follow your level. Quantities can be changed in the cart.'),
       addAll: L('Masukkan semua ke keranjang', 'Add everything to cart'), addedMsg: L('✓ Masuk keranjang', '✓ Added to cart'),
       planNote: L('Hapus judul yang tidak cocok; total ikut berubah', 'Remove what does not fit; the total updates'),
@@ -254,7 +253,7 @@ class Component extends DCLogic {
       total += unit * qty; retail += c.price * qty; units += qty;
       return { title: c.title, meta: c.pub + ' · ' + c.meta, ...coverOf(c.title), cover: '#4A3463', tag: tagMap[c.tag][0], tagInk: tagMap[c.tag][1], qty, unit: fmt(unit), sub: fmt(unit * qty), dropAria: L('Hapus ' + c.title, 'Remove ' + c.title), drop: () => this.setState({ removed: removed.concat(k), added: false }) };
     });
-    const tierLine = L('Diskon reseller 20% · pesan dulu, bayar saat stok siap', '20% reseller discount · order first, pay when stock is ready');
+    const tierLine = total >= 5000000 ? L('Minimum pesanan Rp 5 jt tercapai · pesan dulu, bayar saat stok siap', 'Rp 5M order minimum reached · order first, pay when stock is ready') : L('Tambah Rp ' + fmt(5000000 - total).slice(3) + ' lagi untuk minimum pesanan Rp 5 jt', 'Add Rp ' + fmt(5000000 - total).slice(3) + ' more for the Rp 5M order minimum');
     const typeLabel = { anak: L('toko anak', 'a kids’ shop'), umum: L('toko buku umum', 'a general bookshop'), sekolah: L('sekolah & perpustakaan', 'a school or library'), hadiah: L('toko hadiah & kafe', 'a gift shop or café'), online: L('toko online / TikTok', 'an online / TikTok shop') }[type];
     const planTitle = L('Usulan pesanan untuk ' + typeLabel + ', ' + fmt(budget).replace('.000.000', ' jt'), 'Suggested order for ' + typeLabel + ', ' + fmt(budget).replace('.000.000', 'M'));
     const bundles = [

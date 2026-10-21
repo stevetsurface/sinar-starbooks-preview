@@ -90,7 +90,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
         <section style="background: #2A1640; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
           <span style="font-size: 12px; font-weight: 800; letter-spacing: 1.5px; color: #B8A6CC">{{t.discTitle}}</span>
-          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 44px; line-height: 1; color: #F2B33D">20%</span>
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1; color: #F2B33D">Rp 5 jt <span style="font-size: 16px; font-family: Figtree, system-ui, sans-serif; font-weight: 600; color: #D4C6E2">minimum</span></span>
           <span style="font-size: 14px; color: #D4C6E2; line-height: 1.5">{{t.discBody}}</span>
           <a href="https://wa.me/628118069559" style="align-self: flex-start; color: #F2B33D; font-weight: 700; font-size: 14px">{{t.discMore}}</a>
         </section>
@@ -171,9 +171,9 @@ class Component extends DCLogic {
       logout: L('Keluar', 'Log out'),
       hello: L('Halo, [Nama Toko Buku]', 'Hello, [Bookshop name]'),
       since: L('Reseller sejak [bulan tahun] · Kode reseller RS-[0000]', 'Reseller since [month year] · Reseller code RS-[0000]'),
-      discTitle: L('DISKON RESELLER ANDA', 'YOUR RESELLER DISCOUNT'),
-      discBody: L('Berlaku untuk setiap pesanan, tanpa minimum. Harga reseller terlihat di setiap judul.', 'Applies to every order, no minimum. Reseller prices show on every title.'),
-      discMore: L('Hubungi tim kami untuk harga volume →', 'Ask our team about volume pricing →'),
+      discTitle: L('KETENTUAN PESANAN', 'ORDER TERMS'),
+      discBody: L('Minimum pesanan Rp 5.000.000. Tidak ada pembayaran saat memesan: uang muka 30% setelah stok dikonfirmasi, pelunasan saat invoice terbit.', 'Rp 5,000,000 order minimum. Nothing to pay when you order: 30% deposit once stock is confirmed, balance when invoiced.'),
+      discMore: L('Tanya tim kami lewat WhatsApp →', 'Ask our team on WhatsApp →'),
       depositTitle: L('DEPOSIT', 'DEPOSIT'),
       depositBody: L('Berlaku sampai [tanggal]. Dipotong otomatis dari pesanan berikutnya.', 'Valid until [date]. Deducted automatically from your next order.'),
       unpaid: L('Stok siap · menunggu pembayaran', 'Stock ready · awaiting payment'),

@@ -113,7 +113,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                 <span style="font-weight: 800; font-size: 16px">{{o.no}}</span>
                 <span style="font-size: 13px; color: #6E6478">{{t.yourRef}}: {{o.ref}} · {{o.date}}</span>
               </span>
-              <span style="font-size: 14px; color: #4A4252">{{o.itemsLabel}} · {{t.disc}} {{o.discLabel}}</span>
+              <span style="font-size: 14px; color: #4A4252">{{o.itemsLabel}}</span>
               <span style="width: 140px; text-align: right; font-weight: 800; font-size: 16px">{{o.totalLabel}}</span>
               <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.5px; padding: 6px 10px; border-radius: 999px; background: {{o.chipBg}}; color: {{o.chipInk}}">{{o.status}}</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><path d="{{o.chevron}}"></path></svg>
@@ -147,7 +147,7 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
                     </div>
                     <sc-for list="{{o.lines}}" as="ln" hint-placeholder-count="3">
                       <div style="display: grid; grid-template-columns: minmax(0, 3fr) 60px 120px 130px; gap: 12px; padding: 10px 0; font-size: 14px; border-bottom: 1px solid #F3EFF6">
-                        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ln.title}}</span><span style="font-size: 12px; color: #6E6478">{{ln.isbn}} · {{t.retail}} {{ln.retail}}</span></span>
+                        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ln.title}}</span><span style="font-size: 12px; color: #6E6478">{{ln.isbn}}</span></span>
                         <span>{{ln.qty}}</span>
                         <span>{{ln.unit}}</span>
                         <span style="text-align: right; font-weight: 700">{{ln.sub}}</span>
@@ -210,7 +210,7 @@ class Component extends DCLogic {
       yourRef: L('Ref. Anda', 'Your ref.'),
       disc: L('diskon', 'discount'),
       timeline: L('Status pesanan', 'Order status'),
-      colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colUnit: L('HARGA RESELLER', 'RESELLER PRICE'), colSub: 'SUBTOTAL',
+      colTitle: L('JUDUL', 'TITLE'), colQty: L('JML', 'QTY'), colUnit: L('HARGA', 'PRICE'), colSub: 'SUBTOTAL',
       retail: L('retail', 'retail'),
       payment: L('Pembayaran', 'Payment'), shipping: L('Pengiriman', 'Shipping'), courier: L('Kurir', 'Courier'), poDoc: L('Dokumen', 'Documents'),
       books: L('Buku', 'Books'), shipCost: L('Ongkir (ditanggung pembeli)', 'Shipping (paid by buyer)'),
@@ -235,18 +235,18 @@ class Component extends DCLogic {
     };
     // ship: null = freight not yet confirmed by staff; pickup: true = "Ambil sendiri di gudang"
     const raw = [
-      { no: 'ORD-202610-0014', ref: 'TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), s: 'submitted', disc: 30, pickup: false, ship: null,
+      { no: 'ORD-202610-0014', ref: 'TB-2026-014', date: L('8 Okt 2026', 'Oct 8, 2026'), s: 'submitted', disc: 0, pickup: false, ship: null,
         pay: L('Belum ada tagihan · stok dikonfirmasi dalam 1 hari kerja', 'No invoice yet · stock confirmed within 1 working day'), lines: [['atomic', 6], ['psych', 6], ['dog14', 6], ['itstarts', 6]] },
-      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), s: 'confirmed', disc: 30, pickup: false, ship: null,
+      { no: 'ORD-202610-0009', ref: 'TB-2026-013', date: L('6 Okt 2026', 'Oct 6, 2026'), s: 'confirmed', disc: 0, pickup: false, ship: null,
         pay: L('Stok siap · tagihan dikirim 8 Okt, berlaku sampai 11 Okt', 'Stock ready · invoice sent Oct 8, valid until Oct 11'), lines: [['alchemist', 6], ['morrie', 6], ['carnegie', 6]] },
-      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'verified', disc: 30, pickup: false, ship: 75000,
+      { no: 'ORD-202610-0004', ref: 'TB-2026-012', date: L('2 Okt 2026', 'Oct 2, 2026'), s: 'verified', disc: 0, pickup: false, ship: 75000,
         pay: L('Tagihan 5 Okt · lunas QRIS 6 Okt 2026', 'Invoiced Oct 5 · paid by QRIS Oct 6, 2026'), lines: [['dog1', 10], ['dog2', 10], ['dog3', 10]] },
-      { no: 'ORD-202609-0027', ref: 'TB-2026-011', date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'shipped', disc: 30, pickup: false, ship: 70000,
+      { no: 'ORD-202609-0027', ref: 'TB-2026-011', date: L('24 Sep 2026', 'Sep 24, 2026'), s: 'shipped', disc: 0, pickup: false, ship: 70000,
         courier: L('JNE Cargo · resi [nomor resi] · dikirim 30 Sep 2026', 'JNE Cargo · waybill [waybill no.] · shipped Sep 30, 2026'),
         pay: L('Transfer bank · lunas 26 Sep 2026', 'Bank transfer · paid Sep 26, 2026'), lines: [['alchemist', 12], ['psych', 6]] },
-      { no: 'ORD-202608-0018', ref: 'TB-2026-010', date: L('12 Agu 2026', 'Aug 12, 2026'), s: 'done', disc: 20, pickup: true, ship: 0,
+      { no: 'ORD-202608-0018', ref: 'TB-2026-010', date: L('12 Agu 2026', 'Aug 12, 2026'), s: 'done', disc: 0, pickup: true, ship: 0,
         pay: L('Tunai · lunas 14 Agu 2026', 'Cash · paid Aug 14, 2026'), lines: [['sapiens', 6], ['atomic', 6]] },
-      { no: 'ORD-202607-0022', ref: 'TB-2026-009', date: L('22 Jul 2026', 'Jul 22, 2026'), s: 'rejected', disc: 20, pickup: false, ship: null,
+      { no: 'ORD-202607-0022', ref: 'TB-2026-009', date: L('22 Jul 2026', 'Jul 22, 2026'), s: 'rejected', disc: 0, pickup: false, ship: null,
         reason: L('Alasan: stok It Starts With Us habis di penerbit; tidak ada tagihan.', 'Reason: It Starts With Us out of stock at the publisher; nothing was invoiced.'),
         pay: L('Tidak ada tagihan', 'Nothing to pay'), lines: [['itstarts', 12]] }
     ];

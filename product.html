@@ -106,55 +106,10 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 
         <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
           <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px">
-            <span style="font-size: 36px; font-weight: 700; color: #2A1640">{{yourPrice}}</span>
-            <span style="font-size: 16px; color: #6E6478; text-decoration: line-through">{{retail}}</span>
-            <span style="font-size: 13px; font-weight: 700; color: #2A1640; background: #FDE9C4; padding: 5px 10px; border-radius: 999px">{{discountLabel}}</span>
+            <span style="font-size: 36px; font-weight: 700; color: #2A1640">{{retail}}</span>
+            <span style="font-size: 13px; font-weight: 700; color: #2A1640; background: #FDE9C4; padding: 5px 10px; border-radius: 999px">{{t.priceTag}}</span>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 8px">
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px">
-              <span style="font-size: 14px; font-weight: 700">{{t.volumePricing}}</span>
-              <span style="font-size: 12px; color: #6E6478; font-style: italic">{{t.exampleNote}}</span>
-            </div>
-            <div style="overflow-x: auto; border: 1px solid #ECE6F1; border-radius: 14px">
-              <table style="width: 100%; border-collapse: collapse; font-size: 14px; min-width: 380px">
-                <caption style="caption-side: bottom; text-align: left; padding: 10px 14px; font-size: 12px; color: #6E6478; border-top: 1px solid #ECE6F1">{{t.matrixCaption}}</caption>
-                <thead>
-                  <tr>
-                    <th scope="col" style="text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 600; color: #6E6478; border-bottom: 1px solid #ECE6F1">{{t.qtyCol}}</th>
-                    <sc-for list="{{tierCols}}" as="c" hint-placeholder-count="3">
-                      <sc-if value="{{c.mine}}" hint-placeholder-val="{{false}}">
-                        <th scope="col" style="text-align: right; padding: 10px 14px; font-size: 13px; font-weight: 700; color: #2A1640; background: #F7F2FB; border-bottom: 1px solid #ECE6F1; border-left: 2px solid #5B2A86; border-right: 2px solid #5B2A86; border-top: 2px solid #5B2A86">
-                          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
-                            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: #FFFFFF; background: #5B2A86; padding: 2px 8px; border-radius: 999px">{{t.yourLevel}}</span>
-                            <span>{{c.name}}</span>
-                          </span>
-                        </th>
-                      </sc-if>
-                      <sc-if value="{{c.other}}" hint-placeholder-val="{{true}}">
-                        <th scope="col" style="text-align: right; vertical-align: bottom; padding: 10px 14px; font-size: 13px; font-weight: 600; color: #4A4252; border-bottom: 1px solid #ECE6F1">{{c.name}}</th>
-                      </sc-if>
-                    </sc-for>
-                  </tr>
-                </thead>
-                <tbody>
-                  <sc-for list="{{matrix}}" as="row" hint-placeholder-count="3">
-                    <tr>
-                      <th scope="row" style="text-align: left; padding: 10px 14px; font-weight: 600; color: #4A4252; border-bottom: 1px solid #F3EFF6; white-space: nowrap">{{row.qty}}</th>
-                      <sc-for list="{{row.cells}}" as="cell" hint-placeholder-count="3">
-                        <td style="text-align: right; padding: 10px 14px; border-bottom: 1px solid #F3EFF6; background: {{cell.bg}}; color: {{cell.color}}; font-weight: {{cell.weight}}; border-left: {{cell.edge}}; border-right: {{cell.edge}}; white-space: nowrap">
-                          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
-                            <span>{{cell.price}}</span>
-                            <span style="font-size: 11px; font-weight: 500; color: #6E6478">{{cell.off}}</span>
-                          </span>
-                        </td>
-                      </sc-for>
-                    </tr>
-                  </sc-for>
-                </tbody>
-              </table>
-            </div>
-          </div>
 
           <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
             <div style="display: flex; align-items: center; border: 1px solid #D9CCE6; border-radius: 12px; height: 52px">
@@ -191,8 +146,8 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
       <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
         <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.forResellers}}</h2>
         <div style="background: #F1EBF6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.5; color: #4A4252">
-          <span><strong style="color: #2A1640">{{t.shelfPrice}}</strong> {{retail}}</span>
-          <span><strong style="color: #2A1640">{{t.marginLabel}}</strong> {{margin}} {{t.perCopy}}</span>
+          <span><strong style="color: #2A1640">{{t.minOrderLabel}}</strong> {{t.minOrderValue}}</span>
+          <span><strong style="color: #2A1640">{{t.payLabel}}</strong> {{t.payValue}}</span>
           <span><strong style="color: #2A1640">{{t.returnsLabel}}</strong> {{t.noReturns}}</span>
           <a href="#" style="font-weight: 600">{{t.downloadSheet}}</a>
         </div>
@@ -203,12 +158,12 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
 </template>
 <div id="preview-strip" style="position:sticky;top:0;z-index:9999;font:600 12px/1 Figtree,system-ui,sans-serif;letter-spacing:.5px;text-align:center;padding:7px 12px;background:#2A1640;color:#F2B33D">PREVIEW · HANYA RESELLER LOGIN · tidak diindeks Google · pengunjung tanpa akun tidak melihat halaman ini</div>
 <div id="dc-root"></div>
-<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":20,"section":"Pricing"},"$preview":{"width":1440,"height":2000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":0,"section":"Pricing"},"$preview":{"width":1440,"height":2000}}'>
 class Component extends DCLogic {
   renderVals() {
     const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
-    const d = this.props.resellerDiscount ?? 20;
+    const d = this.props.resellerDiscount ?? 0;
     const price = 183308;
     const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const t = {
@@ -233,7 +188,6 @@ class Component extends DCLogic {
       byline: L('oleh Isabel Otter · ilustrasi oleh Lynn Giunta', 'by Isabel Otter · illustrated by Lynn Giunta'),
       inStock: L('Stok tersedia · [qty] eksemplar', 'In stock · [qty] available'),
       ages: L('Usia 0–2 tahun', 'Ages 0–2'),
-      volumePricing: L('Harga reseller per level', 'Reseller price by level'),
       exampleNote: L('Contoh harga — harga final mengikuti S&K reseller', 'Example prices — final prices follow the reseller T&Cs'),
       matrixCaption: L('Harga per eksemplar, belum termasuk ongkir. Buku bebas PPN.', 'Price per copy, excluding shipping. Books are PPN-exempt.'),
       qtyCol: L('Jumlah', 'Quantity'),
@@ -255,46 +209,22 @@ class Component extends DCLogic {
       dtPages: L('Jumlah halaman', 'Page count'),
       pages: L('[Jumlah halaman]', '[Pages]'),
       forResellers: L('Untuk reseller', 'For resellers'),
-      shelfPrice: L('Harga jual yang disarankan:', 'Suggested shelf price:'),
-      marginLabel: L('Margin Anda per eksemplar (diskon 20%):', 'Your margin per copy (20% off):'),
-      perCopy: L('per eksemplar', 'per copy'),
+      priceTag: L('Harga per eksemplar', 'Price per copy'),
+      minOrderLabel: L('Minimum pesanan:', 'Order minimum:'),
+      minOrderValue: L('Rp 5.000.000 per pesanan', 'Rp 5,000,000 per order'),
+      payLabel: L('Pembayaran:', 'Payment:'),
+      payValue: L('tidak ada saat memesan; tagihan saat stok siap', 'none at order; invoiced when stock is ready'),
       returnsLabel: L('Retur:', 'Returns:'),
       noReturns: L('Barang tidak dapat diretur.', 'Items cannot be returned.'),
       downloadSheet: L('Unduh lembar produk (PDF)', 'Download product sheet (PDF)')
     };
-    // One reseller price: d% off retail (default 20). Volume pricing is discussed with the team, not shown.
-    const myTier = 0;
-    const groups = [
-      { name: L('Harga reseller', 'Reseller price'), offs: [d, d, d] }
-    ];
-    const breaks = [L('3+ (MOQ)', '3+ (MOQ)'), '10+', '50+'];
-    const tierCols = groups.map((g, gi) => ({ name: g.name, mine: gi === myTier, other: gi !== myTier }));
-    const matrix = breaks.map((q, ri) => ({
-      qty: q,
-      cells: groups.map((g, gi) => ({
-        price: fmt(price * (1 - g.offs[ri] / 100)),
-        off: L('hemat ' + g.offs[ri] + '%', g.offs[ri] + '% off'),
-        bg: gi === myTier ? '#F7F2FB' : '#FFFFFF',
-        color: gi === myTier ? '#2A1640' : '#4A4252',
-        weight: gi === myTier ? '700' : '500',
-        edge: gi === myTier ? '2px solid #5B2A86' : '0'
-      }))
-    }));
-    const myOff = groups[myTier].offs[0];
-    const discount = myOff + '%';
     const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
       label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
     }));
     return {
       t,
       langs,
-      retail: fmt(price),
-      yourPrice: fmt(price * (1 - myOff / 100)),
-      discount,
-      discountLabel: L('Diskon reseller ' + discount, 'Reseller ' + discount + ' off'),
-      margin: fmt(price * myOff / 100),
-      tierCols,
-      matrix
+      retail: fmt(price)
     };
   }
 }
