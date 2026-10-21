@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Produk Non Buku | Star Books and Gifts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Halaman produk non buku untuk reseller.">
+<link rel="canonical" href="https://stevetsurface.github.io/sinar-starbooks-preview/non-book-product.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Star Books and Gifts">
+<meta property="og:title" content="Produk Non Buku | Star Books and Gifts">
+<meta property="og:description" content="Halaman produk non buku untuk reseller.">
+<meta property="og:url" content="https://stevetsurface.github.io/sinar-starbooks-preview/non-book-product.html">
+<meta property="og:image" content="https://stevetsurface.github.io/sinar-starbooks-preview/assets/logos/star-books-and-gifts.png">
+<meta property="og:locale" content="id_ID">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="assets/logos/star-books-and-gifts.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAFC}
+a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
+</style>
+
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: Figtree, system-ui, sans-serif; color: #1E1A24; background: #FBFAFC; min-height: 100vh">
+
+  <!-- Header -->
+  <header style="background: #FFFFFF; border-bottom: 1px solid #ECE6F1">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center">
+      <a href="reseller-home.html" style="display: flex; align-items: center; gap: 10px" aria-label="{{t.homeAria}}">
+        <img src="assets/logos/star-books-and-gifts.png" alt="Star Books and Gifts" style="height: 64px; width: auto; display: block"><span style="font-size: 11px; letter-spacing: 2.5px; color: #5B2A86; font-weight: 800; padding-left: 14px; border-left: 1px solid #D9CCE6; line-height: 1.4">PORTAL<br>RESELLER</span>
+      </a>
+      <form style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; background: #F4F0F8; border-radius: 999px; padding: 0 8px 0 18px; height: 48px" role="search">
+        <label for="q3" style="position: absolute; left: -9999px">{{t.searchLabel}}</label>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6478" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="q3" type="search" placeholder="{{t.searchPh}}" style="flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; outline: none; color: #1E1A24">
+      </form>
+      <a href="account.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #D9CCE6; background: #FFFFFF; color: #1E1A24; font-weight: 600; font-size: 14px; white-space: nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>{{t.myAccountBtn}}</a>
+      <div role="group" aria-label="Language / Bahasa" style="display: flex; gap: 4px; background: #F1EBF6; padding: 4px; border-radius: 999px">
+        <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+          <sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+            <button type="button" aria-pressed="true" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: #5B2A86; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+          <sc-if value="{{l.off}}" hint-placeholder-val="{{true}}">
+            <button type="button" aria-pressed="false" onClick="{{l.pick}}" style="height: 40px; min-width: 52px; padding: 0 14px; border-radius: 999px; border: 0; background: transparent; color: #4A4252; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer">{{l.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <a href="checkout.html" style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 14px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+        {{t.cartLabel}}
+      </a>
+    </div>
+    <nav aria-label="{{t.nvAria}}" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 14px; font-weight: 700">
+      <a href="catalog.html" style="color: #5B2A86; padding: 12px 0 14px; border-bottom: 3px solid #5B2A86">{{t.nvBooks}}</a>
+      <a href="catalog.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNonBooks}}</a>
+      <a href="about.html#publishers" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvPub}}</a>
+      <a href="become-a-reseller.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvReseller}}</a>
+      <a href="about.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvAbout}}</a>
+      <a href="coming-soon.html" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvNews}}</a>
+      <a href="faq.html#account" style="color: #1E1A24; padding: 12px 0 14px">{{t.nvContact}}</a>
+    </nav>
+  </header>
+
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px; display: flex; flex-direction: column; gap: 56px">
+    <nav aria-label="{{t.breadcrumbAria}}" style="font-size: 14px; color: #6E6478; display: flex; gap: 8px; margin-bottom: -32px">
+      <a href="reseller-home.html">{{t.crumbHome}}</a><span aria-hidden="true">/</span><a href="catalog.html">{{t.crumbGifts}}</a><span aria-hidden="true">/</span><span>Punch Needle Kit</span>
+    </nav>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+      <!-- Gallery -->
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #F1EBF6; border-radius: 28px; padding: 56px; display: grid; place-items: center">
+          <div style="width: 320px; height: 320px; border-radius: 50%; background: #F6E3C8; border: 14px solid #B07A12; box-shadow: 0 30px 50px rgba(42,22,64,0.2); box-sizing: border-box; display: grid; place-items: center; text-align: center; padding: 32px">
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.05; color: #2A1640">Punch Needle Kit<br><span style="font-size: 14px; font-weight: 600; letter-spacing: 2px; color: #B07A12">KIKKERLAND</span></span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button type="button" aria-label="{{t.viewImage1}}" style="width: 84px; height: 84px; border-radius: 14px; border: 2px solid #5B2A86; background: #F6E3C8; cursor: pointer"></button>
+          <button type="button" aria-label="{{t.viewImage2}}" style="width: 84px; height: 84px; border-radius: 14px; border: 1px solid #ECE6F1; background: #E07A3F; cursor: pointer"></button>
+          <button type="button" aria-label="{{t.viewImage3}}" style="width: 84px; height: 84px; border-radius: 14px; border: 1px solid #ECE6F1; background: #E9A8C4; cursor: pointer"></button>
+        </div>
+      </div>
+
+      <!-- Buy box -->
+      <div style="flex: 1 1 440px; display: flex; flex-direction: column; gap: 22px">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #5B2A86">KIKKERLAND</span>
+          <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 46px; line-height: 1.05; color: #2A1640">Punch Needle Kit</h1>
+          <span style="font-size: 15px; color: #6E6478">{{t.byline}}</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #DDEBDD; color: #24523A">{{t.inStock}}</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">SKU [kode Kikkerland]</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #F4F0F8; color: #4A4252">{{t.ages}}</span>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px">
+            <span style="font-size: 36px; font-weight: 700; color: #2A1640">{{retail}}</span>
+            <span style="font-size: 13px; font-weight: 700; color: #2A1640; background: #FDE9C4; padding: 5px 10px; border-radius: 999px">{{t.priceTag}}</span>
+          </div>
+
+
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+            <div style="display: flex; align-items: center; border: 1px solid #D9CCE6; border-radius: 12px; height: 52px">
+              <button type="button" aria-label="{{t.decQty}}" style="width: 48px; height: 50px; border: 0; background: transparent; font-size: 20px; color: #4A4252; cursor: pointer">−</button>
+              <label for="pqty" style="position: absolute; left: -9999px">{{t.qtyLabel}}</label>
+              <input id="pqty" type="number" value="12" style="width: 56px; border: 0; text-align: center; font: inherit; font-size: 17px; font-weight: 600; outline: none">
+              <button type="button" aria-label="{{t.incQty}}" style="width: 48px; height: 50px; border: 0; background: transparent; font-size: 20px; color: #4A4252; cursor: pointer">+</button>
+            </div>
+            <a href="checkout.html" style="flex: 1 1 200px; display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px; background: #5B2A86; color: #FFFFFF; font-weight: 600; font-size: 16px">{{t.addToCart}}</a>
+            <button type="button" aria-label="{{t.wishlist}}" style="width: 52px; height: 52px; border-radius: 12px; border: 1px solid #D9CCE6; background: #FFFFFF; display: grid; place-items: center; cursor: pointer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A4252" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"></path></svg>
+            </button>
+          </div>
+          <span style="font-size: 13px; color: #6E6478">{{t.orderNote}}</span>
+        </div>
+
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #4A4252">{{t.description}}</p>
+      </div>
+    </div>
+
+    <!-- Specification -->
+    <section style="display: flex; flex-wrap: wrap; gap: 32px">
+      <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.bookDetails}}</h2>
+        <dl style="margin: 0; background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; padding: 8px 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); font-size: 15px">
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtBrand}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">Kikkerland</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtDesign}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">KDT</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtMaterials}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.materials}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtContents}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.contents}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtPackaging}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.packaging}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478; border-bottom: 1px solid #F3EFF6">{{t.dtDimensions}}</dt><dd style="margin: 0; padding: 14px 0; border-bottom: 1px solid #F3EFF6">{{t.dimensions}}</dd>
+          <dt style="padding: 14px 0; color: #6E6478">{{t.dtTax}}</dt><dd style="margin: 0; padding: 14px 0">{{t.tax}}</dd>
+        </dl>
+      </div>
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 28px; color: #2A1640">{{t.forResellers}}</h2>
+        <div style="background: #F1EBF6; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.5; color: #4A4252">
+          <span><strong style="color: #2A1640">{{t.minOrderLabel}}</strong> {{t.minOrderValue}}</span>
+          <span><strong style="color: #2A1640">{{t.payLabel}}</strong> {{t.payValue}}</span>
+          <span><strong style="color: #2A1640">{{t.returnsLabel}}</strong> {{t.noReturns}}</span>
+          <a href="#" style="font-weight: 600">{{t.downloadSheet}}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</template>
+<div id="preview-strip" style="position:sticky;top:0;z-index:9999;font:600 12px/1 Figtree,system-ui,sans-serif;letter-spacing:.5px;text-align:center;padding:7px 12px;background:#2A1640;color:#F2B33D">PREVIEW · HANYA RESELLER LOGIN · tidak diindeks Google · pengunjung tanpa akun tidak melihat halaman ini</div>
+<div id="dc-root"></div>
+<script type="text/x-dc" data-dc-script data-props='{"startLanguage":{"editor":"enum","options":["id","en"],"default":"id"},"resellerDiscount":{"editor":"range","min":0,"max":50,"step":1,"unit":"%","default":0,"section":"Pricing"},"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
+    const L = (id, en) => (lang === 'id' ? id : en);
+    const d = this.props.resellerDiscount ?? 0;
+    const price = 525000; // contoh harga retail; $35 di daftar harga Kikkerland
+    const fmt = (n) => 'Rp ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const t = {
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Segera Terbit', 'Coming Soon'), myAccountBtn: L('Akun Saya', 'My Account'),
+      homeAria: L('Beranda Sinar Starbooks', 'Sinar Starbooks home'),
+      searchLabel: L('Cari katalog', 'Search catalog'),
+      searchPh: L('Cari judul, penulis, ISBN, atau penerbit', 'Search by title, author, ISBN or publisher'),
+      cartLabel: L('Keranjang · 24 item', 'Cart · 24 items'),
+      navAria: L('Menu utama', 'Main'),
+      navCatalog: L('Katalog', 'Catalog'),
+      navNew: L('Rilis Baru & Pre-order', 'New Releases & Pre-orders'),
+      navPublishers: L('Penerbit', 'Publishers'),
+      navPartnership: L('Kemitraan', 'Partnership'),
+      navAbout: L('Tentang Kami', 'About'),
+      navContact: L('Kontak', 'Contact'),
+      breadcrumbAria: L('Navigasi halaman', 'Breadcrumb'),
+      crumbHome: L('Beranda', 'Home'),
+      crumbBooks: L('Buku', 'Books'),
+      crumbGifts: L('Non Buku', 'Non Books'),
+      viewImage1: L('Lihat gambar 1', 'View image 1'),
+      viewImage2: L('Lihat gambar 2', 'View image 2'),
+      viewImage3: L('Lihat gambar 3', 'View image 3'),
+      byline: L('Kit kerajinan · desain KDT', 'Craft kit · design by KDT'),
+      inStock: L('Stok tersedia · [qty] pcs', 'In stock · [qty] pcs'),
+      ages: L('Cocok untuk pemula', 'Great for beginners'),
+                  qtyCol: L('Jumlah', 'Quantity'),
+      yourLevel: L('Level Anda', 'Your level'),
+      decQty: L('Kurangi jumlah', 'Decrease quantity'),
+      qtyLabel: L('Jumlah', 'Quantity'),
+      incQty: L('Tambah jumlah', 'Increase quantity'),
+      addToCart: L('Tambah 12 ke keranjang', 'Add 12 to cart'),
+      wishlist: L('Tambah ke wishlist', 'Add to wish list'),
+      orderNote: L('Min. pembelian 6 · Kelipatan 6 (1 inner box)', 'Minimum order 6 · Sold in multiples of 6 (1 inner box)'),
+      description: L('Pelajari kerajinan tradisional punch needle atau "rug hooking" dan buat permadani mini Anda sendiri. Kit ini berisi semua yang dibutuhkan: 1 hoop bambu yang bisa diatur, 1 jarum punch, 1 alat pemasang benang, 1 kain katun dengan pola tercetak, dan benang yang cukup untuk menyelesaikan desain. Cocok untuk pemula!', 'Learn the traditional handicraft of punch needle or "rug hooking" and create your very own miniature tapestry. Kit comes with everything needed including: 1 adjustable bamboo hoop, 1 punch needle, 1 needle threader, 1 cotton cloth with printed template, and plenty of yarn to complete the design. Great for beginners!'),
+      bookDetails: L('Detail produk', 'Product details'),
+      dtBrand: L('Merek', 'Brand'), dtDesign: L('Desain', 'Design'), dtMaterials: L('Bahan', 'Materials'), dtContents: L('Isi kemasan', 'Contents'), dtPackaging: L('Kemasan', 'Packaging'), dtDimensions: L('Dimensi', 'Dimensions'), dtTax: L('PPN', 'VAT (PPN)'),
+      materials: L('Rangka bambu, klem sekrup besi, jarum ABS & baja, kain katun, benang akrilik', 'Bamboo frame, iron screw clamp, ABS & steel needle, cotton fabric, acrylic yarn'),
+      contents: L('1 hoop bambu, 1 jarum punch, 1 alat pemasang benang, 1 kain katun berpola, benang', '1 bamboo hoop, 1 punch needle, 1 needle threader, 1 printed cotton cloth, yarn'),
+      packaging: L('Color box', 'Color box'),
+      dimensions: L('Diameter 16 cm / 6,25"', 'Dia. 16 cm / 6.25"'),
+      tax: L('Harga sudah termasuk PPN; faktur pajak tersedia', 'Price includes PPN; tax invoice available'),
+      forResellers: L('Untuk reseller', 'For resellers'),
+      priceTag: L('Harga per pcs', 'Price per pc'),
+      minOrderLabel: L('Minimum pesanan:', 'Order minimum:'),
+      minOrderValue: L('Rp 5.000.000 per pesanan', 'Rp 5,000,000 per order'),
+      payLabel: L('Pembayaran:', 'Payment:'),
+      payValue: L('tidak ada saat memesan; tagihan saat stok siap', 'none at order; invoiced when stock is ready'),
+      returnsLabel: L('Retur:', 'Returns:'),
+      noReturns: L('Barang tidak dapat diretur.', 'Items cannot be returned.'),
+      downloadSheet: L('Unduh lembar produk & foto (PDF)', 'Download product sheet & photos (PDF)')
+    };
+    const langs = [{ id: 'id', label: 'ID' }, { id: 'en', label: 'EN' }].map((x) => ({
+      label: x.label, on: lang === x.id, off: lang !== x.id, pick: () => this.setState({ lang: x.id })
+    }));
+    return {
+      t,
+      langs,
+      retail: fmt(price)
+    };
+  }
+}
+</script>
+<script src="dc-lite.js"></script>
+</body>
+</html>
