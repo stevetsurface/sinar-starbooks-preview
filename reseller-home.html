@@ -311,7 +311,7 @@ class Component extends DCLogic {
     const lang = (this.state && this.state.lang) || this.props.startLanguage || 'id';
     const L = (id, en) => (lang === 'id' ? id : en);
     const t = {
-      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Kabar Buku', 'Book News'), myAccountBtn: L('Akun Saya', 'My Account'),
+      nvAria: L('Menu utama', 'Main menu'), nvBooks: L('Buku ▾', 'Books ▾'), nvNonBooks: L('Non Buku ▾', 'Non Books ▾'), nvPub: L('Penerbit ▾', 'Publishers ▾'), nvReseller: L('Untuk Reseller ▾', 'For Resellers ▾'), nvAbout: L('Tentang Kami ▾', 'About Us ▾'), nvContact: L('Kontak', 'Contact'), nvNews: L('Segera Terbit', 'Coming Soon'), myAccountBtn: L('Akun Saya', 'My Account'),
       shipping: L('Harga grosir khusus reseller · diskon mulai 20% untuk pembelian Rp 1.000.000', 'Wholesale prices for resellers · from 20% off on purchases of Rp 1,000,000'),
       help: L('Bantuan & FAQ', 'Help & FAQ'),
       becomeReseller: L('Daftar jadi reseller', 'Become a reseller'),
@@ -325,7 +325,7 @@ class Component extends DCLogic {
       cart: L('Keranjang · 24 item', 'Cart · 24 items'),
       mainNavAria: L('Utama', 'Main'),
       navCatalog: L('Katalog', 'Catalog'),
-      navNew: L('Segera Terbit & Kabar Buku', 'Coming Soon & Book News'),
+      navNew: L('Segera Terbit & Rekomendasi', 'Coming Soon & Picks'),
       navPublishers: L('Penerbit', 'Publishers'),
       navPartnership: L('Kemitraan', 'Partnership'),
       navAbout: L('Tentang Kami', 'About'),
@@ -362,7 +362,7 @@ class Component extends DCLogic {
       recAdded: L('✓ Di keranjang', '✓ In cart'),
       priceNoteA: L('Harga reseller Anda ditampilkan —', 'Your reseller price is shown —'),
       priceNoteB: L('di bawah harga eceran.', 'below retail.'),
-      newSeeAll: L('Kalender rilis & kabar buku →', 'Release calendar & book news →'),
+      newSeeAll: L('Kalender rilis & rekomendasi tim →', 'Release calendar & team picks →'),
       minOrder: L('Min. pembelian', 'Min. order'),
       pcs: L('pcs', 'pcs'),
       addPre: L('Tambah', 'Add'),
