@@ -219,11 +219,11 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
           <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 20px; overflow-x: auto">
             <div style="min-width: 720px">
-              <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
-                <span></span><span>{{t.colTitle}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
+              <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1">
+                <span></span><span>{{t.colTitle}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
               </div>
               <sc-for list="{{page}}" as="r" hint-placeholder-count="6">
-                <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
+                <div style="display: grid; grid-template-columns: 64px minmax(0, 3fr) minmax(0, 1.1fr) 150px; gap: 16px; padding: 14px 20px; align-items: center; border-bottom: 1px solid #F3EFF6">
                   <div style="width: 52px; height: 72px; border-radius: 2px 6px 6px 2px; background: {{r.cover}}; box-shadow: 0 6px 12px rgba(42,22,64,0.14); position: relative; overflow: hidden"><sc-if value="{{r.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if></div>
                   <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
                     <span style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
@@ -290,11 +290,11 @@ a{color:#5B2A86;text-decoration:none}a:hover{color:#3E1A5E}
         <sc-if value="{{isCompact}}" hint-placeholder-val="{{false}}">
           <div style="background: #FFFFFF; border: 1px solid #ECE6F1; border-radius: 16px; overflow-x: auto">
             <div style="min-width: 940px; font-size: 13px">
-              <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 100px 100px 120px; gap: 12px; padding: 10px 16px; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1; background: #FBFAFC">
-                <span>{{t.colTitle}}</span><span>{{t.colAuthor}}</span><span>{{t.colPublisher}}</span><span>{{t.colCategory}}</span><span>{{t.colRetail}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
+              <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 110px 120px; gap: 12px; padding: 10px 16px; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: #6E6478; border-bottom: 1px solid #ECE6F1; background: #FBFAFC">
+                <span>{{t.colTitle}}</span><span>{{t.colAuthor}}</span><span>{{t.colPublisher}}</span><span>{{t.colCategory}}</span><span>{{t.colPrice}}</span><span>{{t.colQty}}</span>
               </div>
               <sc-for list="{{page}}" as="r" hint-placeholder-count="12">
-                <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 100px 100px 120px; gap: 12px; padding: 6px 16px; align-items: center; border-bottom: 1px solid #F3EFF6">
+                <div style="display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.3fr) minmax(0, 1.2fr) minmax(0, 1.2fr) 110px 120px; gap: 12px; padding: 6px 16px; align-items: center; border-bottom: 1px solid #F3EFF6">
                   <a href="product.html" style="font-weight: 700; color: #1E1A24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.title}}</a>
                   <span style="color: #4A4252; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.author}}</span>
                   <span style="color: #4A4252; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.publisher}}</span>
@@ -616,7 +616,7 @@ class Component extends DCLogic {
       trending, recentOrders, showTrending: !cat && !pub && tab === 'all' && cur === 1 && (this.props.paidOrders ?? 1) >= 3,
       t, langs, groups, pubs, avails, tabs, chips, sortOpts, perOpts, viewOpts, pages, page,
       heading, showingText, crumbSep: cat ? '/' : '', crumbCat: cat ? catName[cat] : '',
-      countLabel: L(total + ' judul · harga reseller untuk pesanan ini (diskon ' + d + '%)', total + ' titles · reseller prices for this order (' + d + '% off)'),
+      countLabel: L(total + ' judul · harga per eksemplar · minimum pesanan Rp 5.000.000', total + ' titles · price per copy · Rp 5,000,000 order minimum'),
       totalCount: books.length, allCatOn: !cat, allCatOff: !!cat, pickAllCat: () => set({ cat: null }),
       hasChips: chips.length > 0, clearAll: () => set({ cat: null, pub: null, avail: 'all', tab: 'all' }),
       isList: view === 'list' && total > 0, isGrid: view === 'grid' && total > 0, isCompact: view === 'compact' && total > 0, isEmpty: total === 0,
