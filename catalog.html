@@ -456,7 +456,7 @@ class Component extends DCLogic {
     books.slice().sort((a, b) => b.sold - a.sold).slice(0, 10).forEach((b, i) => { bestRank[b.key] = i + 1; });
 
     // Reseller discount triggers (S&K Reseller 2026), on the order's retail value
-    const TIERS = [{ min: 5000000, d: 0 }];
+    const TIERS = [{ min: 3000000, d: 0 }];
     const tierFor = (v) => TIERS.filter((x) => v >= x.min).pop() || null;
     const byKey = {}; books.forEach((b) => { byKey[b.key] = b; });
     const seedCart = {};
@@ -474,7 +474,7 @@ class Component extends DCLogic {
       const newRetail = Object.keys(c).reduce((s, k) => s + byKey[k].price * c[k], 0);
       const before = tierFor(cartRetailN), after = tierFor(newRetail);
       let msg = L('Ditambahkan: ' + qty + ' × ' + byKey[key].title, 'Added: ' + qty + ' × ' + byKey[key].title);
-      if (after && !before) msg = L('Minimum pesanan Rp 5.000.000 tercapai!', 'Rp 5,000,000 order minimum reached!');
+      if (after && !before) msg = L('Minimum pesanan Rp 3.000.000 tercapai!', 'Rp 3,000,000 order minimum reached!');
       this.setState({ cart: c, flash: msg, flashId: (st.flashId || 0) + 1 });
       const id = (st.flashId || 0) + 1;
       setTimeout(() => { if ((this.state || {}).flashId === id) this.setState({ flash: null }); }, 2600);
@@ -601,14 +601,14 @@ class Component extends DCLogic {
       toggleCart: () => this.setState({ cartOpen: !(this.state || {}).cartOpen }),
       cartCount: cartQty, cartCountLabel: L(cartQty + ' buku', cartQty + ' books'),
       cartLines, cartRetail: fmt(cartRetailN), cartSave: fmt(cartRetailN - cartTotalN), cartTotal: fmt(cartTotalN),
-      tierNow: L('Minimum pesanan Rp 5.000.000', 'Rp 5,000,000 order minimum'),
-      discLabel: tierNowObj ? '✓' : Math.round(cartRetailN / 5000000 * 100) + '%', tierPct, tierWidth: tierPct + '%', tierNext, ladder,
+      tierNow: L('Minimum pesanan Rp 3.000.000', 'Rp 3,000,000 order minimum'),
+      discLabel: tierNowObj ? '✓' : Math.round(cartRetailN / 3000000 * 100) + '%', tierPct, tierWidth: tierPct + '%', tierNext, ladder,
       pillHint: nextTier ? L('+' + fmt(nextTier.min - cartRetailN) + ' ke minimum', '+' + fmt(nextTier.min - cartRetailN) + ' to minimum') : L('Minimum tercapai', 'Minimum reached'),
       hasFlash: !!st.flash, flash: st.flash || '',
       trending, recentOrders, showTrending: !cat && !pub && tab === 'all' && cur === 1 && (this.props.paidOrders ?? 1) >= 3,
       t, langs, groups, pubs, tabs, chips, sortOpts, perOpts, viewOpts, pages, page,
       heading, showingText, crumbSep: cat ? '/' : '', crumbCat: cat ? catName[cat] : '',
-      countLabel: L(total + ' judul · harga per eksemplar · minimum pesanan Rp 5.000.000', total + ' titles · price per copy · Rp 5,000,000 order minimum'),
+      countLabel: L(total + ' judul · harga per eksemplar · minimum pesanan Rp 3.000.000', total + ' titles · price per copy · Rp 3,000,000 order minimum'),
       totalCount: books.length, allCatOn: !cat, allCatOff: !!cat, pickAllCat: () => set({ cat: null }),
       hasChips: chips.length > 0, clearAll: () => set({ cat: null, pub: null, tab: 'all' }),
       isList: view === 'list' && total > 0, isGrid: view === 'grid' && total > 0, isCompact: view === 'compact' && total > 0, isEmpty: total === 0,
